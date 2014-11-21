@@ -1,0 +1,46 @@
+{{include file="_common/header.html"}}
+<link rel="stylesheet" type="text/css" href="http://core.com/theme/style/sysmanager.css" />
+
+<!-- 表格 -->
+<link rel="stylesheet" type="text/css" href="/libs/jquery/tablesorter/themes/gray/style.css" />
+<script type="text/javascript" src="/libs/jquery/tablesorter/jquery.tablesorter.min.js"></script>
+
+<!-- 所见即所得编辑器 -->
+<link rel="stylesheet" type="text/css" href="/libs/tinyeditor/style.css" />
+<script type="text/javascript" src="/libs/tinyeditor/tinyeditor.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#demo_table").tablesorter({});
+	
+	new TINY.editor.edit('editor',{
+		id:'txt_editor',
+		width:584,
+		height:175,
+		cssclass:'te',
+		controlclass:'tecontrol',
+		rowclass:'teheader',
+		dividerclass:'tedivider',
+		controls:['bold','italic','underline','strikethrough','|','subscript','superscript','|',
+				  'orderedlist','unorderedlist','|','outdent','indent','|','leftalign',
+				  'centeralign','rightalign','blockjustify','|','unformat','|','undo','redo','n',
+				  'font','size','style','|','image','hr','link','unlink','|','cut','copy','paste','print'],
+		footer:true,
+		fonts:['Verdana','Arial','Georgia','Trebuchet MS'],
+		xhtml:true,
+		cssfile:'style.css',
+		bodyid:'editor',
+		footerclass:'tefooter',
+		toggle:{text:'show source',activetext:'show editor',cssclass:'toggle'},
+		resize:{cssclass:'resize'}
+	});
+	
+});
+</script>
+
+<div class="title_panel">
+	管理概况
+</div>
+
+{{include file="_common/footer.html"}}

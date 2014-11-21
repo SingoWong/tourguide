@@ -1,0 +1,87 @@
+{{include file="_common/header.html"}}
+<link rel="stylesheet" type="text/css" href="http://core.com/theme/style/sysmanager.css" />
+
+<!-- 表格 -->
+<link rel="stylesheet" type="text/css" href="/libs/jquery/tablesorter/themes/gray/style.css" />
+<script type="text/javascript" src="/libs/jquery/tablesorter/jquery.tablesorter.min.js"></script>
+
+<!-- 所见即所得编辑器 -->
+<link rel="stylesheet" type="text/css" href="/libs/tinyeditor/style.css" />
+<script type="text/javascript" src="/libs/tinyeditor/tinyeditor.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#demo_table").tablesorter({});
+	
+	new TINY.editor.edit('editor',{
+		id:'txt_editor',
+		width:584,
+		height:175,
+		cssclass:'te',
+		controlclass:'tecontrol',
+		rowclass:'teheader',
+		dividerclass:'tedivider',
+		controls:['bold','italic','underline','strikethrough','|','subscript','superscript','|',
+				  'orderedlist','unorderedlist','|','outdent','indent','|','leftalign',
+				  'centeralign','rightalign','blockjustify','|','unformat','|','undo','redo','n',
+				  'font','size','style','|','image','hr','link','unlink','|','cut','copy','paste','print'],
+		footer:true,
+		fonts:['Verdana','Arial','Georgia','Trebuchet MS'],
+		xhtml:true,
+		cssfile:'style.css',
+		bodyid:'editor',
+		footerclass:'tefooter',
+		toggle:{text:'show source',activetext:'show editor',cssclass:'toggle'},
+		resize:{cssclass:'resize'}
+	});
+	
+});
+</script>
+
+<div class="title_panel">
+	管理概况
+</div>
+
+<form class="gm_t1_form" id="login" action="＃" method="POST">
+    <ul>
+        <li>
+            <span class="v"><input type="text" id="email" name="email" placeholder="输入账号"><em></em></span>
+        </li>
+        <li>
+            <span class="v"><input type="password" id="password" name="password" placeholder="输入密码"><em></em></span>
+        </li>
+        <li class="gm_t1_form_btn" style="height:auto;">
+            <input type="submit" class="gm_t1_btn" value="登录">
+        </li>
+    </ul>
+</form>
+
+<table id="demo_table" border="0" cellpadding="2" cellspacing="1" class="tablesorter">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>发布者</th>
+			<th>描述</th>
+			<th>状态</th>
+			<th>结束时间</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{foreach from=$rowset item=item key=key}}
+		<tr>
+			<td>{{$item->id}}</td>
+			<td>{{$item->username}}</td>
+			<td>{{$item->email}}</td>
+			<td>状态</td>
+			<td>结束时间</td>
+			<td>操作</td>
+		</tr>
+		{{/foreach}}
+	</tbody>
+</table>
+
+<textarea id="txt_editor" style="width:400px; height:200px"></textarea>
+
+{{include file="_common/footer.html"}}

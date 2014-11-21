@@ -1,0 +1,27 @@
+body {
+	background:#EAEAEA;
+}
+.gm_t1_form .v {
+	padding-right:0;
+}
+.gm_t1_form .v input {
+	border:0px;
+	background:#EAEAEA;
+	width:250px;
+}
+.gm_t1_btn {
+	width:270px;
+}
+
+.signin_form {
+	margin:100px auto;
+	width:300px;
+	background:#FFF;
+	text-align:center;
+	padding:10px;
+}
+.signin_form .logo {
+	background:url(../images/logo_sign.png) center no-repeat;
+	height:30px;
+	margin-bottom:10px;
+}

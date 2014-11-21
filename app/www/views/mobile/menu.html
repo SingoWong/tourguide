@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		{{include file="_common/minclude.html"}}
+		
+		<style type="text/css">
+			.menu-list {
+				text-align: center;
+				padding: 20px;
+				background: #FFF;
+			}
+			.menu-list .menu_item {
+				display: inline-block;
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+				background: #CCC;
+				margin: 10px 10px 10px 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content menu-list">
+			<div class="menu_item" id="btn-guide">导游</div>
+			<div class="menu_item" id="btn-restaurant">餐厅</div>
+			<div class="menu_item" id="btn-hotel">饭店</div>
+			<div class="menu_item">景点</div>
+			<div class="menu_item">伴手礼品</div>
+			<div class="menu_item">免税店</div>
+			<div class="menu_item">车行</div>
+			<div class="menu_item">旅行社</div>
+		</div>
+		<script type="text/javascript">
+			//tap为mui封装的单击事件，可参考手势事件章节
+			document.getElementById('btn-guide').addEventListener('tap', function() {
+			  //打开关于页面
+			  mui.openWindow({
+			    url: 'guide/signin.html', 
+			    id:'guide'
+			  });
+			});
+		</script>
+	</body>
+</html>

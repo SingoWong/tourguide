@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>餐厅搜索</title>
+		
+		{{include file="_common/minclude.html"}}
+		
+		<style type="text/css">
+			.quick-nav {
+				padding: 0 50px;
+			}
+			.info-search {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="#offCanvas" class="mui-icon mui-icon-bars mui-pull-left"></a>
+			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
+			<div class="quick-nav">
+				<div id="sc-nav" class="mui-segmented-control">
+					<a class="mui-control-item" href="#">团号</a>
+					<a class="mui-control-item mui-active" href="#">订餐</a>
+					<a class="mui-control-item" href="#">订房</a>
+					<a class="mui-control-item" href="#">意外</a>
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div class="info-search">
+				<h3>搜索餐厅</h3>
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" placeholder="城市">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" placeholder="名称">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" placeholder="附近景点">
+					</div>
+					
+					<div class="signin_submit">
+						<button class="mui-btn mui-btn-primary mui-btn-block btn-signin">登陆</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		  <a class="mui-tab-item" href="#">
+		    订餐资讯
+		  </a>
+		  <a class="mui-tab-item mui-active" href="#">
+		    餐厅搜索
+		  </a>
+		</nav>
+	</body>
+</html>

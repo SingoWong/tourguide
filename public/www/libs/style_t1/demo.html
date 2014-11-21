@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>汇流-样式套装t1_DEMO</title>
+<link href="../../theme/style/global.css" type="text/css" rel="stylesheet" /><!-- 绝对要引用，注意路径 -->
+<link href="t1.css" type="text/css" rel="stylesheet" /><!-- 绝对要引用，注意路径 -->
+<script type="text/javascript" src="../jquery/jquery-1.4.4.min.js"></script><!-- 不需要引用 -->
+<script type="text/javascript">
+//这些不用理哦亲～～只是用来支持outerhtml而已～～
+if(typeof(HTMLElement)!="undefined" && !window.opera)   
+{   
+    HTMLElement.prototype.__defineGetter__("outerHTML",function()   
+    {   
+        var a=this.attributes, str="<"+this.tagName, i=0;for(;i<a.length;i++)   
+        if(a[i].specified)   
+            str+=" "+a[i].name+'="'+a[i].value+'"';   
+        if(!this.canHaveChildren)   
+            return str+" />";   
+        return str+">"+this.innerHTML+"</"+this.tagName+">";   
+    });   
+    HTMLElement.prototype.__defineSetter__("outerHTML",function(s)   
+    {   
+        var r = this.ownerDocument.createRange();   
+        r.setStartBefore(this);   
+        var df = r.createContextualFragment(s);   
+        this.parentNode.replaceChild(df, this);   
+        return s;   
+    });   
+    HTMLElement.prototype.__defineGetter__("canHaveChildren",function()   
+    {   
+        return !/^(area|base|basefont|col|frame|hr|img|br|input|isindex|link|meta|param)$/.test(this.tagName.toLowerCase());   
+    });   
+}  
+if(typeof(HTMLElement)!="undefined" && !window.opera)
+{
+    HTMLElement.prototype.__defineGetter__("outerHTML",function()
+    {
+        var a=this.attributes, str="<"+this.tagName, i=0;for(;i<a.length;i++)
+        if(a[i].specified)
+            str+=" "+a[i].name+'="'+a[i].value+'"';
+        if(!this.canHaveChildren)
+            return str+" />";
+        return str+">"+this.innerHTML+"</"+this.tagName+">";
+    });
+    HTMLElement.prototype.__defineSetter__("outerHTML",function(s)
+    {
+        var r = this.ownerDocument.createRange();
+        r.setStartBefore(this);
+        var df = r.createContextualFragment(s);
+        this.parentNode.replaceChild(df, this);
+        return s;
+    });
+    HTMLElement.prototype.__defineGetter__("canHaveChildren",function()
+    {
+        return !/^(area|base|basefont|col|frame|hr|img|br|input|isindex|link|meta|param)$/.test(this.tagName.toLowerCase());
+    });
+}  
+</script>
+<script type="text/javascript">
+$(function() {
+	var code_btn_html_tpl = '<p class="code_panel"><a href="###" class="code_control">↑展开/收起代码</a><textarea class="code_area"></textarea></p>'
+	var dom_list = $('body,form ul').children().not($('form'));
+	var dom_arr = new Array();
+	dom_list.each(function(){
+		var code_html_tpl = this.outerHTML;
+		dom_arr.push(code_html_tpl);
+	});
+	dom_list.after(code_btn_html_tpl);
+	var code_panel = $('textarea');
+	code_panel.each(function(i){
+		$(this).text(dom_arr[i]);
+	})
+	$('.code_panel a').click(function(){
+		$(this).next('textarea').toggle();
+	})
+	
+});
+
+</script>
+<style>
+/*这段不用引用的哦亲*/
+body{padding:20px;}
+textarea{display:none;width:80%;height:100px;min-height:100px;font-size:14px;}
+.code_panel{clear:both;width:100%;margin:10px;}
+.code_panel a{font-size:12px;}
+.gm_t1_notice{margin:10px;}
+</style>
+</head>
+
+<body>
+<div class="gm_t1_tips warning">
+	<p><span>Attention!</span>Lorem ipsum dolor sit amet, consectetuer, sed diam nonummy nibh.</p>
+    <a class="tips_close" title="Close" href="###">x</a>
+</div>
+<div class="gm_t1_tips success">
+	<p><span>Attention!</span>Lorem ipsum dolor sit amet, consectetuer, sed diam nonummy nibh.</p>
+    <a class="tips_close" title="Close" href="###">x</a>
+</div>
+<div class="gm_t1_tips error">
+	<p><0span>Attention!</span>Lorem ipsum dolor sit amet, consectetuer, sed diam nonummy nibh.</p>
+    <a class="tips_close" title="Close" href="###">x</a>
+</div>
+<div class="gm_t1_tips info">
+	<p><span>Attention!</span>Lorem ipsum dolor sit amet, consectetuer, sed diam nonummy nibh.</p>
+    <a class="tips_close" title="Close" href="###">x</a>
+</div>
+<div class="gm_t1_notice">
+	<div class="innernotice">
+		<h4>Yellow Notice Box</h4>
+		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+	</div>
+</div>
+<div class="gm_t1_notice gm_t1_notice_alt">
+	<div class="innernotice">
+		<h4>Yellow Notice Box</h4>
+		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+	</div>
+</div>
+以下表单的form请注意加上class="gm_t1_form"
+<form class="gm_t1_form"  method="get" action="http://www.baidu.com/baidu">
+	<ul>
+		<li>
+			<span class="v"><input type="text" id="a1" name="name" placeholder="Text field"><em></em> </span>
+			<span class="v descrip">(This is an example of a small descriptive text for input)</span>
+		</li>
+		<li class="gm_t1_form_error">
+			<span class="v"><input type="text" id="a2" name="name" placeholder="Text field"><em></em> </span>
+			<span class="v descrip">(This is an example of a small descriptive text for input)</span>
+		</li>
+		<li class="gm_t1_form_correct">
+			<span class="v"><input type="text" id="a3" name="name" placeholder="Text field"><em></em> </span>
+			<span class="v descrip">(This is an example of a small descriptive text for input)</span>
+		</li>
+		<li class="gm_t1_form_small">
+			<span class="v"><input type="text" id="a4" name="name" placeholder="Text field"><em></em></span>
+			<span class="v descrip">(This is an example of a small descriptive text for input)</span>
+		</li>
+		<li class="gm_t1_form_select gm_t1_form_error">
+			<label class="k" for="province">地区：</label>
+			<span class="v"><select id="province" name="province"><option>请选择</option></select>&nbsp;－&nbsp;<select id="city" name="city"><option>请选择</option><option>请选择</option></select></span>
+			<span class="v descrip">(请选择您所在的地区)</span>
+		</li>
+		<li class="gm_t1_chk">
+			<label class="k">下次自动登录</label>
+			<span class="v"><input id="remember" name="remember" type="checkbox" value="1" class="checkbox" /><label for="remember">下次自动登录</label><input id="remember2" name="remember" type="checkbox" value="1" class="checkbox" /><label for="remember2">下次自动登录</label></span>
+			<span class="v descrip">(请选择您所在的地区)</span>
+		</li>
+		<li class="gm_t1_radio">
+			<label class="k" for="radio">下次自动登录</label>
+			<span class="v"><input id="radio" name="radio" type="radio" /><label for="radio">www.baidu.com</label><input id="radio2" name="radio" type="radio" /><label for="radio2">www.google.com</label></span>
+			<span class="v descrip">(请选择您所在的地区)</span>
+		</li>
+		<li class="gm_t1_form_btn">
+			<input type="button" class="gm_t1_btn"  value="submit"/>
+			<input type="button" class="gm_t1_btn_alt"  value="submit"/>
+		</li>
+	</ul>
+</form>
+以下表单的form请注意加上class="gm_t1_form gm_t1_form_hr"
+<form class="gm_t1_form gm_t1_form_hr"  method="get" action="http://www.baidu.com/baidu">
+	<ul>
+		<li>
+			<label class="k" for="a1">Text field:</label>
+			<span class="v"><input type="text" id="a1" name="name"><em></em> </span>
+			<span class="v descrip">(This is an example of a small descriptive text for input)</span>
+		</li>
+		<li class="gm_t1_form_error">
+			<label class="k" for="a1">Text field:</label>
+			<span class="v"><input type="text" id="a1" name="name"><em></em> </span>
+			<span class="v descrip">(This is an example of a small descriptive text for input)</span>
+		</li>
+	</ul>
+</form>
+<!-- table -->
+<table class="gm_data_table"> 
+	<caption>这里是表格的说明或者说标题吧～～caption</caption> 
+	<thead>
+		<tr> 
+			<th class="col_1">姓名</th> 
+			<th class="col_2">年龄</th> 
+			<th class="col_3">电话</th> 
+			<th class="col_4">居住地点</th> 
+		</tr> 
+	</thead>
+	<tbody>
+		<tr> 
+			<td class="col_1">可以在t1.css里，设置这个td的宽度，第一列是.col_1,第二列是.col_12,以此类推。Lorem ipsum dolor sit amet, consectetuer, sed diam nonummy nibh</td> 
+			<td class="col_2"><a href="###">这里是a标签啊亲Lorem ipsum dolor sit amet, consectetuer, sed diam nonummy nibh</a></td> 
+			<td class="col_3">Lorem ipsum dolor sit amet, consectetuer, sed diam nonummy nibh</td> 
+			<td class="col_4">广东潮州Lorem ipsum dolor sit amet, consectetuer, sed diam nonummy nibh</td> 
+		</tr> 
+	</tbody>
+</table> 
+
+<div class="gm_t1_panel gm_t1_panel_tr" style="width: 365px;">
+	<div class="panel-content">
+		<div class="hd">
+			<h3>标题</h3>
+		</div>
+		<div class="bd">
+			内容
+		</div>
+		<div class="gm_t1_form_btn ft">
+			<input type="button" class="gm_t1_btn"  value="submit"/>
+			<input type="button" class="gm_t1_btn_alt"  value="submit"/>
+		</div>
+	</div>
+	<span class="sd"></span>
+	<span class="close"></span>
+	<span class="resize"></span>
+</div>
+<div class="global-page">
+	<a href="###">上一页</a>
+	<span class="break">上一页</span>
+	<a href="###">1</a>
+	<span class="select">2</span>
+	<a href="###">3</a>
+	<span>...</span>
+	<a href="###">9</a>
+	<a href="###">10</a>
+	<a href="###">11</a>
+	<a href="###">下一页</a>
+</div>
+<div style="width: 364px;" class="gm_t1_panel gm_t1_panel_ar"><!-- 宽必须偶数位 高必须奇数位 -->
+	<div class="panel-content">
+		<div class="hd">
+			<h3>标题</h3>
+		</div>
+		<div class="bd">
+			内容
+	
+		</div>
+	</div>
+	<span class="cue"></span>
+	<span class="close"></span>
+	<span class="resize"></span>
+</div>
+<div class="gm_t1_waiting">凑字凑字凑字凑字</div>
+<div class="gm_t1_loading">凑字凑字凑字凑字</div>
+
+<div style="padding-bottom:50px;">
+测试文字
+<a class="gm_t1_faq" href="#">
+    <span class="faq_detail">
+        <h3>为什么我会存在呢？</h3>
+        <span>应为很多地方都需要说明一些东西，天杀的用户什么都不懂！</span>
+    </span>
+</a>
+</div>
+
+
+</body>
+</html>

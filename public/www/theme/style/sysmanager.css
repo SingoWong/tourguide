@@ -1,0 +1,122 @@
+.viewport {
+	background: #f0f0f0 url(../images/noise-bg.gif) repeat -70% 0;
+}
+.viewport .view-header {
+	background-color:#2d2d2d;
+	border-bottom: 1px solid #000;
+	font-size: 14px;
+	height: 29px;
+	width: 100%;
+}
+.viewport .view-header .header-inner {
+	width:960px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.viewport .view-header .header-inner .rctl {
+	float:right;
+	height:29px;
+	line-height:29px;
+}
+.viewport .view-header .header-inner .rctl a {
+	color:#CCC;
+	display:inline-block;
+	height:29px;
+	line-height:29px;
+	padding-right:20px;
+}
+.viewport .view-header .header-inner .rctl a.btn_setup {
+	background:url(../images/icon_setup.png) right 7px no-repeat;
+}
+.viewport .view-header .header-inner .rctl span {
+	color:#666;
+}
+.viewport .view-header .header-inner .logo {
+	text-indent: -9999px;
+	height:29px;
+	width:160px;
+	background:url(../images/logo.png) 0 0 no-repeat;
+}
+.viewport .view-content {
+	min-height:500px;
+}
+.viewport .view-content .content-inner {
+	padding:10px 0;
+	width:960px;
+	margin:0 auto;
+}
+.viewport .view-footer {
+	border-top: 1px solid #ddd;
+	background:#FFF;
+	height:50px;
+}
+.viewport .view-footer .footer-inner {
+	padding: 10px 10px 20px 10px;
+	width:960px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.viewport .view-footer .footer-inner .logo {
+	text-indent: -9999px;
+	height:29px;
+	width:160px;
+	background:url(../images/logo.png) 0 0 no-repeat;
+}
+.viewport .view-footer .footer-inner .info {
+	float:right;
+	color:#CCC;
+	text-align:right;
+	line-height:20px;
+}
+
+.system_menu {
+	height:35px;
+}
+.system_menu, .system_menu ul.snav_child { 
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.system_menu ul li.snav_root_item { 
+	float: left;
+	position: relative;
+	width: 100px;
+	background-color:#E4E4E4;
+	color:#2D486C;
+}
+.system_menu a:link, .system_menu a:visited {
+	display: block;
+	text-decoration: none;
+	color: #2D486C;
+	text-align:center;
+	padding:10px;
+}
+.system_menu ul.snav_child { 
+	display: none;
+	position: absolute;
+	z-index:999;
+}
+.system_menu ul.snav_child li {
+	float: none;
+	border: 0 none transparent;
+	border-bottom: 1px solid #EAEAEA;
+	background-color: #CCC;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+}
+.system_menu li:hover ul.snav_child {
+	display: block;
+	width:100px;
+}
+.title_panel {
+	background:#CACACA;
+	padding:5px 10px;
+	height:25px;
+	line-height:25px;
+	border-radius:3px;
+	margin-bottom:5px;
+	margin-top:10px;
+	color:#333;
+	font-weight:bold;
+}
