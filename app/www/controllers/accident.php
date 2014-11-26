@@ -1,5 +1,5 @@
 <?php
-class Accident extends CI_Controller {
+class Accident extends Base_Controller {
 
     function __construct() {
         parent::__construct();

@@ -53,19 +53,41 @@ class Users_Guide_Model extends CI_Model {
      * @return boolean
      */
     function save($row) {
-        $guide = new Users_Guide();
+        $this->load->model('Users_Model');
         
-        $guide->where('uid', $row['uid'])->get();
+        $this->db->trans_start();
         
-        if ($guide->result_count() > 0) {
-            $re = $guide->where('uid', $row['uid'])->update($row);
+        $users_model = new Users_Model();
+        $new_user['username'] = $row['code'];
+        $new_user['name'] = $row['name'];
+        $nu_re = $users_model->create($new_user, ROLE_ID_GUIDE);
+        
+        if ($nu_re['result']) {
+            $row['uid'] = $nu_re['uid'];
+            $guide = new Users_Guide();
+        
+            $guide->where('uid', $row['uid'])->get();
+        
+            if ($guide->result_count() > 0) {
+                $re = false;
+            } else {
+                $guide->uid = $row['uid'];
+                $guide->code = $row['code'];
+                $guide->contact_tel = $row['contact_tel'];
+                $guide->status = '0';
+                $guide->sign_date_start = $row['sign_date_start'];
+                $guide->sign_date_end = $row['sign_date_end'];
+        
+                $re = $guide->save();
+            }
         } else {
-            $guide->uid = $row['uid'];
-            $guide->code = $row['code'];
-            $guide->contact_tel = $row['contact_tel'];
-            $guide->status = '0';
+            $re = false;
+        }
         
-            $re = $guide->save();
+        if ($this->db->trans_status() === FALSE || !$re){
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
         }
         
         return $re;

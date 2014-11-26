@@ -1,5 +1,5 @@
-.viewport {
 	background: #f0f0f0 url(../images/noise-bg.gif) repeat -70% 0;
+.viewport {
 }
 .viewport .view-header {
 	background-color:#2d2d2d;
@@ -9,9 +9,10 @@
 	width: 100%;
 }
 .viewport .view-header .header-inner {
-	width:960px;
+	/* width:960px; */
 	margin:0 auto;
 	overflow:hidden;
+	padding:0 10px;
 }
 .viewport .view-header .header-inner .rctl {
 	float:right;
@@ -23,10 +24,10 @@
 	display:inline-block;
 	height:29px;
 	line-height:29px;
-	padding-right:20px;
 }
 .viewport .view-header .header-inner .rctl a.btn_setup {
 	background:url(../images/icon_setup.png) right 7px no-repeat;
+	padding-right:20px;	
 }
 .viewport .view-header .header-inner .rctl span {
 	color:#666;
@@ -40,10 +41,14 @@
 .viewport .view-content {
 	min-height:500px;
 }
+.viewport .view-content .menu-inner {
+	float:left;
+	width:150px;
+}
 .viewport .view-content .content-inner {
-	padding:10px 0;
-	width:960px;
-	margin:0 auto;
+	/* width:960px; */
+	padding:10px;
+	margin:0 auto 0 150px;
 }
 .viewport .view-footer {
 	border-top: 1px solid #ddd;
@@ -52,7 +57,7 @@
 }
 .viewport .view-footer .footer-inner {
 	padding: 10px 10px 20px 10px;
-	width:960px;
+	/* width:960px; */
 	margin:0 auto;
 	overflow:hidden;
 }
@@ -78,9 +83,9 @@
 	list-style: none;
 }
 .system_menu ul li.snav_root_item { 
-	float: left;
-	position: relative;
-	width: 100px;
+	/* float: left; */
+	/* position: relative; */
+	width: 150px;
 	background-color:#E4E4E4;
 	color:#2D486C;
 }
@@ -92,8 +97,8 @@
 	padding:10px;
 }
 .system_menu ul.snav_child { 
-	display: none;
-	position: absolute;
+	/* display: none; */
+	/* position: absolute; */
 	z-index:999;
 }
 .system_menu ul.snav_child li {
@@ -107,8 +112,10 @@
 }
 .system_menu li:hover ul.snav_child {
 	display: block;
-	width:100px;
+	width:150px;
 }
+
+/*===========content-inner===========*/
 .title_panel {
 	background:#CACACA;
 	padding:5px 10px;
@@ -116,7 +123,116 @@
 	line-height:25px;
 	border-radius:3px;
 	margin-bottom:5px;
-	margin-top:10px;
 	color:#333;
 	font-weight:bold;
+}
+.search-inner {
+	padding: 10px 10px 7px 10px;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	margin: 10px 0 0 0;
+	border-radius: 5px;
+	background: #FFF;
+}
+.search-inner .v input {
+	width: 200px;
+}
+.search-inner label {
+	float: left;
+}
+.search-inner .s input {
+	margin-top: 0px;
+	height: 40px;
+	width: 100px;
+}
+.list_inner, .form_inner {
+	margin-top: 10px;
+}
+.item {
+	border: 1px solid #CCC;
+	margin-bottom: 10px;
+}
+.item .item_title {
+	background: #2288CC;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+.item .item_title a {
+	float: right;
+	display: block;
+	width: 50px;
+	height:30px;
+	background: #002166;
+	text-align: center;
+	color: #FFF;
+}
+.item .item_content table {
+	background: #CCC;
+}
+.item .item_content table tr td {
+	background: #FFF;
+	height: 25px;
+	line-height: 25px;
+	padding: 3px;;
+}
+.item .item_content table tr td a {
+	text-align: center;
+	display: block;
+}
+.item .item_content .item_footer {
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+}
+.item .item_content .item_footer a {
+	float: right;
+	display: block;
+	width: 50px;
+	background: #002166;
+	text-align: center;
+	color: #FFF;
+	font-weight: bold;
+}
+.flowset {
+	height: 50px;
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+.flowset em {
+	display: block;
+	float: left;
+	height: 50px;
+	line-height: 50px;
+}
+.flowset a {
+	display: block;
+	background: #EAEAEA;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	padding: 0 10px;
+	margin-right: 5px;
+	border-radius: 5px;
+}
+.flowset a.curr {
+	background: #007AFF;
+	color: #FFF;
+}
+.table_form {
+	
+}
+.table_form td {
+	padding: 3px;
+}
+.table_form td.tf_key {
+	width: 50px;
+	text-align: right;
+}
+.table_form td input {
+	height: 30px;
+	line-height: 30px;
+	width: 200px;
+	padding: 5px;
 }

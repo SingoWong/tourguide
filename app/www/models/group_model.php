@@ -15,7 +15,9 @@ class Group_Model extends CI_Model {
         $today_start = strtotime(date('Y-m-d'));
         $today_end = strtotime(date('Y-m-d 23:59:59'));
         
-        $group->where('start_date >=', $today_start)->where('end_date <', $today_end)->get();
+        $group->where('start_date <=', $today_start);
+        $group->where('end_date >', $today_end);
+        $group->get();
         
         return $group->all;
     }
@@ -38,6 +40,44 @@ class Group_Model extends CI_Model {
     }
     
     /**
+     * 查看正在进行的旅行团(旅行社)
+     * @param unknown $aid
+     * @return multitype:
+     */
+    function getActiveGroupWithAid($aid) {
+        $group = new Group();
+    
+        $today_start = strtotime(date('Y-m-d'));
+        $today_end = strtotime(date('Y-m-d 23:59:59'));
+    
+        $group->where('aid', $aid);
+        $group->where('start_date >=', $today_start);
+        $group->where('end_date <', $today_end);
+        $group->get();
+    
+        return $group->all;
+    }
+    
+    /**
+     * 按条件搜索旅行团(旅行社)
+     * @param unknown $conditions
+     * @param unknown $aid
+     * @return multitype:
+     */
+    function getGroupByConditionsWithAid($conditions, $aid) {
+        $group = new Group();
+    
+        $group->where('aid', $aid);
+        foreach ($conditions as $field=>$value) {
+            $group->where($field, $value);
+        }
+    
+        $group->get();
+    
+        return $group->all;
+    }
+    
+    /**
      * 获取旅行团的基本信息
      * @param unknown $gid
      * @return multitype:
@@ -47,7 +87,7 @@ class Group_Model extends CI_Model {
         
         $group->where('id', $gid)->get();
         
-        return $group->all;
+        return $group->all[0];
     }
     
     /**
@@ -60,7 +100,7 @@ class Group_Model extends CI_Model {
         
         $room->where('gid', $gid)->get();
         
-        return $room->all;
+        return $room->all[0];
     }
     
     /**
@@ -97,30 +137,43 @@ class Group_Model extends CI_Model {
     function saveGroupBase($row) {
         $group = new Group();
         
-        $group->id = $row['id'];
-        $group->aid = $row['aid'];
-        $group->code = $row['code'];
-        $group->name = $row['name'];
-        $group->continent = $row['continent'];
-        $group->country = $row['country'];
-        $group->city = $row['city'];
-        $group->days = $row['days'];
-        $group->start_date = strtotime($row['start_date']);
-        $group->start_flight_code = $row['start_flight_code'];
-        $group->start_flight_num = $row['start_flight_num'];
-        $group->start_departure_time = strtotime($row['start_departure_time']);
-        $group->start_arrive_time = strtotime($row['start_arrive_time']);
-        $group->end_date = strtotime($row['end_date']);
-        $group->end_flight_code = $row['end_flight_code'];
-        $group->end_flight_num = $row['end_flight_num'];
-        $group->end_departure_time = strtotime($row['end_departure_time']);
-        $group->end_arrive_time = strtotime($row['end_arrive_time']);
-        $group->op = $row['op'];
-        $group->amount = $row['amount'];
-        $group->contact_name = $row['contact_name'];
-        $group->contact_tel = $row['contact_tel'];
+        $group->where('id', $row['id'])->get();
         
-        return $group->save();
+        if ($group->result_count() > 0) {
+            $re = $this->where('id', $row['id'])->update($row);
+        } else {
+            $group->aid = $row['aid'];
+            $group->code = $row['code'];
+            $group->name = $row['name'];
+            $group->continent = $row['continent'];
+            $group->country = $row['country'];
+            $group->city = $row['city'];
+            $group->days = $row['days'];
+            $group->start_date = strtotime($row['start_date']);
+            $group->start_flight_code = $row['start_flight_code'];
+            $group->start_flight_num = $row['start_flight_num'];
+            $group->start_departure_time = strtotime($row['start_departure_time']);
+            $group->start_arrive_time = strtotime($row['start_arrive_time']);
+            $group->end_date = strtotime($row['end_date']);
+            $group->end_flight_code = $row['end_flight_code'];
+            $group->end_flight_num = $row['end_flight_num'];
+            $group->end_departure_time = strtotime($row['end_departure_time']);
+            $group->end_arrive_time = strtotime($row['end_arrive_time']);
+            $group->op = $row['op'];
+            $group->amount = $row['amount'];
+            $group->contact_name = $row['contact_name'];
+            $group->contact_tel = $row['contact_tel'];
+            
+            $re = $group->save();
+        }
+        
+        if ($re) {
+            $result = '1';
+        } else {
+            $result = '0';
+        }
+        
+        return array('result'=>$result, 'id'=>$group->id);
     }
     
     /**
@@ -145,7 +198,13 @@ class Group_Model extends CI_Model {
             $re = $room->save();
         }
         
-        return $re;
+        if ($re) {
+            $result = '1';
+        } else {
+            $result = '0';
+        }
+        
+        return array('result'=>$result);
     }
     
     /**
@@ -205,6 +264,20 @@ class Group_Model extends CI_Model {
         }
         
         return $re;
+    }
+    
+    /**
+     * 获取旅行团的行程资讯
+     * @param unknown $gid
+     * @return multitype:
+     */
+    function getScheduleById($gid) {
+        $schedule = new Group_Schedule();
+        
+        $schedule->where('gid', $gid);
+        $schedule->get();
+        
+        return $schedule->all;
     }
 }
 ?>

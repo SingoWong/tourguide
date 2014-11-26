@@ -1,5 +1,5 @@
 <?php
-class Sysmanager extends CI_Controller {
+class Sysmanager extends Base_Controller {
 	
 	/**
 	 * @var Users_Model

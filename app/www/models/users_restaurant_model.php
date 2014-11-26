@@ -15,6 +15,9 @@ class Users_Restaurant_Model extends CI_Model {
         
         $restaurant->where('sign_date_start <=', time());
         $restaurant->where('sign_date_end >=', time());
+        foreach ($conditions as $field=>$value) {
+            $restaurant->where($field, $value);
+        }
         $restaurant->get();
         
         return $restaurant->all;
@@ -29,6 +32,9 @@ class Users_Restaurant_Model extends CI_Model {
         $restaurant = new Users_Restaurant();
         
         $restaurant->where('sign_date_end <', time());
+        foreach ($conditions as $field=>$value) {
+            $restaurant->where($field, $value);
+        }
         $restaurant->get();
         
         return $restaurant->all;
@@ -53,21 +59,43 @@ class Users_Restaurant_Model extends CI_Model {
      * @return boolean
      */
     function save($row) {
-        $restaurant = new Users_Restaurant();
+        $this->load->model('Users_Model');
         
-        $restaurant->where('uid', $row['uid'])->get();
+        $this->db->trans_start();
         
-        if ($restaurant->result_count() > 0) {
-            $re = $restaurant->where('uid', $row['uid'])->update($row);
+        $users_model = new Users_Model();
+        $new_user['username'] = $row['code'];
+        $new_user['name'] = $row['name'];
+        $nu_re = $users_model->create($new_user, ROLE_ID_RESTAURANT);
+        
+        if ($nu_re['result']) {
+            $row['uid'] = $nu_re['uid'];
+            $restaurant = new Users_Restaurant();
+        
+            $restaurant->where('uid', $row['uid'])->get();
+        
+            if ($restaurant->result_count() > 0) {
+                $re = false;
+            } else {
+                $restaurant->uid = $row['uid'];
+                $restaurant->address = $row['address'];
+                $restaurant->code = $row['code'];
+                $restaurant->contact = $row['contact'];
+                $restaurant->contact_tel = $row['contact_tel'];
+                $restaurant->status = '0';
+                $restaurant->sign_date_start = $row['sign_date_start'];
+                $restaurant->sign_date_end = $row['sign_date_end'];
+        
+                $re = $restaurant->save();
+            }
         } else {
-            $restaurant->uid = $row['uid'];
-            $restaurant->address = $row['address'];
-            $restaurant->code = $row['code'];
-            $restaurant->contact = $row['contact'];
-            $restaurant->contact_tel = $row['contact_tel'];
-            $restaurant->status = '0';
+            $re = false;
+        }
         
-            $re = $restaurant->save();
+        if ($this->db->trans_status() === FALSE || !$re){
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
         }
         
         return $re;

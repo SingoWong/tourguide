@@ -39,3 +39,10 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
+
+define('SECRET_KEY',"Nzg5ZjVmMjI0ZmI2MmE5YmY3ZGI2ODlmM2JiYjU4ZTk=");
+define('ROLE_ID_ADMIN', '1');
+define('ROLE_ID_GUIDE', '24');
+define('ROLE_ID_RESTAURANT', '28');
+define('ROLE_ID_HOTEL', '30');
+define('ROLE_ID_AGENCY', '31');

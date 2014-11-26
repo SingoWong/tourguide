@@ -26,14 +26,14 @@
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a href="#offCanvas" class="mui-icon mui-icon-bars mui-pull-left"></a>
+			<a class="mui-icon mui-icon-bars mui-pull-left" href="index.php?{{$url_menu}}"></a>
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item mui-active" href="#">团号</a>
-					<a class="mui-control-item" href="#">订餐</a>
-					<a class="mui-control-item" href="#">订房</a>
-					<a class="mui-control-item" href="#">意外</a>
+					<a class="mui-control-item mui-active" href="index.php?{{$url_info}}">团号</a>
+					<a class="mui-control-item" href="index.php?{{$url_restaurant}}">订餐</a>
+					<a class="mui-control-item" href="index.php?{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="index.php?{{$url_accident}}">意外</a>
 				</div>
 			</div>
 		</header>
@@ -69,10 +69,10 @@
 			</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
-		  <a class="mui-tab-item mui-active" href="#">
+		  <a class="mui-tab-item mui-active" href="index.php?{{$url_info}}">
 		    团号资讯
 		  </a>
-		  <a class="mui-tab-item" href="#">
+		  <a class="mui-tab-item" href="index.php?{{$url_info_journey}}">
 		    行程资讯
 		  </a>
 		</nav>

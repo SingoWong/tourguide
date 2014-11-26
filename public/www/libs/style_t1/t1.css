@@ -328,9 +328,6 @@
 	background-image: -o-linear-gradient(top,#4D90FE,#357AE8);
 	background-image: linear-gradient(top,#4D90FE,#357AE8);
 }
-.gm_t1_btn_alt_disabled {
-	color:#666;
-}
 /* gm_t1_form_hr */
 .gm_t1_form_hr li{margin-bottom:15px;}
 .gm_t1_form_hr .k{display:inline-block;text-align:right;float:left;height:60px;width:auto;padding-right:5px;}

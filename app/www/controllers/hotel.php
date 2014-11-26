@@ -1,5 +1,5 @@
 <?php
-class Hotel extends CI_Controller {
+class Hotel extends Base_Controller {
 
     function __construct() {
         parent::__construct();

@@ -5,6 +5,7 @@
 <script type="text/javascript" src="/libs/jquery/jquery-1.7.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/libs/style_t1/t1.css" />
 <link rel="stylesheet" type="text/css" href="/theme/style/global.css" />
+<link rel="stylesheet" type="text/css" href="/theme/style/sysmanager.css" />
 <title>CoreSystem</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
 	<div class="view-header">
 		<div class="header-inner">
 			<div class="rctl">
-				<a href="" class="btn_setup">Singo</a>
+				<a href="" class="btn_setup">{{$RBAC_USER_NAME}}</a>
 				<span>|</span>
 				<a href="">登出</a>
 			</div>
@@ -22,5 +23,7 @@
 	</div>
 	
 	<div class="view-content wrap">
-		<div class="content-inner">
+		<div class="menu-inner">
 			{{include file="_common/navigation.html"}}
+		</div>
+		<div class="content-inner">

@@ -15,6 +15,9 @@ class Users_Hotel_Model extends CI_Model {
         
         $hotel->where('sign_date_start <=', time());
         $hotel->where('sign_date_end >=', time());
+        foreach ($conditions as $field=>$value) {
+            $hotel->where($field, $value);
+        }
         $hotel->get();
         
         return $hotel->all;
@@ -29,6 +32,9 @@ class Users_Hotel_Model extends CI_Model {
         $hotel = new Users_Hotel();
         
         $hotel->where('sign_date_end <', time());
+        foreach ($conditions as $field=>$value) {
+            $hotel->where($field, $value);
+        }
         $hotel->get();
         
         return $hotel->all;
@@ -53,21 +59,43 @@ class Users_Hotel_Model extends CI_Model {
      * @return boolean
      */
     function save($row) {
-        $hotel = new Users_Hotel();
+        $this->load->model('Users_Model');
         
-        $hotel->where('uid', $row['uid'])->get();
+        $this->db->trans_start();
         
-        if ($hotel->result_count() > 0) {
-            $re = $hotel->where('uid', $row['uid'])->update($row);
+        $users_model = new Users_Model();
+        $new_user['username'] = $row['code'];
+        $new_user['name'] = $row['name'];
+        $nu_re = $users_model->create($new_user, ROLE_ID_HOTEL);
+        
+        if ($nu_re['result']) {
+            $row['uid'] = $nu_re['uid'];
+            $hotel = new Users_Hotel();
+        
+            $hotel->where('uid', $row['uid'])->get();
+        
+            if ($hotel->result_count() > 0) {
+                $re = false;
+            } else {
+                $hotel->uid = $row['uid'];
+                $hotel->address = $row['address'];
+                $hotel->code = $row['code'];
+                $hotel->contact = $row['contact'];
+                $hotel->contact_tel = $row['contact_tel'];
+                $hotel->status = '0';
+                $hotel->sign_date_start = $row['sign_date_start'];
+                $hotel->sign_date_end = $row['sign_date_end'];
+        
+                $re = $hotel->save();
+            }
         } else {
-            $hotel->uid = $row['uid'];
-            $hotel->address = $row['address'];
-            $hotel->code = $row['code'];
-            $hotel->contact = $row['contact'];
-            $hotel->contact_tel = $row['contact_tel'];
-            $hotel->status = '0';
+            $re = false;
+        }
         
-            $re = $hotel->save();
+        if ($this->db->trans_status() === FALSE || !$re){
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
         }
         
         return $re;

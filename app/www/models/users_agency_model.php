@@ -15,6 +15,9 @@ class Users_Agency_Model extends CI_Model {
         
         $agency->where('sign_date_start <=', time());
         $agency->where('sign_date_end >=', time());
+        foreach ($conditions as $field=>$value) {
+            $agency->where($field, $value);
+        }
         $agency->get();
         
         return $agency->all;
@@ -29,6 +32,9 @@ class Users_Agency_Model extends CI_Model {
         $agency = new Users_Agency();
         
         $agency->where('sign_date_end <', time());
+        foreach ($conditions as $field=>$value) {
+            $agency->where($field, $value);
+        }
         $agency->get();
         
         return $agency->all;
@@ -44,7 +50,7 @@ class Users_Agency_Model extends CI_Model {
         
         $agency->where('uid', $uid)->get(1);
         
-        return $agency->all;
+        return $agency->all[0];
     }
     
     /**
@@ -53,21 +59,43 @@ class Users_Agency_Model extends CI_Model {
      * @return boolean
      */
     function save($row) {
-        $agency = new Users_Agency();
+        $this->load->model('Users_Model');
+
+        $this->db->trans_start();
         
-        $agency->where('uid', $row['uid'])->get();
+        $users_model = new Users_Model();
+        $new_user['username'] = $row['code'];
+        $new_user['name'] = $row['name'];
+        $nu_re = $users_model->create($new_user, ROLE_ID_AGENCY);
         
-        if ($agency->result_count() > 0) {
-            $re = $agency->where('uid', $row['uid'])->update($row);
+        if ($nu_re['result']) {
+            $row['uid'] = $nu_re['uid'];
+            $agency = new Users_Agency();
+            
+            $agency->where('uid', $row['uid'])->get();
+            
+            if ($agency->result_count() > 0) {
+                $re = false;
+            } else {
+                $agency->uid = $row['uid'];
+                $agency->address = $row['address'];
+                $agency->code = $row['code'];
+                $agency->contact = $row['contact'];
+                $agency->contact_tel = $row['contact_tel'];
+                $agency->status = '0';
+                $agency->sign_date_start = $row['sign_date_start'];
+                $agency->sign_date_end = $row['sign_date_end'];
+                
+                $re = $agency->save();
+            }
         } else {
-            $agency->uid = $row['uid'];
-            $agency->address = $row['address'];
-            $agency->code = $row['code'];
-            $agency->contact = $row['contact'];
-            $agency->contact_tel = $row['contact_tel'];
-            $agency->status = '0';
+            $re = false;
+        }
         
-            $re = $agency->save();
+        if ($this->db->trans_status() === FALSE || !$re){
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
         }
         
         return $re;
