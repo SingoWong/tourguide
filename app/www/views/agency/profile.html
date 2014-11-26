@@ -1,0 +1,46 @@
+{{include file="_common/header.html"}}
+<style type="text/css">
+ul.profile li {
+	height: 30px;
+	line-height: 30px;
+	padding-left:20px;
+	font-size:14px;
+}
+</style>
+
+<div class="title_panel">
+	旅行社基本资料
+</div>
+
+<div class="list_inner">
+
+<ul class="profile">
+    <li>
+        <span class="v">旅行社名称：<em>{{$RBAC_USER_NAME}}</em></span>
+    </li>
+    <li>
+        <span class="v">旅行社地址：<em>{{$profile->address}}</em></span>
+    </li>
+    <li>
+        <span class="v">流水号：-</span>
+    </li>
+    <li>
+        <span class="v">统一编码：{{$profile->code}}</span>
+    </li>
+    <li>
+        <span class="v">联络人：{{$profile->contact}}</span>
+    </li>
+    <li>
+        <span class="v">电话：{{$profile->contact_tel}}</span>
+    </li>
+    <li>
+        <span class="v">签约开始日期：{{$profile->sign_date_start|date_format:"Y-m-d"}}</span>
+    </li>
+    <li>
+        <span class="v">签约结束日期：{{$profile->sign_date_end|date_format:"Y-m-d"}}</span>
+    </li>
+</ul>
+
+</div>
+
+{{include file="_common/footer.html"}}

@@ -236,3 +236,10 @@
 	width: 200px;
 	padding: 5px;
 }
+.res_list .res_item {
+	float:left;
+	margin-right:3px;
+}
+.res_list .res_item img {
+	width:100px;
+}

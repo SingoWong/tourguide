@@ -9,12 +9,55 @@ class Accident_Model extends CI_Model {
      * 获取所有意外通报
      * @return multitype:
      */
-    function getAccident() {
+    function getAccident($with_relation=false, $group_aid=0) {
         $accident = new Accident();
         
-        $accident->get();
+        if ($group_aid == 0) {
+            $accident->get();
+        } else {
+            $accident->where('group_aid', $group_aid)->get();
+        }
         
-        return $accident->all;
+        if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($accident->all); $i++) {
+                $ids[] = $accident->all[$i]->id;
+            }
+            
+            if (sizeof($ids) > 0) {
+                $accident_bus = new Accident_Bus();
+                $accident_desert = new Accident_Desert();
+                $accident_medicine = new Accident_Medicine();
+                $accident_res = new Accident_Res();
+                
+                $accident_bus->where_in('aid', $ids)->get();
+                $accident_desert->where_in('aid', $ids)->get();
+                $accident_medicine->where_in('aid', $ids)->get();
+                $accident_res->where_in('aid', $ids)->get();
+                
+                $bus = $this->utility->array_to_hashmap($accident_bus->all, 'aid');
+                $desert = $this->utility->array_to_hashmap($accident_desert->all, 'aid');
+                $medicine = $this->utility->array_to_hashmap($accident_medicine->all, 'aid');
+                
+                for ($i=0; $i<sizeof($accident->all); $i++) {
+                    $accident->all[$i]->bus = $bus[$accident->all[$i]->id];
+                    $accident->all[$i]->desert = $desert[$accident->all[$i]->id];
+                    $accident->all[$i]->medicine = $medicine[$accident->all[$i]->id];
+                }
+                
+                $res = array();
+                for ($i=0; $i<sizeof($accident_res->all);$i++) {
+                    $row['id'] = $accident_res->all[$i]->id;
+                    $row['aid'] = $accident_res->all[$i]->aid;
+                    $row['pic_url'] = $accident_res->all[$i]->pic_url;
+                    
+                    $res[] = $row;
+                }
+                $accident->res = $res;
+            }
+        }
+        
+        return $accident;
     }
     
     /**

@@ -1,0 +1,85 @@
+{{include file="_common/header.html"}}
+<script type="text/javascript">
+function sh_pnlc(id) {
+	if ($("#pnlc_"+id).css("display") == "none") {
+		$("#pnlc_"+id).show();
+		$("#btnc_"+id).htm("关闭");
+	} else {
+		$("#pnlc_"+id).hide();
+		$("#btnc_"+id).htm("展开");
+	}
+	return false;
+}
+</script>
+
+<div class="title_panel">
+	旅行社管理 - 过期旅行社
+</div>
+
+<input type="button" class="gm_t1_btn_alt_disabled" value="续约旅行社" onclick="self.location.href='index.php?ctr=sysagency';">
+<input type="button" class="gm_t1_btn" value="过期旅行社" onclick="self.location.href='index.php?ctr=sysagency&act=expired';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="新增旅行社" onclick="self.location.href='index.php?ctr=sysagency&act=edit';">
+
+<div class="search-inner">
+<form class="gm_t1_form" id="reg_form" action="" method="GET">
+	<input type="hidden" name="ctr" value="sysagency" />
+	<input type="hidden" name="act" value="expired" />
+	<label class="v"><input id="name" type="text" name="name" value="" placeholder="旅行社"></label>
+	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帐号"></label>
+	<label class="s"><input type="submit" class="gm_t1_btn" value="搜索" /></label>	
+</form>
+</div>
+
+<div class="list_inner">
+	
+	<!-- foreach -->
+	{{foreach from=$rowset item=item key=key}}
+	<div class="item">
+		<div class="item_title">
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">关闭</a>
+			{{$item->name}} {{$item->code}} 签约日期：{{$item->sign_date_start|date_format:'%Y-%m-%d'}} 至 {{$item->sign_date_end|date_format:'%Y-%m-%d'}}
+		</div>
+		<div class="item_content" id="pnlc_{{$item->id}}">
+			<table border="0" width="100%" cellpadding="2" cellspacing="1">
+				<tr>
+					<td colspan="2">帐号：{{$item->username}}</td>
+					<td>密码：******</td>
+					<td width="10%"><a href="">重置密码</a></td>
+				</tr>
+				<tr>
+					<td colspan="2">旅行社名称：{{$item->name}}</td>
+					<td>地址：{{$item->address}}</td>
+					<td><a href="">修改</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" width="50%">流水号：{{$item->uid}}</td>
+					<td colspan="2" width="50%">统一编码：{{$item->code}}</td>
+				</tr>
+				<tr>
+					<td>联络人：{{$item->contact}}</td>
+					<td width="10%"><a href="#">修改</a></td>
+					<td>电话：{{$item->contact_tel}}</td>
+					<td><a href="#">修改</a></td>
+				</tr>
+				<tr>
+					<td colspan="2">上月订餐总数：</td>
+					<td colspan="2">本月订餐总数：</td>
+				</tr>
+				<tr>
+					<td colspan="2">上月订房总数：</td>
+					<td colspan="2">本月订房总数：</td>
+				</tr>
+			</table>
+			<div class="item_footer">
+				<a href="">续约</a>
+				<a href="">停权</a>
+				签约日期：{{$item->sign_date_start|date_format:'%Y-%m-%d'}} 至 {{$item->sign_date_end|date_format:'%Y-%m-%d'}}
+			</div>
+		</div>
+	</div>
+	{{/foreach}}
+	<!-- foreach -->
+	
+</div>
+
+{{include file="_common/footer.html"}}

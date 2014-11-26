@@ -1,0 +1,89 @@
+{{include file="_common/header.html"}}
+
+<div class="flowset">
+	<a href="index.php?ctr=sysagency&act=groupedit&id={{$id}}">基本资料</a>
+	<em>&gt;</em>
+	<a href="index.php?ctr=sysagency&act=grouproom&id={{$id}}">分房资讯</a>
+	<em>&gt;</em>
+	<a href="index.php?ctr=sysagency&act=groupschedule&id={{$id}}">行程安排</a>
+	<em>&gt;</em>
+	<a href="index.php?ctr=sysagency&act=groupinfo&id={{$id}}" class="curr">开团说明会资料</a>
+</div>
+
+<form method="post" action="index.php?ctr=sysagency&act=groupinfosave">
+<div class="title_panel">
+	基本资料
+</div>
+<div class="form_inner">
+	<table class="table_form">
+		<tr>
+			<td class="tf_key">出团名称</td>
+			<td><span class="v"><input type="text" id="" name="" value=""></span></td>
+			<td class="tf_key"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="tf_key">领队</td>
+			<td><span class="v"><input type="text" id="leader" name="leader" value="{{$row->leader}}"></span></td>
+			<td class="tf_key">手机</td>
+			<td><span class="v"><input type="text" id="leader_tel" name="leader_tel" value="{{$row->leader_tel}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">注意事项</td>
+			<td></td>
+			<td class="tf_key"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="4"><textarea style="width:745px;height:80px;">{{$row->attention}}</textarea></td>
+		</tr>
+	</table>
+</div>
+
+<div class="title_panel">
+	导游资料
+</div>
+<div class="form_inner">
+	<table class="table_form">
+		<tr>
+			<td class="tf_key">导游帐号</td>
+			<td><span class="v"><input type="text" id="guide_id" name="guide_id" value="{{$row->guide_id}}"></span></td>
+			<td class="tf_key"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="tf_key">导游</td>
+			<td><span class="v"><input type="text" id="guide_name" name="guide_name" value="{{$row->guide_name}}"></span></td>
+			<td class="tf_key">手机</td>
+			<td><span class="v"><input type="text" id="guide_tel" name="guide_tel" value="{{$row->guide_tel}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">团控</td>
+			<td><span class="v"><input type="text" id="regulator" name="regulator" value="{{$row->regulator}}"></span></td>
+			<td class="tf_key">手机</td>
+			<td><span class="v"><input type="text" id="regulator_tel" name="regulator_tel" value="{{$row->regulator_tel}}"></span></td>
+		</tr>
+	</table>
+</div>
+
+<div class="title_panel">
+	团员性别
+</div>
+<div class="form_inner">
+	<table class="table_form">
+		<tr>
+			<td>
+				<textarea style="width:745px;height:80px;">{{$row->member_names}}</textarea>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<hr size="1" />
+<div>
+	<input type="hidden" name="id" value="{{$id}}" />
+	<input type="submit" class="gm_t1_btn" value="提交信息">
+</div>
+</form>
+
+{{include file="_common/footer.html"}}

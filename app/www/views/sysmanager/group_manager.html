@@ -1,0 +1,26 @@
+{{include file="_common/header.html"}}
+
+<div class="title_panel">
+	旅游团查询 - 进度
+</div>
+
+<input type="button" class="gm_t1_btn" value="旅行团进度" onclick="self.location.href='index.php?ctr=sysgroup';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="历史查询" onclick="self.location.href='index.php?ctr=sysgroup&act=history';">
+
+<div class="list_inner">
+	<!-- foreach -->
+	{{foreach from=$rowset item=item key=key}}
+	<div class="item">
+		<div class="item_title">
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">关闭</a>
+			团号：{{$item->code}} &nbsp;&nbsp; 团名：{{$item->name}} &nbsp;&nbsp; 导游：{{$item->contact_name}} &nbsp;&nbsp; 进度：
+		</div>
+		<div class="item_content" id="pnlc_{{$item->id}}">
+			
+		</div>
+	</div>
+	{{/foreach}}
+	<!-- foreach -->
+</div>
+	
+{{include file="_common/footer.html"}}
