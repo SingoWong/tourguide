@@ -37,16 +37,18 @@ if ( ! function_exists('url'))
 		$CI =& get_instance();
 		
 		if ($CI->config->item('enable_query_strings') == FALSE) {
-			return $CI->config->site_url($uri);
+			$url = $CI->config->site_url($uri);
 		} else {
 			if (is_array($uri))
 			{
-				return $CI->config->item('controller_trigger').'='.$uri[0].'&'.$CI->config->item('function_trigger').'='.$uri[1];
+				$url = $CI->config->item('controller_trigger').'='.$uri[0].'&'.$CI->config->item('function_trigger').'='.$uri[1];
 			} else {
 				$uri = explode('/', $uri);
-				return $CI->config->item('controller_trigger').'='.$uri[0].'&'.$CI->config->item('function_trigger').'='.$uri[1];
+				$url = $CI->config->item('controller_trigger').'='.$uri[0].'&'.$CI->config->item('function_trigger').'='.$uri[1];
 			}
+			$url = 'index.php?'.$url;
 		}
+		return $url;
 	}
 }
 
@@ -551,22 +553,46 @@ if ( ! function_exists('url_title'))
  */
 if ( ! function_exists('redirect'))
 {
-	function redirect($uri = '', $method = 'location', $http_response_code = 302)
-	{
-		if ( ! preg_match('#^https?://#i', $uri))
-		{
-			$uri = site_url($uri);
-		}
-
-		switch($method)
-		{
-			case 'refresh'	: header("Refresh:0;url=".$uri);
-				break;
-			default			: header("Location: ".$uri, TRUE, $http_response_code);
-				break;
-		}
-		exit;
-	}
+	function redirect($url, $delay = 0, $js = false, $jsWrapped = true, $return = false)
+    {
+        $delay = (int)$delay;
+        
+        if (!$js) {
+            if (headers_sent() || $delay > 0 || strpos($url,'itms-services:') > -1) {
+                echo <<<EOT
+        <html>
+        <head>
+        <meta http-equiv="refresh" content="{$delay};URL={$url}" />
+        </head>
+        </html>
+EOT;
+                exit;
+            } else {
+                header("Location: {$url}");
+                exit;
+            }
+        }
+    
+        $out = '';
+        if ($jsWrapped) {
+            $out .= '<script language="JavaScript" type="text/javascript">';
+        }
+        if ($delay > 0) {
+            $out .= "window.setTimeout(function () { document.location='{$url}'; }, {$delay});";
+        } else {
+            $out .= "document.location='{$url}';";
+        }
+        if ($jsWrapped) {
+            $out .= '</script>';
+        }
+    
+        if ($return) {
+            return $out;
+        }
+    
+        echo $out;
+        exit;
+    }
 }
 
 // ------------------------------------------------------------------------

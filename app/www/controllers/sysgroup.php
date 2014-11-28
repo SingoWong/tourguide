@@ -56,6 +56,7 @@ class SysGroup extends Base_Controller {
         foreach ($rows as $row) {
             $r['id'] = $row->id;
             $r['gid'] = $row->gid;
+            $r['day'] = $row->day;
             $r['route'] = $row->route;
             $r['type'] = $row->type;
             $r['time'] = date('H:m', $row->time);
@@ -64,6 +65,7 @@ class SysGroup extends Base_Controller {
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
             $r['detail'] = $row->detail;
+            $r['location'] = $row->location;
             
             $re[$row->day][] = $r;
         }

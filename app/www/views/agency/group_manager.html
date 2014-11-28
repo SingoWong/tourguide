@@ -1,10 +1,86 @@
 {{include file="_common/header.html"}}
+<script type="text/javascript">
+function sh_pnlc(id) {
+	if ($("#pnlc_"+id).css("display") == "none") {
+		$("#pnlc_"+id).show();
+		$("#btnc_"+id).htm("关闭");
+	} else {
+		$("#pnlc_"+id).hide();
+		$("#btnc_"+id).htm("展开");
+	}
+	return false;
+}
+function sh_sub_pnlc(id, day) {
+	if ($("#pnlc_sub_"+id+"_"+day).css("display") == "none") {
+		$("#pnlc_sub_"+id+"_"+day).show();
+		$("#btnc_sub_"+id+"_"+day).htm("关闭");
+	} else {
+		$("#pnlc_sub_"+id+"_"+day).hide();
+		$("#btnc_sub_"+id+"_"+day).htm("展开");
+	}
+	return false;
+}
+</script>
 
 <div class="title_panel">
 	旅游团查询 - 进度
 </div>
 
-<input type="button" class="gm_t1_btn" value="旅行团进度" onclick="self.location.href='index.php?ctr=sysgroup';">
-<input type="button" class="gm_t1_btn_alt_disabled" value="历史查询" onclick="self.location.href='index.php?ctr=sysgroup&act=history';">
+<input type="button" class="gm_t1_btn" value="旅行团进度" onclick="self.location.href='index.php?ctr=sysagency&action=groupprogress';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="历史查询" onclick="self.location.href='index.php?ctr=sysagency&act=grouphistory';">
 
+<div class="list_inner">
+	<!-- foreach -->
+	{{foreach from=$rowset item=item key=key}}
+	<div class="item">
+		<div class="item_title">
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">关闭</a>
+			团号：{{$item->code}} &nbsp;&nbsp; 团名：{{$item->name}} &nbsp;&nbsp; 导游：{{$item->contact_name}} &nbsp;&nbsp; 进度：
+		</div>
+		<div class="item_content" id="pnlc_{{$item->id}}">
+			
+			<!-- schedule -->
+			
+		</div>
+		<script type="text/javascript">
+		$.ajax({
+			url: "index.php?ctr=sysgroup&act=schedule&gid={{$item->id}}",
+			success: function(json){
+				var data = eval('('+json+')');
+				$.each(data,function(day,schedule){
+					var html_day = '<div class="sub_item_title">'+
+								   '<a href="#" onclick="return sh_sub_pnlc({{$item->id}}, '+day+');" id="btnc_sub_{{$item->id}}_'+day+'">关闭</a>'+
+								   'D'+day+' &nbsp;&nbsp; {日期} &nbsp;&nbsp;{状态}</div>'+
+								   '<div class="sub_item_content" id="pnlc_sub_{{$item->id}}_'+day+'">'+
+								   '<table border="0" width="100%" cellpadding="2" cellspacing="1">';
+			 					 
+					$.each(schedule,function(route,item){
+						switch (item['type']) {
+						case '0':
+						case '1':
+						case '2':
+							html_day += '<tr><td colspan="5">'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;{钩}</td></tr>';
+							break;
+						case '3':
+						case '4':
+							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已订餐{钩}</td><td class="s_status">已订餐未确认{钩}</td><td class="s_status">已订餐已确认{钩}</td><td class="s_status">餐毕付款{钩}</td></tr>';
+							break;
+						case '5':
+							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已订房{钩}</td><td class="s_status">CHKIN{钩}</td><td class="s_status">未结账{钩}</td><td class="s_status">CHKOUT{钩}</td></tr>';
+							break;
+						}
+					});
+						
+					html_day += '</table></div>';
+					
+					$("#pnlc_{{$item->id}}").append(html_day);
+				});
+			}
+		});
+		</script>
+	</div>
+	{{/foreach}}
+	<!-- foreach -->
+</div>
+	
 {{include file="_common/footer.html"}}

@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="/libs/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/libs/jquery/core.popup.js"></script>
 <link rel="stylesheet" type="text/css" href="/libs/style_t1/t1.css" />
 <link rel="stylesheet" type="text/css" href="/theme/style/global.css" />
 <link rel="stylesheet" type="text/css" href="/theme/style/sysmanager.css" />
@@ -14,9 +15,9 @@
 	<div class="view-header">
 		<div class="header-inner">
 			<div class="rctl">
-				<a href="" class="btn_setup">{{$RBAC_USER_NAME}}</a>
+				<a href="/index.php?ctr=users&act=secret" onclick="return window.openWindow(self.href,'400','300',false,0.3)" class="btn_setup">{{$RBAC_USER_NAME}}</a>
 				<span>|</span>
-				<a href="">登出</a>
+				<a href="/index.php?ctr=users&act=logout">登出</a>
 			</div>
 			<div class="logo">CoreSystem</div>
 		</div>

@@ -1,5 +1,50 @@
-	background: #f0f0f0 url(../images/noise-bg.gif) repeat -70% 0;
+/*  弹出框相关样式  */
+/* 遮蔽层  */
+#cover{
+	width:100%;
+	height:100%;
+	background-color:#000;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:99;
+	display:none;
+}
+/* 弹出框 */
+#examWindow{
+	position:absolute;
+	z-index:9999;
+	left:50%;
+	top:50%;
+	background-color:#FFF;
+	display:none;
+}
+/*   阴影层  */
+.shadow {
+	background-color:#000;
+	position:absolute;
+	left:50%;
+	z-index:999;
+	top:50%;
+	display:none;
+    -moz-box-shadow: 0px 0px 6px #000;
+    -webkit-box-shadow: 0px 0px 6px #000;
+    box-shadow: 0px 0px 6px #000;
+}
+/*  右上角的关闭按钮  */
+a#closeButton{
+	position:absolute;
+	text-indent:-5000px;
+	width:30px;
+	height:30px;
+	cursor:pointer;
+	top:-15px;
+	right:-15px;
+	background:url(../images/btn_close.png) no-repeat;
+}
+
 .viewport {
+	background: #f0f0f0 url(../images/noise-bg.gif) repeat -70% 0;
 }
 .viewport .view-header {
 	background-color:#2d2d2d;
@@ -195,6 +240,25 @@
 	color: #FFF;
 	font-weight: bold;
 }
+.item .item_content .sub_item_title {
+	background: #66cccc;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+.item .item_content .sub_item_title a {
+	float: right;
+	display: block;
+	width: 50px;
+	height:30px;
+	background: #0099cc;
+	text-align: center;
+	color: #FFF;
+}
+.item .item_content .sub_item_content .s_status {
+	width:110px;
+}
 .flowset {
 	height: 50px;
 	overflow: hidden;
@@ -242,4 +306,40 @@
 }
 .res_list .res_item img {
 	width:100px;
+}
+#list_route .day_item {
+	display: none;
+}
+#list_route .day_item table {
+	background: #CCC;
+}
+#list_route .day_item table td {
+	background: #FFF;
+	padding:3px;
+}
+#list_route .day_item table td.i_type {
+	width:50px;
+	text-align: center;
+}
+#list_route .day_item table td.i_type select {
+	padding:5px;
+	height:30px;
+}
+#list_route .day_item table td.i_time {
+	width:135px;
+	text-align: center;
+}
+#list_route .day_item table td.i_time input {
+	text-align: center;
+	padding:5px;
+}
+#list_route .day_item table td.i_other input {
+	width:200px;
+	padding:5px;
+}
+#list_route .day_item table td.i_detail textarea {
+	width: 95%;
+	height:50px;
+	padding:5px;
+	border:1px solid #EAEAEA;
 }

@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc', 'redis', 'smarty');
 */
 
-$autoload['libraries'] = array('database','datamapper','smarty','utility');
+$autoload['libraries'] = array('database','datamapper','smarty');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','datamapper','smarty','utility');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array('url','utility');
 
 
 /*

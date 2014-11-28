@@ -85,10 +85,10 @@ class SysAgency extends Base_Controller {
         $this->load->model('Group_Model');
         $group = new Group_Model();
         
-        $id = $this->input->get('id');
-        $re = $group->getGroupBase($id);
+        $gid = $this->input->get('id');
+        $re = $group->getGroupBase($gid);
         
-        $this->smarty->assign('id',$id);
+        $this->smarty->assign('id',$gid);
         $this->smarty->assign('row',$re);
         $this->smarty->display('./agency/group_edit_base.html');
     }
@@ -122,8 +122,7 @@ class SysAgency extends Base_Controller {
         $re = $group->saveGroupBase($row);
         
         if ($re['result']) {
-            $this->load->helper('url');
-            redirect('index.php?'.url('sysagency/grouproom').'&id='.$re['id']);
+            redirect(url('sysagency/grouproom').'&id='.$re['id']);
         }
     }
     
@@ -131,10 +130,15 @@ class SysAgency extends Base_Controller {
         $this->load->model('Group_Model');
         $group = new Group_Model();
         
-        $id = $this->input->get('id');
-        $re = $group->getGroupRoom($id);
+        $gid = $this->input->get('id');
+        if (!$gid || $gid == '') {
+            alert('请先填写资料');
+            redirect(url('sysagency/groupedit'));
+        }
         
-        $this->smarty->assign('id',$id);
+        $re = $group->getGroupRoom($gid);
+        
+        $this->smarty->assign('id',$gid);
         $this->smarty->assign('row',$re);
         $this->smarty->display('./agency/group_edit_room.html');
     }
@@ -151,8 +155,7 @@ class SysAgency extends Base_Controller {
         $re = $group->saveGroupRoom($gid, $row);
         
         if ($re['result']) {
-            $this->load->helper('url');
-            redirect('index.php?'.url('sysagency/groupschedule').'&id='.$re['id']);
+            redirect(url('sysagency/groupschedule').'&id='.$gid);
         }
     }
     
@@ -160,22 +163,69 @@ class SysAgency extends Base_Controller {
         $this->load->model('Group_Model');
         $group = new Group_Model();
         
-        $gid = $this->input->post('id');
+        $gid = $this->input->get('id');
+        if (!$gid || $gid == '') {
+            alert('请先填写资料');
+            redirect(url('sysagency/groupedit'));
+        }
+
+        $re = $group->getGroupSchedule($gid);
         
+        $this->smarty->assign('id',$gid);
+        $this->smarty->assign('row',$re);
+        $this->smarty->display('./agency/group_edit_schedule.html');
     }
     
     public function groupschedulesave() {
+        $this->load->model('Group_Model');
+        $group = new Group_Model();
         
+        $gid = $this->input->post("id");
+        $days = $this->input->post("days");
+        
+        $rows = array();
+        foreach ($days as $day) {
+            $types = $this->input->post("type_".$day);
+            $times = $this->input->post("time_".$day);
+            $hids = $this->input->post("hid_".$day);
+            $locations = $this->input->post("location_".$day);
+            $moneys = $this->input->post("money_".$day);
+            $details = $this->input->post("detail_".$day);
+            
+            for ($i=0;$i<sizeof($types);$i++) {
+                $row['gid'] = $gid;
+                $row['day'] = $day;
+                $row['route'] = $i+1;
+                $row['type'] = $types[$i];
+                $row['time'] = $times[$i];
+                $row['hid'] = $hids[$i];
+                $row['location'] = $locations[$i];
+                $row['money'] = $moneys[$i];
+                $row['detail'] = $details[$i];
+                
+                $rows[] = $row;
+            }
+        }
+        
+        $re = $group->saveGroupSchedual($gid, $rows);
+        
+        if ($re['result']) {
+            redirect(url('sysagency/groupinfo').'&id='.$gid);
+        }
     }
     
     public function groupinfo() {
         $this->load->model('Group_Model');
         $group = new Group_Model();
         
-        $id = $this->input->get('id');
-        $re = $group->getGroupInfo($id);
+        $gid = $this->input->get('id');
+        if (!$gid || $gid == '') {
+            alert('请先填写资料');
+            redirect(url('sysagency/groupedit'));
+        }
+        $re = $group->getGroupInfo($gid);
         
-        $this->smarty->assign('id',$id);
+        $this->smarty->assign('id',$gid);
         $this->smarty->assign('row',$re);
         $this->smarty->display('./agency/group_edit_info.html');
     }
@@ -198,9 +248,47 @@ class SysAgency extends Base_Controller {
         $re = $group->saveGroupInfo($gid, $row);
         
         if ($re['result']) {
-            $this->load->helper('url');
-            redirect('index.php?'.url('sysagency/groupprogress'));
+            redirect(url('sysagency/groupprogress'));
         }
+    }
+    
+    public function groupprogress() {
+        $this->load->model('Group_Model');
+        
+        $group_model = new Group_Model();
+        $re = $group_model->getActiveGroupByAid($this->user['id']);
+        
+        $this->smarty->assign('rowset', $re);
+        $this->smarty->display('./agency/group_manager.html');
+    }
+    
+    public function grouphistory() {
+        $this->load->model('Group_Model');
+        
+        $date_start = $this->input->get('date_start');
+        $date_end = $this->input->get('date_end');
+        $guide = $this->input->get('guide');
+        $code = $this->input->get('code');
+        
+        $conditions['aid'] = $this->user['id'];
+        if ($date_start != '') {
+            $conditions['end_date >'] = strtotime($date_start);
+        }
+        if ($date_end != '') {
+            $conditions['start_date <'] = strtotime($date_end);
+        }
+        if ($guide != '') {
+            $conditions['contact_name'] = $guide;
+        }
+        if ($code != '') {
+            $conditions['code'] = $code;
+        }
+        
+        $group_model = new Group_Model();
+        $re = $group_model->getGroupByConditions($conditions);
+        
+        $this->smarty->assign('rowset', $re);
+        $this->smarty->display('./agency/group_history.html');
     }
     
     public function accident() {

@@ -23,6 +23,25 @@ class Group_Model extends CI_Model {
     }
     
     /**
+     * 查看旅行社下的旅行团
+     * @param unknown $aid
+     * @return multitype:
+     */
+    function getActiveGroupByAid($aid) {
+        $group = new Group();
+    
+        $today_start = strtotime(date('Y-m-d'));
+        $today_end = strtotime(date('Y-m-d 23:59:59'));
+    
+        $group->where('aid', $aid);
+        $group->where('start_date <=', $today_start);
+        $group->where('end_date >', $today_end);
+        $group->get();
+    
+        return $group->all;
+    }
+    
+    /**
      * 按条件搜索旅行团
      * @param unknown $conditions
      * @return multitype:
@@ -216,23 +235,36 @@ class Group_Model extends CI_Model {
     function saveGroupSchedual($gid, $rows) {
         $schedual = new Group_Schedule();
         
-        $schedual->where('gid', $gid)->delete_all();
+        $this->db->trans_start();
+        
+        $schedual->where('gid', $gid)->get();
+        $schedual->delete_all();
         
         foreach ($rows as $row) {
+            $schedual = new Group_Schedule();
+            
             $schedual->gid = $row['gid'];
             $schedual->day = $row['day'];
             $schedual->route = $row['route'];
             $schedual->type = $row['type'];
             $schedual->time = strtotime($row['time']);
             $schedual->money = $row['money'];
+            $schedual->location = $row['location'];
             $schedual->detail = $row['detail'];
             $schedual->hid = $row['hid'];
-            $schedual->rid = $row['rid'];
             
             $result[] = $schedual->save();
         }
         
-        return ( ! empty($result) && ! in_array(FALSE, $result));
+        if ($this->db->trans_status() === FALSE || !( ! empty($result) && ! in_array(FALSE, $result))){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
     }
     
     /**
@@ -249,7 +281,7 @@ class Group_Model extends CI_Model {
         if ($info->result_count() > 0) {
             $re = $info->where('gid', $gid)->update($row);
         } else {
-            $info->gid = $row['gid'];
+            $info->gid = $gid;
             $info->leader = $row['leader'];
             $info->leader_tel = $row['leader_tel'];
             $info->attention = $row['attention'];
@@ -263,7 +295,13 @@ class Group_Model extends CI_Model {
             $re = $info->save();
         }
         
-        return $re;
+        if ($re) {
+            $result = '1';
+        } else {
+            $result = '0';
+        }
+        
+        return array('result'=>$result);
     }
     
     /**

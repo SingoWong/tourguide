@@ -35,9 +35,9 @@ class Accident_Model extends CI_Model {
                 $accident_medicine->where_in('aid', $ids)->get();
                 $accident_res->where_in('aid', $ids)->get();
                 
-                $bus = $this->utility->array_to_hashmap($accident_bus->all, 'aid');
-                $desert = $this->utility->array_to_hashmap($accident_desert->all, 'aid');
-                $medicine = $this->utility->array_to_hashmap($accident_medicine->all, 'aid');
+                $bus = array_to_hashmap($accident_bus->all, 'aid');
+                $desert = array_to_hashmap($accident_desert->all, 'aid');
+                $medicine = array_to_hashmap($accident_medicine->all, 'aid');
                 
                 for ($i=0; $i<sizeof($accident->all); $i++) {
                     $accident->all[$i]->bus = $bus[$accident->all[$i]->id];
