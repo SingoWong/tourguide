@@ -6,31 +6,17 @@
 		
 		{{include file="_common/minclude.html"}}
 		
-		<style type="text/css">
-			.quick-nav {
-				padding: 0 50px;
-			}
-			.info-journey {
-				
-			}
-			.info-map {
-				height: 200px;
-			}
-			.info-flow {
-				
-			}
-		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-icon mui-icon-bars mui-pull-left" href="index.php?{{$url_menu}}"></a>
+			<a class="mui-icon mui-icon-bars mui-pull-left" href="{{$url_menu}}"></a>
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item mui-active" href="index.php?{{$url_info}}">团号</a>
-					<a class="mui-control-item" href="index.php?{{$url_restaurant}}">订餐</a>
-					<a class="mui-control-item" href="index.php?{{$url_hotel}}">订房</a>
-					<a class="mui-control-item" href="index.php?{{$url_accident}}">意外</a>
+					<a class="mui-control-item mui-active" href="{{$url_info}}">团号</a>
+					<a class="mui-control-item" href="{{$url_restaurant}}">订餐</a>
+					<a class="mui-control-item" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
 				</div>
 			</div>
 		</header>
@@ -40,11 +26,48 @@
 				<div class="info-flow"></div>
 			</div>
 		</div>
+		<script type="text/javascript">
+		var data = eval('({{$schedule}})');
+		$.each(data,function(day,schedule){
+			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>---</a><div class="flow-item-list" id="pnl_day_'+day+'">';
+	 					 
+			$.each(schedule,function(route,item){
+				html_day += '<a class="flow-item-stitle" href="#" onclick="return sh_schedule('+day+','+route+');"><span>'+item['time']+'</span><em>'+item['type_label']+'</em>';
+				html_day += item['location']+'</a><div class="flow-item-sdetail" id="pnl_schedule_'+day+'_'+route+'">';
+				html_day += item['detail']+'</div>';
+			});
+				
+			html_day += '</div>';
+			
+			$(".info-flow").append(html_day);
+		});
+		$(".info-flow").append("<br/><br/><br/>");
+		function sh_day(day) {
+			if ($("#pnl_day_"+day).css("display") == "none") {
+				$("#pnl_day_"+day).show();
+				//TODO -
+			} else {
+				$("#pnl_day_"+day).hide();
+				//TODO +
+			}
+			return false;
+		}
+		function sh_schedule(day,route) {
+			if ($("#pnl_schedule_"+day+"_"+route).css("display") == "none") {
+				$("#pnl_schedule_"+day+"_"+route).show();
+				//TODO -
+			} else {
+				$("#pnl_schedule_"+day+"_"+route).hide();
+				//TODO +
+			}
+			return false;
+		}
+		</script>
 		<nav class="mui-bar mui-bar-tab">
-		  <a class="mui-tab-item" href="index.php?{{$url_info}}">
+		  <a class="mui-tab-item" href="{{$url_info}}">
 		    团号资讯
 		  </a>
-		  <a class="mui-tab-item mui-active" href="index.php?{{$url_info_journey}}">
+		  <a class="mui-tab-item mui-active" href="{{$url_info_journey}}">
 		    行程资讯
 		  </a>
 		</nav>

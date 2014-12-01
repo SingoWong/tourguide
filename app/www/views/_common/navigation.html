@@ -1,20 +1,7 @@
 <div class="manager-nav">
 	<div class="system_menu">
-		<!-- <ul>
-			<li class="snav_root_item">
-				<a href="#">后台管理</a>
-				<ul class="snav_child">
-					<li class="snav_child_item">
-						<a href="/index.php?Controller=SysModules&amp;action=Index">菜单管理</a></li>
-					<li class="snav_child_item">
-						<a href="/index.php?Controller=SysUsers&amp;action=Index">用户管理</a></li>
-					<li class="snav_child_item">
-						<a href="/index.php?Controller=SysRoles&amp;action=Index">权限管理</a></li>
-				</ul>
-			</li>
-		</ul> -->
-		
 		<ul>
+			{{if $RBAC_ROLE_NAME == '管理员'}}
 			<li class="snav_root_item">
 				<a href="#">后台管理</a>
 				<ul class="snav_child">
@@ -28,7 +15,7 @@
 					<li class="snav_child_item"><a href="/index.php?ctr=sysaccident">意外通报</a></li>
 				</ul>
 			</li>
-			
+			{{elseif $RBAC_ROLE_NAME == '旅行社'}}
 			<li class="snav_root_item">
 				<a href="#">后台管理</a>
 				<ul class="snav_child">
@@ -38,6 +25,7 @@
 					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通报</a></li>
 				</ul>
 			</li>
+			{{/if}}
 		</ul>
 	</div>
 </div>

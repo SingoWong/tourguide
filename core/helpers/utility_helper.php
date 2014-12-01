@@ -66,8 +66,9 @@ if ( ! function_exists('array_to_hashmap'))
 
 if ( ! function_exists('alert'))
 {
-    function alert($msg) {
-        echo '<script>alert("'.$msg.'");</script>';
+    function alert($msg, $url='') {
+        $url = ($url == '') ? '' : 'location.href="'.$url.'";';
+        echo '<script>alert("'.$msg.'");'.$url.'</script>';
     }
 }
 ?>

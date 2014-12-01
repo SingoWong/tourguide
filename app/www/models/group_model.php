@@ -317,5 +317,24 @@ class Group_Model extends CI_Model {
         
         return $schedule->all;
     }
+    
+    /**
+     * 获得导游当前的旅行团信息
+     * @param unknown $gid
+     * @return multitype:
+     */
+    function getCurrGroupByGuideId($gid) {
+        $group = new Group();
+        
+        $today_start = strtotime(date('Y-m-d'));
+        $today_end = strtotime(date('Y-m-d 23:59:59'));
+        
+        $group->where('gid', $gid);
+        $group->where('start_date <=', $today_start);
+        $group->where('end_date >', $today_end);
+        $group->get();
+        
+        return $group->all[0];
+    }
 }
 ?>

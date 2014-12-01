@@ -6,36 +6,78 @@
 		
 		{{include file="_common/minclude.html"}}
 		
-		<style type="text/css">
-			.quick-nav {
-				padding: 0 50px;
-			}
-			.info-journey {
-				padding: 10px;
-			}
-			.info-flow {
-				
-			}
-		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="index.php?{{$url_menu}}"></a>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{{$url_menu}}"></a>
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item" href="index.php?{{$url_info}}">团号</a>
-					<a class="mui-control-item mui-active" href="index.php?{{$url_restaurant}}">订餐</a>
-					<a class="mui-control-item" href="index.php?{{$url_hotel}}">订房</a>
-					<a class="mui-control-item" href="index.php?{{$url_accident}}">意外</a>
+					<a class="mui-control-item" href="{{$url_info}}">团号</a>
+					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">订餐</a>
+					<a class="mui-control-item" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
 				</div>
 			</div>
 		</header>
 		<div class="mui-content">
 			<div class="info-journey">
-				<div class="info-flow">-</div>
+				<div class="info-flow"></div>
 			</div>
 		</div>
+		<script type="text/javascript">
+		var data = eval('({{$schedule}})');
+		$.each(data,function(day,schedule){
+			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>---</a><div class="flow-item-list" id="pnl_day_'+day+'">';
+	 					 
+			$.each(schedule,function(route,item){
+				if (item['type']=='2' || item['type']=='3') {
+					html_day += '<a class="flow-item-stitle" href="#" onclick="return sh_schedule('+day+','+route+');"><span>'+item['time']+'</span><em class="stitle-status-'+item['rstatus']+'">'+item['type_label']+'</em>';
+					html_day += item['rstatus_label']+'</a><div class="flow-item-sdetail" id="pnl_schedule_'+day+'_'+route+'">';
+					html_day += show_ctrl(day,route,item)+'</div>';
+				}
+			});
+				
+			html_day += '</div>';
+			
+			$(".info-flow").append(html_day);
+		});
+		$(".info-flow").append("<br/><br/><br/>");
+		function sh_day(day) {
+			if ($("#pnl_day_"+day).css("display") == "none") {
+				$("#pnl_day_"+day).show();
+				//TODO -
+			} else {
+				$("#pnl_day_"+day).hide();
+				//TODO +
+			}
+			return false;
+		}
+		function sh_schedule(day,route) {
+			if ($("#pnl_schedule_"+day+"_"+route).css("display") == "none") {
+				$("#pnl_schedule_"+day+"_"+route).show();
+				//TODO -
+			} else {
+				$("#pnl_schedule_"+day+"_"+route).hide();
+				//TODO +
+			}
+			return false;
+		}
+		function show_ctrl(day,route,item) {
+			var html = '';
+			if (item['rstatus'] == '0') {
+				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'" class="restaurant-order">请订餐</a>';
+			} else if (item['rstatus'] == '1') {
+				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>订餐</a><a href="#">电话<br/>确认</a>餐厅名称：'+item['rid']+'<br/>收据上传：未上传';
+			} else if (item['rstatus'] == '2') {
+				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上传<br/>收据</a><a href="{{$url_restaurant_payment}}&day='+day+'&route='+route+'">选择<br/>付款</a><a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>订餐</a>餐厅名称：'+item['rid']+'<br/>收据上传：未上传';
+			} else if (item['rstatus'] == '3') {
+				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上传<br/>收据</a></a>餐厅名称：'+item['rid']+'<br/>收据上传：未上传';
+			}
+			
+			return html;
+		}
+		</script>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="#">
 		    订餐资讯

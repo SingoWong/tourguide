@@ -1,0 +1,137 @@
+.quick-nav {
+	padding: 0 50px;
+}
+.info-journey {
+	
+}
+.info-hotel {
+	
+}
+.info-map {
+	height: 200px;
+	background: #007AFF;
+}
+.info-flow {
+	padding: 3px;
+	background:url(/theme/images/sbg_line.png) 58px top repeat-y;
+	background-size:10px;
+}
+.info-flow a.flow-item-title {
+	height: 40px;
+	line-height: 40px;
+	overflow: hidden;
+	margin-top: 5px;
+	display: block;
+	font-weight: bold;
+}
+.info-flow a.flow-item-title em {
+	margin-left:40px;
+	margin-right: 5px;
+	height: 40px;
+	width: 40px;
+	background: #E8AF28;
+	display: block;
+	float: left;
+	text-align: center;
+	color: #FFF;
+	border-radius: 20px;
+}
+.info-flow .flow-item-list a.flow-item-stitle {
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	overflow: hidden;
+	color: #000;
+	font-weight: bold;
+}
+.info-flow .flow-item-list a.flow-item-stitle span {
+	display: inline-block;
+	float: left;
+	width: 40px;
+	text-align: center;
+	font-weight: 12px;
+	color: #999;
+}
+.info-flow .flow-item-list a.flow-item-stitle em {
+	display: inline-block;
+	float: left;
+	margin: 5px 10px 5px 5px;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #028FD7;
+	color: #FFF;
+	border-radius: 15px;
+}
+.info-flow .flow-item-list a.flow-item-stitle em.stitle-status-0 {
+	background: #E62129!important;
+}
+.info-flow .flow-item-list a.flow-item-stitle em.stitle-status-1 {
+	background: #FDD003!important;
+}
+.info-flow .flow-item-list a.flow-item-stitle em.stitle-status-2 {
+	background: #028FD7!important;
+}
+.info-flow .flow-item-list a.flow-item-stitle em.stitle-status-3 {
+	background: #ABCE22!important;
+}
+.info-flow .flow-item-list .flow-item-sdetail {
+	margin-left: 40px;
+	padding-left: 45px;
+	background: #EAEAEA url(/theme/images/sbg_sline.png) left top no-repeat;
+	background-size:25px;
+	font-size: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	overflow: none;
+}
+.info-flow .flow-item-list .flow-item-sdetail a {
+	float: right;
+	width:40px;
+	height: 40px;
+	line-height: 16px;
+	padding:3px;
+	background: #CCC;
+	text-align: center;
+	display: inline-block;
+	margin-left:2px
+}
+.info-flow .flow-item-list .hotel-ctrls a {
+	width:60px;
+	line-height: 35px;
+}
+.info-flow .flow-item-list .flow-item-sdetail a.restaurant-order {
+	float: none;
+	display: block;
+	width: auto;
+	line-height: 30px;
+}
+.upload_receive {
+	position: relative;
+	height: 60px;
+}
+.upload_receive input, .upload_receive button {
+	position: absolute;
+	left:0;
+	top:0;
+}
+.checklist-form {
+	padding:10px;
+}
+.confirm-form {
+	display: none;
+	padding:10px;
+}
+.confirm-form .confirm_content {
+	text-align: center;
+}
+.upload_receive button {
+	z-index:9;
+}
+.upload_receive input {
+	z-index:8;
+}
+.menu-list {
+	padding: 10px;
+}

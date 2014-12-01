@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		{{include file="_common/minclude.html"}}
+		
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{{$url_restaurant}}"></a>
+			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
+			<div class="quick-nav">
+				<div id="sc-nav" class="mui-segmented-control">
+					<a class="mui-control-item" href="{{$url_info}}">团号</a>
+					<a class="mui-control-item" href="{{$url_restaurant}}">订餐</a>
+					<a class="mui-control-item mui-active" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div class="menu-list">
+				<button class="mui-btn mui-btn-block" onclick="location.href='{{$url_hotel_payment_checklist}}&mode=0';">现金</button>
+				<button class="mui-btn mui-btn-block" onclick="location.href='{{$url_hotel_payment_checklist}}&mode=1';">刷卡</button>
+				<button class="mui-btn mui-btn-block" onclick="location.href='{{$url_hotel_payment_checklist}}&mode=2';">签单</button>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		  <a class="mui-tab-item mui-active" href="#">
+		    订房资讯
+		  </a>
+		  <a class="mui-tab-item" href="#">
+		    &nbsp
+		  </a>
+		</nav>
+	</body>
+</html>

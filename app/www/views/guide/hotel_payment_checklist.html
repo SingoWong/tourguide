@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		{{include file="_common/minclude.html"}}
+		<script type="text/javascript" src="/libs/jquery/core.imagevisible.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$.imageFileVisible({display: "#image-wrap", file: "#receive", width: 300, height: 300});
+		});
+		function upload() {
+			$("#receive").click();
+		}
+		function preview(sender) {
+			$(".confirm-form").show();
+			$(".checklist-form").hide();
+		}
+		function retake() {
+			$(".confirm-form").hide();
+			$(".checklist-form").show();
+			$("#image-wrap").html("");
+		}
+		function submit() {
+			$("#form").submit();
+		}
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{{$url_restaurant}}"></a>
+			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
+			<div class="quick-nav">
+				<div id="sc-nav" class="mui-segmented-control">
+					<a class="mui-control-item" href="{{$url_info}}">团号</a>
+					<a class="mui-control-item" href="{{$url_restaurant}}">订餐</a>
+					<a class="mui-control-item mui-active" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group" action="{{$url_hotel_payment_submit}}" method="post" id="form">
+		
+			<div class="checklist-form">
+				<h3 class="checklist_title">订房资讯</h3>
+				<div class="checklist_content">
+					<p>日期：</p>
+					<p>饭店名：</p>
+					<p>旅行社：</p>
+					<p>团号：</p>
+					<p>导游：</p>
+					<p>人数：</p>
+					<p>金额：</p>
+					<p>结账方式：</p>
+				</div>
+				<div class="upload_receive">
+					<button class="mui-btn mui-btn-primary mui-btn-block" onclick="upload();return false;">请拍下收据</button>
+					<input type="file" id="receive" name="receive" class="mui-btn mui-btn-primary mui-btn-block" onchange="preview(this);" />
+				</div>
+				<br/>
+			</div>
+			
+			<div class="confirm-form">
+				<div class="confirm_content">
+					<div id="image-wrap"></div>
+				</div>
+				<div style="text-align: center;">
+					<input type="hidden" name="gid" value="{{$gid}}" />
+					<input type="hidden" name="day" value="{{$day}}" />
+					<input type="hidden" name="route" value="{{$route}}" />
+					<input type="hidden" name="mode" value="{{$mode}}" />
+					<button class="mui-btn mui-btn-primary" onclick="retake();return false;">重拍</button>
+					<button class="mui-btn mui-btn-primary" onclick="submit();return false;">上传云端</button>
+				</div>
+				<br/><br/>
+			</div>
+			
+			</form>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		  <a class="mui-tab-item mui-active" href="#">
+		    订房资讯
+		  </a>
+		  <a class="mui-tab-item" href="#">
+		    &nbsp
+		  </a>
+		</nav>
+	</body>
+</html>

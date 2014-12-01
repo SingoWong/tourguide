@@ -3,6 +3,8 @@ class Hotel extends Base_Controller {
 
     function __construct() {
         parent::__construct();
+        
+        $this->check_felogin(ROLE_ID_HOTEL);
     }
     
     /**

@@ -3,6 +3,8 @@ class SysAgency extends Base_Controller {
     
     function __construct() {
         parent::__construct();
+        
+        $this->check_belogin();
     }
     
     public function index() {

@@ -9,8 +9,6 @@ class Main extends CI_Controller {
 	 * 主菜单
 	 */
 	public function index() {
-	    $this->load->helper('url');
-	    
 	    $this->smarty->assign( 'url_guide', url('guide/index') );
 	    $this->smarty->assign( 'url_restaurant', url('restaurant/index') );
 	    $this->smarty->assign( 'url_hotel', url('hotel/index') );

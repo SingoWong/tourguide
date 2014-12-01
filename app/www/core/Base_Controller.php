@@ -4,6 +4,8 @@ class Base_Controller extends CI_Controller {
     public $user;
     
     public $role;
+    
+    public $logined;
 
     function __construct() {
         parent::__construct();
@@ -12,12 +14,36 @@ class Base_Controller extends CI_Controller {
         $this->_init_cview();
     }
     
+    function check_belogin() {
+        if (!$this->logined) {
+            redirect(url('sysusers/login'));
+        }
+    }
+    
+    function check_felogin($role) {
+        if (!$this->logined || $this->role['id'] != $role) {
+            redirect(url('mobile/login').'&role='.$role);
+        }
+    }
+    
     private function _init_userinfo() {
-        $this->user['id'] = 22;
-        $this->user['name'] = '南湖国旅';
+        $this->load->library('session');
+
+        $rbac_user = $this->session->userdata(SKEY_RBAC_USER);
+        $rbac_role = $this->session->userdata(SKEY_RBAC_ROLE);
         
-        $this->role['id'] = 31;
-        $this->role['name'] = '旅行社';
+        if (!$rbac_user['id'] || $rbac_user['id'] == '') {
+            $this->logined = FALSE;
+        } else {
+            
+            $this->user['id'] = $rbac_user['id'];
+            $this->user['name'] = $rbac_user['name'];
+            
+            $this->role['id'] = $rbac_role['id'];
+            $this->role['name'] = $rbac_role['name'];
+            
+            $this->logined = TRUE;
+        }
     }
     
     private function _init_cview() {

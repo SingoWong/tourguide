@@ -1,22 +1,13 @@
 <?php
-class Sysmanager extends Base_Controller {
+class SysManager extends Base_Controller {
 	
-	/**
-	 * @var Users_Model
-	 */
-	var $Users_Model;
-	
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
+		
+        $this->check_belogin();
 	}
 
-	public function main()
-	{		
-		$this->load->model('Users_Model');
-		$users = $this->Users_Model->getUsers();
-
-		$this->smarty->assign( 'rowset', $users );
+	public function main() {
 		$this->smarty->display('sysmanager/main.html');
 	}
 }
