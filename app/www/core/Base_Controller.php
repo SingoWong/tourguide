@@ -14,8 +14,8 @@ class Base_Controller extends CI_Controller {
         $this->_init_cview();
     }
     
-    function check_belogin() {
-        if (!$this->logined) {
+    function check_belogin($role) {
+        if (!$this->logined || $this->role['id'] != $role) {
             redirect(url('sysusers/login'));
         }
     }

@@ -4,7 +4,7 @@ class SysHotel extends Base_Controller {
     function __construct() {
         parent::__construct();
         
-        $this->check_belogin();
+        $this->check_belogin(ROLE_ID_ADMIN);
     }
     
     public function index() {
