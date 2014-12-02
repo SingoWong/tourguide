@@ -12,17 +12,17 @@ $(document).ready(function() {
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("关闭");
+		$("#btnc_"+id).htm("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展开");
+		$("#btnc_"+id).htm("展開");
 	}
 	return false;
 }
 </script>
 
 <div class="title_panel">
-	意外通报
+	意外通報
 </div>
 
 <div class="list_inner">
@@ -31,71 +31,71 @@ function sh_pnlc(id) {
 	{{foreach from=$rowset item=item key=key}}
 	<div class="item">
 		<div class="item_title">
-			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">关闭</a>
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
 			{{$item->time|date_format:'%Y-%m-%d %H:%i'}}&nbsp;&nbsp;
 			{{$item->type}}&nbsp;&nbsp;
-			团号：{{$item->gid}}&nbsp;&nbsp;
-			导游：{{$item->gid}}&nbsp;&nbsp;
-			紧急事故
+			團號：{{$item->gid}}&nbsp;&nbsp;
+			導遊：{{$item->gid}}&nbsp;&nbsp;
+			緊急事故
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td width="10%">流水号</td>
+					<td width="10%">流水號</td>
 					<td>{{$item->id}}</td>
 				</tr>
 				<tr>
-					<td width="10%">发生时间</td>
+					<td width="10%">發生時間</td>
 					<td>{{$item->time|date_format:'%Y-%m-%d %H:%i'}}</td>
 				</tr>
 				<tr>
-					<td width="10%">发生地点</td>
+					<td width="10%">發生地點</td>
 					<td>{{$item->location}}</td>
 				</tr>
 				<tr>
-					<td width="10%">事故状况</td>
+					<td width="10%">事故情況</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td width="10%">游览车</td>
+					<td width="10%">遊覽車</td>
 					<td>
 						{{if $item->bus->bus_status == '0'}}
-						可行进
+						可行進
 						{{elseif $item->bus->bus_status == '1'}}
-						无法行进
+						無法行進
 						{{/if}}
 					</td>
 				</tr>
 				<tr>
-					<td width="10%">司机状况</td>
+					<td width="10%">司機狀況</td>
 					<td>
 						{{if $item->bus->driver_status == '0'}}
 						死亡
 						{{elseif $item->bus->driver_status == '1'}}
-						重伤
+						重傷
 						{{elseif $item->bus->driver_status == '2'}}
-						轻伤
+						輕傷
 						{{elseif $item->bus->driver_status == '3'}}
 						平安
 						{{/if}}
 					</td>
 				</tr>
 				<tr>
-					<td width="10%">游客情况</td>
+					<td width="10%">遊客情況</td>
 					<td>
 						{{if $item->bus->member_status == '0'}}
 						死亡
 						{{elseif $item->bus->member_status == '1'}}
-						重伤
+						重傷
 						{{elseif $item->bus->member_status == '2'}}
-						轻伤
+						輕傷
 						{{elseif $item->bus->member_status == '3'}}
 						平安
 						{{/if}}
 					</td>
 				</tr>
 				<tr>
-					<td width="10%">事故图片</td>
+					<td width="10%">事故圖片</td>
 					<td id="res_{{$item->id}}" class="res_list"></td>
 				</tr>
 			</table>

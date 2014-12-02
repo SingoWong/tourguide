@@ -117,7 +117,10 @@ class Guide extends Base_Controller {
         $day = $this->input->get('day');
         $route = $this->input->get('route');
 
-        $this->smarty->assign('url_restaurant_result', url('guide/restaurant_result').'&gid='.$gid.'&day='.$day.'&route='.$route);
+        $this->smarty->assign('gid',$gid);
+        $this->smarty->assign('day',$day);
+        $this->smarty->assign('route',$route);
+        $this->smarty->assign('url_restaurant_result', url('guide/restaurant_result'));
         $this->smarty->display('./guide/restaurant_search.html');
     }
     
@@ -125,7 +128,31 @@ class Guide extends Base_Controller {
      * 餐馆搜索结果
      */
     public function restaurant_result() {
+        $this->load->model('users_restaurant_model');
         
+        $gid = $this->input->post('gid');
+        $day = $this->input->post('day');
+        $route = $this->input->post('route');
+        $city = $this->input->post('city');
+        $name = $this->input->post('name');
+        $scenic = $this->input->post('scenic');
+        
+        $conditions = array();
+        if ($city != '') {
+            
+        }
+        if ($name != '') {
+            
+        }
+        if ($scenic != '') {
+        
+        }
+        
+        $restaurant = new Users_Restaurant_Model();
+        $re = $restaurant->getContractRestaurant($conditions);
+        
+        $this->smarty->assign('url_restaurant_detail', url('guide/restaurant_detail').'&gid='.$gid.'&day='.$day.'&route='.$route);
+        $this->smarty->assign('rowset',$re);
         $this->smarty->display('./guide/restaurant_result.html');
     }
     
@@ -133,8 +160,24 @@ class Guide extends Base_Controller {
      * 输入订餐详细资讯
      */
     public function restaurant_detail() {
+        $gid = $this->input->get('gid');
+        $day = $this->input->get('day');
+        $route = $this->input->get('route');
+        $rid = $this->input->get('rid');
         
+        $this->smarty->assign('gid',$gid);
+        $this->smarty->assign('day',$day);
+        $this->smarty->assign('route',$route);
+        $this->smarty->assign('rid',$rid);
+        $this->smarty->assign('url_restaurant_submit', url('guide/restaurant_submit'));
         $this->smarty->display('./guide/restaurant_detail.html');
+    }
+    
+    /**
+     * 保存訂餐訂單
+     */
+    public function restaurant_submit() {
+        dump($_POST);
     }
     
     /**
@@ -338,16 +381,16 @@ class Guide extends Base_Controller {
     private function _get_rstatus_label($status) {
         switch ($status) {
             case '0':
-                $label = '未订餐';
+                $label = '未訂餐';
                 break;
             case '1':
-                $label = '已订餐未确认';
+                $label = '已訂餐未確認';
                 break;
             case '2':
-                $label = '已订餐已确认';
+                $label = '已訂餐已確認';
                 break;
             case '3':
-                $label = '餐毕付款';
+                $label = '餐畢付款';
                 break;
         }
         

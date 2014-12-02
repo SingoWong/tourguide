@@ -97,9 +97,8 @@
 	display: inline-block;
 	margin-left:2px
 }
-.info-flow .flow-item-list .hotel-ctrls a {
-	width:60px;
-	line-height: 35px;
+.info-flow .flow-item-list .hotel-ctrls a.e {
+	width: 55px;
 }
 .info-flow .flow-item-list .flow-item-sdetail a.restaurant-order {
 	float: none;

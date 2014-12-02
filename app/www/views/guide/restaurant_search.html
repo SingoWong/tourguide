@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>餐厅搜索</title>
+		<title>餐廳搜索</title>
 		
 		{{include file="_common/minclude.html"}}
 		
@@ -21,39 +21,42 @@
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item" href="{{$url_info}}">团号</a>
-					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">订餐</a>
-					<a class="mui-control-item" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_info}}">團號</a>
+					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">訂餐</a>
+					<a class="mui-control-item" href="{{$url_hotel}}">訂房</a>
 					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
 				</div>
 			</div>
 		</header>
 		<div class="mui-content">
 			<div class="info-search">
-				<h3>搜索餐厅</h3>
-				<form class="mui-input-group" action="{{$url_restaurant_result}}">
+				<h3>搜索餐廳</h3>
+				<form class="mui-input-group" action="{{$url_restaurant_result}}" method="post">
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="城市">
+						<input type="text" class="mui-input-clear" name="city" placeholder="城市">
 					</div>
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="名称">
+						<input type="text" class="mui-input-clear" name="name" placeholder="名稱">
 					</div>
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="附近景点">
+						<input type="text" class="mui-input-clear" name="scenic" placeholder="附近景點">
 					</div>
 					
 					<div class="signin_submit">
-						<button class="mui-btn mui-btn-primary mui-btn-block">搜索</button>
+						<input type="hidden" name="gid" value="{{$gid}}" />
+						<input type="hidden" name="day" value="{{$day}}" />
+						<input type="hidden" name="route" value="{{$route}}" />
+						<button class="mui-btn mui-btn-primary mui-btn-block">搜尋</button>
 					</div>
 				</form>
 			</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item" href="{{$url_restaurant}}">
-		    订餐资讯
+		    訂餐資訊
 		  </a>
 		  <a class="mui-tab-item mui-active" href="#">
-		    餐厅搜索
+		    餐廳搜尋
 		  </a>
 		</nav>
 	</body>

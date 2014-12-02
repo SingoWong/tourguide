@@ -9,18 +9,20 @@ class Mobile extends CI_Controller {
         $role = $this->input->get('role');
         
         if ($role == ROLE_ID_GUIDE) {
-            $title = '导游登录';
+            $title = '導遊登陸';
             $url_forgot = url('mobile/guide_forgot');
         } elseif ($role == ROLE_ID_RESTAURANT) {
-            $title = '餐厅登录';
+            $title = '餐廳登陸';
             $url_forgot = url('mobile/restaurant_forgot');
         } elseif ($role == ROLE_ID_HOTEL) {
-            $title = '饭店登录';
+            $title = '飯店登陸';
             $url_forgot = url('mobile/hotel_forgot');
         }
         
         $this->smarty->assign('title', $title);
         $this->smarty->assign('url_do_login', url('mobile/do_login'));
+        $this->smarty->assign('url_services', url('mobile/services'));
+        $this->smarty->assign('url_policy', url('mobile/policy'));
         $this->smarty->assign('url_forgot_guide', $url_forgot);
         $this->smarty->display('./mobile/login.html');
     }
@@ -54,6 +56,16 @@ class Mobile extends CI_Controller {
     public function hotel_forgot() {
 
         $this->smarty->display('./hotel/forgot.html');
+    }
+    
+    public function services() {
+        
+        $this->smarty->display('./mobile/services.html');
+    }
+    
+    public function policy() {
+
+        $this->smarty->display('./mobile/policy.html');
     }
     
     public function secret() {

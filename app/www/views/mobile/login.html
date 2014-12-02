@@ -20,15 +20,18 @@
 		<div class="mui-content">
 			<form class="mui-input-group" action="{{$url_do_login}}" method="post">
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="username" placeholder="账号">
+					<input type="text" class="mui-input-clear" name="username" placeholder="帳號">
 				</div>
 				<div class="mui-input-row">
-					<input type="password" class="mui-input-clear" name="password" placeholder="密码">
+					<input type="password" class="mui-input-clear" name="password" placeholder="密碼">
 				</div>
 				
 				<div class="signin_submit">
-					<button class="mui-btn mui-btn-primary mui-btn-block btn-signin">登陆</button>
-					<a class="mui-btn mui-btn-block btn-forgot" href="{{$url_forgot_guide}}">忘记密码</a>
+					<button class="mui-btn mui-btn-primary mui-btn-block btn-signin">登入</button>
+					<a class="mui-btn mui-btn-block btn-forgot" href="{{$url_forgot_guide}}">忘記密碼</a>
+				</div>
+				<div class="agreement">
+					按下登入，表示統一<a href="{{$url_services}}">服務條款</a>及<a href="{{$url_policy}}">隱私權政策</a>
 				</div>
 			</form>
 		</div>

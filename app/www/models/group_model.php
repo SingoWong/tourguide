@@ -212,7 +212,9 @@ class Group_Model extends CI_Model {
             $room->gid = $gid;
             $room->single_room = $row['single_room'];
             $room->double_room = $row['double_room'];
+            $room->full_room = $row['full_room'];
             $room->plus_room = $row['plus_room'];
+            $room->kid_room = $row['kid_room'];
             
             $re = $room->save();
         }

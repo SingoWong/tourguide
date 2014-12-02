@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>订餐资讯</title>
+		<title>訂餐資訊</title>
 		
 		{{include file="_common/minclude.html"}}
 		
@@ -13,9 +13,9 @@
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item" href="{{$url_info}}">团号</a>
-					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">订餐</a>
-					<a class="mui-control-item" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_info}}">團號</a>
+					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">訂餐</a>
+					<a class="mui-control-item" href="{{$url_hotel}}">訂房</a>
 					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
 				</div>
 			</div>
@@ -66,13 +66,13 @@
 		function show_ctrl(day,route,item) {
 			var html = '';
 			if (item['rstatus'] == '0') {
-				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'" class="restaurant-order">请订餐</a>';
+				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'" class="restaurant-order">請訂餐</a>';
 			} else if (item['rstatus'] == '1') {
-				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>订餐</a><a href="#">电话<br/>确认</a>餐厅名称：'+item['rid']+'<br/>收据上传：未上传';
+				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>訂餐</a><a href="#">電話<br/>確認</a>餐廳名稱：'+item['rid']+'<br/>收據上傳：未上傳';
 			} else if (item['rstatus'] == '2') {
-				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上传<br/>收据</a><a href="{{$url_restaurant_payment}}&day='+day+'&route='+route+'">选择<br/>付款</a><a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>订餐</a>餐厅名称：'+item['rid']+'<br/>收据上传：未上传';
+				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上傳<br/>收據</a><a href="{{$url_restaurant_payment}}&day='+day+'&route='+route+'">選擇<br/>付款</a><a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>訂餐</a>餐廳名稱：'+item['rid']+'<br/>收據上傳：未上傳';
 			} else if (item['rstatus'] == '3') {
-				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上传<br/>收据</a></a>餐厅名称：'+item['rid']+'<br/>收据上传：未上传';
+				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上傳<br/>收據</a></a>餐廳名稱：'+item['rid']+'<br/>收據上傳：未上傳';
 			}
 			
 			return html;
@@ -80,10 +80,10 @@
 		</script>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="#">
-		    订餐资讯
+		    訂餐資訊
 		  </a>
 		  <a class="mui-tab-item" href="#">
-		    餐厅搜索
+		    餐廳搜尋
 		  </a>
 		</nav>
 	</body>

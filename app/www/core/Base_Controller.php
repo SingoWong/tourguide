@@ -14,8 +14,22 @@ class Base_Controller extends CI_Controller {
         $this->_init_cview();
     }
     
-    function check_belogin($role) {
-        if (!$this->logined || $this->role['id'] != $role) {
+    function check_belogin($roles) {
+        $check = false;
+        if (is_array($roles)) {
+            foreach ($roles as $k=>$role) {
+                if ($this->logined && $this->role['id'] == $role) {
+                    $check = true;
+                    break;
+                }
+            }
+        } else {
+            if ($this->logined && $this->role['id'] == $roles) {
+                $check = true;
+            }
+        }
+
+        if (!$check) {
             redirect(url('sysusers/login'));
         }
     }

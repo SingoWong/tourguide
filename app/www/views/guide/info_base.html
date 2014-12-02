@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>团号资讯</title>
+		<title>團號資訊</title>
 		
 		{{include file="_common/minclude.html"}}
 		
@@ -30,9 +30,9 @@
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item mui-active" href="{{$url_info}}">团号</a>
-					<a class="mui-control-item" href="{{$url_restaurant}}">订餐</a>
-					<a class="mui-control-item" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item mui-active" href="{{$url_info}}">團號</a>
+					<a class="mui-control-item" href="{{$url_restaurant}}">訂餐</a>
+					<a class="mui-control-item" href="{{$url_hotel}}">訂房</a>
 					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
 				</div>
 			</div>
@@ -41,46 +41,46 @@
 			<div class="info-content">
 				<div class="info-content-item">{{$info->code}}</div>
 				<div class="info-content-item">{{$info->name}}</div>
-				<div class="info-content-tips">相关团行：无</div>
+				<div class="info-content-tips">系列團行：無</div>
 				
 				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">旅行社资讯</a>
+					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">旅行社資訊</a>
 						<ul class="mui-table-view mui-table-view-chevron" id="pnl_info_base">
 							<li class="mui-table-view-cell">
 								<p>旅行社：{{$info->aid}}</p>
-								<p>联络人：{{$info->contact_name}}</p>
-								<p>联络咨询：{{$info->contact_tel}}</p>
+								<p>聯絡人：{{$info->contact_name}}</p>
+								<p>聯絡資訊：{{$info->contact_tel}}</p>
 							</li>
 						</ul>
 					</li>
-					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">相关联络人资讯</a>
+					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">相關聯絡人資訊</a>
 						<ul class="mui-table-view mui-table-view-chevron" id="pnl_info_contact">
 							<li class="mui-table-view-cell">
-								<p>送机人员：</p>
-								<p>手机：</p>
+								<p>送機人員：</p>
+								<p>手機：</p>
 								<p>胸章：</p>
-								<p>领队：{{$info->info->leader}}</p>
-								<p>手机：{{$info->info->leader_tel}}</p>
+								<p>領隊：{{$info->info->leader}}</p>
+								<p>手機：{{$info->info->leader_tel}}</p>
 								<p>行李牌：</p>
-								<p>注意事项：{{$info->info->attention}}</p>
-								<p>紧急联络：</p>
+								<p>注意事項：{{$info->info->attention}}</p>
+								<p>緊急聯絡：</p>
 							</li>
 						</ul>
 					</li>
-					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">航班资讯</a>
+					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">航班資訊</a>
 						<ul class="mui-table-view mui-table-view-chevron" id="pnl_info_flight">
 							<li class="mui-table-view-cell">
-								<p>出国日期：{{$info->start_date|date_format:"%Y-%m-%d"}}</p>
-								<p>班机代号：{{$info->start_flight_num}}</p>
-								<p>班机行程：{{$info->start_flight_code}}</p>
-								<p>起飞时间：{{$info->start_flight_departure_time}}</p>
-								<p>抵达时间：{{$info->start_flight_arrive_time|date_format:"%H:%i"}}</p>
+								<p>出國日期：{{$info->start_date|date_format:"%Y-%m-%d"}}</p>
+								<p>班機代號：{{$info->start_flight_num}}</p>
+								<p>班機行程：{{$info->start_flight_code}}</p>
+								<p>起飛時間：{{$info->start_flight_departure_time}}</p>
+								<p>抵達時間：{{$info->start_flight_arrive_time|date_format:"%H:%i"}}</p>
 								<br/>
-								<p>回国日期：{{$info->end_date|date_format:"%Y-%m-%d"}}</p>
-								<p>班机代号：{{$info->end_flight_num}}</p>
-								<p>班机行程：{{$info->end_flight_code}}</p>
-								<p>起飞时间：{{$info->end_flight_departure_time}}</p>
-								<p>抵达时间：{{$info->end_flight_arrive_time|date_format:"%H:%i"}}</p>
+								<p>回國日期：{{$info->end_date|date_format:"%Y-%m-%d"}}</p>
+								<p>班機代號：{{$info->end_flight_num}}</p>
+								<p>班機行程：{{$info->end_flight_code}}</p>
+								<p>起飛時間：{{$info->end_flight_departure_time}}</p>
+								<p>抵達時間：{{$info->end_flight_arrive_time|date_format:"%H:%i"}}</p>
 							</li>
 						</ul>
 					</li>
@@ -89,10 +89,10 @@
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="{{$url_info}}">
-		    团号资讯
+		    團號資訊
 		  </a>
 		  <a class="mui-tab-item" href="{{$url_info_journey}}">
-		    行程资讯
+		    行程資訊
 		  </a>
 		</nav>
 	</body>

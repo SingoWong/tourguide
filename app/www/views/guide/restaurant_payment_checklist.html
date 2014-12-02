@@ -33,9 +33,9 @@
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item" href="{{$url_info}}">团号</a>
-					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">订餐</a>
-					<a class="mui-control-item" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_info}}">團號</a>
+					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">訂餐</a>
+					<a class="mui-control-item" href="{{$url_hotel}}">訂房</a>
 					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
 				</div>
 			</div>
@@ -44,21 +44,21 @@
 			<form class="mui-input-group" action="{{$url_restaurant_payment_submit}}" method="post" id="form">
 		
 			<div class="checklist-form">
-				<h3 class="checklist_title">用餐资讯</h3>
+				<h3 class="checklist_title">用餐資訊</h3>
 				<div class="checklist_content">
 					<p>日期：</p>
-					<p>餐别：</p>
-					<p>餐厅名：</p>
+					<p>餐別：</p>
+					<p>餐廳名：</p>
 					<p>旅行社：</p>
-					<p>团号：</p>
-					<p>导游：</p>
-					<p>人数：</p>
-					<p>餐标：</p>
-					<p>金额：</p>
-					<p>结账方式：</p>
+					<p>團號：</p>
+					<p>導遊：</p>
+					<p>人數：</p>
+					<p>餐標：</p>
+					<p>金額：</p>
+					<p>結帳方式：</p>
 				</div>
 				<div class="upload_receive">
-					<button class="mui-btn mui-btn-primary mui-btn-block" onclick="upload();return false;">请拍下收据</button>
+					<button class="mui-btn mui-btn-primary mui-btn-block" onclick="upload();return false;">請拍下收據</button>
 					<input type="file" id="receive" name="receive" class="mui-btn mui-btn-primary mui-btn-block" onchange="preview(this);" />
 				</div>
 				<br/>
@@ -74,7 +74,7 @@
 					<input type="hidden" name="route" value="{{$route}}" />
 					<input type="hidden" name="mode" value="{{$mode}}" />
 					<button class="mui-btn mui-btn-primary" onclick="retake();return false;">重拍</button>
-					<button class="mui-btn mui-btn-primary" onclick="submit();return false;">上传云端</button>
+					<button class="mui-btn mui-btn-primary" onclick="submit();return false;">上傳雲端</button>
 				</div>
 				<br/><br/>
 			</div>
@@ -83,10 +83,10 @@
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item" href="#">
-		    订餐资讯
+		    訂餐資訊
 		  </a>
 		  <a class="mui-tab-item" href="#">
-		    餐厅搜索
+		    餐廳搜尋
 		  </a>
 		</nav>
 	</body>

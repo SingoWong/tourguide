@@ -3,39 +3,39 @@
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("关闭");
+		$("#btnc_"+id).htm("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展开");
+		$("#btnc_"+id).htm("展開");
 	}
 	return false;
 }
 function sh_sub_pnlc(id, day) {
 	if ($("#pnlc_sub_"+id+"_"+day).css("display") == "none") {
 		$("#pnlc_sub_"+id+"_"+day).show();
-		$("#btnc_sub_"+id+"_"+day).htm("关闭");
+		$("#btnc_sub_"+id+"_"+day).htm("關閉");
 	} else {
 		$("#pnlc_sub_"+id+"_"+day).hide();
-		$("#btnc_sub_"+id+"_"+day).htm("展开");
+		$("#btnc_sub_"+id+"_"+day).htm("展開");
 	}
 	return false;
 }
 </script>
 
 <div class="title_panel">
-	旅游团查询 - 进度
+	旅遊團查詢 - 進度
 </div>
 
-<input type="button" class="gm_t1_btn" value="旅行团进度" onclick="self.location.href='index.php?ctr=sysgroup';">
-<input type="button" class="gm_t1_btn_alt_disabled" value="历史查询" onclick="self.location.href='index.php?ctr=sysgroup&act=history';">
+<input type="button" class="gm_t1_btn" value="旅遊團進度" onclick="self.location.href='index.php?ctr=sysgroup';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="歷史查詢" onclick="self.location.href='index.php?ctr=sysgroup&act=history';">
 
 <div class="list_inner">
 	<!-- foreach -->
 	{{foreach from=$rowset item=item key=key}}
 	<div class="item">
 		<div class="item_title">
-			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">关闭</a>
-			团号：{{$item->code}} &nbsp;&nbsp; 团名：{{$item->name}} &nbsp;&nbsp; 导游：{{$item->contact_name}} &nbsp;&nbsp; 进度：
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
+			團號：{{$item->code}} &nbsp;&nbsp; 團名：{{$item->name}} &nbsp;&nbsp; 導遊：{{$item->contact_name}} &nbsp;&nbsp; 進度：
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}">
 			
@@ -49,7 +49,7 @@ function sh_sub_pnlc(id, day) {
 				var data = eval('('+json+')');
 				$.each(data,function(day,schedule){
 					var html_day = '<div class="sub_item_title">'+
-								   '<a href="#" onclick="return sh_sub_pnlc({{$item->id}}, '+day+');" id="btnc_sub_{{$item->id}}_'+day+'">关闭</a>'+
+								   '<a href="#" onclick="return sh_sub_pnlc({{$item->id}}, '+day+');" id="btnc_sub_{{$item->id}}_'+day+'">關閉</a>'+
 								   'D'+day+' &nbsp;&nbsp; {日期} &nbsp;&nbsp;{状态}</div>'+
 								   '<div class="sub_item_content" id="pnlc_sub_{{$item->id}}_'+day+'">'+
 								   '<table border="0" width="100%" cellpadding="2" cellspacing="1">';
@@ -63,10 +63,10 @@ function sh_sub_pnlc(id, day) {
 							break;
 						case '3':
 						case '4':
-							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已订餐{钩}</td><td class="s_status">已订餐未确认{钩}</td><td class="s_status">已订餐已确认{钩}</td><td class="s_status">餐毕付款{钩}</td></tr>';
+							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐{钩}</td><td class="s_status">已訂餐未確認{钩}</td><td class="s_status">已訂餐已確認{钩}</td><td class="s_status">餐畢付款{钩}</td></tr>';
 							break;
 						case '5':
-							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已订房{钩}</td><td class="s_status">CHKIN{钩}</td><td class="s_status">未结账{钩}</td><td class="s_status">CHKOUT{钩}</td></tr>';
+							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂房{钩}</td><td class="s_status">CHKIN{钩}</td><td class="s_status">未結帳{钩}</td><td class="s_status">CHKOUT{钩}</td></tr>';
 							break;
 						}
 					});

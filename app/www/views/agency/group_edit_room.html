@@ -1,13 +1,13 @@
 {{include file="_common/header.html"}}
 
 <div class="flowset">
-	<a href="index.php?ctr=sysagency&act=groupedit&id={{$id}}">基本资料</a>
+	<a href="index.php?ctr=sysagency&act=groupedit&id={{$id}}">旅行社的基本資料</a>
 	<em>&gt;</em>
-	<a href="index.php?ctr=sysagency&act=grouproom&id={{$id}}" class="curr">分房资讯</a>
+	<a href="index.php?ctr=sysagency&act=grouproom&id={{$id}}" class="curr">分房資訊</a>
 	<em>&gt;</em>
 	<a href="index.php?ctr=sysagency&act=groupschedule&id={{$id}}">行程安排</a>
 	<em>&gt;</em>
-	<a href="index.php?ctr=sysagency&act=groupinfo&id={{$id}}">开团说明会资料</a>
+	<a href="index.php?ctr=sysagency&act=groupinfo&id={{$id}}">開團說明會資料</a>
 </div>
 
 <form method="post" action="index.php?ctr=sysagency&act=grouproomsave">
@@ -17,22 +17,28 @@
 <div class="form_inner">
 	<table class="table_form">
 		<tr>
-			<td class="tf_key">单人房</td>
+			<td class="tf_key">單人房</td>
 			<td><span class="v"><input type="text" id="single_room" name="single_room" value="{{$row->single_room}}"></span></td>
-			<td class="tf_key">双人房</td>
+		</tr>
+		<tr>
+			<td class="tf_key">雙人房</td>
 			<td><span class="v"><input type="text" id="double_room" name="double_room" value="{{$row->double_room}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">三人房</td>
+			<td><span class="v"><input type="text" id="full_room" name="full_room" value="{{$row->full_room}}"></span></td>
 		</tr>
 		<tr>
 			<td class="tf_key">加床</td>
 			<td><span class="v"><input type="text" id="plus_room" name="plus_room" value="{{$row->plus_room}}"></span></td>
-			<td class="tf_key"></td>
-			<td></td>
 		</tr>
 		<tr>
-			<td class="tf_key">总计</td>
+			<td class="tf_key">兒童床</td>
+			<td><span class="v"><input type="text" id="kid_room" name="kid_room" value="{{$row->kid_room}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">總計</td>
 			<td><label id="lbl_amount">0</label>人</td>
-			<td class="tf_key"></td>
-			<td></td>
 		</tr>
 	</table>
 </div>
@@ -40,7 +46,7 @@
 <hr size="1" />
 <div>
 	<input type="hidden" name="id" value="{{$id}}" />
-	<input type="submit" class="gm_t1_btn" value="提交信息">
+	<input type="submit" class="gm_t1_btn" value="提交訊息">
 </div>
 </form>
 

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>餐厅明细</title>
+		<title>訂餐明細</title>
 		
 		{{include file="_common/minclude.html"}}
 		
@@ -24,49 +24,65 @@
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item" href="{{$url_info}}">团号</a>
-					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">订餐</a>
-					<a class="mui-control-item" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_info}}">團號</a>
+					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">訂餐</a>
+					<a class="mui-control-item" href="{{$url_hotel}}">訂房</a>
 					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
 				</div>
 			</div>
 		</header>
 		<div class="mui-content">
 			<div class="info-detail">
-				<h3>订餐资讯</h3>
+				<h3>訂餐資訊</h3>
 				<div class="restaurant-detail">---</div>
-				<h5 class="mui-content-padded">特俗需求</h5>
-				<form class="mui-input-group">
+				<h5 class="mui-content-padded">注意事項</h5>
+				<form class="mui-input-group" action="{{$url_restaurant_submit}}" method="post">
 					<div class="restaurant-option">
 						<div class="mui-card">
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>Checkbox</label>
-								<input name="checkbox" type="checkbox">
+								<label>重鹹</label>
+								<input name="note[]" type="checkbox" value="重鹹">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>Checkbox</label>
-								<input name="checkbox" type="checkbox" checked>
+								<label>重辣</label>
+								<input name="note[]" type="checkbox" value="重辣">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>Checkbox</label>
-								<input name="checkbox" type="checkbox" checked>
+								<label>重甜</label>
+								<input name="note[]" type="checkbox" value="重甜">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>Checkbox</label>
-								<input name="checkbox" type="checkbox" checked>
+								<label>素</label>
+								<input name="note[]" type="checkbox" value="素">
+							</div>
+							<div class="mui-input-row mui-checkbox mui-left">
+								<label>不吃豬</label>
+								<input name="note[]" type="checkbox" value="不吃豬">
+							</div> 
+							<div class="mui-input-row mui-checkbox mui-left">
+								<label>不吃牛</label>
+								<input name="note[]" type="checkbox" value="不吃牛">
+							</div>
+							<div class="mui-input-row mui-checkbox mui-left">
+								<label>其他</label>
+								<input name="note[]" type="checkbox" value="其他">
 							</div>
 						</div>
 					</div>
-					<button class="mui-btn mui-btn-primary mui-btn-block btn-signin">确认订餐</button>
+					<input type="hidden" name="gid" value="{{$gid}}" />
+					<input type="hidden" name="day" value="{{$day}}" />
+					<input type="hidden" name="route" value="{{$route}}" />
+					<input type="hidden" name="rid" value="{{$rid}}" />
+					<button class="mui-btn mui-btn-primary mui-btn-block btn-signin">確認訂餐</button>
 				</form>
 			</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item" href="{{$url_restaurant}}">
-		    订餐资讯
+		    訂餐資訊
 		  </a>
 		  <a class="mui-tab-item mui-active" href="#">
-		    餐厅搜索
+		    餐廳搜尋
 		  </a>
 		</nav>
 	</body>

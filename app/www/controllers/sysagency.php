@@ -4,7 +4,7 @@ class SysAgency extends Base_Controller {
     function __construct() {
         parent::__construct();
         
-        $this->check_belogin(ROLE_ID_AGENCY);
+        $this->check_belogin(array(ROLE_ID_ADMIN,ROLE_ID_AGENCY));
     }
     
     public function index() {
@@ -152,7 +152,9 @@ class SysAgency extends Base_Controller {
         $gid = $this->input->post('id');
         $row['single_room'] = $this->input->post('single_room');
         $row['double_room'] = $this->input->post('double_room');
+        $row['full_room'] = $this->input->post('full_room');
         $row['plus_room'] = $this->input->post('plus_room');
+        $row['kid_room'] = $this->input->post('kid_room');
         
         $re = $group->saveGroupRoom($gid, $row);
         

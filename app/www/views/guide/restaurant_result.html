@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>餐厅搜索结果</title>
+		<title>餐廳搜尋結果</title>
 		
 		{{include file="_common/minclude.html"}}
 		
@@ -21,9 +21,9 @@
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item" href="{{$url_info}}">团号</a>
-					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">订餐</a>
-					<a class="mui-control-item" href="{{$url_hotel}}">订房</a>
+					<a class="mui-control-item" href="{{$url_info}}">團號</a>
+					<a class="mui-control-item mui-active" href="{{$url_restaurant}}">訂餐</a>
+					<a class="mui-control-item" href="{{$url_hotel}}">訂房</a>
 					<a class="mui-control-item" href="{{$url_accident}}">意外</a>
 				</div>
 			</div>
@@ -31,47 +31,28 @@
 		<div class="mui-content">
 			<div class="info-result">
 				<ul class="mui-table-view">
+					{{foreach from=$rowset item=item key=key}}
 					<li class="mui-table-view-cell mui-media">
-						<a href="#">
+						<a href="{{$url_restaurant_detail}}&rid={{$item->id}}">
 							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
+								{{$item->name}}
+								<p class='mui-ellipsis'>電話：{{$item->contact_tel}}</p>
+								<p class='mui-ellipsis'>地址：{{$item->address}}</p>
+								<p class='mui-ellipsis'>營業時間：</p>
+								<p class='mui-ellipsis'>公休時間：</p>
 							</div>
 						</a>
 					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
+					{{/foreach}}
 				</ul>
 			</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item" href="{{$url_restaurant}}">
-		    订餐资讯
+		    餐廳資訊
 		  </a>
 		  <a class="mui-tab-item mui-active" href="#">
-		    餐厅搜索
+		    餐廳搜尋
 		  </a>
 		</nav>
 	</body>

@@ -1,37 +1,37 @@
 {{include file="_common/header.html"}}
 
 <div class="flowset">
-	<a href="index.php?ctr=sysagency&act=groupedit&id={{$id}}" class="curr">基本资料</a>
+	<a href="index.php?ctr=sysagency&act=groupedit&id={{$id}}" class="curr">旅行社的基本資料</a>
 	<em>&gt;</em>
-	<a href="index.php?ctr=sysagency&act=grouproom&id={{$id}}">分房资讯</a>
+	<a href="index.php?ctr=sysagency&act=grouproom&id={{$id}}">分房資訊</a>
 	<em>&gt;</em>
 	<a href="index.php?ctr=sysagency&act=groupschedule&id={{$id}}">行程安排</a>
 	<em>&gt;</em>
-	<a href="index.php?ctr=sysagency&act=groupinfo&id={{$id}}">开团说明会资料</a>
+	<a href="index.php?ctr=sysagency&act=groupinfo&id={{$id}}">開團說明會資料</a>
 </div>
 
 <form method="post" action="index.php?ctr=sysagency&act=groupsave">
 <div class="title_panel">
-	基本资料
+	基本資料
 </div>
 <div class="form_inner">
 	<table class="table_form">
 		<tr>
-			<td class="tf_key">团号</td>
+			<td class="tf_key">團號</td>
 			<td><span class="v"><input type="text" id="code" name="code" value="{{$row->code}}"></span></td>
-			<td class="tf_key">团名</td>
+			<td class="tf_key">團名</td>
 			<td><span class="v"><input type="text" id="name" name="name" value="{{$row->name}}"></span></td>
 		</tr>
 		<tr>
-			<td class="tf_key">系列团号</td>
+			<td class="tf_key">系列團型</td>
 			<td><span class="v"><input type="text" id="gcode" name="gcode" value="{{$row->gcode}}"></span></td>
-			<td class="tf_key">天数</td>
+			<td class="tf_key">天數</td>
 			<td><span class="v"><input type="text" id="days" name="days" value="{{$row->days}}"></span></td>
 		</tr>
 		<tr>
-			<td class="tf_key">洲别</td>
+			<td class="tf_key">洲別</td>
 			<td><span class="v"><input type="text" id="continent" name="continent" value="{{$row->continent}}"></span></td>
-			<td class="tf_key">国家</td>
+			<td class="tf_key">國家</td>
 			<td><span class="v"><input type="text" id="country" name="country" value="{{$row->country}}"></span></td>
 		</tr>
 		<tr>
@@ -44,58 +44,58 @@
 </div>
 
 <div class="title_panel">
-	航班信息
+	航班訊息
 </div>
 <div class="form_inner">
 	<table class="table_form">
 		<tr>
-			<td class="tf_key">出国日期</td>
+			<td class="tf_key">出國日期</td>
 			<td><span class="v"><input type="text" id="start_date" name="start_date" value="{{$row->start_date}}"></span></td>
 			<td class="tf_key"></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td class="tf_key">班机行程</td>
+			<td class="tf_key">班機行程</td>
 			<td><span class="v"><input type="text" id="start_flight_code" name="start_flight_code" value="{{$row->start_flight_code}}"></span></td>
-			<td class="tf_key">起飞时间</td>
+			<td class="tf_key">起飛時間</td>
 			<td><span class="v"><input type="text" id="start_departure_time" name="start_departure_time" value="{{$row->start_departure_time}}"></span></td>
 		</tr>
 		<tr>
-			<td class="tf_key">班机代码</td>
+			<td class="tf_key">班機代碼</td>
 			<td><span class="v"><input type="text" id="start_flight_num" name="start_flight_num" value="{{$row->start_flight_num}}"></span></td>
-			<td class="tf_key">到达时间</td>
+			<td class="tf_key">抵達時間</td>
 			<td><span class="v"><input type="text" id="start_arrive_time" name="start_arrive_time" value="{{$row->start_arrive_time}}"></span></td>
 		</tr>
 		<tr>
-			<td class="tf_key">回国日期</td>
+			<td class="tf_key">回國日期</td>
 			<td><span class="v"><input type="text" id="end_date" name="end_date" value="{{$row->end_date}}"></span></td>
 			<td class="tf_key"></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td class="tf_key">班机行程</td>
+			<td class="tf_key">班機行程</td>
 			<td><span class="v"><input type="text" id="end_flight_code" name="end_flight_code" value="{{$row->end_flight_code}}"></span></td>
-			<td class="tf_key">起飞时间</td>
+			<td class="tf_key">起飛時間</td>
 			<td><span class="v"><input type="text" id="end_departure_time" name="end_departure_time" value="{{$row->end_departure_time}}"></span></td>
 		</tr>
 		<tr>
-			<td class="tf_key">班机代码</td>
+			<td class="tf_key">班機代碼</td>
 			<td><span class="v"><input type="text" id="end_flight_num" name="end_flight_num" value="{{$row->end_flight_num}}"></span></td>
-			<td class="tf_key">到达时间</td>
+			<td class="tf_key">抵達時間</td>
 			<td><span class="v"><input type="text" id="end_arrive_time" name="end_arrive_time" value="{{$row->end_arrive_time}}"></span></td>
 		</tr>
 	</table>
 </div>
 
 <div class="title_panel">
-	开团信息
+	開團資訊
 </div>
 <div class="form_inner">
 	<table class="table_form">
 		<tr>
-			<td class="tf_key">开团OP</td>
+			<td class="tf_key">開團OP</td>
 			<td><span class="v"><input type="text" id="op" name="op" value="{{$row->op}}"></span></td>
-			<td class="tf_key">团员人数</td>
+			<td class="tf_key">團員人數</td>
 			<td><span class="v"><input type="text" id="amount" name="amount" value="{{$row->amount}}"></span></td>
 		</tr>
 		<tr>
@@ -105,9 +105,9 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td class="tf_key">联络人</td>
+			<td class="tf_key">聯絡人</td>
 			<td><span class="v"><input type="text" id="contact_name" name="contact_name" value="{{$row->contact_name}}"></span></td>
-			<td class="tf_key">联络电话</td>
+			<td class="tf_key">聯絡電話</td>
 			<td><span class="v"><input type="text" id="contact_tel" name="contact_tel" value="{{$row->contact_tel}}"></span></td>
 		</tr>
 	</table>
@@ -116,7 +116,7 @@
 <hr size="1" />
 <div>
 	<input type="hidden" name="id" value="{{$id}}" />
-	<input type="submit" class="gm_t1_btn" value="提交信息">
+	<input type="submit" class="gm_t1_btn" value="提交訊息">
 </div>
 </form>
 
