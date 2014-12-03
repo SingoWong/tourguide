@@ -98,7 +98,7 @@
 	margin-left:2px
 }
 .info-flow .flow-item-list .hotel-ctrls a.e {
-	width: 55px;
+	width: 45px;
 }
 .info-flow .flow-item-list .flow-item-sdetail a.restaurant-order {
 	float: none;
@@ -106,17 +106,20 @@
 	width: auto;
 	line-height: 30px;
 }
-.upload_receive {
+.upload_receive, .upload_photo {
 	position: relative;
 	height: 60px;
 }
-.upload_receive input, .upload_receive button {
+.upload_receive input, .upload_receive button, .upload_photo input, .upload_photo button {
 	position: absolute;
 	left:0;
 	top:0;
 }
 .checklist-form {
 	padding:10px;
+}
+.photo-form {
+	padding:50px 10px 10px 10px;
 }
 .confirm-form {
 	display: none;
@@ -125,10 +128,10 @@
 .confirm-form .confirm_content {
 	text-align: center;
 }
-.upload_receive button {
+.upload_receive button, .upload_photo button {
 	z-index:9;
 }
-.upload_receive input {
+.upload_receive input, .upload_photo input {
 	z-index:8;
 }
 .menu-list {
