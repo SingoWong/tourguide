@@ -177,7 +177,9 @@ class Guide extends Base_Controller {
      * 保存訂餐訂單
      */
     public function restaurant_submit() {
-        dump($_POST);
+        //TOOD保存訂單
+        
+        redirect(url('guide/restaurant_order'));
     }
     
     /**
@@ -242,7 +244,9 @@ class Guide extends Base_Controller {
         $url = $this->input->post('url');
         
         //上传图片文件
-        dump($_POST);
+        //TODO
+        
+        redirect(url('guide/restaurant_payment_finish'));
     }
     
     /**
@@ -345,7 +349,9 @@ class Guide extends Base_Controller {
         $url = $this->input->post('url');
         
         //上传图片文件
-        dump($_POST);
+        //TODO
+        
+        redirect(url('guide/hotel_payment_finish'));
     }
     
     /**
