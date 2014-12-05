@@ -1,0 +1,32 @@
+{{include file="_common/popup_header.html"}}
+<script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+
+<div class="title_panel">
+	飯店管理 - 續約
+</div>
+
+<div class="form_inner">
+
+<form action="index.php?ctr=syshotel&act=saveprofile" method="post" class="gm_t1_form">
+    <ul>
+        <li>
+            <span class="v">
+            	<input type="text" id="sign_date_start" name="sign_date_start" placeholder="選擇簽約开始日期" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+            </span>
+        </li>
+        <li>
+            <span class="v">
+            	<input type="text" id="sign_date_end" name="sign_date_end" placeholder="選擇簽約结束日期" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+            </span>
+        </li>
+        <li class="gm_t1_form_btn" style="height:auto;">
+        	<input type="hidden" name="type" value="renewal" />
+        	<input type="hidden" name="id" value="{{$uid}}" />
+            <input type="submit" class="gm_t1_btn" value="提交">
+        </li>
+    </ul>
+</form>
+
+</div>
+
+{{include file="_common/popup_footer.html"}}

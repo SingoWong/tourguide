@@ -110,7 +110,7 @@ class SysRestaurant extends Base_Controller {
         $re = $users_restaurant_model->update($uid, $row);
     
         if ($re) {
-            alert('保存成功', url('sysagency/index'));
+            alert('保存成功', url('sysrestaurant/index'));
         } else {
             alert('保存失敗', null, true);
         }
@@ -125,9 +125,9 @@ class SysRestaurant extends Base_Controller {
         $re = $users->reset($uid);
     
         if ($re['result']) {
-            alert('重置成功', url('sysagency/index'));
+            alert('重置成功', url('sysrestaurant/index'));
         } else {
-            alert('重置失敗', url('sysagency/index'));
+            alert('重置失敗', url('sysrestaurant/index'));
         }
     }
     
@@ -140,9 +140,9 @@ class SysRestaurant extends Base_Controller {
         $re = $users->suspended($uid);
     
         if ($re['result']) {
-            alert('停權成功', url('sysagency/index'));
+            alert('停權成功', url('sysrestaurant/index'));
         } else {
-            alert('停權失敗', url('sysagency/index'));
+            alert('停權失敗', url('sysrestaurant/index'));
         }
     }
     
@@ -150,7 +150,7 @@ class SysRestaurant extends Base_Controller {
         $uid = $this->input->get('id');
     
         $this->smarty->assign('uid', $uid);
-        $this->smarty->display('./sysmanager/agency_renewal.html');
+        $this->smarty->display('./sysmanager/restaurant_renewal.html');
     }
 }
 ?>

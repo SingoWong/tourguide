@@ -68,5 +68,83 @@ class SysHotel extends Base_Controller {
     
         $re = $users_hotel_model->save($row);
     }
+
+    public function updateprofile() {
+        $this->load->model('Users_Hotel_Model');
+        $users_hotel_model = new Users_Hotel_Model();
+    
+        $uid = $this->input->get('id');
+        $type = $this->input->get('type');
+    
+        $re = $users_hotel_model->getHotelById($uid);
+    
+        $this->smarty->assign('profile', $re);
+        $this->smarty->assign('type', $type);
+        $this->smarty->display('./sysmanager/hotel_profile_edit.html');
+    }
+    
+    public function saveprofile() {
+        $this->load->model('Users_Hotel_Model');
+        $users_hotel_model = new Users_Hotel_Model();
+    
+        $uid = $this->input->post('id');
+        $type = $this->input->post('type');
+    
+        if ($type == 'address') {
+            $row['address'] = $this->input->post('address');
+        } elseif ($type == 'contact') {
+            $row['contact'] = $this->input->post('contact');
+        } elseif ($type == 'contact_tel') {
+            $row['contact_tel'] = $this->input->post('contact_tel');
+        } elseif ($type == 'renewal') {
+            $row['sign_date_start'] = strtotime($this->input->post('sign_date_start'));
+            $row['sign_date_end'] = strtotime($this->input->post('sign_date_end'));
+        }
+    
+        $re = $users_hotel_model->update($uid, $row);
+    
+        if ($re) {
+            alert('保存成功', url('syshotel/index'));
+        } else {
+            alert('保存失敗', null, true);
+        }
+    }
+    
+    public function resetpassword() {
+        $this->load->model('Users_Model');
+        $users = new Users_Model();
+    
+        $uid = $this->input->get('id');
+    
+        $re = $users->reset($uid);
+    
+        if ($re['result']) {
+            alert('重置成功', url('syshotel/index'));
+        } else {
+            alert('重置失敗', url('syshotel/index'));
+        }
+    }
+    
+    public function suspended() {
+        $this->load->model('Users_Model');
+        $users = new Users_Model();
+    
+        $uid = $this->input->get('id');
+    
+        $re = $users->suspended($uid);
+    
+        if ($re['result']) {
+            alert('停權成功', url('syshotel/index'));
+        } else {
+            alert('停權失敗', url('syshotel/index'));
+        }
+    }
+    
+    public function renewal() {
+        $uid = $this->input->get('id');
+    
+        $this->smarty->assign('uid', $uid);
+        $this->smarty->display('./sysmanager/hotel_renewal.html');
+    }
 }
 ?>
