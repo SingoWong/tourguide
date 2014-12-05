@@ -43,14 +43,6 @@ class Users_Model extends CI_Model {
 	    return $re;
 	}
 	
-	public function stop($uid) {
-	
-	}
-	
-	public function active($uid) {
-	
-	}
-	
 	/**
 	 * 用户登录
 	 * @param unknown $username
@@ -115,6 +107,81 @@ class Users_Model extends CI_Model {
 	        SKEY_RBAC_ROLE=>array()
 	    );
 	    $this->session->unset_userdata($rbac);
+	}
+	
+	public function reset($id) {
+	    $this->db->trans_start();
+	     
+	    //创建用户
+	    $users = new Users();
+	    $users->where('id', $id)->get();
+	     
+	    if ($users->result_count() > 0) {
+	        $row['password'] = $this->_encrypt_password($users->all[0]->username, $this->_gen_password($users->all[0]->username));
+	        $users->where('id', $id)->update($row);
+	    } else {
+	        $re = false;
+	    }
+	     
+	    if ($this->db->trans_status() === FALSE){
+	        $this->db->trans_rollback();
+	        $re['result'] = false;
+	    } else {
+	        $this->db->trans_commit();
+	        $re['result'] = true;
+	    }
+	     
+	    return $re;
+	}
+	
+	public function suspended($id) {
+	    $this->db->trans_start();
+	    
+	    //创建用户
+	    $users = new Users();
+	    $users->where('id', $id)->get();
+	    
+	    if ($users->result_count() > 0) {
+	        $row['status'] = '0';
+	        $users->where('id', $id)->update($row);
+	    } else {
+	        $re = false;
+	    }
+	    
+	    if ($this->db->trans_status() === FALSE){
+	        $this->db->trans_rollback();
+	        $re['result'] = false;
+	    } else {
+	        $this->db->trans_commit();
+	        $re['result'] = true;
+	    }
+	    
+	    return $re;
+	}
+	
+	public function active($id) {
+	    $this->db->trans_start();
+	     
+	    //创建用户
+	    $users = new Users();
+	    $users->where('id', $id)->get();
+	     
+	    if ($users->result_count() > 0) {
+	        $row['status'] = '1';
+	        $users->where('id', $id)->update($row);
+	    } else {
+	        $re = false;
+	    }
+	     
+	    if ($this->db->trans_status() === FALSE){
+	        $this->db->trans_rollback();
+	        $re['result'] = false;
+	    } else {
+	        $this->db->trans_commit();
+	        $re['result'] = true;
+	    }
+	     
+	    return $re;
 	}
 	
 	private function _gen_password($username) {

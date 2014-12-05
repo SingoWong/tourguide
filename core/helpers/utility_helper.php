@@ -66,8 +66,12 @@ if ( ! function_exists('array_to_hashmap'))
 
 if ( ! function_exists('alert'))
 {
-    function alert($msg, $url='') {
-        $url = ($url == '') ? '' : 'location.href="'.$url.'";';
+    function alert($msg, $url='', $is_back=false) {
+        if ($is_back) {
+            $url = 'history.go(-1);';
+        } else {
+            $url = ($url == '') ? '' : 'top.location.href="'.$url.'";';
+        }
         echo '<script>alert("'.$msg.'");'.$url.'</script>';
     }
 }

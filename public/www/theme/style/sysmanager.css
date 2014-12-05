@@ -42,7 +42,9 @@ a#closeButton{
 	right:-15px;
 	background:url(../images/btn_close.png) no-repeat;
 }
-
+.popup_viewport {
+	padding:10px;
+}
 .viewport {
 	background: #f0f0f0 url(../images/noise-bg.gif) repeat -70% 0;
 }

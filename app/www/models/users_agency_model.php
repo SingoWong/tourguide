@@ -10,7 +10,7 @@ class Users_Agency_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getContractAgency($conditions) {
+    function getContractAgency($conditions, $with_relation=false) {
         $agency = new Users_Agency();
         
         $agency->where('sign_date_start <=', time());
@@ -19,6 +19,24 @@ class Users_Agency_Model extends CI_Model {
             $agency->where($field, $value);
         }
         $agency->get();
+        
+        if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($agency->all); $i++) {
+                $ids[] = $agency->all[$i]->uid;
+            }
+            
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($agency->all); $i++) {
+                    $agency->all[$i]->users = $us[$agency->all[$i]->uid];
+                }
+            }
+        }
         
         return $agency->all;
     }
@@ -36,6 +54,24 @@ class Users_Agency_Model extends CI_Model {
             $agency->where($field, $value);
         }
         $agency->get();
+
+        if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($agency->all); $i++) {
+                $ids[] = $agency->all[$i]->id;
+            }
+        
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+        
+                $us = array_to_hashmap($users->all, 'id');
+        
+                for ($i=0; $i<sizeof($agency->all); $i++) {
+                    $agency->all[$i]->users = $us[$agency->all[$i]->uid];
+                }
+            }
+        }
         
         return $agency->all;
     }
@@ -88,6 +124,29 @@ class Users_Agency_Model extends CI_Model {
                 
                 $re = $agency->save();
             }
+        } else {
+            $re = false;
+        }
+        
+        if ($this->db->trans_status() === FALSE || !$re){
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
+        }
+        
+        return $re;
+    }
+    
+    function update($uid, $row) {
+        $this->load->model('Users_Model');
+        $agency = new Users_Agency();
+        
+        $this->db->trans_start();
+        
+        $agency->where('uid', $uid)->get();
+
+        if ($agency->result_count() > 0) {
+            $re = $agency->where('uid',$uid)->update($row);
         } else {
             $re = false;
         }

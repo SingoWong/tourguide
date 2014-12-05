@@ -71,11 +71,11 @@
             <task id="37" name="旅行社后台行程进度" color="#339900" meeting="false" start="2014-11-26" duration="1" complete="100" expand="true"/>
             <task id="38" name="旅行社后台意外通报" color="#009966" meeting="false" start="2014-11-27" duration="1" complete="100" expand="true"/>
         </task>
-        <task id="39" name="前台开发计划" meeting="false" start="2014-11-28" duration="4" complete="0" expand="true">
-            <task id="40" name="导游功能" meeting="false" start="2014-11-28" duration="1" complete="0" expand="true"/>
+        <task id="39" name="前台开发计划" meeting="false" start="2014-11-28" duration="4" complete="50" expand="true">
+            <task id="40" name="导游功能" meeting="false" start="2014-11-28" duration="1" complete="100" expand="true"/>
             <task id="41" name="餐厅功能" meeting="false" start="2014-11-29" duration="1" complete="0" expand="true"/>
             <task id="42" name="饭店功能" meeting="false" start="2014-11-30" duration="1" complete="0" expand="true"/>
-            <task id="43" name="意外通报" meeting="false" start="2014-12-01" duration="1" complete="0" expand="true"/>
+            <task id="43" name="意外通报" meeting="false" start="2014-12-01" duration="1" complete="100" expand="true"/>
         </task>
     </tasks>
     <resources/>

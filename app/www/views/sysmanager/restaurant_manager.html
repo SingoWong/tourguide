@@ -3,10 +3,10 @@
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("關閉");
+		$("#btnc_"+id).html("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展開");
+		$("#btnc_"+id).html("展開");
 	}
 	return false;
 }
@@ -37,17 +37,17 @@ function sh_pnlc(id) {
 	<div class="item">
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
-			{{$item->name}} {{$item->code}} 签约日期：{{$item->sign_date_start|date_format:'%Y-%m-%d'}} 至 {{$item->sign_date_end|date_format:'%Y-%m-%d'}}
+			{{$item->users->name}}&nbsp;&nbsp;{{$item->code}}&nbsp;签约日期：{{$item->sign_date_start|date_format:'%Y-%m-%d'}} 至 {{$item->sign_date_end|date_format:'%Y-%m-%d'}}
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td colspan="2">帳號：{{$item->username}}</td>
+					<td colspan="2">帳號：{{$item->users->username}}</td>
 					<td>密碼：******</td>
-					<td width="10%"><a href="">重置密碼</a></td>
+					<td width="10%"><a href="index.php?ctr=sysrestaurant&act=resetpassword&id={{$item->id}}" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">餐廳名稱：{{$item->name}}</td>
+					<td colspan="2">餐廳名稱：{{$item->users->name}}</td>
 					<td>地址：{{$item->address}}</td>
 					<td><a href="">修改</a></td>
 				</tr>

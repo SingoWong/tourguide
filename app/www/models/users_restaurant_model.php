@@ -10,7 +10,7 @@ class Users_Restaurant_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getContractRestaurant($conditions) {
+    function getContractRestaurant($conditions, $with_relation=false) {
         $restaurant = new Users_Restaurant();
         
         $restaurant->where('sign_date_start <=', time());
@@ -19,7 +19,25 @@ class Users_Restaurant_Model extends CI_Model {
             $restaurant->where($field, $value);
         }
         $restaurant->get();
+
+        if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($restaurant->all); $i++) {
+                $ids[] = $restaurant->all[$i]->uid;
+            }
+            
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
         
+                $us = array_to_hashmap($users->all, 'id');
+        
+                for ($i=0; $i<sizeof($restaurant->all); $i++) {
+                    $restaurant->all[$i]->users = $us[$restaurant->all[$i]->uid];
+                }
+            }
+        }
+
         return $restaurant->all;
     }
     
@@ -36,6 +54,24 @@ class Users_Restaurant_Model extends CI_Model {
             $restaurant->where($field, $value);
         }
         $restaurant->get();
+
+        if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($restaurant->all); $i++) {
+                $ids[] = $restaurant->all[$i]->id;
+            }
+        
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+        
+                $us = array_to_hashmap($users->all, 'id');
+        
+                for ($i=0; $i<sizeof($restaurant->all); $i++) {
+                    $restaurant->all[$i]->users = $us[$restaurant->all[$i]->uid];
+                }
+            }
+        }
         
         return $restaurant->all;
     }
@@ -88,6 +124,29 @@ class Users_Restaurant_Model extends CI_Model {
         
                 $re = $restaurant->save();
             }
+        } else {
+            $re = false;
+        }
+        
+        if ($this->db->trans_status() === FALSE || !$re){
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
+        }
+        
+        return $re;
+    }
+    
+    function update($uid, $row) {
+        $this->load->model('Users_Restaurant_Model');
+        $restaurant = new Users_Restaurant_Model();
+        
+        $this->db->trans_start();
+        
+        $restaurant->where('uid', $uid)->get();
+
+        if ($restaurant->result_count() > 0) {
+            $re = $restaurant->where('uid',$uid)->update($row);
         } else {
             $re = false;
         }
