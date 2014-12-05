@@ -37,19 +37,19 @@ function sh_pnlc(id) {
 	<div class="item">
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
-			{{$item->name}} {{$item->code}} 簽約日期：{{$item->sign_date_start|date_format:'%Y-%m-%d'}} 至 {{$item->sign_date_end|date_format:'%Y-%m-%d'}}
+			{{$item->users->name}}&nbsp;&nbsp;{{$item->code}}&nbsp;&nbsp;簽約日期：{{$item->sign_date_start|date_format:'%Y-%m-%d'}} 至 {{$item->sign_date_end|date_format:'%Y-%m-%d'}}
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td colspan="2">帳號：{{$item->username}}</td>
+					<td colspan="2">帳號：{{$item->users->username}}</td>
 					<td>密碼：******</td>
-					<td width="10%"><a href="">重置密碼</a></td>
+					<td width="10%"><a href="index.php?ctr=syshotel&act=resetpassword&id={{$item->id}}" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">飯店名稱：{{$item->name}}</td>
+					<td colspan="2">飯店名稱：{{$item->users->name}}</td>
 					<td>地址：{{$item->address}}</td>
-					<td><a href="">修改</a></td>
+					<td><a href="index.php?ctr=syshotel&act=updateprofile&type=address&id={{$item->uid}}" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
 					<td colspan="2" width="50%">流水號：{{$item->uid}}</td>
@@ -57,9 +57,9 @@ function sh_pnlc(id) {
 				</tr>
 				<tr>
 					<td>聯絡人：{{$item->contact}}</td>
-					<td width="10%"><a href="#">修改</a></td>
+					<td width="10%"><a href="index.php?ctr=syshotel&act=updateprofile&type=contact&id={{$item->uid}}" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 					<td>電話：{{$item->contact_tel}}</td>
-					<td><a href="#">修改</a></td>
+					<td><a href="index.php?ctr=syshotel&act=updateprofile&type=contact_tel&id={{$item->uid}}" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
 					<td colspan="2">上月訂房總數：</td>
@@ -67,8 +67,8 @@ function sh_pnlc(id) {
 				</tr>
 			</table>
 			<div class="item_footer">
-				<a href="">續約</a>
-				<a href="">停權</a>
+				<a href="index.php?ctr=syshotel&act=renewal&id={{$item->uid}}" onclick="return window.openWindow(this.href,'600','400',false,0.3)">續約</a>
+				<a href="index.php?ctr=syshotel&act=suspended&id={{$item->uid}}" onclick="if(!confirm('確定要停權這個帳號嗎？')){return false;}">停權</a>
 				簽約日期：{{$item->sign_date_start|date_format:'%Y-%m-%d'}} 至 {{$item->sign_date_end|date_format:'%Y-%m-%d'}}
 			</div>
 		</div>
