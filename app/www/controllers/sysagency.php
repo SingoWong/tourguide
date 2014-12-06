@@ -174,6 +174,15 @@ class SysAgency extends Base_Controller {
         $gid = $this->input->get('id');
         $re = $group->getGroupBase($gid);
         
+        if ($re && sizeof($re>0)) {
+            $re->start_date = date('Y-m-d', $re->start_date);
+            $re->end_date = date('Y-m-d', $re->end_date);
+            $re->start_departure_time = date('H:i', $re->start_departure_time);
+            $re->start_arrive_time = date('H:i', $re->start_arrive_time);
+            $re->end_departure_time = date('H:i', $re->end_departure_time);
+            $re->end_arrive_time = date('H:i', $re->end_arrive_time);
+        }
+        
         $this->smarty->assign('id',$gid);
         $this->smarty->assign('row',$re);
         $this->smarty->display('./agency/group_edit_base.html');
@@ -185,6 +194,7 @@ class SysAgency extends Base_Controller {
         
         $row['aid'] = $this->user['id'];
         $row['code'] = $this->input->post('code');
+        $row['gcode'] = $this->input->post('gcode');
         $row['name'] = $this->input->post('name');
         $row['continent'] = $this->input->post('continent');
         $row['country'] = $this->input->post('country');
@@ -224,8 +234,19 @@ class SysAgency extends Base_Controller {
         
         $re = $group->getGroupRoom($gid);
         
+        $html_rooms_single = $this->_gen_room_selector('single_room', $re->single_room);
+        $html_rooms_double = $this->_gen_room_selector('double_room', $re->double_room);
+        $html_rooms_full = $this->_gen_room_selector('full_room', $re->full_room);
+        $html_rooms_plus = $this->_gen_room_selector('plus_room', $re->plus_room);
+        $html_rooms_kid = $this->_gen_room_selector('kid_room', $re->kid_room);
+        
         $this->smarty->assign('id',$gid);
         $this->smarty->assign('row',$re);
+        $this->smarty->assign('html_rooms_single', $html_rooms_single);
+        $this->smarty->assign('html_rooms_double', $html_rooms_double);
+        $this->smarty->assign('html_rooms_full', $html_rooms_full);
+        $this->smarty->assign('html_rooms_plus', $html_rooms_plus);
+        $this->smarty->assign('html_rooms_kid', $html_rooms_kid);
         $this->smarty->display('./agency/group_edit_room.html');
     }
     
@@ -260,7 +281,7 @@ class SysAgency extends Base_Controller {
         $re = $group->getGroupSchedule($gid);
         
         $this->smarty->assign('id',$gid);
-        $this->smarty->assign('row',$re);
+        $this->smarty->assign('rowset',$re);
         $this->smarty->display('./agency/group_edit_schedule.html');
     }
     
@@ -388,6 +409,21 @@ class SysAgency extends Base_Controller {
         $this->smarty->assign('rowset', $re->all);
         $this->smarty->assign('res', json_encode($re->res));
         $this->smarty->display('./agency/accidents.html');
+    }
+    
+    private function _gen_room_selector($id, $default) {
+        $html = '<select id="'.$id.'" name="'.$id.'" onchange="calc();">';
+        for ($i=0;$i<10;$i++) {
+            $val = ($i+1);
+            if ($val == $default) {
+                $html .= '<option value="'.$val.'" selected="selected>'.$val.'</option>';
+            } else {
+                $html .= '<option value="'.$val.'">'.$val.'</option>';
+            }
+        }
+		$html .= '</select>';
+		
+		return $html;
     }
 }
 ?>

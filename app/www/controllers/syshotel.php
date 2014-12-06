@@ -22,7 +22,7 @@ class SysHotel extends Base_Controller {
             $conditions['username'] = $username;
         }
         
-        $re = $users_hotel_model->getContractHotel($conditions);
+        $re = $users_hotel_model->getContractHotel($conditions, true);
         
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./sysmanager/hotel_manager.html');
@@ -43,7 +43,7 @@ class SysHotel extends Base_Controller {
             $conditions['username'] = $username;
         }
         
-        $re = $users_hotel_model->getExpiredHotel($conditions);
+        $re = $users_hotel_model->getExpiredHotel($conditions, true);
         
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./sysmanager/hotel_expired.html');
@@ -67,6 +67,12 @@ class SysHotel extends Base_Controller {
         $row['sign_date_end'] = strtotime($this->input->post('sign_date_end'));
     
         $re = $users_hotel_model->save($row);
+
+        if ($re) {
+            alert('保存成功', url('syshotel/index'));
+        } else {
+            alert('保存失敗', null, true);
+        }
     }
 
     public function updateprofile() {

@@ -10,7 +10,7 @@ class Users_Hotel_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getContractHotel($conditions) {
+    function getContractHotel($conditions, $with_relation=false) {
         $hotel = new Users_Hotel();
         
         $hotel->where('sign_date_start <=', time());
@@ -19,6 +19,24 @@ class Users_Hotel_Model extends CI_Model {
             $hotel->where($field, $value);
         }
         $hotel->get();
+
+        if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($hotel->all); $i++) {
+                $ids[] = $hotel->all[$i]->uid;
+            }
+        
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+        
+                $us = array_to_hashmap($users->all, 'id');
+        
+                for ($i=0; $i<sizeof($hotel->all); $i++) {
+                    $hotel->all[$i]->users = $us[$hotel->all[$i]->uid];
+                }
+            }
+        }
         
         return $hotel->all;
     }

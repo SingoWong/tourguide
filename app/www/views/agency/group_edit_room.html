@@ -1,4 +1,19 @@
 {{include file="_common/header.html"}}
+<script type="text/javascript">
+$(document).ready(function(){
+	calc();
+});
+function calc() {
+	var single_room = parseInt($("#single_room").val());
+	var double_room = parseInt($("#double_room").val())*2;
+	var full_room = parseInt($("#full_room").val())*3;
+	var plus_room = parseInt($("#plus_room").val());
+	var kid_room = parseInt($("#kid_room").val());
+	
+	var total = single_room + double_room + full_room + plus_room + kid_room;
+	$("#lbl_amount").html(total);
+}
+</script>
 
 <div class="flowset">
 	<a href="index.php?ctr=sysagency&act=groupedit&id={{$id}}">旅行社的基本資料</a>
@@ -18,23 +33,23 @@
 	<table class="table_form">
 		<tr>
 			<td class="tf_key">單人房</td>
-			<td><span class="v"><input type="text" id="single_room" name="single_room" value="{{$row->single_room}}"></span></td>
+			<td><span class="v">{{$html_rooms_single}}</span></td>
 		</tr>
 		<tr>
 			<td class="tf_key">雙人房</td>
-			<td><span class="v"><input type="text" id="double_room" name="double_room" value="{{$row->double_room}}"></span></td>
+			<td><span class="v">{{$html_rooms_double}}</span></td>
 		</tr>
 		<tr>
 			<td class="tf_key">三人房</td>
-			<td><span class="v"><input type="text" id="full_room" name="full_room" value="{{$row->full_room}}"></span></td>
+			<td><span class="v">{{$html_rooms_full}}</span></td>
 		</tr>
 		<tr>
 			<td class="tf_key">加床</td>
-			<td><span class="v"><input type="text" id="plus_room" name="plus_room" value="{{$row->plus_room}}"></span></td>
+			<td><span class="v">{{$html_rooms_plus}}</span></td>
 		</tr>
 		<tr>
 			<td class="tf_key">兒童床</td>
-			<td><span class="v"><input type="text" id="kid_room" name="kid_room" value="{{$row->kid_room}}"></span></td>
+			<td><span class="v">{{$html_rooms_kid}}</span></td>
 		</tr>
 		<tr>
 			<td class="tf_key">總計</td>

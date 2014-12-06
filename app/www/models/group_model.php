@@ -132,7 +132,7 @@ class Group_Model extends CI_Model {
         
         $schedule->where('gid', $gid)->get();
         
-        return $room->all;
+        return $schedule->all;
     }
     
     /**
@@ -159,10 +159,18 @@ class Group_Model extends CI_Model {
         $group->where('id', $row['id'])->get();
         
         if ($group->result_count() > 0) {
+            $row['start_date'] = strtotime($row['start_date']);
+            $row['start_departure_time'] = strtotime($row['start_date'].' '.$row['start_departure_time'].':00');
+            $row['start_arrive_time'] = strtotime($row['start_date'].' '.$row['start_arrive_time'].':00');
+            $row['end_date'] = strtotime($row['end_date']);
+            $row['end_departure_time'] = strtotime($row['end_date'].' '.$row['end_departure_time'].':00');
+            $row['end_arrive_time'] = strtotime($row['end_date'].' '.$row['end_arrive_time'].':00');
+            dump($row);
             $re = $this->where('id', $row['id'])->update($row);
         } else {
             $group->aid = $row['aid'];
             $group->code = $row['code'];
+            $group->gcode = $row['gcode'];
             $group->name = $row['name'];
             $group->continent = $row['continent'];
             $group->country = $row['country'];
@@ -171,13 +179,13 @@ class Group_Model extends CI_Model {
             $group->start_date = strtotime($row['start_date']);
             $group->start_flight_code = $row['start_flight_code'];
             $group->start_flight_num = $row['start_flight_num'];
-            $group->start_departure_time = strtotime($row['start_departure_time']);
-            $group->start_arrive_time = strtotime($row['start_arrive_time']);
+            $group->start_departure_time = strtotime($row['start_date'].' '.$row['start_departure_time'].':00');
+            $group->start_arrive_time = strtotime($row['start_date'].' '.$row['start_arrive_time'].':00');
             $group->end_date = strtotime($row['end_date']);
             $group->end_flight_code = $row['end_flight_code'];
             $group->end_flight_num = $row['end_flight_num'];
-            $group->end_departure_time = strtotime($row['end_departure_time']);
-            $group->end_arrive_time = strtotime($row['end_arrive_time']);
+            $group->end_departure_time = strtotime($row['end_date'].' '.$row['end_departure_time'].':00');
+            $group->end_arrive_time = strtotime($row['end_date'].' '.$row['end_arrive_time'].':00');
             $group->op = $row['op'];
             $group->amount = $row['amount'];
             $group->contact_name = $row['contact_name'];

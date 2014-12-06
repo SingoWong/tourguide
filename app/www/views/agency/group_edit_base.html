@@ -1,4 +1,5 @@
 {{include file="_common/header.html"}}
+<script type="text/javascript" src="./libs/jquery/core.date.js"></script>
 
 <div class="flowset">
 	<a href="index.php?ctr=sysagency&act=groupedit&id={{$id}}" class="curr">旅行社的基本資料</a>
@@ -50,7 +51,7 @@
 	<table class="table_form">
 		<tr>
 			<td class="tf_key">出國日期</td>
-			<td><span class="v"><input type="text" id="start_date" name="start_date" value="{{$row->start_date}}"></span></td>
+			<td><span class="v"><input type="text" id="start_date" name="start_date" value="{{$row->start_date}}" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></span></td>
 			<td class="tf_key"></td>
 			<td></td>
 		</tr>
@@ -68,7 +69,7 @@
 		</tr>
 		<tr>
 			<td class="tf_key">回國日期</td>
-			<td><span class="v"><input type="text" id="end_date" name="end_date" value="{{$row->end_date}}"></span></td>
+			<td><span class="v"><input type="text" id="end_date" name="end_date" value="{{$row->end_date}}" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></span></td>
 			<td class="tf_key"></td>
 			<td></td>
 		</tr>

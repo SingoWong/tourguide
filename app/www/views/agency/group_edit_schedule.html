@@ -1,9 +1,36 @@
 {{include file="_common/header.html"}}
 <script type="text/javascript">
+var curday = new Array();
+var curroute = new Array();
 $(document).ready(function(){
-	add_day(1);
+	//初始化
+	{{foreach from=$rowset item=item key=key}}
+	if (curday[{{$item->day}}] != '1') {
+		add_day({{$item->day}});
+		
+		curday[{{$item->day}}] = '1';
+		curroute[{{$item->day}}+'_1'] = '1';
+	}
+	
+	if (curroute[{{$item->day}}+'_'+{{$item->route}}] != '1') {
+		add_route({{$item->day}});
+		
+		curroute[{{$item->day}}+'_'+{{$item->route}}] = '1';
+	}
+	
+	$("#type_{{$item->day}}_"+t).val("{{$item->type}}");
+	$("#time_{{$item->day}}_"+t).val('{{$item->time|date_format:"%H:%M"}}');
+	$("#location_{{$item->day}}_"+t).val("{{$item->location}}");
+	$("#hid_{{$item->day}}_"+t).val("{{$item->hid}}");
+	$("#money_{{$item->day}}_"+t).val("{{$item->money}}");
+	$("#detail_{{$item->day}}_"+t).val("{{$item->detail}}");
+	
+	change_type($("#type_{{$item->day}}_"+t)[0]);
+	
+	{{/foreach}}
 });
 
+var t = 0;
 var count_days = 0;
 var curr_day = 0;
 var type_list = '<option value="0">機</option><option value="1">景</option><option value="2">中</option><option value="3">晚</option><option value="4">住</option>';
@@ -20,19 +47,19 @@ function add_day() {
 	add_route(count_days);
 }
 function add_route(day) {
-	var t = Date.parse(new Date());
+	t++;
 	var html_route = '<div id="route_'+day+'_'+t+'"><div class="item_title"><a href="#" onclick="return close_route('+day+','+t+');" id="btnc_'+day+''+t+'">X</a>行程<em class="route_'+day+'_num"><em></div>'+
 	 				 '<table border="0" width="100%" cellpadding="2" cellspacing="1">'+
 	 				 '<tr><td class="i_type">'+
-	 				 '<select name="type_'+day+'[]" day="'+day+'" t="'+t+'" onchange="change_type(this);">'+
+	 				 '<select name="type_'+day+'[]" id="type_'+day+'_'+t+'" day="'+day+'" t="'+t+'" onchange="change_type(this);">'+
 	 				 type_list+
 	 				 '</select></td>'+
-	 				 '<td class="i_time"><input type="text" name="time_'+day+'[]" day="'+day+'" placeholder="時間" /></td>'+
+	 				 '<td class="i_time"><input type="text" name="time_'+day+'[]" id="time_'+day+'_'+t+'" day="'+day+'" placeholder="時間" /></td>'+
 	 				 '<td class="i_other">'+
-	 				 '<div id="i_type_'+day+'_location_'+t+'"><input type="text" name="location_'+day+'[]" day="'+day+'" placeholder="地点" /></div>'+
-	 				 '<div id="i_type_'+day+'_hotel_'+t+'" style="display:none"><select name="hid_'+day+'[]" day="'+day+'" class="hotel_list">'+hotel_list+'</select>&nbsp;<input type="text" name="money_'+day+'[]" day="'+day+'" placeholder="金额" /></div>'+
+	 				 '<div id="i_type_'+day+'_location_'+t+'"><input type="text" name="location_'+day+'[]" id="location_'+day+'_'+t+'" day="'+day+'" placeholder="地点" /></div>'+
+	 				 '<div id="i_type_'+day+'_hotel_'+t+'" style="display:none"><select name="hid_'+day+'[]" id="hid_'+day+'_'+t+'" day="'+day+'" class="hotel_list">'+hotel_list+'</select>&nbsp;<input type="text" name="money_'+day+'[]" id="money_'+day+'_'+t+'" day="'+day+'" placeholder="金额" /></div>'+
 	 				 '</td></tr><tr>'+
-	 				 '<td colspan="3" class="i_detail"><textarea name="detail_'+day+'[]"></textarea></td></tr></table></div>';
+	 				 '<td colspan="3" class="i_detail"><textarea name="detail_'+day+'[]" id="detail_'+day+'_'+t+'"></textarea></td></tr></table></div>';
 	$("#day_"+day+"_items").append(html_route);
 	
 	fix_route_num(day);
