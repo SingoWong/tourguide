@@ -104,7 +104,7 @@ class Group_Model extends CI_Model {
     function getGroupBase($gid) {
         $group = new Group();
         
-        $group->where('id', $gid)->get();
+        $group->where('id', $gid)->get(1);
         
         return $group->all[0];
     }
@@ -136,6 +136,24 @@ class Group_Model extends CI_Model {
     }
     
     /**
+     * 獲取一個行程信息
+     * @param unknown $gid
+     * @param unknown $day
+     * @param unknown $route
+     * @return multitype:
+     */
+    function getGroupScheduleWhitRoute($gid, $day, $route) {
+        $schedule = new Group_Schedule();
+        
+        $schedule->where('gid', $gid);
+        $schedule->where('day', $day);
+        $schedule->where('route', $route);
+        $schedule->get(1);
+        
+        return $schedule->all[0];
+    }
+    
+    /**
      * 获取旅行团说明会信息
      * @param unknown $gid
      * @return multitype:
@@ -143,9 +161,9 @@ class Group_Model extends CI_Model {
     function getGroupInfo($gid) {
         $info = new Group_Info();
         
-        $info->where('gid', $gid)->get();
+        $info->where('gid', $gid)->get(1);
         
-        return $info->all;
+        return $info->all[0];
     }
     
     /**
@@ -165,7 +183,7 @@ class Group_Model extends CI_Model {
             $row['end_date'] = strtotime($row['end_date']);
             $row['end_departure_time'] = strtotime($row['end_date'].' '.$row['end_departure_time'].':00');
             $row['end_arrive_time'] = strtotime($row['end_date'].' '.$row['end_arrive_time'].':00');
-            dump($row);
+            
             $re = $this->where('id', $row['id'])->update($row);
         } else {
             $group->aid = $row['aid'];

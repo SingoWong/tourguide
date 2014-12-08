@@ -5,12 +5,16 @@
 		<title></title>
 		
 		{{include file="_common/minclude.html"}}
-		
-		<style type="text/css">
-			.quick-nav {
-				padding: 0 50px;
+		<script type="text/javascript">
+			function sh_detail(sender) {
+				var id = $(sender).attr("idx");
+				if ($("#pnl_detail_"+id).css("display") == 'none') {
+					$("#pnl_detail_"+id).show();
+				} else {
+					$("#pnl_detail_"+id).hide();
+				}
 			}
-		</style>
+		</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -18,47 +22,38 @@
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item" href="#">今日</a>
-					<a class="mui-control-item mui-active" href="#">新进</a>
-					<a class="mui-control-item" href="#">报表</a>
+					<a class="mui-control-item" onclick="location.href='{{$url_today}}';">今日</a>
+					<a class="mui-control-item mui-active" onclick="location.href='{{$url_new_order}}';">新进</a>
+					<a class="mui-control-item" onclick="location.href='{{$url_report}}';">报表</a>
 				</div>
 			</div>
 		</header>
 		<div class="mui-content">
 			<div class="order-result">
 				<ul class="mui-table-view">
+					{{foreach from=$rowset item=item key=key}}
 					<li class="mui-table-view-cell mui-media">
-						<a href="#">
+						<a href="#" idx="{{$item->id}}" onclick="sh_detail(this);return false;">
 							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
+								{{$item->created|date_format:"%Y-%m-%d"}} {{$item->aid}}
+								<p class='mui-ellipsis'>導遊:{{$item->gid}} {{$item->amount}}人</p>
 							</div>
 						</a>
+						<div class="detail_item" id="pnl_detail_{{$item->id}}">
+							<p>日期：{{$item->created|date_format:"%Y-%m-%d"}}</p>
+							<p>餐別：{{if $item->type=='2'}}中餐{{elseif $item->type=='3'}}午餐{{/if}}</p>
+							<p>餐廳名稱：{{$item->rname}}</p>
+							<p>旅行社：{{$item->aname}}</p>
+							<p>團號：{{$item->code}}</p>
+							<p>導遊：{{$item->gname}}</p>
+							<p>人數：{{$item->amount}}人</p>
+							<p>餐標：{{$item->price_unit}}</p>
+							<p>金額：</p>
+							<button class="mui-btn mui-btn-primary" onclick="location.href='{{$url_approve}}&oid={{$item->id}}';">接受</button>
+							<button class="mui-btn mui-btn-primary" onclick="location.href='{{$url_reject}}&oid={{$item->id}}';">拒絕</button>
+						</div>
 					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
+					{{/foreach}}
 				</ul>
 			</div>
 		</div>

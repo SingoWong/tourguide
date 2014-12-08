@@ -33,7 +33,7 @@
 		<script type="text/javascript">
 		var data = eval('({{$schedule}})');
 		$.each(data,function(day,schedule){
-			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>---</a><div class="flow-item-list" id="pnl_day_'+day+'">';
+			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>'+schedule[0]['tab']+'</a><div class="flow-item-list" id="pnl_day_'+day+'">';
 	 					 
 			$.each(schedule,function(route,item){
 				if (item['type']=='4') {

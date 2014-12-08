@@ -219,7 +219,7 @@ class DataMapper implements IteratorAggregate {
 		'error_suffix' => '</span>',
 		'created_field' => 'created',
 		'updated_field' => 'updated',
-		'local_time' => FALSE,
+		'local_time' => TRUE,
 		'unix_timestamp' => FALSE,
 		'timestamp_format' => 'Y-m-d H:i:s',
 		'lang_file_format' => 'model_${model}',

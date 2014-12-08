@@ -57,6 +57,7 @@ class Guide extends Base_Controller {
             $r['rid'] = $row->rid;
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
+            $r['tab'] = $row->tab;
             $r['detail'] = $row->detail;
             $r['location'] = $row->location;
         
@@ -94,6 +95,7 @@ class Guide extends Base_Controller {
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
             $r['rstatus_label'] = $this->_get_rstatus_label($row->rstatus);
+            $r['tab'] = $row->tab;
             $r['detail'] = $row->detail;
             $r['location'] = $row->location;
         
@@ -116,10 +118,12 @@ class Guide extends Base_Controller {
         $gid = $this->input->get('gid');
         $day = $this->input->get('day');
         $route = $this->input->get('route');
+        $type = $this->input->get('type');
 
         $this->smarty->assign('gid',$gid);
         $this->smarty->assign('day',$day);
         $this->smarty->assign('route',$route);
+        $this->smarty->assign('type',$type);
         $this->smarty->assign('url_restaurant_result', url('guide/restaurant_result'));
         $this->smarty->display('./guide/restaurant_search.html');
     }
@@ -133,6 +137,7 @@ class Guide extends Base_Controller {
         $gid = $this->input->post('gid');
         $day = $this->input->post('day');
         $route = $this->input->post('route');
+        $type = $this->input->post('type');
         $city = $this->input->post('city');
         $name = $this->input->post('name');
         $scenic = $this->input->post('scenic');
@@ -149,9 +154,9 @@ class Guide extends Base_Controller {
         }
         
         $restaurant = new Users_Restaurant_Model();
-        $re = $restaurant->getContractRestaurant($conditions);
+        $re = $restaurant->getContractRestaurant($conditions, true);
         
-        $this->smarty->assign('url_restaurant_detail', url('guide/restaurant_detail').'&gid='.$gid.'&day='.$day.'&route='.$route);
+        $this->smarty->assign('url_restaurant_detail', url('guide/restaurant_detail').'&gid='.$gid.'&day='.$day.'&route='.$route.'&type='.$type);
         $this->smarty->assign('rowset',$re);
         $this->smarty->display('./guide/restaurant_result.html');
     }
@@ -160,15 +165,44 @@ class Guide extends Base_Controller {
      * 输入订餐详细资讯
      */
     public function restaurant_detail() {
+        $this->load->model('users_restaurant_model');
+        $this->load->model('users_agency_model');
+        $this->load->model('group_model');
+        
         $gid = $this->input->get('gid');
         $day = $this->input->get('day');
         $route = $this->input->get('route');
         $rid = $this->input->get('rid');
+        $type = $this->input->get('type');
+        
+        $restaurant = new Users_Restaurant_Model();
+        $re_resstaurant = $restaurant->getRestaurantById($rid);
+        
+        $group = new Group_Model();
+        $re_group = $group->getGroupBase($gid);
+        $re_group_info = $group->getGroupInfo($gid);
+        
+        $agency = new Users_Agency_Model();
+        $re_agency = $agency->getAgencyById($re_group->aid);
+        
+        $date = date('Y-m-d');
+        $rname = $re_resstaurant->users->name;
+        $code = $re_group->code;
+        $amount = $re_group->amount;
+        $gname = $re_group_info->guide_name;
+        $aname = $re_agency->users->name;
         
         $this->smarty->assign('gid',$gid);
         $this->smarty->assign('day',$day);
         $this->smarty->assign('route',$route);
         $this->smarty->assign('rid',$rid);
+        $this->smarty->assign('type',$type);
+        $this->smarty->assign('date',$date);
+        $this->smarty->assign('rname',$rname);
+        $this->smarty->assign('code',$code);
+        $this->smarty->assign('gname',$gname);
+        $this->smarty->assign('aname',$aname);
+        $this->smarty->assign('amount',$amount);
         $this->smarty->assign('url_restaurant_submit', url('guide/restaurant_submit'));
         $this->smarty->display('./guide/restaurant_detail.html');
     }
@@ -177,9 +211,35 @@ class Guide extends Base_Controller {
      * 保存訂餐訂單
      */
     public function restaurant_submit() {
-        //TOOD保存訂單
+        $this->load->model('group_model');
+        $this->load->model('order_model');
         
-        redirect(url('guide/restaurant_order'));
+        $gid = $this->input->post('gid');
+        $rid = $this->input->post('rid');
+        $amount = $this->input->post('amount');
+        $option = $this->input->post('note');
+        $unit = $this->input->post('unit');
+        $day = $this->input->post('day');
+        $route = $this->input->post('route');
+        
+        $group = new Group_Model();
+        $re_group = $group->getGroupScheduleWhitRoute($gid, $day, $route);
+        
+        $row['gid'] = $gid;
+        $row['sid'] = $re_group->id;
+        $row['rid'] = $rid;
+        $row['amount'] = $amount;
+        $row['price_unit'] = $unit;
+        $row['option'] = join(',',$option);
+        
+        $order = new Order_Model();
+        $re = $order->saveRestaurantOrder($row);
+        
+        if ($re) {
+            alert('下單成功', url('guide/restaurant_order'));
+        } else {
+            alert('下單失敗', null, true);
+        }
     }
     
     /**
@@ -280,6 +340,7 @@ class Guide extends Base_Controller {
             $r['rid'] = $row->rid;
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
+            $r['tab'] = $row->tab;
             $r['detail'] = $row->detail;
             $r['location'] = $row->location;
         

@@ -83,10 +83,14 @@ class Users_Restaurant_Model extends CI_Model {
      */
     function getRestaurantById($uid) {
         $restaurant = new Users_Restaurant();
+        $users = new Users();
         
         $restaurant->where('uid', $uid)->get(1);
+        $users->where('id', $uid)->get(1);
         
-        return $restaurant->all;
+        $restaurant->all[0]->users = $users;
+        
+        return $restaurant->all[0];
     }
     
     /**

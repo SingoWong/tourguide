@@ -28,9 +28,10 @@
 		<script type="text/javascript">
 		var data = eval('({{$schedule}})');
 		$.each(data,function(day,schedule){
-			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>---</a><div class="flow-item-list" id="pnl_day_'+day+'">';
-	 					 
-			$.each(schedule,function(route,item){
+			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>'+schedule[0]['tab']+'</a><div class="flow-item-list" id="pnl_day_'+day+'">';
+			
+			$.each(schedule,function(i,item){
+				var route = item['route'];
 				if (item['type']=='2' || item['type']=='3') {
 					html_day += '<a class="flow-item-stitle" href="#" onclick="return sh_schedule('+day+','+route+');"><span>'+item['time']+'</span><em class="stitle-status-'+item['rstatus']+'">'+item['type_label']+'</em>';
 					html_day += item['rstatus_label']+'</a><div class="flow-item-sdetail" id="pnl_schedule_'+day+'_'+route+'">';
@@ -66,9 +67,9 @@
 		function show_ctrl(day,route,item) {
 			var html = '';
 			if (item['rstatus'] == '0') {
-				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'" class="restaurant-order">請訂餐</a>';
+				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'&type='+item['type']+'" class="restaurant-order">請訂餐</a>';
 			} else if (item['rstatus'] == '1') {
-				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>訂餐</a><a href="#">電話<br/>確認</a>餐廳名稱：'+item['rid']+'<br/>收據上傳：未上傳';
+				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'&type='+item['type']+'">重新<br/>訂餐</a><a href="#">電話<br/>確認</a>餐廳名稱：'+item['rid']+'<br/>收據上傳：未上傳';
 			} else if (item['rstatus'] == '2') {
 				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上傳<br/>收據</a><a href="{{$url_restaurant_payment}}&day='+day+'&route='+route+'">選擇<br/>付款</a><a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>訂餐</a>餐廳名稱：'+item['rid']+'<br/>收據上傳：未上傳';
 			} else if (item['rstatus'] == '3') {

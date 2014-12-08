@@ -83,8 +83,12 @@ class Users_Agency_Model extends CI_Model {
      */
     function getAgencyById($uid) {
         $agency = new Users_Agency();
+        $users = new Users();
         
         $agency->where('uid', $uid)->get(1);
+        $users->where('id', $uid)->get(1);
+        
+        $agency->all[0]->users = $users;
         
         return $agency->all[0];
     }

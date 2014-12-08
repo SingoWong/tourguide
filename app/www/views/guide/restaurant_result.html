@@ -35,7 +35,7 @@
 					<li class="mui-table-view-cell mui-media">
 						<a href="{{$url_restaurant_detail}}&rid={{$item->id}}">
 							<div class="mui-media-body">
-								{{$item->name}}
+								<div><b>{{$item->users->name}}</b></div>
 								<p class='mui-ellipsis'>電話：{{$item->contact_tel}}</p>
 								<p class='mui-ellipsis'>地址：{{$item->address}}</p>
 								<p class='mui-ellipsis'>營業時間：</p>

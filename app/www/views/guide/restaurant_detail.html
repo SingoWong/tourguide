@@ -6,17 +6,33 @@
 		
 		{{include file="_common/minclude.html"}}
 		
-		<style type="text/css">
-			.quick-nav {
-				padding: 0 50px;
-			}
-			.info-detail {
-				padding: 10px;
-			}
-			.restaurant-detail {
-				
-			}
-		</style>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			calc_total();
+		});
+		function onset_amount(i) {
+			var amount = parseInt($("#lbl_amount").html());
+			amount += i;
+			$("#lbl_amount").html(amount);
+			$("#amount").val(amount);
+			
+			calc_total();
+		}
+		
+		function onset_unit(i) {
+			var amount = parseInt($("#lbl_unit").html());
+			amount += i;
+			$("#lbl_unit").html(amount);
+			$("#unit").val(amount);
+			
+			calc_total();
+		}
+		
+		function calc_total() {
+			var total = parseInt($("#lbl_amount").html()) * parseInt($("#lbl_unit").html());
+			$("#lbl_total").html(total);
+		}
+		</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -34,9 +50,22 @@
 		<div class="mui-content">
 			<div class="info-detail">
 				<h3>訂餐資訊</h3>
-				<div class="restaurant-detail">---</div>
+				<div class="restaurant-detail">
+					<p>日期：{{$date}}</p>
+					<p>餐別：{{if $type=='2'}}中餐{{elseif $type=='3'}}午餐{{/if}}</p>
+					<p>餐廳名稱：{{$rname}}</p>
+					<p>旅行社：{{$aname}}</p>
+					<p>團號：{{$code}}</p>
+					<p>導遊：{{$gname}}</p>
+					<p>人數：<a href="#" onclick="onset_amount(-1);return false;">－</a><em id="lbl_amount">{{$amount}}</em><a href="#" onclick="onset_amount(1);return false;">＋</a> 人</p>
+					<p>餐標：<a href="#" onclick="onset_unit(-1);return false;">－</a><em id="lbl_unit">500</em><a href="#" onclick="onset_unit(1);return false;">＋</a> 人</p>
+					<p>金額：<em id="lbl_total">0</em></p>
+					<br/>
+				</div>
 				<h5 class="mui-content-padded">注意事項</h5>
 				<form class="mui-input-group" action="{{$url_restaurant_submit}}" method="post">
+					<input type="hidden" name="amount" id="amount" value="{{$amount}}" />
+					<input type="hidden" name="unit" id="unit" value="500" />
 					<div class="restaurant-option">
 						<div class="mui-card">
 							<div class="mui-input-row mui-checkbox mui-left">
