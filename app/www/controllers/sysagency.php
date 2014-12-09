@@ -270,18 +270,27 @@ class SysAgency extends Base_Controller {
     
     public function groupschedule() {
         $this->load->model('Group_Model');
-        $group = new Group_Model();
-        
+		$this->load->model('Users_Hotel_Model');
+		
         $gid = $this->input->get('id');
         if (!$gid || $gid == '') {
             alert('请先填写资料');
             redirect(url('sysagency/groupedit'));
         }
 
+		$group = new Group_Model();
         $re = $group->getGroupSchedule($gid);
+		
+		$hotel = new Users_Hotel_Model();
+		$re_hotel = $hotel->getContractHotel(null, true);
+		$html_hotel = '';
+		foreach($re_hotel as $rh) {
+			$html_hotel .= '<option value="'.$rh->users->id.'">'.$rh->users->name.'</option>';
+		}
         
         $this->smarty->assign('id',$gid);
         $this->smarty->assign('rowset',$re);
+		$this->smarty->assign('html_hotel',$html_hotel);
         $this->smarty->display('./agency/group_edit_schedule.html');
     }
     

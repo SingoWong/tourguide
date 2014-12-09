@@ -50,8 +50,8 @@ class SysGroup extends Base_Controller {
         $gid = $_REQUEST['gid'];
         
         $this->load->model('Group_Model');
+		
         $group_model = new Group_Model();
-        
         $rows = $group_model->getScheduleById($gid);
         
         $re = array();

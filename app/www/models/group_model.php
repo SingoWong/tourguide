@@ -280,8 +280,20 @@ class Group_Model extends CI_Model {
             $schedual->location = $row['location'];
             $schedual->detail = $row['detail'];
             $schedual->hid = $row['hid'];
-            
-            $result[] = $schedual->save();
+			
+			$sre = $schedual->save();
+            $result[] = $sre; 
+			
+			//酒店下單
+			if ($row['type']=='4') {
+				$this->load->model('order_model');
+				$order = new Order_Model();
+				
+				$hrow['gid'] = $row['gid'];
+				$hrow['sid'] = $sre->id;
+				$hrow['hid'] = $row['hid'];
+				$order->saveHotelOrder($hrow);
+			}
         }
         
         if ($this->db->trans_status() === FALSE || !( ! empty($result) && ! in_array(FALSE, $result))){

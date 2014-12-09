@@ -6,6 +6,7 @@ class Restaurant extends Base_Controller {
         
         $this->check_felogin(ROLE_ID_RESTAURANT);
 		
+		$this->smarty->assign('url_menu', url('restaurant/index'));
 		$this->smarty->assign('url_today', url('restaurant/today'));
 		$this->smarty->assign('url_new_order', url('restaurant/new_order'));
 		$this->smarty->assign('url_report', url('restaurant/report'));
@@ -26,7 +27,7 @@ class Restaurant extends Base_Controller {
         $this->load->model('order_model');
 		
 		$order = new Order_Model();
-		$re = $order->getOrdersToday($this->user['id']);
+		$re = $order->getRestaurantOrdersToday($this->user['id']);
 		
 		$this->smarty->assign('rowset', $re);
 		$this->smarty->display('./restaurant/today_order.html');
@@ -39,7 +40,7 @@ class Restaurant extends Base_Controller {
         $this->load->model('order_model');
 		
 		$order = new Order_Model();
-		$re = $order->getOrdersReview($this->user['id']);
+		$re = $order->getRestaurantOrdersReview($this->user['id']);
 		
 		$this->smarty->assign('rowset', $re);
 		$this->smarty->assign('url_approve', url('restaurant/order_confirm'));
@@ -56,7 +57,7 @@ class Restaurant extends Base_Controller {
     	$oid = $this->input->get('oid');
 		
 		$order = new Order_Model();
-		$re = $order->approve($oid);
+		$re = $order->approveRestaurantOrder($oid);
     	
 		if ($re) {
 	    	alert('訂單已確認', url('restaurant/order_confirm_finish'));
@@ -93,7 +94,7 @@ class Restaurant extends Base_Controller {
 		$reson = join(',',$this->input->post('reson'));
 		
 		$order = new Order_Model();
-		$re = $order->reject($oid, $reson);
+		$re = $order->rejectRestaurantOrder($oid, $reson);
 		
 		if ($re) {
 	    	alert('訂單已拒絕', url('restaurant/order_reject_finish'));
@@ -113,14 +114,14 @@ class Restaurant extends Base_Controller {
      * 报表查询
      */
     public function report() {
-        
+        $this->smarty->display('./restaurant/report_search.html');
     }
     
     /**
      * 报表结果
      */
     public function report_result() {
-        
+        $this->smarty->display('./restaurant/report_result.html');
     }
 }
 ?>

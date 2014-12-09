@@ -33,7 +33,7 @@
 				<ul class="mui-table-view">
 					{{foreach from=$rowset item=item key=key}}
 					<li class="mui-table-view-cell mui-media">
-						<a href="{{$url_restaurant_detail}}&rid={{$item->id}}">
+						<a href="{{$url_restaurant_detail}}&rid={{$item->uid}}">
 							<div class="mui-media-body">
 								<div><b>{{$item->users->name}}</b></div>
 								<p class='mui-ellipsis'>電話：{{$item->contact_tel}}</p>
