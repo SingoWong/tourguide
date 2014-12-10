@@ -107,6 +107,13 @@ class Order_Model extends CI_Model {
 		$row['status'] = STATUS_RORDER_CONFIRM;
 		$re = $order->where('id',$oid)->update($row);
 		
+		//更改行程狀態(確認)
+		$this->load->model('group_model');
+		$re_order = $order->where('id',$oid)->get(1);
+		$sid = $re_order->sid;
+		$group = new Group_Model();
+		$group->updateGroupSchedualRstatus($sid, STATUS_R_CONFIRM);
+		
 		return $re;
 	}
 	
@@ -119,6 +126,13 @@ class Order_Model extends CI_Model {
 		$row['status'] = STATUS_RORDER_CANCEL;
 		$row['reject_reson'] = $reson;
 		$re = $order->where('id',$oid)->update($row);
+		
+		//更改行程狀態(取消)
+		$this->load->model('group_model');
+		$re_order = $order->where('id',$oid)->get(1);
+		$sid = $re_order->sid;
+		$group = new Group_Model();
+		$group->updateGroupSchedualRstatus($sid, STATUS_R_CANCEL);
 		
 		return $re;
 	}

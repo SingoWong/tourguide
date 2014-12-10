@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="开发进度管理2" company="" webLink="http://" view-date="2014-12-04" view-index="0" gantt-divider-location="307" resource-divider-location="300" version="2.0" locale="zh_CN">
+<?xml version="1.0" encoding="UTF-8"?><project name="开发进度管理2" company="" webLink="http://" view-date="2014-12-04" view-index="0" gantt-divider-location="302" resource-divider-location="300" version="2.0" locale="zh_CN">
     <description/>
     <view zooming-state="default:1" id="gantt-chart">
         <field id="tpd3" name="名称" width="56" order="0"/>
@@ -6,8 +6,8 @@
         <field id="tpd5" name="结束日期" width="21" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="名称" width="57" order="0"/>
-        <field id="1" name="默认角色" width="42" order="1"/>
+        <field id="0" name="名称" width="52" order="0"/>
+        <field id="1" name="默认角色" width="47" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -35,9 +35,9 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="整合計劃" meeting="false" start="2014-12-06" duration="4" complete="0" expand="true">
-            <task id="1" name="前台-完成餐廳整合" meeting="false" start="2014-12-06" duration="1" complete="0" expand="true"/>
-            <task id="2" name="前台-完成飯店整合" meeting="false" start="2014-12-07" duration="1" complete="0" expand="true"/>
+        <task id="0" name="整合計劃" meeting="false" start="2014-12-06" duration="4" complete="45" expand="true">
+            <task id="1" name="前台-完成餐廳整合" meeting="false" start="2014-12-06" duration="1" complete="90" expand="true"/>
+            <task id="2" name="前台-完成飯店整合" meeting="false" start="2014-12-07" duration="1" complete="90" expand="true"/>
             <task id="9" name="後台-報表管理" meeting="false" start="2014-12-08" duration="2" complete="0" expand="true"/>
         </task>
         <task id="4" name="界面風格調整（指定風格）" meeting="false" start="2014-12-08" duration="2" complete="0" expand="true">
@@ -67,9 +67,9 @@
         <displaycolumn property-id="tpd6" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd2" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="170" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="66" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="65" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="167" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="65" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="64" visible="true"/>
     </taskdisplaycolumns>
     <previous/>
     <roles roleset-name="Default"/>

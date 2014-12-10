@@ -1,4 +1,10 @@
 <?php
+define('STATUS_R_PANDING', '0');
+define('STATUS_R_BOOKED', '1');
+define('STATUS_R_CONFIRM', '2');
+define('STATUS_R_PAYMENT', '3');
+define('STATUS_R_CANCEL', '4');
+
 class Group_Model extends CI_Model {
     
     function __construct() {
@@ -307,6 +313,30 @@ class Group_Model extends CI_Model {
         return array('result'=>$result);
     }
     
+	/**
+	 * 更新行程訂餐狀態
+	 */
+	function updateGroupSchedualRstatus($sid, $status) {
+		$schedual = new Group_Schedule();
+		
+		$row['rstatus'] = $status;
+		$re = $schedual->where('id', $sid)->update($row);
+		
+		return $re;
+	}
+	
+	/**
+	 * 更新行程訂房狀態
+	 */
+	function updateGroupSchedualHstatus($sid, $status) {
+		$schedual = new Group_Schedule();
+		
+		$row['hstatus'] = $status;
+		$re = $schedual->where('id', $sid)->update($row);
+		
+		return $re;
+	}
+	
     /**
      * 保存旅游团说明会信息
      * @param unknown $gid

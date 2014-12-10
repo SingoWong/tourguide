@@ -7,31 +7,99 @@
 		{{include file="_common/minclude.html"}}
 		
 		<style type="text/css">
+			body {
+				background: #3c60a5;
+				padding:0;
+				margin: 0;;
+			}
+			.mui-bar {
+				background-color: #3c60a5;
+				-webkit-box-shadow:none;
+				box-shadow:none;
+				border-bottom: 1px solid #3d9ec9;
+			}
+			.mui-bar .mui-title {
+				color: #FFF;
+			}
 			.menu-list {
-				text-align: center;
-				padding: 20px;
-				background: #FFF;
+				margin: auto;
+				width: 320px;
+				position: relative;
+				background: #3c60a5;
+				margin-top: 49px;
 			}
 			.menu-list .menu_item {
-				display: inline-block;
 				width: 100px;
 				height: 100px;
 				line-height: 100px;
-				background: #CCC;
-				margin: 10px 10px 10px 10px;
+				position: absolute;
+				text-align: center;
+			}
+			#btn-guide {
+				background: #00c794;
+				width: 205px;
+				left: 5px;
+				top: 0;
+			}
+			#btn-restaurant {
+				background: #00bcca;
+				left: 215px;
+				top: 0;
+			}
+			#btn-photos {
+				background: #534173;
+				top: 105px;
+				left: 5px;
+			}
+			#btn-spots {
+				background: #cdcdcd;
+				width: 205px;
+				top: 105px;
+				left: 110px;
+			}
+			#btn-agency {
+				background: #00c0cf;
+				top: 210px;
+				left: 5px;
+			}
+			#btn-dutyfree {
+				background: #ccc252;
+				top: 210px;
+				left: 110px;
+			}
+			#btn-hotel {
+				background: #32579f;
+				height: 205px;
+				top: 210px;
+				left: 215px;
+			}
+			#btn-gift {
+				background: #9d479c;
+				top: 315px;
+				left: 5px;
+			}
+			#btn-cshop {
+				background: #e27b5c;
+				top: 315px;
+				left: 110px;
 			}
 		</style>
 	</head>
 	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">Menu</h1>
+		</header>
 		<div class="mui-content menu-list">
 			<div class="menu_item" id="btn-guide" onclick="location.href='{{$url_guide}}';">導遊</div>
 			<div class="menu_item" id="btn-restaurant" onclick="location.href='{{$url_restaurant}}';">餐廳</div>
+			<div class="menu_item" id="btn-photos">Photos</div>
+			<div class="menu_item" id="btn-spots">景點</div>
+			<div class="menu_item" id="btn-agency">旅行社</div>
+			<div class="menu_item" id="btn-dutyfree">免稅店</div>
 			<div class="menu_item" id="btn-hotel" onclick="location.href='{{$url_hotel}}';">飯店</div>
-			<div class="menu_item">景點</div>
-			<div class="menu_item">伴手禮品</div>
-			<div class="menu_item">免稅店</div>
-			<div class="menu_item">車行</div>
-			<div class="menu_item">旅行社</div>
+			<div class="menu_item" id="btn-gift">伴手禮品</div>
+			<div class="menu_item" id="btn-cshop">車行</div>
+			
 		</div>
 		<script type="text/javascript">
 			//tap为mui封装的单击事件，可参考手势事件章节
