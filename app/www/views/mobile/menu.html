@@ -8,15 +8,14 @@
 		
 		<style type="text/css">
 			body {
-				background: #3c60a5;
+				background: #315498;
 				padding:0;
 				margin: 0;;
 			}
 			.mui-bar {
-				background-color: #3c60a5;
+				background-color: #3c60a5!important;
 				-webkit-box-shadow:none;
 				box-shadow:none;
-				border-bottom: 1px solid #3d9ec9;
 			}
 			.mui-bar .mui-title {
 				color: #FFF;
@@ -25,63 +24,118 @@
 				margin: auto;
 				width: 320px;
 				position: relative;
-				background: #3c60a5;
+				background: #315498;
 				margin-top: 49px;
 			}
 			.menu-list .menu_item {
 				width: 100px;
 				height: 100px;
-				line-height: 100px;
 				position: absolute;
-				text-align: center;
+			}
+			.menu-list .menu_item label {
+				color: #FFF;
+				font-size: 16px;
+				font-weight: bold;
 			}
 			#btn-guide {
-				background: #00c794;
+				background: #00c794 url(./theme/images/icon_guide.png) 40px 30px no-repeat;
+				background-size: 40px;
 				width: 205px;
 				left: 5px;
 				top: 0;
 			}
+			#btn-guide label {
+				display: block;
+				margin: 40px 0 0 100px;
+			}
 			#btn-restaurant {
-				background: #00bcca;
+				background: #00bcca url(./theme/images/icon_restaurant.png) center 20px no-repeat;
+				background-size: 40px;
 				left: 215px;
 				top: 0;
 			}
+			#btn-restaurant label {
+				display: block;
+				margin: 60px 0 0 0;
+				text-align: center;
+			}
 			#btn-photos {
-				background: #534173;
+				background: #534173 url(./theme/images/icon_photos.png) center 20px no-repeat;
+				background-size: 40px;
 				top: 105px;
 				left: 5px;
 			}
+			#btn-photos label {
+				display: block;
+				margin: 60px 0 0 0;
+				text-align: center;
+			}
 			#btn-spots {
-				background: #cdcdcd;
+				background: #cdcdcd url(./theme/images/icon_spots.png) 40px 30px no-repeat;
+				background-size: 40px;
 				width: 205px;
 				top: 105px;
 				left: 110px;
 			}
+			#btn-spots label {
+				display: block;
+				margin: 40px 0 0 100px;
+			}
 			#btn-agency {
-				background: #00c0cf;
+				background: #00c0cf url(./theme/images/icon_agency.png) center 20px no-repeat;
+				background-size: 40px;
 				top: 210px;
 				left: 5px;
 			}
+			#btn-agency label {
+				display: block;
+				margin: 60px 0 0 0;
+				text-align: center;
+			}
 			#btn-dutyfree {
-				background: #ccc252;
+				background: #ccc252 url(./theme/images/icon_dutyfree.png) center 20px no-repeat;
+				background-size: 40px;
 				top: 210px;
 				left: 110px;
 			}
+			#btn-dutyfree label {
+				display: block;
+				margin: 60px 0 0 0;
+				text-align: center;
+			}
 			#btn-hotel {
-				background: #32579f;
+				background: #32579f url(./theme/images/icon_hotel.png) center 60px no-repeat;
+				background-size: 40px;
 				height: 205px;
 				top: 210px;
 				left: 215px;
 			}
+			#btn-hotel label {
+				display: block;
+				margin: 100px 0 0 0;
+				text-align: center;
+			}
 			#btn-gift {
-				background: #9d479c;
+				background: #9d479c url(./theme/images/icon_gift.png) center 20px no-repeat;
+				background-size: 40px;
 				top: 315px;
 				left: 5px;
 			}
+			#btn-gift label {
+				display: block;
+				margin: 60px 0 0 0;
+				text-align: center;
+			}
 			#btn-cshop {
-				background: #e27b5c;
+				background: #e27b5c url(./theme/images/icon_cshop.png) center 20px no-repeat;
+				background-size: 40px;
 				top: 315px;
 				left: 110px;
+			}
+			#btn-cshop label {
+				display: block;
+				margin: 60px 0 0 0;
+				text-align: center;
 			}
 		</style>
 	</head>
@@ -90,15 +144,15 @@
 			<h1 class="mui-title">Menu</h1>
 		</header>
 		<div class="mui-content menu-list">
-			<div class="menu_item" id="btn-guide" onclick="location.href='{{$url_guide}}';">導遊</div>
-			<div class="menu_item" id="btn-restaurant" onclick="location.href='{{$url_restaurant}}';">餐廳</div>
-			<div class="menu_item" id="btn-photos">Photos</div>
-			<div class="menu_item" id="btn-spots">景點</div>
-			<div class="menu_item" id="btn-agency">旅行社</div>
-			<div class="menu_item" id="btn-dutyfree">免稅店</div>
-			<div class="menu_item" id="btn-hotel" onclick="location.href='{{$url_hotel}}';">飯店</div>
-			<div class="menu_item" id="btn-gift">伴手禮品</div>
-			<div class="menu_item" id="btn-cshop">車行</div>
+			<div class="menu_item" id="btn-guide" onclick="location.href='{{$url_guide}}';"><label>導遊</label></div>
+			<div class="menu_item" id="btn-restaurant" onclick="location.href='{{$url_restaurant}}';"><label>餐廳</label></div>
+			<div class="menu_item" id="btn-photos"><label>Photos</label></div>
+			<div class="menu_item" id="btn-spots"><label>景點</label></div>
+			<div class="menu_item" id="btn-agency"><label>旅行社</label></div>
+			<div class="menu_item" id="btn-dutyfree"><label>免稅店</label></div>
+			<div class="menu_item" id="btn-hotel" onclick="location.href='{{$url_hotel}}';"><label>飯店</label></div>
+			<div class="menu_item" id="btn-gift"><label>伴手禮品</label></div>
+			<div class="menu_item" id="btn-cshop"><label>車行</label></div>
 			
 		</div>
 		<script type="text/javascript">

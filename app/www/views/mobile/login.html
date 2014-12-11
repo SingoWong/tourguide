@@ -7,8 +7,44 @@
 		{{include file="_common/minclude.html"}}
 		
 		<style type="text/css">
+			.logo {
+				background: url(./theme/images/slogo.png) center 10px no-repeat;
+				background-size: 210px;
+				height: 210px;
+				width: 210px;
+				margin: auto;
+			}
+			.mui-input-row {
+				padding: 5px 10px!important;
+				background-image: none!important;
+				height: auto!important;
+			}
+			.mui-input-clear {
+				border-radius: 5px!important;
+				height: 50px!important;
+				line-height: 50px!important;
+			}
+			.mui-icon-clear {
+				right: 10px!important;
+				top: 20px!important;
+			}
 			.signin_submit {
-				padding: 20px;
+				padding: 10px;
+				overflow: hidden;
+			}
+			.signin_submit .btn-signin {
+				margin-right: 60px;
+				height: 50px;
+			}
+			.signin_submit .btn-forgot {
+				float: right;
+				width: 55px;
+				height: 58px;
+				line-height: 20px!important;
+				padding-top: 8px;
+			}
+			.agreement {
+				text-align: center;
 			}
 		</style>
 	</head>
@@ -19,6 +55,7 @@
 		</header>
 		<div class="mui-content">
 			<form class="mui-input-group" action="{{$url_do_login}}" method="post">
+				<div class="logo"></div>
 				<div class="mui-input-row">
 					<input type="text" class="mui-input-clear" name="username" placeholder="帳號">
 				</div>
@@ -27,8 +64,8 @@
 				</div>
 				
 				<div class="signin_submit">
-					<button class="mui-btn mui-btn-primary mui-btn-block btn-signin">登入</button>
-					<a class="mui-btn mui-btn-block btn-forgot" href="{{$url_forgot_guide}}">忘記密碼</a>
+					<a class="mui-btn mui-btn-block btn-forgot" href="{{$url_forgot_guide}}">忘記<br/>密碼</a>
+					<div class="btn-signin"><button class="mui-btn mui-btn-primary mui-btn-block">登入</button></div>
 				</div>
 				<div class="agreement">
 					按下登入，表示統一<a href="{{$url_services}}">服務條款</a>及<a href="{{$url_policy}}">隱私權政策</a>

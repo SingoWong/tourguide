@@ -1,3 +1,53 @@
+.mui-content {
+	background: #f5f6f7;
+}
+.mui-bar {
+	-webkit-box-shadow:none!important;
+	box-shadow:none!important;
+	background: #a1a1a2!important;
+}
+.mui-icon-back:before, .mui-icon-left-nav:before {
+	color: #FFF!important;
+}
+.mui-icon-bars, .mui-icon-gear {
+	color: #FFF!important;
+}
+.mui-title {
+	color: #FFF!important;
+}
+.mui-input-group {
+	background: #f5f6f7!important;
+}
+.mui-btn-blue, .mui-btn-primary, input[type=submit] {
+	background: #c3c1c5!important;
+	border: #c3c1c5!important;
+}
+.mui-segmented-control {
+	border: 1px solid #FFF!important;
+}
+.mui-segmented-control .mui-control-item {
+	border-color:#FFF!important;
+	color: #FFF!important;
+}
+.mui-segmented-control .mui-control-item.mui-active {
+	background: #028fd7!important;
+}
+.result-page {
+	padding: 10px;
+	background: #f5f6f7!important;
+}
+.result-page .icon_success {
+	height: 200px;
+	width: 200px;
+	margin: auto;
+	background: url(../images/icon_success.png) center top no-repeat;
+	background-size: 200px;
+}
+.result-page .result-tips {
+	text-align: center;
+	font-size: 14px;
+	padding: 10px;
+}
 .quick-nav {
 	padding: 0 50px;
 }
