@@ -200,5 +200,16 @@ class Users_Restaurant_Model extends CI_Model {
         
         return $re;
     }
+	
+	/**
+	 * 根據用戶編號獲得餐廳名
+	 */
+	function getRestaurantNameById($uid) {
+        $users = new Users();
+
+        $users->where('id', $uid)->get(1);
+        
+        return $users->all[0]->name;
+	}
 }
 ?>

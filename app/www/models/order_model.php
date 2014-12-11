@@ -56,6 +56,7 @@ class Order_Model extends CI_Model {
         
         if ($schedule->result_count() > 0) {
             $srow['rstatus'] = $rstatus;
+			$srow['rid'] = $row['rid'];
             $re_s = $schedule->where('id',$row['sid'])->update($srow);
         }
         
@@ -76,7 +77,7 @@ class Order_Model extends CI_Model {
 	function getRestaurantOrdersToday($rid) {
 		$orders = new Restaurant_Order();
 		
-		$orders->where('status !=', STATUS_RORDER_PANDING);
+		$orders->where('status !=', STATUS_RORDER_PAYMENG);
 		$orders->where('created >=', strtotime(date('Y-m-d 00:00:00')));
 		$orders->where('created <', strtotime(date('Y-m-d 23:59:59')));
 		$orders->where('rid', $rid);

@@ -33,6 +33,26 @@
 			$("#lbl_total").html(total);
 		}
 		</script>
+		<style type="text/css">
+			.restaurant-detail p a {
+				display: inline-block;
+				height: 40px;
+				line-height: 40px;
+				width: 40px;
+				text-align: center;
+				border: 1px solid #CCC;
+			}
+			.restaurant-detail p em {
+				display: inline-block;
+				height: 40px;
+				line-height: 40px;
+				width: 60px;
+				text-align: center;
+			}
+			.attention textarea {
+				border: 1px solid #CCC;
+			}
+		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -58,15 +78,74 @@
 					<p>團號：{{$code}}</p>
 					<p>導遊：{{$gname}}</p>
 					<p>人數：<a href="#" onclick="onset_amount(-1);return false;">－</a><em id="lbl_amount">{{$amount}}</em><a href="#" onclick="onset_amount(1);return false;">＋</a> 人</p>
-					<p>餐標：<a href="#" onclick="onset_unit(-1);return false;">－</a><em id="lbl_unit">500</em><a href="#" onclick="onset_unit(1);return false;">＋</a> 人</p>
+					<p>餐標：<a href="#" onclick="onset_unit(-50);return false;">－</a><em id="lbl_unit">150</em><a href="#" onclick="onset_unit(50);return false;">＋</a> 元</p>
 					<p>金額：<em id="lbl_total">0</em></p>
 					<br/>
 				</div>
-				<h5 class="mui-content-padded">注意事項</h5>
+				
+				
 				<form class="mui-input-group" action="{{$url_restaurant_submit}}" method="post">
 					<input type="hidden" name="amount" id="amount" value="{{$amount}}" />
 					<input type="hidden" name="unit" id="unit" value="500" />
+					<h5 class="mui-content-padded">用餐時間</h5>
+					<div class="restaurant-eattime">
+						<div class="mui-card">
+							{{if $type=='2'}}
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[11:00]</label>
+								<input name="eattime" type="radio" value="11:00">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[11:30]</label>
+								<input name="eattime" type="radio" value="11:30">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[12:00]</label>
+								<input name="eattime" type="radio" value="12:00">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[12:30]</label>
+								<input name="eattime" type="radio" value="12:30">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[13:00]</label>
+								<input name="eattime" type="radio" value="13:00">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[13:30]</label>
+								<input name="eattime" type="radio" value="13:30">
+							</div>
+							{{elseif $type=='3'}}
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[17:00]</label>
+								<input name="eattime" type="radio" value="17:00">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[17:30]</label>
+								<input name="eattime" type="radio" value="17:30">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[18:00]</label>
+								<input name="eattime" type="radio" value="18:00">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[18:30]</label>
+								<input name="eattime" type="radio" value="18:30">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[19:00]</label>
+								<input name="eattime" type="radio" value="19:00">
+							</div>
+							<div class="mui-input-row mui-radio mui-left">
+								<label>[19:30]</label>
+								<input name="eattime" type="radio" value="19:30">
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					<h5 class="mui-content-padded">注意事項</h5>
 					<div class="restaurant-option">
+						<div class="attention"><textarea name="attention"></textarea></div>
 						<div class="mui-card">
 							<div class="mui-input-row mui-checkbox mui-left">
 								<label>重鹹</label>

@@ -422,8 +422,8 @@ class SysAgency extends Base_Controller {
     
     private function _gen_room_selector($id, $default) {
         $html = '<select id="'.$id.'" name="'.$id.'" onchange="calc();">';
-        for ($i=0;$i<10;$i++) {
-            $val = ($i+1);
+        for ($i=0;$i<=15;$i++) {
+            $val = $i;
             if ($val == $default) {
                 $html .= '<option value="'.$val.'" selected="selected>'.$val.'</option>';
             } else {

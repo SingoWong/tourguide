@@ -345,3 +345,7 @@ a#closeButton{
 	padding:5px;
 	border:1px solid #EAEAEA;
 }
+.gm_t1_form ul li b {
+	display: block;
+	padding-top: 5px;
+}

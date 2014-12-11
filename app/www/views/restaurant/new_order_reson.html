@@ -33,32 +33,20 @@
 				<div class="mui-card">
 					<form class="mui-input-group" action="{{$url_reject_submit}}" method="post">
 						<div class="mui-input-row mui-checkbox mui-left">
-							<label>拒絕理由1</label>
-							<input name="reson[]" type="checkbox" value="拒絕理由1">
+							<label>暫停營業</label>
+							<input name="reson[]" type="checkbox" value="暫停營業">
 						</div>
 						<div class="mui-input-row mui-checkbox mui-left">
-							<label>拒絕理由2</label>
-							<input name="reson[]" type="checkbox" value="拒絕理由2">
+							<label>預約餐別已客滿</label>
+							<input name="reson[]" type="checkbox" value="預約餐別已客滿">
 						</div>
 						<div class="mui-input-row mui-checkbox mui-left">
-							<label>拒絕理由3</label>
-							<input name="reson[]" type="checkbox" value="拒絕理由3">
+							<label>預約日期已客滿</label>
+							<input name="reson[]" type="checkbox" value="預約日期已客滿">
 						</div>
 						<div class="mui-input-row mui-checkbox mui-left">
-							<label>拒絕理由4</label>
-							<input name="reson[]" type="checkbox" value="拒絕理由4">
-						</div>
-						<div class="mui-input-row mui-checkbox mui-left">
-							<label>拒絕理由5</label>
-							<input name="reson[]" type="checkbox" value="拒絕理由5">
-						</div>
-						<div class="mui-input-row mui-checkbox mui-left">
-							<label>拒絕理由6</label>
-							<input name="reson[]" type="checkbox" value="拒絕理由6">
-						</div>
-						<div class="mui-input-row mui-checkbox mui-left">
-							<label>拒絕理由7</label>
-							<input name="reson[]" type="checkbox" value="拒絕理由7">
+							<label>其他</label>
+							<input name="reson[]" type="checkbox" value="其他">
 						</div>
 						<input type="hidden" name="oid" value="{{$oid}}" />
 						<button class="mui-btn mui-btn-primary mui-btn-block">拒絕</button>

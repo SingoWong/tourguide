@@ -76,10 +76,13 @@ class Guide extends Base_Controller {
      */
     public function restaurant() {
         $this->load->model('Group_Model');
+		$this->load->model('Users_Restaurant_Model');
+		
         $group = new Group_Model();
-        
         $re['info'] = $group->getCurrGroupByGuideId($this->user['id']);
         $schedule = $group->getScheduleById($re['info']->id);
+		
+		$restaurant = new Users_Restaurant_Model();
         
         $rows = array();
         foreach ($schedule as $row) {
@@ -94,6 +97,7 @@ class Guide extends Base_Controller {
             $r['rid'] = $row->rid;
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
+			$r['rname'] = ($row->rstatus)?$restaurant->getRestaurantNameById($row->rid):'-';
             $r['rstatus_label'] = $this->_get_rstatus_label($row->rstatus);
             $r['tab'] = $row->tab;
             $r['detail'] = $row->detail;
@@ -217,6 +221,8 @@ class Guide extends Base_Controller {
         $gid = $this->input->post('gid');
         $rid = $this->input->post('rid');
         $amount = $this->input->post('amount');
+		$eattime = $this->input->post('eattime');
+		$attention = $this->input->post('attention');
         $option = $this->input->post('note');
         $unit = $this->input->post('unit');
         $day = $this->input->post('day');
@@ -230,6 +236,8 @@ class Guide extends Base_Controller {
         $row['rid'] = $rid;
         $row['amount'] = $amount;
         $row['price_unit'] = $unit;
+		$row['eattime'] = $eattime;
+		$row['attention'] = $attention;
         $row['option'] = join(',',$option);
         
         $order = new Order_Model();
