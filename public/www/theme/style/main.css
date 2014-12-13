@@ -1,3 +1,6 @@
+body {
+	background: #efeff4!important;
+}
 .mui-content {
 	background: #f5f6f7;
 }
@@ -16,7 +19,8 @@
 	color: #FFF!important;
 }
 .mui-input-group {
-	background: #f5f6f7!important;
+	background: #efeff4!important;
+	background-image: none!important;
 }
 .mui-btn-blue, .mui-btn-primary, input[type=submit] {
 	background: #c3c1c5!important;
@@ -31,6 +35,22 @@
 }
 .mui-segmented-control .mui-control-item.mui-active {
 	background: #028fd7!important;
+}
+.mui-bar-tab {
+	background: rgba(247,247,247,.98)!important;
+	border-top: 1px solid #EAEAEA!important;
+}
+.mui-bar-tab .mui-tab-item {
+	display: inline-block!important;
+	line-height: 50px!important;
+	padding: 0 20px!important;
+	background: #dcdddd!important;
+	width: auto!important;
+	color: #000000!important;
+}
+.mui-bar-tab .mui-active {
+	background: #02a2e9!important;
+	color: #FFF!important;
 }
 .result-page {
 	padding: 10px;
@@ -63,6 +83,10 @@
 .info-map {
 	height: 200px;
 	background: #007AFF;
+	overflow: hidden;
+}
+.info-map img {
+	width: 100%;
 }
 .info-flow {
 	padding: 3px;

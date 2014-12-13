@@ -65,16 +65,15 @@
 			return false;
 		}
 		function show_ctrl(day,route,item) {
-			console.log(item);
 			var html = '';
 			if (item['rstatus'] == '0') {
 				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'&type='+item['type']+'" class="restaurant-order">請訂餐</a>';
 			} else if (item['rstatus'] == '1') {
-				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'&type='+item['type']+'">重新<br/>訂餐</a><a href="#">電話<br/>確認</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：未上傳';
+				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'&type='+item['type']+'">重新<br/>訂餐</a><a href="tel://'+item['rcontact']+'">電話<br/>確認</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
 			} else if (item['rstatus'] == '2') {
-				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上傳<br/>收據</a><a href="{{$url_restaurant_payment}}&day='+day+'&route='+route+'">選擇<br/>付款</a><a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>訂餐</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：未上傳';
+				html += '<a href="{{$url_restaurant_payment}}&day='+day+'&route='+route+'">選擇<br/>付款</a><a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>訂餐</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
 			} else if (item['rstatus'] == '3') {
-				html += '<a href="{{$url_restaurant_payment_checklist}}&day='+day+'&route='+route+'">上傳<br/>收據</a></a>餐廳名稱：'+item['rname']+'<br/>收據上傳：未上傳';
+				html += '</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
 			}
 			
 			return html;

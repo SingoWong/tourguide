@@ -42,6 +42,8 @@ class Order_Model extends CI_Model {
             $restaurant_order->rid = $row['rid'];
             $restaurant_order->amount = $row['amount'];
             $restaurant_order->price_unit = $row['price_unit'];
+			$restaurant_order->eattime = $row['eattime'];
+			$restaurant_order->attention = $row['attention'];
             $restaurant_order->option = $row['option'];
 			$restaurant_order->status = STATUS_RORDER_PANDING;
 			$restaurant_order->created = time();
@@ -136,6 +138,62 @@ class Order_Model extends CI_Model {
 		$group->updateGroupSchedualRstatus($sid, STATUS_R_CANCEL);
 		
 		return $re;
+	}
+	
+	/**
+	 * 獲取餐廳收據地址
+	 */
+	function getRestaurantReceiveUrl($sid) {
+		$order = new Restaurant_Order();
+		
+		$order->where('sid', $sid)->get(1);
+		
+		return $order->all[0]->receive_url;
+	}
+	
+	/**
+	 * 導遊餐廳結帳
+	 */
+	function paymentRestaurant($oid, $mode, $receive_url) {
+		$this->db->trans_start();
+		
+		//更新訂單狀態
+		$order = new Restaurant_Order();
+		$orow['receive_url'] = $receive_url;
+		$orow['status'] = STATUS_RORDER_PAYMENG;
+		$re_o = $order->where('id',$oid)->update($orow);
+		
+		//更新行程訂餐狀態
+		$order->where('id',$oid)->get(1);
+		$this->load->model('Group_Model');
+		$group = new Group_Model();
+		$re_s = $group->paymentScheduleRestaurant($order->all[0]->sid);
+		
+		if ($this->db->trans_status() === FALSE || !$re_o || !$re_s){
+            $this->db->trans_rollback();
+            $result = FALSE;
+        } else {
+            $this->db->trans_commit();
+            $result = TRUE;
+        }
+		
+		return $result;
+	}
+	
+	/**
+	 * 獲取下單訂單信息
+	 */
+	function getRestaurantOrder($gid, $day, $route) {
+		$schedule = new Group_Schedule();
+		$schedule->where('gid',$gid);
+		$schedule->where('day',$day);
+		$schedule->where('route',$route);
+		$sre = $schedule->get(1);
+		
+		$order = new Restaurant_Order();
+		$order->where('sid',$sre->id)->get(1);
+		
+		return $order->all[0];
 	}
 	
 	/**

@@ -387,6 +387,18 @@ class Group_Model extends CI_Model {
         
         return $schedule->all;
     }
+	
+	/**
+	 * 更新行程訂餐狀態為已支付
+	 */
+	function paymentScheduleRestaurant($sid) {
+		$schedule = new Group_Schedule();
+		
+		$row['rstatus'] = STATUS_R_PAYMENT;
+		$re = $schedule->where('id',$sid)->update($row);
+		
+		return $re;
+	}
     
     /**
      * 获得导游当前的旅行团信息

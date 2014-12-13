@@ -211,5 +211,16 @@ class Users_Restaurant_Model extends CI_Model {
         
         return $users->all[0]->name;
 	}
+	
+	/**
+	 * 根據用戶編號獲得餐廳名
+	 */
+	function getRestaurantContactById($uid) {
+		$restaurant = new Users_Restaurant();
+		
+		$restaurant->where('uid', $uid)->get(1);
+		
+		return $restaurant->all[0]->contact_tel;
+	}
 }
 ?>

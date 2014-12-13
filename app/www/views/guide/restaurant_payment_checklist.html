@@ -26,6 +26,14 @@
 			$("#form").submit();
 		}
 		</script>
+		<style type="text/css">
+			.checklist_title {
+				background: #CCC;
+				font-size: 16px;
+				padding: 10px;
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -46,16 +54,16 @@
 			<div class="checklist-form">
 				<h3 class="checklist_title">用餐資訊</h3>
 				<div class="checklist_content">
-					<p>日期：</p>
-					<p>餐別：</p>
-					<p>餐廳名：</p>
+					<p>日期：{{$date}}</p>
+					<p>餐別：{{if $schedule->type=='2'}}中餐{{elseif $schedule->type=='3'}}晚餐{{/if}}</p>
+					<p>餐廳名：{{$restaurant->users->name}}</p>
 					<p>旅行社：</p>
-					<p>團號：</p>
-					<p>導遊：</p>
-					<p>人數：</p>
+					<p>團號：{{$group->code}}</p>
+					<p>導遊：{{$group->contact_name}}</p>
+					<p>人數：{{$group->amount}}</p>
 					<p>餐標：</p>
 					<p>金額：</p>
-					<p>結帳方式：</p>
+					<p>結帳方式：{{if $mode=='0'}}現金{{elseif $mode=='1'}}刷卡{{elseif $mode=='2'}}簽單{{/if}}</p>
 				</div>
 				<div class="upload_receive">
 					<button class="mui-btn mui-btn-primary mui-btn-block" onclick="upload();return false;">請拍下收據</button>

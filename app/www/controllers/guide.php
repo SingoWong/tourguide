@@ -77,12 +77,14 @@ class Guide extends Base_Controller {
     public function restaurant() {
         $this->load->model('Group_Model');
 		$this->load->model('Users_Restaurant_Model');
+		$this->load->model('Order_Model');
 		
         $group = new Group_Model();
         $re['info'] = $group->getCurrGroupByGuideId($this->user['id']);
         $schedule = $group->getScheduleById($re['info']->id);
 		
 		$restaurant = new Users_Restaurant_Model();
+		$order = new Order_Model();
         
         $rows = array();
         foreach ($schedule as $row) {
@@ -98,10 +100,12 @@ class Guide extends Base_Controller {
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
 			$r['rname'] = ($row->rstatus)?$restaurant->getRestaurantNameById($row->rid):'-';
+			$r['rcontact'] = ($row->rstatus)?$restaurant->getRestaurantContactById($row->rid):'-';
             $r['rstatus_label'] = $this->_get_rstatus_label($row->rstatus);
             $r['tab'] = $row->tab;
             $r['detail'] = $row->detail;
             $r['location'] = $row->location;
+			$r['receive_status'] = ($order->getRestaurantReceiveUrl($row->id)=='')?'未上傳':'已上傳';
         
             $rows[$row->day][] = $r;
         }
@@ -236,7 +240,7 @@ class Guide extends Base_Controller {
         $row['rid'] = $rid;
         $row['amount'] = $amount;
         $row['price_unit'] = $unit;
-		$row['eattime'] = $eattime;
+		$row['eattime'] = strtotime(date('Y-m-d').' '.$eattime.':00');
 		$row['attention'] = $attention;
         $row['option'] = join(',',$option);
         
@@ -288,11 +292,25 @@ class Guide extends Base_Controller {
      * 餐厅结账账单信息
      */
     public function restaurant_payment_checklist() {
+    	$this->load->model('Group_Model');
+		$this->load->model('Users_Restaurant_Model');
+		
         $gid = $this->input->get('gid');
         $day = $this->input->get('day');
         $route = $this->input->get('route');
         $mode = $this->input->get('mode');
-
+		
+		$group = new Group_Model();
+        $re_schedule = $group->getGroupScheduleWhitRoute($gid, $day, $route);
+		$re_group = $group->getGroupBase($gid);
+		
+		$restaurant = new Users_Restaurant_Model();
+		$re_restaurant = $restaurant->getRestaurantById($re_schedule->rid);
+		
+		$this->smarty->assign('date',date('Y-m-d'));
+		$this->smarty->assign('group',$re_group);
+		$this->smarty->assign('schedule',$re_schedule);
+		$this->smarty->assign('restaurant',$re_restaurant);
         $this->smarty->assign('gid',$gid);
         $this->smarty->assign('day',$day);
         $this->smarty->assign('route',$route);
@@ -305,16 +323,38 @@ class Guide extends Base_Controller {
      * 提交小票
      */
     public function restaurant_payment_submit() {
+    	$this->load->model('Order_Model');
+		
         $gid = $this->input->post('gid');
         $day = $this->input->post('day');
         $route = $this->input->post('route');
         $mode = $this->input->post('mode');
-        $url = $this->input->post('url');
         
         //上传图片文件
-        //TODO
-        
-        redirect(url('guide/restaurant_payment_finish'));
+        $config['upload_path']="./upload/restaurant/".date("Y/m/d");//文件上传目录  
+        if(!file_exists("./upload/restaurant/".date("Y/m/d"))){  
+        	mkdir("./upload/source/".date("Y/m/d"),0777,true);//原图路径  
+        }  
+        $config['allowed_types']="gif|jpg|png";//文件类型  
+        $config['max_size']="20000";//最大上传大小  
+        $this->load->library("upload",$config);  
+        //if($this->upload->do_upload('receive')) {
+        if (true) { //TODO
+        	$data = $this->upload->data();
+			$url = $config['upload_path'].'/'.$data['file_name'];
+			
+			$order = new Order_Model();
+			$re_order = $order->getRestaurantOrder($gid, $day, $route);
+			$re = $order->paymentRestaurant($re_order->id, $mode, $url);
+			
+			if ($re) {
+				redirect(url('guide/restaurant_payment_finish'));
+			} else {
+				alert('保存訂單狀態失敗',null,true);
+			}
+		} else {
+			alert('上傳失敗',null,true);
+		}
     }
     
     /**
