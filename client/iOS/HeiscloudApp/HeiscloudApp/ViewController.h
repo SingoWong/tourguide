@@ -1,5 +1,5 @@
 //
-//  MasterViewController.h
+//  ViewController.h
 //  HeiscloudApp
 //
 //  Created by SingoWong on 14/12/15.
@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UITableViewController
+@interface ViewController : UIViewController <UIWebViewDelegate> {
+    IBOutlet UIWebView *_webView;
+}
 
 
 @end

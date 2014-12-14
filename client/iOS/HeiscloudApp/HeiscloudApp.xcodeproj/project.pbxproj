@@ -7,53 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		059BE1C91A3DF9F900D6AACD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1C81A3DF9F900D6AACD /* main.m */; };
-		059BE1CC1A3DF9F900D6AACD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1CB1A3DF9F900D6AACD /* AppDelegate.m */; };
-		059BE1CF1A3DF9F900D6AACD /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1CE1A3DF9F900D6AACD /* MasterViewController.m */; };
-		059BE1D21A3DF9F900D6AACD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1D11A3DF9F900D6AACD /* DetailViewController.m */; };
-		059BE1D51A3DF9F900D6AACD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059BE1D31A3DF9F900D6AACD /* Main.storyboard */; };
-		059BE1D71A3DF9F900D6AACD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 059BE1D61A3DF9F900D6AACD /* Images.xcassets */; };
-		059BE1DA1A3DF9F900D6AACD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059BE1D81A3DF9F900D6AACD /* LaunchScreen.xib */; };
-		059BE1E61A3DF9F900D6AACD /* HeiscloudAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1E51A3DF9F900D6AACD /* HeiscloudAppTests.m */; };
+		054A43F41A3DFE0800A5D2A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A43F31A3DFE0800A5D2A1 /* main.m */; };
+		054A43F71A3DFE0800A5D2A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A43F61A3DFE0800A5D2A1 /* AppDelegate.m */; };
+		054A43FA1A3DFE0800A5D2A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A43F91A3DFE0800A5D2A1 /* ViewController.m */; };
+		054A43FD1A3DFE0800A5D2A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054A43FB1A3DFE0800A5D2A1 /* Main.storyboard */; };
+		054A43FF1A3DFE0800A5D2A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054A43FE1A3DFE0800A5D2A1 /* Images.xcassets */; };
+		054A44021A3DFE0800A5D2A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054A44001A3DFE0800A5D2A1 /* LaunchScreen.xib */; };
+		054A440E1A3DFE0800A5D2A1 /* HeiscloudAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A440D1A3DFE0800A5D2A1 /* HeiscloudAppTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		059BE1E01A3DF9F900D6AACD /* PBXContainerItemProxy */ = {
+		054A44081A3DFE0800A5D2A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 059BE1BB1A3DF9F900D6AACD /* Project object */;
+			containerPortal = 054A43E61A3DFE0800A5D2A1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 059BE1C21A3DF9F900D6AACD;
+			remoteGlobalIDString = 054A43ED1A3DFE0800A5D2A1;
 			remoteInfo = HeiscloudApp;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		059BE1C31A3DF9F900D6AACD /* HeiscloudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeiscloudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		059BE1C71A3DF9F900D6AACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		059BE1C81A3DF9F900D6AACD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		059BE1CA1A3DF9F900D6AACD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		059BE1CB1A3DF9F900D6AACD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		059BE1CD1A3DF9F900D6AACD /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		059BE1CE1A3DF9F900D6AACD /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		059BE1D01A3DF9F900D6AACD /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		059BE1D11A3DF9F900D6AACD /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		059BE1D41A3DF9F900D6AACD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		059BE1D61A3DF9F900D6AACD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		059BE1D91A3DF9F900D6AACD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		059BE1DF1A3DF9F900D6AACD /* HeiscloudAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeiscloudAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		059BE1E41A3DF9F900D6AACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		059BE1E51A3DF9F900D6AACD /* HeiscloudAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeiscloudAppTests.m; sourceTree = "<group>"; };
+		054A43EE1A3DFE0800A5D2A1 /* HeiscloudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeiscloudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		054A43F21A3DFE0800A5D2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		054A43F31A3DFE0800A5D2A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		054A43F51A3DFE0800A5D2A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		054A43F61A3DFE0800A5D2A1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		054A43F81A3DFE0800A5D2A1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		054A43F91A3DFE0800A5D2A1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		054A43FC1A3DFE0800A5D2A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		054A43FE1A3DFE0800A5D2A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		054A44011A3DFE0800A5D2A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		054A44071A3DFE0800A5D2A1 /* HeiscloudAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeiscloudAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		054A440C1A3DFE0800A5D2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		054A440D1A3DFE0800A5D2A1 /* HeiscloudAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeiscloudAppTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		059BE1C01A3DF9F900D6AACD /* Frameworks */ = {
+		054A43EB1A3DFE0800A5D2A1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		059BE1DC1A3DF9F900D6AACD /* Frameworks */ = {
+		054A44041A3DFE0800A5D2A1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,63 +60,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		059BE1BA1A3DF9F900D6AACD = {
+		054A43E51A3DFE0800A5D2A1 = {
 			isa = PBXGroup;
 			children = (
-				059BE1C51A3DF9F900D6AACD /* HeiscloudApp */,
-				059BE1E21A3DF9F900D6AACD /* HeiscloudAppTests */,
-				059BE1C41A3DF9F900D6AACD /* Products */,
+				054A43F01A3DFE0800A5D2A1 /* HeiscloudApp */,
+				054A440A1A3DFE0800A5D2A1 /* HeiscloudAppTests */,
+				054A43EF1A3DFE0800A5D2A1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		059BE1C41A3DF9F900D6AACD /* Products */ = {
+		054A43EF1A3DFE0800A5D2A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				059BE1C31A3DF9F900D6AACD /* HeiscloudApp.app */,
-				059BE1DF1A3DF9F900D6AACD /* HeiscloudAppTests.xctest */,
+				054A43EE1A3DFE0800A5D2A1 /* HeiscloudApp.app */,
+				054A44071A3DFE0800A5D2A1 /* HeiscloudAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		059BE1C51A3DF9F900D6AACD /* HeiscloudApp */ = {
+		054A43F01A3DFE0800A5D2A1 /* HeiscloudApp */ = {
 			isa = PBXGroup;
 			children = (
-				059BE1CA1A3DF9F900D6AACD /* AppDelegate.h */,
-				059BE1CB1A3DF9F900D6AACD /* AppDelegate.m */,
-				059BE1CD1A3DF9F900D6AACD /* MasterViewController.h */,
-				059BE1CE1A3DF9F900D6AACD /* MasterViewController.m */,
-				059BE1D01A3DF9F900D6AACD /* DetailViewController.h */,
-				059BE1D11A3DF9F900D6AACD /* DetailViewController.m */,
-				059BE1D31A3DF9F900D6AACD /* Main.storyboard */,
-				059BE1D61A3DF9F900D6AACD /* Images.xcassets */,
-				059BE1D81A3DF9F900D6AACD /* LaunchScreen.xib */,
-				059BE1C61A3DF9F900D6AACD /* Supporting Files */,
+				054A43F51A3DFE0800A5D2A1 /* AppDelegate.h */,
+				054A43F61A3DFE0800A5D2A1 /* AppDelegate.m */,
+				054A43F81A3DFE0800A5D2A1 /* ViewController.h */,
+				054A43F91A3DFE0800A5D2A1 /* ViewController.m */,
+				054A43FB1A3DFE0800A5D2A1 /* Main.storyboard */,
+				054A43FE1A3DFE0800A5D2A1 /* Images.xcassets */,
+				054A44001A3DFE0800A5D2A1 /* LaunchScreen.xib */,
+				054A43F11A3DFE0800A5D2A1 /* Supporting Files */,
 			);
 			path = HeiscloudApp;
 			sourceTree = "<group>";
 		};
-		059BE1C61A3DF9F900D6AACD /* Supporting Files */ = {
+		054A43F11A3DFE0800A5D2A1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				059BE1C71A3DF9F900D6AACD /* Info.plist */,
-				059BE1C81A3DF9F900D6AACD /* main.m */,
+				054A43F21A3DFE0800A5D2A1 /* Info.plist */,
+				054A43F31A3DFE0800A5D2A1 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		059BE1E21A3DF9F900D6AACD /* HeiscloudAppTests */ = {
+		054A440A1A3DFE0800A5D2A1 /* HeiscloudAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				059BE1E51A3DF9F900D6AACD /* HeiscloudAppTests.m */,
-				059BE1E31A3DF9F900D6AACD /* Supporting Files */,
+				054A440D1A3DFE0800A5D2A1 /* HeiscloudAppTests.m */,
+				054A440B1A3DFE0800A5D2A1 /* Supporting Files */,
 			);
 			path = HeiscloudAppTests;
 			sourceTree = "<group>";
 		};
-		059BE1E31A3DF9F900D6AACD /* Supporting Files */ = {
+		054A440B1A3DFE0800A5D2A1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				059BE1E41A3DF9F900D6AACD /* Info.plist */,
+				054A440C1A3DFE0800A5D2A1 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -127,13 +122,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		059BE1C21A3DF9F900D6AACD /* HeiscloudApp */ = {
+		054A43ED1A3DFE0800A5D2A1 /* HeiscloudApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 059BE1E91A3DF9F900D6AACD /* Build configuration list for PBXNativeTarget "HeiscloudApp" */;
+			buildConfigurationList = 054A44111A3DFE0800A5D2A1 /* Build configuration list for PBXNativeTarget "HeiscloudApp" */;
 			buildPhases = (
-				059BE1BF1A3DF9F900D6AACD /* Sources */,
-				059BE1C01A3DF9F900D6AACD /* Frameworks */,
-				059BE1C11A3DF9F900D6AACD /* Resources */,
+				054A43EA1A3DFE0800A5D2A1 /* Sources */,
+				054A43EB1A3DFE0800A5D2A1 /* Frameworks */,
+				054A43EC1A3DFE0800A5D2A1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -141,46 +136,46 @@
 			);
 			name = HeiscloudApp;
 			productName = HeiscloudApp;
-			productReference = 059BE1C31A3DF9F900D6AACD /* HeiscloudApp.app */;
+			productReference = 054A43EE1A3DFE0800A5D2A1 /* HeiscloudApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		059BE1DE1A3DF9F900D6AACD /* HeiscloudAppTests */ = {
+		054A44061A3DFE0800A5D2A1 /* HeiscloudAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 059BE1EC1A3DF9F900D6AACD /* Build configuration list for PBXNativeTarget "HeiscloudAppTests" */;
+			buildConfigurationList = 054A44141A3DFE0800A5D2A1 /* Build configuration list for PBXNativeTarget "HeiscloudAppTests" */;
 			buildPhases = (
-				059BE1DB1A3DF9F900D6AACD /* Sources */,
-				059BE1DC1A3DF9F900D6AACD /* Frameworks */,
-				059BE1DD1A3DF9F900D6AACD /* Resources */,
+				054A44031A3DFE0800A5D2A1 /* Sources */,
+				054A44041A3DFE0800A5D2A1 /* Frameworks */,
+				054A44051A3DFE0800A5D2A1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				059BE1E11A3DF9F900D6AACD /* PBXTargetDependency */,
+				054A44091A3DFE0800A5D2A1 /* PBXTargetDependency */,
 			);
 			name = HeiscloudAppTests;
 			productName = HeiscloudAppTests;
-			productReference = 059BE1DF1A3DF9F900D6AACD /* HeiscloudAppTests.xctest */;
+			productReference = 054A44071A3DFE0800A5D2A1 /* HeiscloudAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		059BE1BB1A3DF9F900D6AACD /* Project object */ = {
+		054A43E61A3DFE0800A5D2A1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = heiscloud.com;
 				TargetAttributes = {
-					059BE1C21A3DF9F900D6AACD = {
+					054A43ED1A3DFE0800A5D2A1 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					059BE1DE1A3DF9F900D6AACD = {
+					054A44061A3DFE0800A5D2A1 = {
 						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 059BE1C21A3DF9F900D6AACD;
+						TestTargetID = 054A43ED1A3DFE0800A5D2A1;
 					};
 				};
 			};
-			buildConfigurationList = 059BE1BE1A3DF9F900D6AACD /* Build configuration list for PBXProject "HeiscloudApp" */;
+			buildConfigurationList = 054A43E91A3DFE0800A5D2A1 /* Build configuration list for PBXProject "HeiscloudApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -188,29 +183,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 059BE1BA1A3DF9F900D6AACD;
-			productRefGroup = 059BE1C41A3DF9F900D6AACD /* Products */;
+			mainGroup = 054A43E51A3DFE0800A5D2A1;
+			productRefGroup = 054A43EF1A3DFE0800A5D2A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				059BE1C21A3DF9F900D6AACD /* HeiscloudApp */,
-				059BE1DE1A3DF9F900D6AACD /* HeiscloudAppTests */,
+				054A43ED1A3DFE0800A5D2A1 /* HeiscloudApp */,
+				054A44061A3DFE0800A5D2A1 /* HeiscloudAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		059BE1C11A3DF9F900D6AACD /* Resources */ = {
+		054A43EC1A3DFE0800A5D2A1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				059BE1D51A3DF9F900D6AACD /* Main.storyboard in Resources */,
-				059BE1DA1A3DF9F900D6AACD /* LaunchScreen.xib in Resources */,
-				059BE1D71A3DF9F900D6AACD /* Images.xcassets in Resources */,
+				054A43FD1A3DFE0800A5D2A1 /* Main.storyboard in Resources */,
+				054A44021A3DFE0800A5D2A1 /* LaunchScreen.xib in Resources */,
+				054A43FF1A3DFE0800A5D2A1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		059BE1DD1A3DF9F900D6AACD /* Resources */ = {
+		054A44051A3DFE0800A5D2A1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,48 +215,47 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		059BE1BF1A3DF9F900D6AACD /* Sources */ = {
+		054A43EA1A3DFE0800A5D2A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				059BE1CC1A3DF9F900D6AACD /* AppDelegate.m in Sources */,
-				059BE1CF1A3DF9F900D6AACD /* MasterViewController.m in Sources */,
-				059BE1C91A3DF9F900D6AACD /* main.m in Sources */,
-				059BE1D21A3DF9F900D6AACD /* DetailViewController.m in Sources */,
+				054A43FA1A3DFE0800A5D2A1 /* ViewController.m in Sources */,
+				054A43F71A3DFE0800A5D2A1 /* AppDelegate.m in Sources */,
+				054A43F41A3DFE0800A5D2A1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		059BE1DB1A3DF9F900D6AACD /* Sources */ = {
+		054A44031A3DFE0800A5D2A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				059BE1E61A3DF9F900D6AACD /* HeiscloudAppTests.m in Sources */,
+				054A440E1A3DFE0800A5D2A1 /* HeiscloudAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		059BE1E11A3DF9F900D6AACD /* PBXTargetDependency */ = {
+		054A44091A3DFE0800A5D2A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 059BE1C21A3DF9F900D6AACD /* HeiscloudApp */;
-			targetProxy = 059BE1E01A3DF9F900D6AACD /* PBXContainerItemProxy */;
+			target = 054A43ED1A3DFE0800A5D2A1 /* HeiscloudApp */;
+			targetProxy = 054A44081A3DFE0800A5D2A1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		059BE1D31A3DF9F900D6AACD /* Main.storyboard */ = {
+		054A43FB1A3DFE0800A5D2A1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				059BE1D41A3DF9F900D6AACD /* Base */,
+				054A43FC1A3DFE0800A5D2A1 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		059BE1D81A3DF9F900D6AACD /* LaunchScreen.xib */ = {
+		054A44001A3DFE0800A5D2A1 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				059BE1D91A3DF9F900D6AACD /* Base */,
+				054A44011A3DFE0800A5D2A1 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -269,7 +263,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		059BE1E71A3DF9F900D6AACD /* Debug */ = {
+		054A440F1A3DFE0800A5D2A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -310,7 +304,7 @@
 			};
 			name = Debug;
 		};
-		059BE1E81A3DF9F900D6AACD /* Release */ = {
+		054A44101A3DFE0800A5D2A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -345,7 +339,7 @@
 			};
 			name = Release;
 		};
-		059BE1EA1A3DF9F900D6AACD /* Debug */ = {
+		054A44121A3DFE0800A5D2A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -355,7 +349,7 @@
 			};
 			name = Debug;
 		};
-		059BE1EB1A3DF9F900D6AACD /* Release */ = {
+		054A44131A3DFE0800A5D2A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -365,7 +359,7 @@
 			};
 			name = Release;
 		};
-		059BE1ED1A3DF9F900D6AACD /* Debug */ = {
+		054A44151A3DFE0800A5D2A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -384,7 +378,7 @@
 			};
 			name = Debug;
 		};
-		059BE1EE1A3DF9F900D6AACD /* Release */ = {
+		054A44161A3DFE0800A5D2A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -402,32 +396,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		059BE1BE1A3DF9F900D6AACD /* Build configuration list for PBXProject "HeiscloudApp" */ = {
+		054A43E91A3DFE0800A5D2A1 /* Build configuration list for PBXProject "HeiscloudApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				059BE1E71A3DF9F900D6AACD /* Debug */,
-				059BE1E81A3DF9F900D6AACD /* Release */,
+				054A440F1A3DFE0800A5D2A1 /* Debug */,
+				054A44101A3DFE0800A5D2A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		059BE1E91A3DF9F900D6AACD /* Build configuration list for PBXNativeTarget "HeiscloudApp" */ = {
+		054A44111A3DFE0800A5D2A1 /* Build configuration list for PBXNativeTarget "HeiscloudApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				059BE1EA1A3DF9F900D6AACD /* Debug */,
-				059BE1EB1A3DF9F900D6AACD /* Release */,
+				054A44121A3DFE0800A5D2A1 /* Debug */,
+				054A44131A3DFE0800A5D2A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		059BE1EC1A3DF9F900D6AACD /* Build configuration list for PBXNativeTarget "HeiscloudAppTests" */ = {
+		054A44141A3DFE0800A5D2A1 /* Build configuration list for PBXNativeTarget "HeiscloudAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				059BE1ED1A3DF9F900D6AACD /* Debug */,
-				059BE1EE1A3DF9F900D6AACD /* Release */,
+				054A44151A3DFE0800A5D2A1 /* Debug */,
+				054A44161A3DFE0800A5D2A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 059BE1BB1A3DF9F900D6AACD /* Project object */;
+	rootObject = 054A43E61A3DFE0800A5D2A1 /* Project object */;
 }
