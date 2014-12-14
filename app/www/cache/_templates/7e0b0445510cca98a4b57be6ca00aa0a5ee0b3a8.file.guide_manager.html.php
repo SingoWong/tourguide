@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-11-24 18:02:43
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-05 20:31:12
          compiled from "../../app/www/views/sysmanager/guide_manager.html" */ ?>
 <?php /*%%SmartyHeaderCode:8104254685470a4777555a1-59333485%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7e0b0445510cca98a4b57be6ca00aa0a5ee0b3a8' => 
     array (
       0 => '../../app/www/views/sysmanager/guide_manager.html',
-      1 => 1416852072,
+      1 => 1417811316,
       2 => 'file',
     ),
   ),
@@ -31,30 +31,30 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("关闭");
+		$("#btnc_"+id).html("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展开");
+		$("#btnc_"+id).html("展開");
 	}
 	return false;
 }
 </script>
 
 <div class="title_panel">
-	导游管理 - 续约导游
+	導遊管理 - 續約導遊
 </div>
 
-<input type="button" class="gm_t1_btn" value="续约导游" onclick="self.location.href='index.php?ctr=sysguide';">
-<input type="button" class="gm_t1_btn_alt_disabled" value="过期导游" onclick="self.location.href='index.php?ctr=sysguide&act=expired';">
-<input type="button" class="gm_t1_btn_alt_disabled" value="新增导游" onclick="self.location.href='index.php?ctr=sysguide&act=edit';">
+<input type="button" class="gm_t1_btn" value="續約導遊" onclick="self.location.href='index.php?ctr=sysguide';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="過期導遊" onclick="self.location.href='index.php?ctr=sysguide&act=expired';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="新增導遊" onclick="self.location.href='index.php?ctr=sysguide&act=edit';">
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
 	<input type="hidden" name="ctr" value="sysagency" />
 	<input type="hidden" name="act" value="index" />
-	<label class="v"><input id="name" type="text" name="name" value="" placeholder="导游"></label>
-	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帐号"></label>
-	<label class="s"><input type="submit" class="gm_t1_btn" value="搜索" /></label>	
+	<label class="v"><input id="name" type="text" name="name" value="" placeholder="導遊"></label>
+	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
+	<label class="s"><input type="submit" class="gm_t1_btn" value="查詢" /></label>	
 </form>
 </div>
 
@@ -72,10 +72,10 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc(<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 );" id="btnc_<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
-">关闭</a>
+">關閉</a>
 			<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
  <?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
- 签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
+ 簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 
 		</div>
@@ -83,33 +83,33 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td colspan="2">帐号：<?php echo $_smarty_tpl->tpl_vars['item']->value->username;?>
+					<td colspan="2">帳號：<?php echo $_smarty_tpl->tpl_vars['item']->value->username;?>
 </td>
-					<td>密码：******</td>
-					<td width="10%"><a href="">重置密码</a></td>
+					<td>密碼：******</td>
+					<td width="10%"><a href="">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">导游名称：<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
+					<td colspan="2">導遊名稱：<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
 </td>
-					<td>电话：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_tel;?>
+					<td>電話：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_tel;?>
 </td>
 					<td><a href="#">修改</a></td>
 				</tr>
 				<tr>
-					<td colspan="2" width="50%">流水号：<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+					<td colspan="2" width="50%">流水號：<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
 </td>
-					<td colspan="2" width="50%">统一编码：<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
+					<td colspan="2" width="50%">統一編碼：<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
 </td>
 				</tr>
 				<tr>
-					<td colspan="2">上月接团总数：</td>
-					<td colspan="2">本月接团总数：</td>
+					<td colspan="2">上月接團總數：</td>
+					<td colspan="2">本月接團總數：</td>
 				</tr>
 			</table>
 			<div class="item_footer">
-				<a href="">续约</a>
-				<a href="">停权</a>
-				签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
+				<a href="">續約</a>
+				<a href="">停權</a>
+				簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 
 			</div>

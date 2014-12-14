@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-11-25 13:49:28
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-05 19:22:46
          compiled from "../../app/www/views/sysmanager/agency_expired.html" */ ?>
 <?php /*%%SmartyHeaderCode:662288125470a25cd3cc10-56198950%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd29b4734948b059408e88a378e20c818d1a0c9a3' => 
     array (
       0 => '../../app/www/views/sysmanager/agency_expired.html',
-      1 => 1416852046,
+      1 => 1417807355,
       2 => 'file',
     ),
   ),
@@ -31,21 +31,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("关闭");
+		$("#btnc_"+id).htm("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展开");
+		$("#btnc_"+id).htm("展開");
 	}
 	return false;
 }
 </script>
 
 <div class="title_panel">
-	旅行社管理 - 过期旅行社
+	旅行社管理 - 過期旅行社
 </div>
 
-<input type="button" class="gm_t1_btn_alt_disabled" value="续约旅行社" onclick="self.location.href='index.php?ctr=sysagency';">
-<input type="button" class="gm_t1_btn" value="过期旅行社" onclick="self.location.href='index.php?ctr=sysagency&act=expired';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="續約旅行社" onclick="self.location.href='index.php?ctr=sysagency';">
+<input type="button" class="gm_t1_btn" value="過期旅行社" onclick="self.location.href='index.php?ctr=sysagency&act=expired';">
 <input type="button" class="gm_t1_btn_alt_disabled" value="新增旅行社" onclick="self.location.href='index.php?ctr=sysagency&act=edit';">
 
 <div class="search-inner">
@@ -53,8 +53,8 @@ function sh_pnlc(id) {
 	<input type="hidden" name="ctr" value="sysagency" />
 	<input type="hidden" name="act" value="expired" />
 	<label class="v"><input id="name" type="text" name="name" value="" placeholder="旅行社"></label>
-	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帐号"></label>
-	<label class="s"><input type="submit" class="gm_t1_btn" value="搜索" /></label>	
+	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
+	<label class="s"><input type="submit" class="gm_t1_btn" value="查詢" /></label>	
 </form>
 </div>
 
@@ -72,10 +72,10 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc(<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 );" id="btnc_<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
-">关闭</a>
-			<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
- <?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
- 签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
+">關閉</a>
+			<?php echo $_smarty_tpl->tpl_vars['item']->value->users->name;?>
+&nbsp;&nbsp;<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
+&nbsp;&nbsp;签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 
 		</div>
@@ -83,45 +83,51 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td colspan="2">帐号：<?php echo $_smarty_tpl->tpl_vars['item']->value->username;?>
+					<td colspan="2">帳號：<?php echo $_smarty_tpl->tpl_vars['item']->value->users->username;?>
 </td>
-					<td>密码：******</td>
-					<td width="10%"><a href="">重置密码</a></td>
+					<td>密碼：******</td>
+					<td width="10%"><a href="index.php?ctr=sysagency&act=resetpassword&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
+" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">旅行社名称：<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
+					<td colspan="2">旅行社名稱：<?php echo $_smarty_tpl->tpl_vars['item']->value->users->name;?>
 </td>
 					<td>地址：<?php echo $_smarty_tpl->tpl_vars['item']->value->address;?>
 </td>
-					<td><a href="">修改</a></td>
+					<td><a href="index.php?ctr=sysagency&act=updateprofile&type=address&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
-					<td colspan="2" width="50%">流水号：<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+					<td colspan="2" width="50%">流水號：<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
 </td>
-					<td colspan="2" width="50%">统一编码：<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
+					<td colspan="2" width="50%">統一編號：<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
 </td>
 				</tr>
 				<tr>
-					<td>联络人：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact;?>
+					<td>聯絡人：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact;?>
 </td>
-					<td width="10%"><a href="#">修改</a></td>
-					<td>电话：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_tel;?>
+					<td width="10%"><a href="index.php?ctr=sysagency&act=updateprofile&type=contact&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
+					<td>電話：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_tel;?>
 </td>
-					<td><a href="#">修改</a></td>
+					<td><a href="index.php?ctr=sysagency&act=updateprofile&type=contact_tel&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">上月订餐总数：</td>
-					<td colspan="2">本月订餐总数：</td>
+					<td colspan="2">上月訂餐總數：</td>
+					<td colspan="2">本月訂餐總數：</td>
 				</tr>
 				<tr>
-					<td colspan="2">上月订房总数：</td>
-					<td colspan="2">本月订房总数：</td>
+					<td colspan="2">上月訂房總數：</td>
+					<td colspan="2">本月訂房總數：</td>
 				</tr>
 			</table>
 			<div class="item_footer">
-				<a href="">续约</a>
-				<a href="">停权</a>
-				签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
+				<a href="index.php?ctr=sysagency&act=renewal&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','400',false,0.3)">續約</a>
+				<a href="index.php?ctr=sysagency&act=suspended&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="if(!confirm('確定要停權這個帳號嗎？')){return false;}">停權</a>
+				簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 
 			</div>

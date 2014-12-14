@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-11-25 14:02:45
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-02 15:00:47
          compiled from "../../app/www/views/_common/header.html" */ ?>
 <?php /*%%SmartyHeaderCode:9831993685470967b9539d0-45970908%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b049b6c31bad98fc1ac37e9ee1e78fa75c975d28' => 
     array (
       0 => '../../app/www/views/_common/header.html',
-      1 => 1416924159,
+      1 => 1417532399,
       2 => 'file',
     ),
   ),
@@ -28,6 +28,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="/libs/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/libs/jquery/core.popup.js"></script>
 <link rel="stylesheet" type="text/css" href="/libs/style_t1/t1.css" />
 <link rel="stylesheet" type="text/css" href="/theme/style/global.css" />
 <link rel="stylesheet" type="text/css" href="/theme/style/sysmanager.css" />
@@ -39,10 +40,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<div class="view-header">
 		<div class="header-inner">
 			<div class="rctl">
-				<a href="" class="btn_setup"><?php echo $_smarty_tpl->tpl_vars['RBAC_USER_NAME']->value;?>
+				<a href="/index.php?ctr=users&act=secret" onclick="return window.openWindow(self.href,'400','300',false,0.3)" class="btn_setup"><?php echo $_smarty_tpl->tpl_vars['RBAC_USER_NAME']->value;?>
 </a>
 				<span>|</span>
-				<a href="">登出</a>
+				<a href="/index.php?ctr=sysusers&act=logout">登出</a>
 			</div>
 			<div class="logo">CoreSystem</div>
 		</div>

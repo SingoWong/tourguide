@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-11-23 18:23:55
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-05 20:50:00
          compiled from "../../app/www/views/sysmanager/hotel_expired.html" */ ?>
 <?php /*%%SmartyHeaderCode:21381566885470a3eed47af4-12768658%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e54fcfd5ceb46c94d3a584e27428d8dae3fae398' => 
     array (
       0 => '../../app/www/views/sysmanager/hotel_expired.html',
-      1 => 1416766983,
+      1 => 1417812142,
       2 => 'file',
     ),
   ),
@@ -27,83 +27,34 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php if ($_valid && !is_callable('content_5470a3eedacc52_34548232')) {function content_5470a3eedacc52_34548232($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Users/singowong/Project/default/tourguide/core/libraries/Smarty/libs/plugins/modifier.date_format.php';
 ?><?php echo $_smarty_tpl->getSubTemplate ("_common/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
-<style type="text/css">
-.item {
-	border: 1px solid #CCC;
-	margin-bottom: 10px;
-}
-.item .item_title {
-	background: #2288CC;
-	height: 30px;
-	line-height: 30px;
-	padding-left: 10px;
-	font-weight: bold;
-}
-.item .item_title a {
-	float: right;
-	display: block;
-	width: 50px;
-	height:30px;
-	background: #002166;
-	text-align: center;
-	color: #FFF;
-}
-.item .item_content table {
-	background: #CCC;
-}
-.item .item_content table tr td {
-	background: #FFF;
-	height: 25px;
-	line-height: 25px;
-	padding: 3px;;
-}
-.item .item_content table tr td a {
-	text-align: center;
-	display: block;
-}
-.item .item_content .item_footer {
-	height: 30px;
-	line-height: 30px;
-	padding-left: 10px;
-}
-.item .item_content .item_footer a {
-	float: right;
-	display: block;
-	width: 50px;
-	background: #002166;
-	text-align: center;
-	color: #FFF;
-	font-weight: bold;
-}
-</style>
 <script type="text/javascript">
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("关闭");
+		$("#btnc_"+id).html("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展开");
+		$("#btnc_"+id).html("展開");
 	}
 	return false;
 }
 </script>
 
 <div class="title_panel">
-	饭店管理 - 过期饭店
+	飯店管理 - 過期飯店
 </div>
 
-<input type="button" class="gm_t1_btn_alt_disabled" value="续约饭店" onclick="self.location.href='index.php?ctr=syshotel';">
-<input type="button" class="gm_t1_btn" value="过期饭店" onclick="self.location.href='index.php?ctr=syshotel&act=expired';">
-<input type="button" class="gm_t1_btn_alt_disabled" value="新增饭店" onclick="self.location.href='index.php?ctr=syshotel&act=edit';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="續約飯店" onclick="self.location.href='index.php?ctr=syshotel';">
+<input type="button" class="gm_t1_btn" value="過期飯店" onclick="self.location.href='index.php?ctr=syshotel&act=expired';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="新增飯店" onclick="self.location.href='index.php?ctr=syshotel&act=edit';">
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
 	<input type="hidden" name="ctr" value="sysagency" />
 	<input type="hidden" name="act" value="expired" />
-	<label class="v"><input id="name" type="text" name="name" value="" placeholder="餐厅"></label>
-	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帐号"></label>
-	<label class="s"><input type="submit" class="gm_t1_btn" value="搜索" /></label>	
+	<label class="v"><input id="name" type="text" name="name" value="" placeholder="飯店"></label>
+	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
+	<label class="s"><input type="submit" class="gm_t1_btn" value="查詢" /></label>	
 </form>
 </div>
 
@@ -121,10 +72,10 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc(<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 );" id="btnc_<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
-">关闭</a>
-			<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
- <?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
- 签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
+">關閉</a>
+			<?php echo $_smarty_tpl->tpl_vars['item']->value->users->name;?>
+&nbsp;&nbsp;<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
+&nbsp;&nbsp;簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 
 		</div>
@@ -132,41 +83,47 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td colspan="2">帐号：<?php echo $_smarty_tpl->tpl_vars['item']->value->username;?>
+					<td colspan="2">帳號：<?php echo $_smarty_tpl->tpl_vars['item']->value->users->username;?>
 </td>
-					<td>密码：******</td>
-					<td width="10%"><a href="">重置密码</a></td>
+					<td>密碼：******</td>
+					<td width="10%"><a href="index.php?ctr=syshotel&act=resetpassword&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
+" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">饭店名称：<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
+					<td colspan="2">飯店名稱：<?php echo $_smarty_tpl->tpl_vars['item']->value->users->name;?>
 </td>
 					<td>地址：<?php echo $_smarty_tpl->tpl_vars['item']->value->address;?>
 </td>
-					<td><a href="">修改</a></td>
+					<td><a href="index.php?ctr=syshotel&act=updateprofile&type=address&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
-					<td colspan="2" width="50%">流水号：<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+					<td colspan="2" width="50%">流水號：<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
 </td>
-					<td colspan="2" width="50%">统一编码：<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
+					<td colspan="2" width="50%">統一編碼：<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
 </td>
 				</tr>
 				<tr>
-					<td>联络人：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact;?>
+					<td>聯絡人：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact;?>
 </td>
-					<td width="10%"><a href="#">修改</a></td>
-					<td>电话：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_tel;?>
+					<td width="10%"><a href="index.php?ctr=syshotel&act=updateprofile&type=contact&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
+					<td>電話：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_tel;?>
 </td>
-					<td><a href="#">修改</a></td>
+					<td><a href="index.php?ctr=syshotel&act=updateprofile&type=contact_tel&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">上月订餐总数：</td>
-					<td colspan="2">本月订餐总数：</td>
+					<td colspan="2">上月訂房總數：</td>
+					<td colspan="2">本月訂房總數：</td>
 				</tr>
 			</table>
 			<div class="item_footer">
-				<a href="">续约</a>
-				<a href="">停权</a>
-				签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
+				<a href="index.php?ctr=syshotel&act=renewal&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','400',false,0.3)">續約</a>
+				<a href="index.php?ctr=syshotel&act=suspended&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="if(!confirm('確定要停權這個帳號嗎？')){return false;}">停權</a>
+				簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 
 			</div>

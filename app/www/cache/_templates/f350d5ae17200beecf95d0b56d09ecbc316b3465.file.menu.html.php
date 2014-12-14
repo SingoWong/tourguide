@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-11-22 06:55:09
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-09 14:30:04
          compiled from "../../app/www/views/guide/menu.html" */ ?>
 <?php /*%%SmartyHeaderCode:114023732554702a196710a4-22274030%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f350d5ae17200beecf95d0b56d09ecbc316b3465' => 
     array (
       0 => '../../app/www/views/guide/menu.html',
-      1 => 1416639290,
+      1 => 1417973049,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_54702a196dd680_03776941',
   'variables' => 
   array (
-    'url_menu' => 0,
     'url_info' => 0,
     'url_restaurant' => 0,
     'url_hotel' => 0,
@@ -44,21 +43,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-icon mui-icon-bars mui-pull-left" href="/" href="index.php?<?php echo $_smarty_tpl->tpl_vars['url_menu']->value;?>
-"></a>
+			<a class="mui-icon mui-icon-bars mui-pull-left" href="/"></a>
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
-			<h1 class="mui-title">请选择项目</h1>
+			<h1 class="mui-title">請選擇項目</h1>
 		</header>
 		<div class="mui-content">
 			<div class="menu-list">
-				<button class="mui-btn mui-btn-block" onclick="location.href='index.php?<?php echo $_smarty_tpl->tpl_vars['url_info']->value;?>
-';">团号资讯</button>
-				<button class="mui-btn mui-btn-block" onclick="location.href='index.php?<?php echo $_smarty_tpl->tpl_vars['url_restaurant']->value;?>
-';">订餐系统</button>
-				<button class="mui-btn mui-btn-block" onclick="location.href='index.php?<?php echo $_smarty_tpl->tpl_vars['url_hotel']->value;?>
-';">订房系统</button>
-				<button class="mui-btn mui-btn-block" onclick="location.href='index.php?<?php echo $_smarty_tpl->tpl_vars['url_accident']->value;?>
-';">意外通报</button>
+				<button class="mui-btn mui-btn-block" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_info']->value;?>
+';">團號資訊</button>
+				<button class="mui-btn mui-btn-block" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_restaurant']->value;?>
+';">訂餐系統</button>
+				<button class="mui-btn mui-btn-block" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_hotel']->value;?>
+';">訂房系統</button>
+				<button class="mui-btn mui-btn-block" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_accident']->value;?>
+';">意外通報</button>
 			</div>
 		</div>
 	</body>

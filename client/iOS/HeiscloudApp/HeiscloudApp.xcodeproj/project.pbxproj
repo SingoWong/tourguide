@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		059BE1C91A3DF9F900D6AACD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1C81A3DF9F900D6AACD /* main.m */; };
+		059BE1CC1A3DF9F900D6AACD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1CB1A3DF9F900D6AACD /* AppDelegate.m */; };
+		059BE1CF1A3DF9F900D6AACD /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1CE1A3DF9F900D6AACD /* MasterViewController.m */; };
+		059BE1D21A3DF9F900D6AACD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1D11A3DF9F900D6AACD /* DetailViewController.m */; };
+		059BE1D51A3DF9F900D6AACD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059BE1D31A3DF9F900D6AACD /* Main.storyboard */; };
+		059BE1D71A3DF9F900D6AACD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 059BE1D61A3DF9F900D6AACD /* Images.xcassets */; };
+		059BE1DA1A3DF9F900D6AACD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059BE1D81A3DF9F900D6AACD /* LaunchScreen.xib */; };
+		059BE1E61A3DF9F900D6AACD /* HeiscloudAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BE1E51A3DF9F900D6AACD /* HeiscloudAppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		059BE1E01A3DF9F900D6AACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 059BE1BB1A3DF9F900D6AACD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 059BE1C21A3DF9F900D6AACD;
+			remoteInfo = HeiscloudApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		059BE1C31A3DF9F900D6AACD /* HeiscloudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeiscloudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		059BE1C71A3DF9F900D6AACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		059BE1C81A3DF9F900D6AACD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		059BE1CA1A3DF9F900D6AACD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		059BE1CB1A3DF9F900D6AACD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		059BE1CD1A3DF9F900D6AACD /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		059BE1CE1A3DF9F900D6AACD /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		059BE1D01A3DF9F900D6AACD /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		059BE1D11A3DF9F900D6AACD /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		059BE1D41A3DF9F900D6AACD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		059BE1D61A3DF9F900D6AACD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		059BE1D91A3DF9F900D6AACD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		059BE1DF1A3DF9F900D6AACD /* HeiscloudAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeiscloudAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		059BE1E41A3DF9F900D6AACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		059BE1E51A3DF9F900D6AACD /* HeiscloudAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeiscloudAppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		059BE1C01A3DF9F900D6AACD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		059BE1DC1A3DF9F900D6AACD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		059BE1BA1A3DF9F900D6AACD = {
+			isa = PBXGroup;
+			children = (
+				059BE1C51A3DF9F900D6AACD /* HeiscloudApp */,
+				059BE1E21A3DF9F900D6AACD /* HeiscloudAppTests */,
+				059BE1C41A3DF9F900D6AACD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		059BE1C41A3DF9F900D6AACD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				059BE1C31A3DF9F900D6AACD /* HeiscloudApp.app */,
+				059BE1DF1A3DF9F900D6AACD /* HeiscloudAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		059BE1C51A3DF9F900D6AACD /* HeiscloudApp */ = {
+			isa = PBXGroup;
+			children = (
+				059BE1CA1A3DF9F900D6AACD /* AppDelegate.h */,
+				059BE1CB1A3DF9F900D6AACD /* AppDelegate.m */,
+				059BE1CD1A3DF9F900D6AACD /* MasterViewController.h */,
+				059BE1CE1A3DF9F900D6AACD /* MasterViewController.m */,
+				059BE1D01A3DF9F900D6AACD /* DetailViewController.h */,
+				059BE1D11A3DF9F900D6AACD /* DetailViewController.m */,
+				059BE1D31A3DF9F900D6AACD /* Main.storyboard */,
+				059BE1D61A3DF9F900D6AACD /* Images.xcassets */,
+				059BE1D81A3DF9F900D6AACD /* LaunchScreen.xib */,
+				059BE1C61A3DF9F900D6AACD /* Supporting Files */,
+			);
+			path = HeiscloudApp;
+			sourceTree = "<group>";
+		};
+		059BE1C61A3DF9F900D6AACD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				059BE1C71A3DF9F900D6AACD /* Info.plist */,
+				059BE1C81A3DF9F900D6AACD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		059BE1E21A3DF9F900D6AACD /* HeiscloudAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				059BE1E51A3DF9F900D6AACD /* HeiscloudAppTests.m */,
+				059BE1E31A3DF9F900D6AACD /* Supporting Files */,
+			);
+			path = HeiscloudAppTests;
+			sourceTree = "<group>";
+		};
+		059BE1E31A3DF9F900D6AACD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				059BE1E41A3DF9F900D6AACD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		059BE1C21A3DF9F900D6AACD /* HeiscloudApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 059BE1E91A3DF9F900D6AACD /* Build configuration list for PBXNativeTarget "HeiscloudApp" */;
+			buildPhases = (
+				059BE1BF1A3DF9F900D6AACD /* Sources */,
+				059BE1C01A3DF9F900D6AACD /* Frameworks */,
+				059BE1C11A3DF9F900D6AACD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeiscloudApp;
+			productName = HeiscloudApp;
+			productReference = 059BE1C31A3DF9F900D6AACD /* HeiscloudApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		059BE1DE1A3DF9F900D6AACD /* HeiscloudAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 059BE1EC1A3DF9F900D6AACD /* Build configuration list for PBXNativeTarget "HeiscloudAppTests" */;
+			buildPhases = (
+				059BE1DB1A3DF9F900D6AACD /* Sources */,
+				059BE1DC1A3DF9F900D6AACD /* Frameworks */,
+				059BE1DD1A3DF9F900D6AACD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				059BE1E11A3DF9F900D6AACD /* PBXTargetDependency */,
+			);
+			name = HeiscloudAppTests;
+			productName = HeiscloudAppTests;
+			productReference = 059BE1DF1A3DF9F900D6AACD /* HeiscloudAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		059BE1BB1A3DF9F900D6AACD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = heiscloud.com;
+				TargetAttributes = {
+					059BE1C21A3DF9F900D6AACD = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					059BE1DE1A3DF9F900D6AACD = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 059BE1C21A3DF9F900D6AACD;
+					};
+				};
+			};
+			buildConfigurationList = 059BE1BE1A3DF9F900D6AACD /* Build configuration list for PBXProject "HeiscloudApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 059BE1BA1A3DF9F900D6AACD;
+			productRefGroup = 059BE1C41A3DF9F900D6AACD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				059BE1C21A3DF9F900D6AACD /* HeiscloudApp */,
+				059BE1DE1A3DF9F900D6AACD /* HeiscloudAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		059BE1C11A3DF9F900D6AACD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				059BE1D51A3DF9F900D6AACD /* Main.storyboard in Resources */,
+				059BE1DA1A3DF9F900D6AACD /* LaunchScreen.xib in Resources */,
+				059BE1D71A3DF9F900D6AACD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		059BE1DD1A3DF9F900D6AACD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		059BE1BF1A3DF9F900D6AACD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				059BE1CC1A3DF9F900D6AACD /* AppDelegate.m in Sources */,
+				059BE1CF1A3DF9F900D6AACD /* MasterViewController.m in Sources */,
+				059BE1C91A3DF9F900D6AACD /* main.m in Sources */,
+				059BE1D21A3DF9F900D6AACD /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		059BE1DB1A3DF9F900D6AACD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				059BE1E61A3DF9F900D6AACD /* HeiscloudAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		059BE1E11A3DF9F900D6AACD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 059BE1C21A3DF9F900D6AACD /* HeiscloudApp */;
+			targetProxy = 059BE1E01A3DF9F900D6AACD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		059BE1D31A3DF9F900D6AACD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				059BE1D41A3DF9F900D6AACD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		059BE1D81A3DF9F900D6AACD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				059BE1D91A3DF9F900D6AACD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		059BE1E71A3DF9F900D6AACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		059BE1E81A3DF9F900D6AACD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		059BE1EA1A3DF9F900D6AACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HeiscloudApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		059BE1EB1A3DF9F900D6AACD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HeiscloudApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		059BE1ED1A3DF9F900D6AACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HeiscloudAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeiscloudApp.app/HeiscloudApp";
+			};
+			name = Debug;
+		};
+		059BE1EE1A3DF9F900D6AACD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HeiscloudAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeiscloudApp.app/HeiscloudApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		059BE1BE1A3DF9F900D6AACD /* Build configuration list for PBXProject "HeiscloudApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				059BE1E71A3DF9F900D6AACD /* Debug */,
+				059BE1E81A3DF9F900D6AACD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		059BE1E91A3DF9F900D6AACD /* Build configuration list for PBXNativeTarget "HeiscloudApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				059BE1EA1A3DF9F900D6AACD /* Debug */,
+				059BE1EB1A3DF9F900D6AACD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		059BE1EC1A3DF9F900D6AACD /* Build configuration list for PBXNativeTarget "HeiscloudAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				059BE1ED1A3DF9F900D6AACD /* Debug */,
+				059BE1EE1A3DF9F900D6AACD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 059BE1BB1A3DF9F900D6AACD /* Project object */;
+}

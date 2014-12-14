@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-11-25 14:14:35
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-02 14:30:23
          compiled from "../../app/www/views/agency/profile.html" */ ?>
 <?php /*%%SmartyHeaderCode:171163319254748c0212dc17-65893696%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '636edec8044921d13600b4b75e2b733f5f13cea2' => 
     array (
       0 => '../../app/www/views/agency/profile.html',
-      1 => 1416924873,
+      1 => 1417530620,
       2 => 'file',
     ),
   ),
@@ -44,7 +44,10 @@ ul.profile li {
 
 <ul class="profile">
     <li>
-        <span class="v">旅行社名称：<em><?php echo $_smarty_tpl->tpl_vars['RBAC_USER_NAME']->value;?>
+        <span class="v">流水號：-</span>
+    </li>
+    <li>
+        <span class="v">旅行社名稱：<em><?php echo $_smarty_tpl->tpl_vars['RBAC_USER_NAME']->value;?>
 </em></span>
     </li>
     <li>
@@ -52,26 +55,23 @@ ul.profile li {
 </em></span>
     </li>
     <li>
-        <span class="v">流水号：-</span>
+        <span class="v">聯絡人：<?php echo $_smarty_tpl->tpl_vars['profile']->value->contact;?>
+</span>
+    </li>
+    <li>
+        <span class="v">電話（代表號）：<?php echo $_smarty_tpl->tpl_vars['profile']->value->contact_tel;?>
+</span>
+    </li>
+    <li>
+        <span class="v">電話（手機號）：-</span>
     </li>
     <li>
         <span class="v">统一编码：<?php echo $_smarty_tpl->tpl_vars['profile']->value->code;?>
 </span>
     </li>
     <li>
-        <span class="v">联络人：<?php echo $_smarty_tpl->tpl_vars['profile']->value->contact;?>
-</span>
-    </li>
-    <li>
-        <span class="v">电话：<?php echo $_smarty_tpl->tpl_vars['profile']->value->contact_tel;?>
-</span>
-    </li>
-    <li>
-        <span class="v">签约开始日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['profile']->value->sign_date_start,"Y-m-d");?>
-</span>
-    </li>
-    <li>
-        <span class="v">签约结束日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['profile']->value->sign_date_end,"Y-m-d");?>
+        <span class="v">簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['profile']->value->sign_date_start,"Y年m月d日");?>
+ 至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['profile']->value->sign_date_end,"Y年m月d日");?>
 </span>
     </li>
 </ul>

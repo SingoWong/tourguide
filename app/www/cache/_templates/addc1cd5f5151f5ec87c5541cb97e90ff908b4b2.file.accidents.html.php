@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-11-26 12:55:25
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-10 12:42:08
          compiled from "../../app/www/views/agency/accidents.html" */ ?>
 <?php /*%%SmartyHeaderCode:185009919254759620488ef8-93853448%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'addc1cd5f5151f5ec87c5541cb97e90ff908b4b2' => 
     array (
       0 => '../../app/www/views/agency/accidents.html',
-      1 => 1417006523,
+      1 => 1417811369,
       2 => 'file',
     ),
   ),
@@ -42,17 +42,17 @@ $(document).ready(function() {
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("关闭");
+		$("#btnc_"+id).html("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展开");
+		$("#btnc_"+id).html("展開");
 	}
 	return false;
 }
 </script>
 
 <div class="title_panel">
-	意外通报
+	意外通報
 </div>
 
 <div class="list_inner">
@@ -69,79 +69,79 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc(<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 );" id="btnc_<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
-">关闭</a>
+">關閉</a>
 			<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->time,'%Y-%m-%d %H:%i');?>
 &nbsp;&nbsp;
 			<?php echo $_smarty_tpl->tpl_vars['item']->value->type;?>
 &nbsp;&nbsp;
-			团号：<?php echo $_smarty_tpl->tpl_vars['item']->value->gid;?>
+			團號：<?php echo $_smarty_tpl->tpl_vars['item']->value->gid;?>
 &nbsp;&nbsp;
-			导游：<?php echo $_smarty_tpl->tpl_vars['item']->value->gid;?>
+			導遊：<?php echo $_smarty_tpl->tpl_vars['item']->value->gid;?>
 &nbsp;&nbsp;
-			紧急事故
+			緊急事故
 		</div>
 		<div class="item_content" id="pnlc_<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 ">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td width="10%">流水号</td>
+					<td width="10%">流水號</td>
 					<td><?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 </td>
 				</tr>
 				<tr>
-					<td width="10%">发生时间</td>
+					<td width="10%">發生時間</td>
 					<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->time,'%Y-%m-%d %H:%i');?>
 </td>
 				</tr>
 				<tr>
-					<td width="10%">发生地点</td>
+					<td width="10%">發生地點</td>
 					<td><?php echo $_smarty_tpl->tpl_vars['item']->value->location;?>
 </td>
 				</tr>
 				<tr>
-					<td width="10%">事故状况</td>
+					<td width="10%">事故狀況</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td width="10%">游览车</td>
+					<td width="10%">遊覽車</td>
 					<td>
 						<?php if ($_smarty_tpl->tpl_vars['item']->value->bus->bus_status=='0') {?>
-						可行进
+						可進行
 						<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->bus->bus_status=='1') {?>
-						无法行进
+						無法進行
 						<?php }?>
 					</td>
 				</tr>
 				<tr>
-					<td width="10%">司机状况</td>
+					<td width="10%">司機狀況</td>
 					<td>
 						<?php if ($_smarty_tpl->tpl_vars['item']->value->bus->driver_status=='0') {?>
 						死亡
 						<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->bus->driver_status=='1') {?>
-						重伤
+						重傷
 						<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->bus->driver_status=='2') {?>
-						轻伤
+						輕傷
 						<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->bus->driver_status=='3') {?>
 						平安
 						<?php }?>
 					</td>
 				</tr>
 				<tr>
-					<td width="10%">游客情况</td>
+					<td width="10%">遊客情況</td>
 					<td>
 						<?php if ($_smarty_tpl->tpl_vars['item']->value->bus->member_status=='0') {?>
 						死亡
 						<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->bus->member_status=='1') {?>
-						重伤
+						重傷
 						<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->bus->member_status=='2') {?>
-						轻伤
+						輕傷
 						<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->bus->member_status=='3') {?>
 						平安
 						<?php }?>
 					</td>
 				</tr>
 				<tr>
-					<td width="10%">事故图片</td>
+					<td width="10%">事故圖片</td>
 					<td id="res_<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 " class="res_list"></td>
 				</tr>

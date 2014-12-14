@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-11-25 17:31:58
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-06 07:10:52
          compiled from "../../app/www/views/agency/group_edit_info.html" */ ?>
 <?php /*%%SmartyHeaderCode:6228895365474bb19ddae35-59790614%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '89afb4ab3bae1a2bb68ce77e49ec056f2e737225' => 
     array (
       0 => '../../app/www/views/agency/group_edit_info.html',
-      1 => 1416936717,
+      1 => 1417531748,
       2 => 'file',
     ),
   ),
@@ -29,40 +29,40 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="flowset">
 	<a href="index.php?ctr=sysagency&act=groupedit&id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
-">基本资料</a>
+">旅行社的基本資料</a>
 	<em>&gt;</em>
 	<a href="index.php?ctr=sysagency&act=grouproom&id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
-">分房资讯</a>
+">分房資訊</a>
 	<em>&gt;</em>
 	<a href="index.php?ctr=sysagency&act=groupschedule&id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 ">行程安排</a>
 	<em>&gt;</em>
 	<a href="index.php?ctr=sysagency&act=groupinfo&id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
-" class="curr">开团说明会资料</a>
+" class="curr">開團說明會資料</a>
 </div>
 
-<form method="post" action="index.php?ctr=sysagency&act=grouproomsave">
+<form method="post" action="index.php?ctr=sysagency&act=groupinfosave">
 <div class="title_panel">
-	基本资料
+	開團說明會資料
 </div>
 <div class="form_inner">
 	<table class="table_form">
 		<tr>
-			<td class="tf_key">出团名称</td>
+			<td class="tf_key">出團名稱</td>
 			<td><span class="v"><input type="text" id="" name="" value=""></span></td>
 			<td class="tf_key"></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td class="tf_key">领队</td>
+			<td class="tf_key">領隊</td>
 			<td><span class="v"><input type="text" id="leader" name="leader" value="<?php echo $_smarty_tpl->tpl_vars['row']->value->leader;?>
 "></span></td>
-			<td class="tf_key">手机</td>
+			<td class="tf_key">手機</td>
 			<td><span class="v"><input type="text" id="leader_tel" name="leader_tel" value="<?php echo $_smarty_tpl->tpl_vars['row']->value->leader_tel;?>
 "></span></td>
 		</tr>
 		<tr>
-			<td class="tf_key">注意事项</td>
+			<td class="tf_key">注意事項</td>
 			<td></td>
 			<td class="tf_key"></td>
 			<td></td>
@@ -80,25 +80,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <div class="form_inner">
 	<table class="table_form">
 		<tr>
-			<td class="tf_key">导游帐号</td>
+			<td class="tf_key">導遊帳號</td>
 			<td><span class="v"><input type="text" id="guide_id" name="guide_id" value="<?php echo $_smarty_tpl->tpl_vars['row']->value->guide_id;?>
 "></span></td>
 			<td class="tf_key"></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td class="tf_key">导游</td>
+			<td class="tf_key">導遊</td>
 			<td><span class="v"><input type="text" id="guide_name" name="guide_name" value="<?php echo $_smarty_tpl->tpl_vars['row']->value->guide_name;?>
 "></span></td>
-			<td class="tf_key">手机</td>
+			<td class="tf_key">手機</td>
 			<td><span class="v"><input type="text" id="guide_tel" name="guide_tel" value="<?php echo $_smarty_tpl->tpl_vars['row']->value->guide_tel;?>
 "></span></td>
 		</tr>
 		<tr>
-			<td class="tf_key">团控</td>
+			<td class="tf_key">團控</td>
 			<td><span class="v"><input type="text" id="regulator" name="regulator" value="<?php echo $_smarty_tpl->tpl_vars['row']->value->regulator;?>
 "></span></td>
-			<td class="tf_key">手机</td>
+			<td class="tf_key">手機</td>
 			<td><span class="v"><input type="text" id="regulator_tel" name="regulator_tel" value="<?php echo $_smarty_tpl->tpl_vars['row']->value->regulator_tel;?>
 "></span></td>
 		</tr>
@@ -106,7 +106,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </div>
 
 <div class="title_panel">
-	团员性别
+	團員姓名
 </div>
 <div class="form_inner">
 	<table class="table_form">
@@ -123,7 +123,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <div>
 	<input type="hidden" name="id" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 " />
-	<input type="submit" class="gm_t1_btn" value="提交信息">
+	<input type="submit" class="gm_t1_btn" value="提交訊息">
 </div>
 </form>
 
