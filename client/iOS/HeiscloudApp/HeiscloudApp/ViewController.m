@@ -29,6 +29,7 @@
 - (void)initUI {
     _webView = [[UIWebView alloc]init];
     [_webView setFrame:self.view.frame];
+    [_webView setDelegate:self];
     [self.view addSubview:_webView];
     
     @autoreleasepool {

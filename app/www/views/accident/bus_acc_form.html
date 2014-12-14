@@ -13,6 +13,12 @@
 			.info-hotel {
 				padding: 10px;
 			}
+			.mui-input-row {
+				padding: 3px 0!important;
+			}
+			.mui-input-row select {
+				padding-left: 10px!important;
+			}
 		</style>
 	</head>
 	<body>
@@ -37,11 +43,12 @@
 					<input type="text" class="mui-input-clear" name="location" placeholder="發生地點">
 				</div>
 				<div class="mui-input-row">
-					<label>事故狀況：</label>
+					<label><b>事故狀況：</b></label>
 				</div>
 				<div class="mui-input-row">
+					<label>司機狀況：</label>
 					<select name="driver_status">
-						<option value="">請選擇司機狀況</option>
+						<option value="">-</option>
 						<option value="0">死亡</option>
 						<option value="1">重傷</option>
 						<option value="2">輕傷</option>
@@ -49,8 +56,9 @@
 					</select>
 				</div>
 				<div class="mui-input-row">
+					<label>旅客狀況：</label>
 					<select name="member_status">
-						<option value="">請選擇旅客狀況</option>
+						<option value="">-</option>
 						<option value="0">死亡</option>
 						<option value="1">重傷</option>
 						<option value="2">輕傷</option>
@@ -58,8 +66,9 @@
 					</select>
 				</div>
 				<div class="mui-input-row">
+					<label>遊覽車狀況：</label>
 					<select name="bus_status">
-						<option value="">請選擇遊覽車狀況</option>
+						<option value="">-</option>
 						<option value="0">可行進</option>
 						<option value="1">無法行進</option>
 					</select>

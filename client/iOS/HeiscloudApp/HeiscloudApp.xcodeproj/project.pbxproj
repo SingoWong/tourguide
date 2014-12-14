@@ -14,6 +14,7 @@
 		054A43FF1A3DFE0800A5D2A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054A43FE1A3DFE0800A5D2A1 /* Images.xcassets */; };
 		054A44021A3DFE0800A5D2A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054A44001A3DFE0800A5D2A1 /* LaunchScreen.xib */; };
 		054A440E1A3DFE0800A5D2A1 /* HeiscloudAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A440D1A3DFE0800A5D2A1 /* HeiscloudAppTests.m */; };
+		054A441B1A3E083300A5D2A1 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054A441A1A3E083300A5D2A1 /* icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		054A44071A3DFE0800A5D2A1 /* HeiscloudAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeiscloudAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		054A440C1A3DFE0800A5D2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054A440D1A3DFE0800A5D2A1 /* HeiscloudAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeiscloudAppTests.m; sourceTree = "<group>"; };
+		054A441A1A3E083300A5D2A1 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		054A43E51A3DFE0800A5D2A1 = {
 			isa = PBXGroup;
 			children = (
+				054A44171A3E080400A5D2A1 /* Resources */,
 				054A43F01A3DFE0800A5D2A1 /* HeiscloudApp */,
 				054A440A1A3DFE0800A5D2A1 /* HeiscloudAppTests */,
 				054A43EF1A3DFE0800A5D2A1 /* Products */,
@@ -117,6 +120,14 @@
 				054A440C1A3DFE0800A5D2A1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		054A44171A3E080400A5D2A1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				054A441A1A3E083300A5D2A1 /* icon@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				054A43FD1A3DFE0800A5D2A1 /* Main.storyboard in Resources */,
+				054A441B1A3E083300A5D2A1 /* icon@2x.png in Resources */,
 				054A44021A3DFE0800A5D2A1 /* LaunchScreen.xib in Resources */,
 				054A43FF1A3DFE0800A5D2A1 /* Images.xcassets in Resources */,
 			);

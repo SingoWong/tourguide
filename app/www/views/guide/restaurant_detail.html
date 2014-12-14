@@ -34,6 +34,9 @@
 		}
 		</script>
 		<style type="text/css">
+			.restaurant-detail {
+				border-bottom: 1px dotted #CCC;
+			}
 			.restaurant-detail p a {
 				display: inline-block;
 				height: 40px;
@@ -49,8 +52,22 @@
 				width: 60px;
 				text-align: center;
 			}
+			.info-detail h3 {
+				background: #CCC!important;
+				padding: 10px!important;
+				border-radius: 5px!important;
+				text-align: center;
+				font-size: 16px;
+			}
+			.attention {
+				padding: 5px;
+			}
 			.attention textarea {
 				border: 1px solid #CCC;
+				border-radius: 5px;
+			}
+			h5.mui-content-padded {
+				padding: 10px!important;
 			}
 		</style>
 	</head>
@@ -145,7 +162,7 @@
 					</div>
 					<h5 class="mui-content-padded">注意事項</h5>
 					<div class="restaurant-option">
-						<div class="attention"><textarea name="attention"></textarea></div>
+						<div class="attention"><textarea name="attention" placeholder="這裏填寫注意事項"></textarea></div>
 						<div class="mui-card">
 							<div class="mui-input-row mui-checkbox mui-left">
 								<label>重鹹</label>
