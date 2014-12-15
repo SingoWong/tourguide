@@ -72,7 +72,9 @@ if ( ! function_exists('alert'))
         } else {
             $url = ($url == '') ? '' : 'top.location.href="'.$url.'";';
         }
-        echo '<script>alert("'.$msg.'");'.$url.'</script>';
+        echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title></title></head><body>';
+		echo '<script>alert("'.$msg.'");'.$url.'</script></body></html>';
+        
     }
 }
 ?>

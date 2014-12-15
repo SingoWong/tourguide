@@ -423,12 +423,6 @@ class Group_Model extends CI_Model {
         $group->where('start_date <=', $today_start);
         $group->where('end_date >', $today_end);
         $group->get();
-		
-		if($_REQUEST['aa']=='1') {
-			dump($today_start);
-			dump($today_end);
-			dump($gid);
-		}
         
         return $group->all[0];
     }
