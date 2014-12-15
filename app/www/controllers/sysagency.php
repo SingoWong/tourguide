@@ -445,6 +445,35 @@ class SysAgency extends Base_Controller {
         $this->smarty->assign('res', json_encode($re->res));
         $this->smarty->display('./agency/accidents.html');
     }
+	
+	public function schedule() {
+        $gid = $_REQUEST['gid'];
+        
+        $this->load->model('Group_Model');
+		
+        $group_model = new Group_Model();
+        $rows = $group_model->getScheduleById($gid);
+        
+        $re = array();
+        foreach ($rows as $row) {
+            $r['id'] = $row->id;
+            $r['gid'] = $row->gid;
+            $r['day'] = $row->day;
+            $r['route'] = $row->route;
+            $r['type'] = $row->type;
+            $r['time'] = date('H:m', $row->time);
+            $r['hid'] = $row->hid;
+            $r['rid'] = $row->rid;
+            $r['hstatus'] = $row->hstatus;
+            $r['rstatus'] = $row->rstatus;
+            $r['detail'] = $row->detail;
+            $r['location'] = $row->location;
+            
+            $re[$row->day][] = $r;
+        }
+        
+        echo json_encode($re);
+    }
     
     private function _gen_room_selector($id, $default) {
         $html = '<select id="'.$id.'" name="'.$id.'" onchange="calc();">';

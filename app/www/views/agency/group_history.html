@@ -56,7 +56,7 @@ function sh_sub_pnlc(id, day) {
 		</div>
 		<script type="text/javascript">
 		$.ajax({
-			url: "index.php?ctr=sysgroup&act=schedule&gid={{$item->id}}",
+			url: "index.php?ctr=sysagency&act=schedule&gid={{$item->id}}",
 			success: function(json){
 				var data = eval('('+json+')');
 				$.each(data,function(day,schedule){
