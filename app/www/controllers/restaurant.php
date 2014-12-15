@@ -27,7 +27,7 @@ class Restaurant extends Base_Controller {
         $this->load->model('order_model');
 		
 		$order = new Order_Model();
-		$re = $order->getRestaurantOrdersToday($this->user['id']);
+		$re = $order->getRestaurantOrdersToday($this->user['id'], true);
 		
 		$this->smarty->assign('rowset', $re);
 		$this->smarty->display('./restaurant/today_order.html');
