@@ -214,6 +214,7 @@ class Group_Model extends CI_Model {
             $group->amount = $row['amount'];
             $group->contact_name = $row['contact_name'];
             $group->contact_tel = $row['contact_tel'];
+			$group->map = $row['map'];
             
             $re = $group->save();
         }

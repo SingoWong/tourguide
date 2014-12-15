@@ -214,6 +214,7 @@ class SysAgency extends Base_Controller {
         $row['amount'] = $this->input->post('amount');
         $row['contact_name'] = $this->input->post('contact_name');
         $row['contact_tel'] = $this->input->post('contact_tel');
+		$row['map'] = $this->input->post('map');
         
         $re = $group->saveGroupBase($row);
         
