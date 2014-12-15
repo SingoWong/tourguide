@@ -1,0 +1,26 @@
+{{include file="_common/popup_header.html"}}
+
+<div class="title_panel">
+	導遊管理 - 修改資料
+</div>
+
+<div class="form_inner">
+
+<form action="index.php?ctr=sysguide&act=saveprofile" method="post" class="gm_t1_form">
+    <ul>
+        <li>
+            {{if $type == 'contact_tel'}}
+            <span class="v"><input type="text" id="contact_tel" name="contact_tel" placeholder="聯繫電話" value="{{$profile->contact_tel}}"></span>
+            {{/if}}
+        </li>
+        <li class="gm_t1_form_btn" style="height:auto;">
+        	<input type="hidden" name="id" value="{{$profile->uid}}" />
+        	<input type="hidden" name="type" value="{{$type}}" />
+            <input type="submit" class="gm_t1_btn" value="提交">
+        </li>
+    </ul>
+</form>
+
+</div>
+
+{{include file="_common/popup_footer.html"}}

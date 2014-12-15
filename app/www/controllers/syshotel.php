@@ -107,7 +107,7 @@ class SysHotel extends Base_Controller {
             $row['sign_date_end'] = strtotime($this->input->post('sign_date_end'));
         }
     
-        $re = $users_hotel_model->update($uid, $row);
+        $re = $users_hotel_model->updateProfile($uid, $row);
     
         if ($re) {
             alert('保存成功', url('syshotel/index'));
