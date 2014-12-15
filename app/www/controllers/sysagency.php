@@ -309,6 +309,7 @@ class SysAgency extends Base_Controller {
             $locations = $this->input->post("location_".$day);
             $moneys = $this->input->post("money_".$day);
             $details = $this->input->post("detail_".$day);
+			$tabs = $this->input->post("tab_".$day);
             
             for ($i=0;$i<sizeof($types);$i++) {
                 $row['gid'] = $gid;
@@ -320,6 +321,7 @@ class SysAgency extends Base_Controller {
                 $row['location'] = $locations[$i];
                 $row['money'] = $moneys[$i];
                 $row['detail'] = $details[$i];
+				$row['tab'] = $tabs;
                 
                 $rows[] = $row;
             }

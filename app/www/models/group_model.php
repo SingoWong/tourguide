@@ -286,6 +286,7 @@ class Group_Model extends CI_Model {
             $schedual->location = $row['location'];
             $schedual->detail = $row['detail'];
             $schedual->hid = $row['hid'];
+			$schedual->tab = $row['tab'];
 			
 			$sre = $schedual->save();
             $result[] = $sre; 

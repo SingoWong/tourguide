@@ -18,6 +18,7 @@ $(document).ready(function(){
 		curroute[{{$item->day}}+'_'+{{$item->route}}] = '1';
 	}
 	
+	$("#tab_{{$item->day}}").val("{{$item->tab}}");
 	$("#type_{{$item->day}}_"+t).val("{{$item->type}}");
 	$("#time_{{$item->day}}_"+t).val('{{$item->time|date_format:"%H:%M"}}');
 	$("#location_{{$item->day}}_"+t).val("{{$item->location}}");
@@ -40,6 +41,7 @@ function add_day() {
 	count_days++;
 	var html_btnday = '<input type="button" class="gm_t1_btn_alt_disabled" value="第'+count_days+'天" onclick="change_day('+count_days+');" />\n';
 	var html_pnlday = '<div id="day_'+count_days+'" class="day_item"><div id="day_'+count_days+'_items" class="item"></div><div><input type="button" class="gm_t1_btn" value="+增加行程" onclick="add_route('+count_days+');"></div></div><input type="hidden" name="days[]" value="'+count_days+'" />';
+	
 	$("#list_days").append(html_btnday);
 	$("#list_route").append(html_pnlday);
 	
@@ -47,6 +49,12 @@ function add_day() {
 	add_route(count_days);
 }
 function add_route(day) {
+	
+	if ($("#day_"+day+"_items").html() == "") {
+		var html_tab = "<div style=\"padding:10px\">D"+day+"標簽 <input type=\"text\" name=\"tab_"+day+"\" id=\"tab_"+day+"\" style=\"height:30px;line-height:30px;width:200px\" placeholder=\"標簽\" /><div>";
+		$("#day_"+day+"_items").append(html_tab);
+	}
+	
 	t++;
 	var html_route = '<div id="route_'+day+'_'+t+'"><div class="item_title"><a href="#" onclick="return close_route('+day+','+t+');" id="btnc_'+day+''+t+'">X</a>行程<em class="route_'+day+'_num"><em></div>'+
 	 				 '<table border="0" width="100%" cellpadding="2" cellspacing="1">'+

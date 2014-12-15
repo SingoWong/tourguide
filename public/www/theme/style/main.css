@@ -51,6 +51,7 @@ body {
 .mui-bar-tab .mui-active {
 	background: #02a2e9!important;
 	color: #FFF!important;
+	font-size:14px!important;
 }
 .result-page {
 	padding: 10px;
