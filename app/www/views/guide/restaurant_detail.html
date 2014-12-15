@@ -89,7 +89,7 @@
 				<h3>訂餐資訊</h3>
 				<div class="restaurant-detail">
 					<p>日期：{{$date}}</p>
-					<p>餐別：{{if $type=='2'}}中餐{{elseif $type=='3'}}午餐{{/if}}</p>
+					<p>餐別：{{if $type=='2'}}中餐{{elseif $type=='3'}}晚餐{{/if}}</p>
 					<p>餐廳名稱：{{$rname}}</p>
 					<p>旅行社：{{$aname}}</p>
 					<p>團號：{{$code}}</p>
@@ -169,28 +169,28 @@
 								<input name="note[]" type="checkbox" value="重鹹">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
+								<label>重油</label>
+								<input name="note[]" type="checkbox" value="重油">
+							</div>
+							<div class="mui-input-row mui-checkbox mui-left">
 								<label>重辣</label>
 								<input name="note[]" type="checkbox" value="重辣">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>重甜</label>
-								<input name="note[]" type="checkbox" value="重甜">
+								<label>勿糖</label>
+								<input name="note[]" type="checkbox" value="勿糖">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>素</label>
-								<input name="note[]" type="checkbox" value="素">
-							</div>
-							<div class="mui-input-row mui-checkbox mui-left">
-								<label>不吃豬</label>
-								<input name="note[]" type="checkbox" value="不吃豬">
+								<label>勿辣</label>
+								<input name="note[]" type="checkbox" value="勿辣">
 							</div> 
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>不吃牛</label>
-								<input name="note[]" type="checkbox" value="不吃牛">
+								<label>備公筷洗碗水</label>
+								<input name="note[]" type="checkbox" value="備公筷洗碗水">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>其他</label>
-								<input name="note[]" type="checkbox" value="其他">
+								<label>麵食</label>
+								<input name="note[]" type="checkbox" value="麵食">
 							</div>
 						</div>
 					</div>

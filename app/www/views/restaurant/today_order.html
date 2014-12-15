@@ -39,7 +39,7 @@
 		<div class="mui-content">
 			<div class="order-result">
 				<div class="title_status">
-					选择状态：-
+					選擇狀態：-
 				</div>
 				<ul class="mui-table-view">
 					{{foreach from=$rowset item=item key=key}}
@@ -57,7 +57,7 @@
 							<p>餐廳名稱：{{$RBAC_USER_NAME}}</p>
 							<p>旅行社：{{$item->agency->name}}</p>
 							<p>團號：{{$item->group->code}}</p>
-							<p>導遊：{{$item->group->contact_name}}</p>
+							<p>導遊：{{$item->info->guide_name}}</p>
 							<p>人數：{{$item->amount}}人</p>
 							<p>餐標：{{$item->price_unit}}</p>
 							<p>金額：{{math equation="amount*unit" amount=$item->amount unit=$item->price_unit}}</p>

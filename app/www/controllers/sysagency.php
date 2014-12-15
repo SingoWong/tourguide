@@ -346,6 +346,8 @@ class SysAgency extends Base_Controller {
             alert('请先填写资料');
             redirect(url('sysagency/groupedit'));
         }
+		
+		$re_group = $group->getGroupBase($gid);
         $re = $group->getGroupInfo($gid);
 		
 		//獲得導遊列表
@@ -364,6 +366,7 @@ class SysAgency extends Base_Controller {
 		}
         
         $this->smarty->assign('id',$gid);
+		$this->smarty->assign('group',$re_group);
         $this->smarty->assign('row',$re);
 		$this->smarty->assign('html_guide',$html_guide);
 		$this->smarty->assign('json_guide',json_encode($guides));

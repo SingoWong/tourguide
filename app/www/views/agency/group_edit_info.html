@@ -32,7 +32,7 @@
 	<table class="table_form">
 		<tr>
 			<td class="tf_key">出團名稱</td>
-			<td><span class="v"><input type="text" id="" name="" value=""></span></td>
+			<td><span class="v"><input type="text" id="" name="" value="{{$group->name}}"></span></td>
 			<td class="tf_key"></td>
 			<td></td>
 		</tr>
@@ -49,7 +49,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td colspan="4"><textarea style="width:745px;height:80px;">{{$row->attention}}</textarea></td>
+			<td colspan="4"><textarea style="width:745px;height:80px;" name="attention">{{$row->attention}}</textarea></td>
 		</tr>
 	</table>
 </div>
@@ -73,9 +73,9 @@
 		</tr>
 		<tr>
 			<td class="tf_key">團控</td>
-			<td><span class="v"><input type="text" id="regulator" name="regulator" value="{{$row->regulator}}"></span></td>
+			<td><span class="v"><input type="text" id="regulator" name="regulator" value="{{if $row->regulator != ''}}{{$row->regulator}}{{else}}{{$group->contact_name}}{{/if}}"></span></td>
 			<td class="tf_key">手機</td>
-			<td><span class="v"><input type="text" id="regulator_tel" name="regulator_tel" value="{{$row->regulator_tel}}"></span></td>
+			<td><span class="v"><input type="text" id="regulator_tel" name="regulator_tel" value="{{if $row->regulator_tel != ''}}{{$row->regulator_tel}}{{else}}{{$group->contact_tel}}{{/if}}"></span></td>
 		</tr>
 	</table>
 </div>
@@ -87,7 +87,7 @@
 	<table class="table_form">
 		<tr>
 			<td>
-				<textarea style="width:745px;height:80px;">{{$row->member_names}}</textarea>
+				<textarea style="width:745px;height:80px;" name="member_names">{{$row->member_names}}</textarea>
 			</td>
 		</tr>
 	</table>

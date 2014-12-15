@@ -117,6 +117,16 @@ class Order_Model extends CI_Model {
 					$ids_aid[] = $orders->all[$i]->group->aid;
                 }
 				unset($us);
+				
+				$info = new Group_Info();
+                $info->where_in('gid', $ids_gid)->get();
+                
+                $us = array_to_hashmap($info->all, 'gid');
+                
+                for ($i=0; $i<sizeof($orders->all); $i++) {
+                    $orders->all[$i]->info = $us[$orders->all[$i]->gid];
+                }
+				unset($us);
             }
 			
 			if (sizeof($ids_aid) > 0) {
