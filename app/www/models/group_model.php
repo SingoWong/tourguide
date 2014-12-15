@@ -18,11 +18,12 @@ class Group_Model extends CI_Model {
     function getActiveGroup() {
         $group = new Group();
         
-        $today_start = strtotime(date('Y-m-d'));
-        $today_end = strtotime(date('Y-m-d 23:59:59'));
+//      $today_start = strtotime(date('Y-m-d'));
+//      $today_end = strtotime(date('Y-m-d 23:59:59'));
+		$today = strtotime(date('Y-m-d'));
         
-        $group->where('start_date <=', $today_start);
-        $group->where('end_date >', $today_end);
+//      $group->where('start_date <=', $today_start);
+        $group->where('end_date >', $today);
         $group->get();
         
         return $group->all;
@@ -36,12 +37,13 @@ class Group_Model extends CI_Model {
     function getActiveGroupByAid($aid) {
         $group = new Group();
     
-        $today_start = strtotime(date('Y-m-d'));
-        $today_end = strtotime(date('Y-m-d 23:59:59'));
+//      $today_start = strtotime(date('Y-m-d'));
+//      $today_end = strtotime(date('Y-m-d 23:59:59'));
+		$today = strtotime(date('Y-m-d'));
     
         $group->where('aid', $aid);
-        $group->where('start_date <=', $today_start);
-        $group->where('end_date >', $today_end);
+//      $group->where('start_date <=', $today_start);
+        $group->where('end_date >', $today);
         $group->get();
     
         return $group->all;
@@ -416,12 +418,13 @@ class Group_Model extends CI_Model {
     function getCurrGroupByGuideId($gid) {
         $group = new Group();
         
-        $today_start = strtotime(date('Y-m-d'));
-        $today_end = strtotime(date('Y-m-d 23:59:59'));
+//      $today_start = strtotime(date('Y-m-d'));
+//      $today_end = strtotime(date('Y-m-d 23:59:59'));
+		$today = strtotime(date('Y-m-d'));
         
         $group->where('gid', $gid);
-        $group->where('start_date <=', $today_start);
-        $group->where('end_date >', $today_end);
+//      $group->where('start_date <=', $today_start);
+        $group->where('end_date >', $today);
         $group->get();
         
         return $group->all[0];

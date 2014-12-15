@@ -26,7 +26,7 @@ class Users_Model extends CI_Model {
 	    
 	    //创建角色对照
 	    if ($re['result']) {
-    	    $roles = new Users_Roles();
+    	    		$roles = new Users_Roles();
 	        $roles->rid = $role_id;
             $roles->uid = $users->id;
             $roles->save();
