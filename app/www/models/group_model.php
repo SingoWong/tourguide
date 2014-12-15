@@ -344,11 +344,13 @@ class Group_Model extends CI_Model {
      * @return boolean
      */
     function saveGroupInfo($gid, $row) {
+    	$group = new Group();
         $info = new Group_Info();
         
         $info->where('gid', $gid)->get();
         
         if ($info->result_count() > 0) {
+        	$group->where('id', $gid)->update(array('gid'=>$row['guide_id']));
             $re = $info->where('gid', $gid)->update($row);
         } else {
             $info->gid = $gid;
@@ -418,5 +420,29 @@ class Group_Model extends CI_Model {
         
         return $group->all[0];
     }
+	
+	/**
+	 * 检查导游是否已经有空闲
+	 */
+	function checkGroupGuide($gid, $guide_id) {
+		$group = new Group();
+		$group_info = new Group_Info();
+		
+		$group->where('gid', $gid)->get();
+		
+		$start_date = $group->all[0]->start_date;
+		$end_date = $group->all[0]->end_date;
+		
+		$group->where('gid', $guide_id)->get();
+		
+		foreach ($group->all as $gp) {
+			if (($start_date > $gp->start_date && $start_date < $gp->end_date) || 
+				($end_date > $gp->start_date && $end_date < $gp->end_date)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }
 ?>

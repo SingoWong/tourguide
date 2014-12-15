@@ -371,10 +371,6 @@ class SysAgency extends Base_Controller {
         $this->load->model('Group_Model');
 		
         $group = new Group_Model();
-		$users = new Users_Model();
-		
-		//檢查導遊是否已經占團
-		//TODO
         
         $gid = $this->input->post('id');
         $row['leader'] = $this->input->post('leader');
@@ -386,6 +382,12 @@ class SysAgency extends Base_Controller {
         $row['regulator'] = $this->input->post('regulator');
         $row['regulator_tel'] = $this->input->post('regulator_tel');
         $row['member_names'] = $this->input->post('member_names');
+		
+		//檢查導遊是否已經占團
+		if (!$group->checkGroupGuide($gid, $row['guide_id'])) {
+			alert('导游档期已满，请确认时间！', null, TRUE);
+			exit();
+		}
         
         $re = $group->saveGroupInfo($gid, $row);
 		
