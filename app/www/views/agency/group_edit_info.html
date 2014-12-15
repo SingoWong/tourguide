@@ -1,5 +1,19 @@
 {{include file="_common/header.html"}}
 
+<script type="text/javascript">
+	var json_guide = eval('({{$json_guide}})');
+	
+	$(document).ready(function(){
+		onchooseguide($("#guide_id")[0]);
+	});
+	
+	function onchooseguide(sender) {
+		var guide_id = $(sender).val();
+		$("#guide_name").val(json_guide[guide_id]['name']);
+		$("#guide_tel").val(json_guide[guide_id]['contact_tel']);
+	}
+</script>
+
 <div class="flowset">
 	<a href="index.php?ctr=sysagency&act=groupedit&id={{$id}}">旅行社的基本資料</a>
 	<em>&gt;</em>
@@ -47,7 +61,7 @@
 	<table class="table_form">
 		<tr>
 			<td class="tf_key">導遊帳號</td>
-			<td><span class="v"><input type="text" id="guide_id" name="guide_id" value="{{$row->guide_id}}"></span></td>
+			<td><span class="v"><select id="guide_id" name="guide_id" onchange="onchooseguide(this);">{{$html_guide}}</select></span></td>
 			<td class="tf_key"></td>
 			<td></td>
 		</tr>

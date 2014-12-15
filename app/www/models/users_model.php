@@ -184,6 +184,13 @@ class Users_Model extends CI_Model {
 	    return $re;
 	}
 	
+	public function getUserByUsername($username) {
+		$users = new Users();
+	    $users->where('username', $username)->get(1);
+		
+		return $users->all[0];
+	}
+	
 	private function _gen_password($username) {
 	    return strrev($username);
 	}

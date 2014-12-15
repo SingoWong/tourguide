@@ -334,6 +334,8 @@ class SysAgency extends Base_Controller {
     
     public function groupinfo() {
         $this->load->model('Group_Model');
+		$this->load->model('Users_Guide_Model');
+		
         $group = new Group_Model();
         
         $gid = $this->input->get('id');
@@ -342,15 +344,37 @@ class SysAgency extends Base_Controller {
             redirect(url('sysagency/groupedit'));
         }
         $re = $group->getGroupInfo($gid);
+		
+		//獲得導遊列表
+		$guide = new Users_Guide_Model();
+		$re_guide = $guide->getContractGuide(null, TRUE);
+		$html_guide = '';
+		$guides = array();
+		foreach($re_guide as $rg) {
+			if ($rg->users->id == $re->guide_id) {
+				$selected = 'selected="selected"';
+			} else {
+				$selected = '';
+			}
+			$html_guide .= '<option value="'.$rg->users->id.'" '.$selected.'>'.$rg->users->username.'（'.$rg->users->name.'）</option>';
+			$guides[$rg->users->id] = array('name'=>$rg->users->name, 'contact_tel'=>$rg->contact_tel);
+		}
         
         $this->smarty->assign('id',$gid);
         $this->smarty->assign('row',$re);
+		$this->smarty->assign('html_guide',$html_guide);
+		$this->smarty->assign('json_guide',json_encode($guides));
         $this->smarty->display('./agency/group_edit_info.html');
     }
     
     public function groupinfosave() {
         $this->load->model('Group_Model');
+		
         $group = new Group_Model();
+		$users = new Users_Model();
+		
+		//檢查導遊是否已經占團
+		//TODO
         
         $gid = $this->input->post('id');
         $row['leader'] = $this->input->post('leader');
@@ -364,7 +388,7 @@ class SysAgency extends Base_Controller {
         $row['member_names'] = $this->input->post('member_names');
         
         $re = $group->saveGroupInfo($gid, $row);
-        
+		
         if ($re['result']) {
             redirect(url('sysagency/groupprogress'));
         }

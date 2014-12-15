@@ -10,12 +10,33 @@ class Users_Guide_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getContractGuide($conditions) {
+    function getContractGuide($conditions, $with_relation=false) {
         $guide = new Users_Guide();
         
         $guide->where('sign_date_start <=', time());
         $guide->where('sign_date_end >=', time());
+		foreach ($conditions as $field=>$value) {
+            $guide->where($field, $value);
+        }
         $guide->get();
+		
+		if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($guide->all); $i++) {
+                $ids[] = $guide->all[$i]->uid;
+            }
+        
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+        
+                $us = array_to_hashmap($users->all, 'id');
+        
+                for ($i=0; $i<sizeof($guide->all); $i++) {
+                    $guide->all[$i]->users = $us[$guide->all[$i]->uid];
+                }
+            }
+        }
         
         return $guide->all;
     }
