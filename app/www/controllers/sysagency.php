@@ -480,7 +480,7 @@ class SysAgency extends Base_Controller {
         for ($i=0;$i<=15;$i++) {
             $val = $i;
             if ($val == $default) {
-                $html .= '<option value="'.$val.'" selected="selected>'.$val.'</option>';
+                $html .= '<option value="'.$val.'" selected="selected">'.$val.'</option>';
             } else {
                 $html .= '<option value="'.$val.'">'.$val.'</option>';
             }
