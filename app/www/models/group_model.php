@@ -350,9 +350,14 @@ class Group_Model extends CI_Model {
         $info->where('gid', $gid)->get();
         
         if ($info->result_count() > 0) {
+        	//更新團號信息
         	$re = $group->where('id', $gid)->update(array('gid'=>$row['guide_id']));
+			//更新開團會信息
             $re = $info->where('gid', $gid)->update($row);
         } else {
+        	//更新團號信息
+        	$re = $group->where('id', $gid)->update(array('gid'=>$row['guide_id']));
+			//更新開團會信息
             $info->gid = $gid;
             $info->leader = $row['leader'];
             $info->leader_tel = $row['leader_tel'];
@@ -363,7 +368,6 @@ class Group_Model extends CI_Model {
             $info->regulator = $row['regulator'];
             $info->regulator_tel = $row['regulator_tel'];
             $info->member_names = $row['member_names'];
-        
             $re = $info->save();
         }
         
