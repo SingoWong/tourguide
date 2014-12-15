@@ -79,7 +79,7 @@ class Users_Guide_Model extends CI_Model {
         $this->db->trans_start();
         
         $users_model = new Users_Model();
-        $new_user['username'] = $row['code'];
+        $new_user['username'] = $row['contact_tel'];
         $new_user['name'] = $row['name'];
         $nu_re = $users_model->create($new_user, ROLE_ID_GUIDE);
         

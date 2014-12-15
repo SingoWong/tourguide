@@ -59,7 +59,7 @@ class SysGuide extends Base_Controller {
         $users_guide_model = new Users_Guide_Model();
     
         $row['name'] = $this->input->post('name');
-        $row['code'] = $this->input->post('contact_tel');
+        $row['code'] = $this->input->post('code');
         $row['contact_tel'] = $this->input->post('contact_tel');
         $row['sign_date_start'] = strtotime($this->input->post('sign_date_start'));
         $row['sign_date_end'] = strtotime($this->input->post('sign_date_end'));
