@@ -57,12 +57,12 @@
 					<p>日期：{{$date}}</p>
 					<p>餐別：{{if $schedule->type=='2'}}中餐{{elseif $schedule->type=='3'}}晚餐{{/if}}</p>
 					<p>餐廳名：{{$restaurant->users->name}}</p>
-					<p>旅行社：</p>
+					<p>旅行社：{{$agency->users->name}}</p>
 					<p>團號：{{$group->code}}</p>
-					<p>導遊：{{$group->contact_name}}</p>
-					<p>人數：{{$group->amount}}</p>
-					<p>餐標：</p>
-					<p>金額：</p>
+					<p>導遊：{{$info->guide_name}}</p>
+					<p>人數：{{$order->amount}}</p>
+					<p>餐標：{{$order->price_unit}}</p>
+					<p>金額：{{math equation="amount*unit" amount=$order->amount unit=$order->price_unit}}</p>
 					<p>結帳方式：{{if $mode=='0'}}現金{{elseif $mode=='1'}}刷卡{{elseif $mode=='2'}}簽單{{/if}}</p>
 				</div>
 				<div class="upload_receive">

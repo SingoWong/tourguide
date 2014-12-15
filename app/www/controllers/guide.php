@@ -292,8 +292,10 @@ class Guide extends Base_Controller {
      * 餐厅结账账单信息
      */
     public function restaurant_payment_checklist() {
-    	$this->load->model('Group_Model');
+    		$this->load->model('Group_Model');
 		$this->load->model('Users_Restaurant_Model');
+		$this->load->model('Order_Model');
+		$this->load->model('Users_Agency_Model');
 		
         $gid = $this->input->get('gid');
         $day = $this->input->get('day');
@@ -303,14 +305,24 @@ class Guide extends Base_Controller {
 		$group = new Group_Model();
         $re_schedule = $group->getGroupScheduleWhitRoute($gid, $day, $route);
 		$re_group = $group->getGroupBase($gid);
+		$re_info = $group->getGroupInfo($gid);
 		
 		$restaurant = new Users_Restaurant_Model();
 		$re_restaurant = $restaurant->getRestaurantById($re_schedule->rid);
 		
+		$order = new Order_Model();
+		$re_order = $order->getRestaurantOrder($gid, $day, $route);
+		
+		$agency = new Users_Agency_Model();
+		$re_agency = $agency->getAgencyById($re_group->aid);
+		
 		$this->smarty->assign('date',date('Y-m-d'));
 		$this->smarty->assign('group',$re_group);
+		$this->smarty->assign('info',$re_info);
 		$this->smarty->assign('schedule',$re_schedule);
 		$this->smarty->assign('restaurant',$re_restaurant);
+		$this->smarty->assign('order',$re_order);
+		$this->smarty->assign('agency',$re_agency);
         $this->smarty->assign('gid',$gid);
         $this->smarty->assign('day',$day);
         $this->smarty->assign('route',$route);
