@@ -350,7 +350,7 @@ class Group_Model extends CI_Model {
         $info->where('gid', $gid)->get();
         
         if ($info->result_count() > 0) {
-        	$group->where('id', $gid)->update(array('gid'=>$row['guide_id']));
+        	$re = $group->where('id', $gid)->update(array('gid'=>$row['guide_id']));
             $re = $info->where('gid', $gid)->update($row);
         } else {
             $info->gid = $gid;

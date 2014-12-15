@@ -7,10 +7,16 @@
 		{{include file="_common/minclude.html"}}
 		
 		<style type="text/css">
+			body, .mui-content, .mui-input-group {
+				background: #15181c!important;
+			}
+			.mui-bar-nav {
+				background: #000!important;
+			}
 			.logo {
-				background: url(./theme/images/slogo.png) center 10px no-repeat;
-				background-size: 210px;
-				height: 210px;
+				background: url(./theme/images/slogo.png) center 30px no-repeat;
+				background-size: 150px;
+				height: 180px;
 				width: 210px;
 				margin: auto;
 			}
@@ -34,18 +40,23 @@
 				overflow: hidden;
 			}
 			.signin_submit .btn-signin {
-				margin-right: 60px;
 				height: 50px;
 			}
+			.signin_submit .btn-signin button {
+				background: #e9af27!important;
+			}
 			.signin_submit .btn-forgot {
-				float: right;
-				width: 55px;
-				height: 58px;
-				line-height: 20px!important;
+				display: inline-block;
 				padding-top: 8px;
+				color: #FFF;
 			}
 			.agreement {
 				text-align: center;
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				padding: 10px;
+				color: #FFF;
 			}
 		</style>
 	</head>
@@ -65,8 +76,8 @@
 				</div>
 				
 				<div class="signin_submit">
-					<a class="mui-btn mui-btn-block btn-forgot" href="{{$url_forgot_guide}}">忘記<br/>密碼</a>
 					<div class="btn-signin"><button class="mui-btn mui-btn-primary mui-btn-block">登入</button></div>
+					<div><a class="btn-forgot" href="{{$url_forgot_guide}}">忘記密碼</a></div>
 				</div>
 				<div class="agreement">
 					按下登入，表示統一<a href="{{$url_services}}">服務條款</a>及<a href="{{$url_policy}}">隱私權政策</a>
