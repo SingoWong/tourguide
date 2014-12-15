@@ -40,7 +40,7 @@ class Restaurant extends Base_Controller {
         $this->load->model('order_model');
 		
 		$order = new Order_Model();
-		$re = $order->getRestaurantOrdersReview($this->user['id']);
+		$re = $order->getRestaurantOrdersReview($this->user['id'], true);
 		
 		$this->smarty->assign('rowset', $re);
 		$this->smarty->assign('url_approve', url('restaurant/order_confirm'));

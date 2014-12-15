@@ -76,7 +76,7 @@ class Order_Model extends CI_Model {
 	/**
 	 * 餐廳－获取今日订单
 	 */
-	function getRestaurantOrdersToday($rid) {
+	function getRestaurantOrdersToday($rid, $with_relation=false) {
 		$orders = new Restaurant_Order();
 		
 		$orders->where('status !=', STATUS_RORDER_PAYMENG);
@@ -91,12 +91,59 @@ class Order_Model extends CI_Model {
 	/**
 	 * 餐廳－获取新进订单
 	 */
-	function getRestaurantOrdersReview($rid) {
+	function getRestaurantOrdersReview($rid, $with_relation=false) {
 		$orders = new Restaurant_Order();
 		
 		$orders->where('status', STATUS_RORDER_PANDING);
 		$orders->where('rid', $rid);
 		$orders->get();
+		
+		if ($with_relation) {
+            $ids_sid = array();
+			$ids_gid = array();
+			$ids_aid = array();
+            for ($i=0; $i<sizeof($orders->all); $i++) {
+                $ids_sid[] = $orders->all[$i]->sid;
+				$ids_gid[] = $orders->all[$i]->gid;
+            }
+            
+            if (sizeof($ids_sid) > 0) {
+                $schedule = new Group_Schedule();
+                $schedule->where_in('id', $ids_sid)->get();
+                
+                $us = array_to_hashmap($schedule->all, 'id');
+                
+                for ($i=0; $i<sizeof($orders->all); $i++) {
+                    $orders->all[$i]->schedule = $us[$orders->all[$i]->sid];
+                }
+				unset($us);
+            }
+			
+			if (sizeof($ids_gid) > 0) {
+                $group = new Group();
+                $group->where_in('id', $ids_gid)->get();
+                
+                $us = array_to_hashmap($group->all, 'id');
+                
+                for ($i=0; $i<sizeof($orders->all); $i++) {
+                    $orders->all[$i]->group = $us[$orders->all[$i]->gid];
+					$ids_aid[] = $orders->all[$i]->group->aid;
+                }
+				unset($us);
+            }
+			
+			if (sizeof($ids_aid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_aid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($orders->all); $i++) {
+                    $orders->all[$i]->agency = $us[$orders->all[$i]->group->aid];
+                }
+				unset($us);
+            }
+        }
 		
 		return $orders->all;
 	}
