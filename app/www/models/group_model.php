@@ -15,7 +15,7 @@ class Group_Model extends CI_Model {
      * 查看正在进行的旅行团
      * @return multitype:
      */
-    function getActiveGroup() {
+    function getActiveGroup($with_relation=false) {
         $group = new Group();
         
 //      $today_start = strtotime(date('Y-m-d'));
@@ -25,6 +25,25 @@ class Group_Model extends CI_Model {
 //      $group->where('start_date <=', $today_start);
         $group->where('end_date >', $today);
         $group->get();
+		
+		if ($with_relation) {
+			$ids_gid = array();
+			for ($i=0; $i<sizeof($group->all); $i++) {
+				$ids_gid[] = $group->all[$i]->gid;
+            }
+			
+			if (sizeof($ids_gid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_gid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($group->all); $i++) {
+                    $group->all[$i]->guide = $us[$group->all[$i]->gid];
+                }
+				unset($us);
+            }
+		}
         
         return $group->all;
     }
@@ -34,7 +53,7 @@ class Group_Model extends CI_Model {
      * @param unknown $aid
      * @return multitype:
      */
-    function getActiveGroupByAid($aid) {
+    function getActiveGroupByAid($aid, $with_relation=false) {
         $group = new Group();
     
 //      $today_start = strtotime(date('Y-m-d'));
@@ -45,6 +64,25 @@ class Group_Model extends CI_Model {
 //      $group->where('start_date <=', $today_start);
         $group->where('end_date >', $today);
         $group->get();
+		
+		if ($with_relation) {
+			$ids_gid = array();
+			for ($i=0; $i<sizeof($group->all); $i++) {
+				$ids_gid[] = $group->all[$i]->gid;
+            }
+			
+			if (sizeof($ids_gid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_gid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($group->all); $i++) {
+                    $group->all[$i]->guide = $us[$group->all[$i]->gid];
+                }
+				unset($us);
+            }
+		}
     
         return $group->all;
     }
@@ -54,7 +92,7 @@ class Group_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getGroupByConditions($conditions) {
+    function getGroupByConditions($conditions, $with_relation=false) {
         $group = new Group();
         
         foreach ($conditions as $field=>$value) {
@@ -62,6 +100,25 @@ class Group_Model extends CI_Model {
         }
         
         $group->get();
+		
+		if ($with_relation) {
+			$ids_gid = array();
+			for ($i=0; $i<sizeof($schedule->all); $i++) {
+				$ids_gid[] = $group->all[$i]->gid;
+            }
+			
+			if (sizeof($ids_gid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_gid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($group->all); $i++) {
+                    $group->all[$i]->guide = $us[$group->all[$i]->gid];
+                }
+				unset($us);
+            }
+		}
         
         return $group->all;
     }
@@ -139,6 +196,10 @@ class Group_Model extends CI_Model {
         $schedule = new Group_Schedule();
         
         $schedule->where('gid', $gid)->get();
+		
+		for ($i=0; $i<sizeof($schedule->all); $i++) {
+			$schedule->all[$i]->detail = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $schedule->all[$i]->detail));
+		}
         
         return $schedule->all;
     }

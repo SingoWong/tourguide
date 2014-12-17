@@ -29,7 +29,19 @@ $(document).ready(function(){
 	change_type($("#type_{{$item->day}}_"+t)[0]);
 	
 	{{/foreach}}
+	
+	$(document).keydown(checkkey);
 });
+
+var checkkey = function(e) {
+	var ev = e || window.event;//获取event对象  
+    var obj = ev.target || ev.srcElement;//获取事件源  
+    var t = obj.type || obj.getAttribute('type');//获取事件源类型  
+    if(ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea"){
+    		alert("您還沒保存喔");
+        return false;  
+    }
+}
 
 var t = 0;
 var count_days = 0;
@@ -39,7 +51,7 @@ var hotel_list = '{{$html_hotel}}';
 
 function add_day() {
 	count_days++;
-	var html_btnday = '<input type="button" class="gm_t1_btn_alt_disabled" value="第'+count_days+'天" onclick="change_day('+count_days+');" />\n';
+	var html_btnday = '<input type="button" class="btn_days gm_t1_btn_alt_disabled" day="'+count_days+'" value="第'+count_days+'天" onclick="change_day('+count_days+');" />\n';
 	var html_pnlday = '<div id="day_'+count_days+'" class="day_item"><div id="day_'+count_days+'_items" class="item"></div><div><input type="button" class="gm_t1_btn" value="+增加行程" onclick="add_route('+count_days+');"></div></div><input type="hidden" name="days[]" value="'+count_days+'" />';
 	
 	$("#list_days").append(html_btnday);
@@ -83,6 +95,16 @@ function change_day(day) {
 	$("#day_"+day).show();
 	$("#day_"+curr_day).hide();
 	curr_day = day;
+	
+	$(".btn_days").each(function() {
+		if ($(this).attr('day') == curr_day) {
+			$(this).removeClass("gm_t1_btn_alt_disabled");
+			$(this).addClass("gm_t1_btn");
+		} else {
+			$(this).removeClass("gm_t1_btn");
+			$(this).addClass("gm_t1_btn_alt_disabled");
+		}
+	})
 }
 function change_type(sender) {
 	var o = $(sender);

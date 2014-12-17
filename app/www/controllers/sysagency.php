@@ -406,7 +406,7 @@ class SysAgency extends Base_Controller {
         $this->load->model('Group_Model');
         
         $group_model = new Group_Model();
-        $re = $group_model->getActiveGroupByAid($this->user['id']);
+        $re = $group_model->getActiveGroupByAid($this->user['id'], true);
         
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./agency/group_manager.html');
@@ -435,7 +435,7 @@ class SysAgency extends Base_Controller {
         }
         
         $group_model = new Group_Model();
-        $re = $group_model->getGroupByConditions($conditions);
+        $re = $group_model->getGroupByConditions($conditions, true);
         
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./agency/group_history.html');

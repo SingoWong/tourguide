@@ -11,7 +11,7 @@ class SysGroup extends Base_Controller {
         $this->load->model('Group_Model');
         
         $group_model = new Group_Model();
-        $re = $group_model->getActiveGroup();
+        $re = $group_model->getActiveGroup(true);
         
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./sysmanager/group_manager.html');
@@ -40,7 +40,7 @@ class SysGroup extends Base_Controller {
         }
         
         $group_model = new Group_Model();
-        $re = $group_model->getGroupByConditions($conditions);
+        $re = $group_model->getGroupByConditions($conditions, true);
         
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./sysmanager/group_history.html');
