@@ -58,7 +58,7 @@ class Guide extends Base_Controller {
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
             $r['tab'] = $row->tab;
-            $r['detail'] = htmlspecialchars(nl2br($row->detail));
+            $r['detail'] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $row->detail));
             $r['location'] = $row->location;
         
             $rows[$row->day][] = $r;
@@ -103,7 +103,7 @@ class Guide extends Base_Controller {
 			$r['rcontact'] = ($row->rstatus)?$restaurant->getRestaurantContactById($row->rid):'-';
             $r['rstatus_label'] = $this->_get_rstatus_label($row->rstatus);
             $r['tab'] = $row->tab;
-            $r['detail'] = htmlspecialchars(nl2br($row->detail));
+            $r['detail'] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $row->detail));
             $r['location'] = $row->location;
 			$r['receive_status'] = ($order->getRestaurantReceiveUrl($row->id)=='')?'未上傳':'已上傳';
         
@@ -401,7 +401,7 @@ class Guide extends Base_Controller {
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
             $r['tab'] = $row->tab;
-            $r['detail'] = htmlspecialchars(nl2br($row->detail));
+            $r['detail'] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $row->detail));
             $r['location'] = $row->location;
         
             $rows[$row->day][] = $r;
