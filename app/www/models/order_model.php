@@ -311,17 +311,23 @@ class Order_Model extends CI_Model {
         //保存訂單信息
         $hotel_order = new Hotel_Order();
         $hotel_order->where('gid',$row['gid']);
-        $hotel_order->where('sid',$row['sid']);
+		$hotel_order->where('day',$row['day']);
+        $hotel_order->where('route',$row['route']);
         $hotel_order->get();
         
-        if ($hotel_order->result_count() > 0) {
-            $hotel_order->where('gid',$row['gid']);
-            $hotel_order->where('sid',$row['sid']);
+		if ($hotel_order->result_count() > 0) {
+			//TODO 處理更換飯店的情況
+			
+			$hotel_order->where('gid',$row['gid']);
+			$hotel_order->where('day',$row['day']);
+			$hotel_order->where('route',$row['route']);
 			
             $re = $hotel_order->update($row);
         } else {
             $hotel_order->gid = $row['gid'];
             $hotel_order->sid = $row['sid'];
+			$hotel_order->day = $row['day'];
+			$hotel_order->route = $row['route'];
             $hotel_order->hid = $row['hid'];
 			$hotel_order->status = STATUS_HORDER_PANDING;
 			$hotel_order->created = time();

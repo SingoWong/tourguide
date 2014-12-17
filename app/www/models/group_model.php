@@ -300,7 +300,9 @@ class Group_Model extends CI_Model {
 				$order = new Order_Model();
 				
 				$hrow['gid'] = $row['gid'];
-				$hrow['sid'] = $sre->id;
+				$hrow['sid'] = $schedual->id;
+				$hrow['day'] = $row['day'];
+				$hrow['route'] = $row['route'];
 				$hrow['hid'] = $row['hid'];
 				$order->saveHotelOrder($hrow);
 			}
@@ -389,11 +391,44 @@ class Group_Model extends CI_Model {
      * @param unknown $gid
      * @return multitype:
      */
-    function getScheduleById($gid) {
+    function getScheduleById($gid, $with_relation=false) {
         $schedule = new Group_Schedule();
         
         $schedule->where('gid', $gid);
         $schedule->get();
+		
+		if ($with_relation) {
+			$ids_rid = array();
+			$ids_hid = array();
+			for ($i=0; $i<sizeof($schedule->all); $i++) {
+				$ids_rid[] = $schedule->all[$i]->rid;
+				$ids_hid[] = $schedule->all[$i]->hid;
+            }
+			
+			if (sizeof($ids_rid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_rid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($schedule->all); $i++) {
+                    $schedule->all[$i]->restaurant = $us[$schedule->all[$i]->rid];
+                }
+				unset($us);
+            }
+			
+			if (sizeof($ids_hid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_hid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($schedule->all); $i++) {
+                    $schedule->all[$i]->hotel = $us[$schedule->all[$i]->hid];
+                }
+				unset($us);
+            }
+		}
         
         return $schedule->all;
     }

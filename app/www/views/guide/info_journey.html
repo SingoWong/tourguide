@@ -30,7 +30,7 @@
 		var data = eval('({{$schedule}})');
 		$.each(data,function(day,schedule){
 			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>'+schedule[0]['tab']+'&nbsp;</a><div class="flow-item-list" id="pnl_day_'+day+'">';
-			console.log(schedule);
+
 			$.each(schedule,function(route,item){
 				html_day += '<a class="flow-item-stitle" href="#" onclick="return sh_schedule('+day+','+route+');"><span>'+item['time']+'</span><em>'+item['type_label']+'</em>';
 				html_day += item['location']+'</a><div class="flow-item-sdetail" id="pnl_schedule_'+day+'_'+route+'">';

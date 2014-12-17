@@ -52,7 +52,7 @@ class SysGroup extends Base_Controller {
         $this->load->model('Group_Model');
 		
         $group_model = new Group_Model();
-        $rows = $group_model->getScheduleById($gid);
+        $rows = $group_model->getScheduleById($gid, true);
         
         $re = array();
         foreach ($rows as $row) {
@@ -67,7 +67,7 @@ class SysGroup extends Base_Controller {
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
             $r['detail'] = $row->detail;
-            $r['location'] = $row->location;
+            $r['location'] = ($row->type=='4')?$row->hotel->name:$row->location;
             
             $re[$row->day][] = $r;
         }
