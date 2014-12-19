@@ -15,11 +15,18 @@ class SysHotel extends Base_Controller {
         $username = $this->input->get('username');
         
         $conditions = array();
-        if ($name && $name != '') {
-            $conditions['name'] = $name;
-        }
-        if ($username && $username != '') {
-            $conditions['username'] = $username;
+        if (($name && $name != '') || ($username && $username != '')) {
+        		$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($name, $username);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['uid'] = $ids;
+			}
         }
         
         $re = $users_hotel_model->getContractHotel($conditions, true);
@@ -36,11 +43,18 @@ class SysHotel extends Base_Controller {
         $username = $this->input->get('username');
         
         $conditions = array();
-        if ($name && $name != '') {
-            $conditions['name'] = $name;
-        }
-        if ($username && $username != '') {
-            $conditions['username'] = $username;
+        if (($name && $name != '') || ($username && $username != '')) {
+        		$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($name, $username);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['uid'] = $ids;
+			}
         }
         
         $re = $users_hotel_model->getExpiredHotel($conditions, true);

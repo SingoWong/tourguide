@@ -16,7 +16,11 @@ class Users_Agency_Model extends CI_Model {
         $agency->where('sign_date_start <=', time());
         $agency->where('sign_date_end >=', time());
         foreach ($conditions as $field=>$value) {
-            $agency->where($field, $value);
+        		if (is_array($value)) {
+        			$agency->where_in($field, $value);
+        		} else {
+	            $agency->where($field, $value);
+			}
         }
         $agency->get();
         
@@ -51,7 +55,11 @@ class Users_Agency_Model extends CI_Model {
         
         $agency->where('sign_date_end <', time());
         foreach ($conditions as $field=>$value) {
-            $agency->where($field, $value);
+        		if (is_array($value)) {
+        			$agency->where_in($field, $value);
+        		} else {
+	            $agency->where($field, $value);
+			}
         }
         $agency->get();
 

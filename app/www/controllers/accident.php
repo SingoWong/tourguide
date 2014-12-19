@@ -29,9 +29,33 @@ class Accident extends Base_Controller {
     }
     
     public function bus_photo_submit() {
-        //TODO 生成紀錄，並上傳圖片，返回id號
-        $id = '1';
-        redirect(url('accident/bus_form').'&id='.$id);
+    		$this->load->model('Group_Model');
+		$this->load->model('Accident_Model');
+			
+        //上傳圖片
+        $upload = $this->file_upload('photo','accident',date('Ymd'));
+		
+		if ($upload['result']) {
+			//生成紀錄，返回id號
+	        $group = new Group_Model();
+	        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+			
+			$row['group_aid'] = $re_group->aid;
+			$row['gid'] = $re_group->id;
+			$row['type'] = ACCIDENT_TYPE_BUS;
+			
+			$accident = new Accident_Model();
+			$re_accident = $accident->createAccident($row);
+			$accident->addAccidentRes($re_accident['id'], $upload['url']);
+			
+			if ($re_accident['result']) {
+				redirect(url('accident/bus_form').'&id='.$re_accident['id']);
+			} else {
+				alert($re_accident['msg'],url('accident/bus_photo_choose'));
+			}
+		} else {
+			alert($upload['msg'],url('accident/bus_photo_choose'));
+		}
     }
     
     public function bus_form() {
@@ -44,15 +68,32 @@ class Accident extends Base_Controller {
     }
     
     public function bus_submit() {
+		$this->load->model('Accident_Model');
+		
+    		$id = $this->input->post('id');
         $time = $this->input->post('time');
         $location = $this->input->post('location');
         $driver_status = $this->input->post('driver_status');
         $member_status = $this->input->post('member_status');
-        $ubs_status = $this->input->post('bus_status');
+        $bus_status = $this->input->post('bus_status');
         
-        //TODO 保存提交的內容
-        
-        redirect(url('accident/bus_finish'));
+        //保存提交的內容
+        $accident['time'] = strtotime($time);
+		$accident['location'] = $location;
+		
+		$accident_bus['aid'] = $id;
+		$accident_bus['driver_status'] = $driver_status;
+		$accident_bus['member_status'] = $member_status;
+		$accident_bus['bus_status'] = $bus_status;
+		
+		$ac = new Accident_Model();
+		$re = $ac->saveAccidentBus($id, $accident, $accident_bus);
+		
+		if ($re) {
+			redirect(url('accident/bus_finish'));
+		} else {
+			alert('保存失敗，請重試', url('accident/bus_form').'&id='.$id);
+		}
     }
     
     public function bus_finish() {
@@ -67,9 +108,33 @@ class Accident extends Base_Controller {
     }
     
     public function medicine_photo_submit() {
-        //TODO 生成紀錄，並上傳圖片，返回id號
-        $id = '1';
-        redirect(url('accident/medicine_form').'&id='.$id);
+        $this->load->model('Group_Model');
+		$this->load->model('Accident_Model');
+			
+        //上傳圖片
+        $upload = $this->file_upload('photo','accident',date('Ymd'));
+		
+		if ($upload['result']) {
+			//生成紀錄，返回id號
+	        $group = new Group_Model();
+	        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+			
+			$row['group_aid'] = $re_group->aid;
+			$row['gid'] = $re_group->id;
+			$row['type'] = ACCIDENT_TYPE_MEDICINE;
+			
+			$accident = new Accident_Model();
+			$re_accident = $accident->createAccident($row);
+			$accident->addAccidentRes($re_accident['id'], $upload['url']);
+			
+			if ($re_accident['result']) {
+				redirect(url('accident/medicine_form').'&id='.$re_accident['id']);
+			} else {
+				alert($re_accident['msg'],url('accident/medicine_photo_choose'));
+			}
+		} else {
+			alert($upload['msg'],url('accident/medicine_photo_choose'));
+		}
     }
     
     public function medicine_form() {
@@ -131,10 +196,33 @@ class Accident extends Base_Controller {
     }
     
     public function natural_photo_submit() {
-        //TODO 生成紀錄，並上傳圖片，返回id號
-        $id = '1';
-        
-        redirect(url('accident/natural_form').'&id='.$id);
+        $this->load->model('Group_Model');
+		$this->load->model('Accident_Model');
+			
+        //上傳圖片
+        $upload = $this->file_upload('photo','accident',date('Ymd'));
+		
+		if ($upload['result']) {
+			//生成紀錄，返回id號
+	        $group = new Group_Model();
+	        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+			
+			$row['group_aid'] = $re_group->aid;
+			$row['gid'] = $re_group->id;
+			$row['type'] = ACCIDENT_TYPE_NATURAL;
+			
+			$accident = new Accident_Model();
+			$re_accident = $accident->createAccident($row);
+			$accident->addAccidentRes($re_accident['id'], $upload['url']);
+			
+			if ($re_accident['result']) {
+				redirect(url('accident/natural_form').'&id='.$re_accident['id']);
+			} else {
+				alert($re_accident['msg'],url('accident/natural_photo_choose'));
+			}
+		} else {
+			alert($upload['msg'],url('accident/natural_photo_choose'));
+		}
     }
     
     public function natural_form() {
@@ -147,13 +235,28 @@ class Accident extends Base_Controller {
     }
     
     public function natural_submit() {
+    		$this->load->model('Accident_Model');
+		
+    		$id = $this->input->post('id');
         $time = $this->input->post('time');
         $location = $this->input->post('location');
-        $name = $this->input->post('names[]');
+        $atype = $this->input->post('atype');
         
-        //TODO 保存提交的內容
-        
-        redirect(url('accident/natural_finish'));
+        //保存提交的內容
+        $accident['time'] = strtotime($time);
+		$accident['location'] = $location;
+		
+		$accident_natural['aid'] = $id;
+		$accident_natural['atype'] = $atype;
+		
+		$ac = new Accident_Model();
+		$re = $ac->saveAccidentNatural($id, $accident, $accident_natural);
+		
+		if ($re) {
+			redirect(url('accident/natural_finish'));
+		} else {
+			alert('保存失敗，請重試', url('accident/natural_form').'&id='.$id);
+		}
     }
     
     public function natural_finish() {

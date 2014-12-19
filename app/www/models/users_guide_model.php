@@ -16,7 +16,11 @@ class Users_Guide_Model extends CI_Model {
         $guide->where('sign_date_start <=', time());
         $guide->where('sign_date_end >=', time());
 		foreach ($conditions as $field=>$value) {
-            $guide->where($field, $value);
+        		if (is_array($value)) {
+        			$guide->where_in($field, $value);
+        		} else {
+	            $guide->where($field, $value);
+			}
         }
         $guide->get();
 		
@@ -50,6 +54,13 @@ class Users_Guide_Model extends CI_Model {
         $guide = new Users_Guide();
         
         $guide->where('sign_date_end <', time());
+		foreach ($conditions as $field=>$value) {
+        		if (is_array($value)) {
+        			$guide->where_in($field, $value);
+        		} else {
+	            $guide->where($field, $value);
+			}
+        }
         $guide->get();
 		
 		if ($with_relation) {

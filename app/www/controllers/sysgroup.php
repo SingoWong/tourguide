@@ -33,7 +33,10 @@ class SysGroup extends Base_Controller {
             $conditions['start_date <'] = strtotime($date_end);
         }
         if ($guide != '') {
-            $conditions['contact_name'] = $guide;
+        		$this->load->model('Users_Model');
+			$gde = new Users_Model();
+			$re_gde = $gde->getUserByKeyword($guide);
+            $conditions['gid'] = $re_gde->id;
         }
         if ($code != '') {
             $conditions['code'] = $code;

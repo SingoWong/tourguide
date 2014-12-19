@@ -1,5 +1,5 @@
 <?php
-class Accident extends DataMapper {
+class Accidents extends DataMapper {
     
     public $table = 'accident';
     public $primary_key = 'id';

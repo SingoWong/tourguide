@@ -1,4 +1,9 @@
 <?php
+define('ACCIDENT_TYPE_BUS', '0');
+define('ACCIDENT_TYPE_MEDICINE', '1');
+define('ACCIDENT_TYPE_DESERT', '2');
+define('ACCIDENT_TYPE_NATURAL', '3');
+
 class Accident_Model extends CI_Model {
     
     function __construct() {
@@ -124,5 +129,90 @@ class Accident_Model extends CI_Model {
         
         return $accident_res->all;
     }
+	
+	/**
+	 * 創建一個意外
+	 */
+	function createAccident($row) {
+		$accident = new Accidents();
+		
+		$accident->group_aid = $row['group_aid'];
+		$accident->gid = $row['gid'];
+		$accident->type = $row['type'];
+			
+		if ($accident->save()) {
+			$re['result'] = '1';
+			$re['id'] = $accident->id;
+		} else {
+			$re['result'] = '0';
+			$re['msg'] = '保存失敗，請重試';
+		}
+		
+		return $re;
+	}
+
+	/**
+	 * 創建一個意外圖片
+	 */
+	function addAccidentRes($aid, $url) {
+		$accident_res = new Accident_Res();
+		
+		$accident_res->aid = $aid;
+		$accident_res->pic_url = $url;
+		
+		if ($accident_res->save()) {
+			$re['result'] = '1';
+		} else {
+			$re['result'] = '0';
+		}
+		
+		return $re;
+	}
+	
+	function saveAccidentBus($id, $accident, $accident_bus) {
+		$this->db->trans_start();
+		
+		$accidents = new Accidents();
+		$accidents->where('id',$id)->update($accident);
+		
+		$accidents_bus = new Accident_Bus();
+		$accidents_bus->aid = $accident_bus['aid'];
+		$accidents_bus->driver_status = $accident_bus['driver_status'];
+		$accidents_bus->member_status = $accident_bus['member_status'];
+		$accidents_bus->bus_status = $accident_bus['bus_status'];
+		$accidents_bus->save();
+		
+		if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
+	}
+	
+	function saveAccidentNatural($id, $accident, $accident_natural) {
+		$this->db->trans_start();
+		
+		$accidents = new Accidents();
+		$accidents->where('id',$id)->update($accident);
+		
+		$accidents_natural = new Accident_Natural();
+		$accidents_natural->aid = $accident_natural['aid'];
+		$accidents_natural->atype = $accident_natural['atype'];
+		$accidents_natural->save();
+		
+		if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
+	}
 }
 ?>

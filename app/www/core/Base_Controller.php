@@ -39,6 +39,28 @@ class Base_Controller extends CI_Controller {
             redirect(url('mobile/login').'&role='.$role);
         }
     }
+	
+	function file_upload($sender, $bucket, $sub_path='') {
+		if ($sub_path != '') {
+			//創建子目錄
+			if (!file_exists('./'.UPLOAD_PATH.'/'.$bucket.'/'.$sub_path)){
+				mkdir ('./'.UPLOAD_PATH.'/'.$bucket.'/'.$sub_path);
+			}
+			$sub_path .= '/';
+		}
+		
+		$config['upload_path'] = './'.UPLOAD_PATH.'/'.$bucket.'/'.$sub_path;
+		$config['file_name'] = time().substr(strrchr($_FILES[$sender]['file_name'], '.'), 1);
+ 		$config['allowed_types'] = 'gif|jpg|png';
+  		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload($sender)) {
+			return array('result'=>'0','msg'=>'上傳文件失敗'.$this->upload->display_errors());
+		} else {
+   			$data = $this->upload->data();
+   			$url = RES_SERVER.'/'.UPLOAD_PATH.'/'.$bucket.'/'.$sub_path.$data['file_name'];
+			return array('result'=>'1','url'=>$url);
+		}
+	}
     
     private function _init_userinfo() {
         $this->load->library('session');

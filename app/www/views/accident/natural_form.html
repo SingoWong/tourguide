@@ -13,6 +13,12 @@
 			.info-hotel {
 				padding: 10px;
 			}
+			.mui-input-row {
+				padding: 3px 0!important;
+			}
+			.mui-input-row select {
+				padding-left: 10px!important;
+			}
 		</style>
 	</head>
 	<body>
@@ -37,8 +43,9 @@
 					<input type="text" class="mui-input-clear" name="location" placeholder="發生地點">
 				</div>
 				<div class="mui-input-row">
+					<label>請選擇天災情況：</label>
 					<select name="atype">
-						<option value="">請選擇天災情況</option>
+						<option value="">－</option>
 						<option value="1">情況1</option>
 						<option value="2">情況2</option>
 						<option value="3">情況3</option>

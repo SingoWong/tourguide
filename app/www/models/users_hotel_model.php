@@ -16,7 +16,11 @@ class Users_Hotel_Model extends CI_Model {
         $hotel->where('sign_date_start <=', time());
         $hotel->where('sign_date_end >=', time());
         foreach ($conditions as $field=>$value) {
-            $hotel->where($field, $value);
+        		if (is_array($value)) {
+        			$hotel->where_in($field, $value);
+        		} else {
+	            $hotel->where($field, $value);
+			}
         }
         $hotel->get();
 
@@ -51,7 +55,11 @@ class Users_Hotel_Model extends CI_Model {
         
         $hotel->where('sign_date_end <', time());
         foreach ($conditions as $field=>$value) {
-            $hotel->where($field, $value);
+        		if (is_array($value)) {
+        			$hotel->where_in($field, $value);
+        		} else {
+	            $hotel->where($field, $value);
+			}
         }
         $hotel->get();
         

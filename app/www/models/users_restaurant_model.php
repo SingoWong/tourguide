@@ -16,7 +16,11 @@ class Users_Restaurant_Model extends CI_Model {
         $restaurant->where('sign_date_start <=', time());
         $restaurant->where('sign_date_end >=', time());
         foreach ($conditions as $field=>$value) {
-            $restaurant->where($field, $value);
+        		if (is_array($value)) {
+        			$restaurant->where_in($field, $value);
+        		} else {
+	            $restaurant->where($field, $value);
+			}
         }
         $restaurant->get();
 
@@ -51,7 +55,11 @@ class Users_Restaurant_Model extends CI_Model {
         
         $restaurant->where('sign_date_end <', time());
         foreach ($conditions as $field=>$value) {
-            $restaurant->where($field, $value);
+        		if (is_array($value)) {
+        			$restaurant->where_in($field, $value);
+        		} else {
+	            $restaurant->where($field, $value);
+			}
         }
         $restaurant->get();
 

@@ -24,10 +24,11 @@ function sh_sub_pnlc(id, day) {
 }
 function getLocalTime(start_date, day) {
 	var nS = parseInt(start_date) + ((parseInt(day) - 1) * 86400);
-	var now = new Date(nS);
+	var now = new Date(nS*1000);
 	var year=now.getFullYear();     
 	var month=now.getMonth()+1;     
-    var date=now.getDate();     
+    var date=now.getDate();
+    
     return year+"-"+month+"-"+date;
 }
 </script>

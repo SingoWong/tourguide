@@ -198,6 +198,14 @@ class Users_Model extends CI_Model {
 		return $users->all[0];
 	}
 	
+	public function getUsersByName($name, $username) {
+		$users = new Users();
+		$users->like('name',$name)->like('username',$username)->get();
+		
+		return $users->all;
+		
+	}
+	
 	private function _gen_password($username) {
 	    return strrev($username);
 	}

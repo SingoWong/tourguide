@@ -37,9 +37,6 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
-/* End of file constants.php */
-/* Location: ./application/config/constants.php */
-
 define('SKEY_RBAC_USER', 'rbac_user');
 define('SKEY_RBAC_ROLE', 'rbac_role');
 
@@ -49,3 +46,9 @@ define('ROLE_ID_GUIDE', '24');
 define('ROLE_ID_RESTAURANT', '28');
 define('ROLE_ID_HOTEL', '30');
 define('ROLE_ID_AGENCY', '31');
+
+define('UPLOAD_PATH', 'uploads');
+define('RES_SERVER', 'http://www.heiscloud.com');
+
+/* End of file constants.php */
+/* Location: ./application/config/constants.php */
