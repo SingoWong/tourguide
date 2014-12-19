@@ -22,7 +22,7 @@ class SysGuide extends Base_Controller {
             $conditions['username'] = $username;
         }
         
-        $re = $users_guide_model->getContractGuide($conditions);
+        $re = $users_guide_model->getContractGuide($conditions, true);
         
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./sysmanager/guide_manager.html');
@@ -43,7 +43,7 @@ class SysGuide extends Base_Controller {
             $conditions['username'] = $username;
         }
         
-        $re = $users_guide_model->getExpiredGuide($conditions);
+        $re = $users_guide_model->getExpiredGuide($conditions, true);
         
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./sysmanager/guide_expired.html');

@@ -415,8 +415,8 @@ class SysAgency extends Base_Controller {
     public function grouphistory() {
         $this->load->model('Group_Model');
         
-        $date_start = $this->input->get('date_start');
-        $date_end = $this->input->get('date_end');
+        $date_start = $this->input->get('start_date');
+        $date_end = $this->input->get('end_date');
         $guide = $this->input->get('guide');
         $code = $this->input->get('code');
         
@@ -428,7 +428,10 @@ class SysAgency extends Base_Controller {
             $conditions['start_date <'] = strtotime($date_end);
         }
         if ($guide != '') {
-            $conditions['contact_name'] = $guide;
+        		$this->load->model('Users_Model');
+			$gde = new Users_Model();
+			$re_gde = $gde->getUserByKeyword($guide);
+            $conditions['gid'] = $re_gde->id;
         }
         if ($code != '') {
             $conditions['code'] = $code;

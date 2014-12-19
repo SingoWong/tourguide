@@ -22,7 +22,7 @@ function sh_pnlc(id) {
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
-	<input type="hidden" name="ctr" value="sysagency" />
+	<input type="hidden" name="ctr" value="sysguide" />
 	<input type="hidden" name="act" value="index" />
 	<label class="v"><input id="name" type="text" name="name" value="" placeholder="導遊"></label>
 	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
@@ -42,12 +42,12 @@ function sh_pnlc(id) {
 		<div class="item_content" id="pnlc_{{$item->id}}">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td colspan="2">帳號：{{$item->username}}</td>
+					<td colspan="2">帳號：{{$item->users->username}}</td>
 					<td>密碼：******</td>
 					<td width="10%"><a href="index.php?ctr=sysguide&act=resetpassword&id={{$item->id}}" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">導遊名稱：{{$item->name}}</td>
+					<td colspan="2">導遊名稱：{{$item->users->name}}</td>
 					<td>電話：{{$item->contact_tel}}</td>
 					<td><a href="index.php?ctr=sysguide&act=updateprofile&type=contact_tel&id={{$item->uid}}" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>

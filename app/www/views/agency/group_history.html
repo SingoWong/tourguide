@@ -1,9 +1,11 @@
 {{include file="_common/header.html"}}
+<script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+
 <script type="text/javascript">
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).html("关闭");
+		$("#btnc_"+id).html("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
 		$("#btnc_"+id).html("展开");
@@ -13,12 +15,20 @@ function sh_pnlc(id) {
 function sh_sub_pnlc(id, day) {
 	if ($("#pnlc_sub_"+id+"_"+day).css("display") == "none") {
 		$("#pnlc_sub_"+id+"_"+day).show();
-		$("#btnc_sub_"+id+"_"+day).html("关闭");
+		$("#btnc_sub_"+id+"_"+day).html("關閉");
 	} else {
 		$("#pnlc_sub_"+id+"_"+day).hide();
 		$("#btnc_sub_"+id+"_"+day).html("展开");
 	}
 	return false;
+}
+function getLocalTime(start_date, day) {
+	var nS = parseInt(start_date) + ((parseInt(day) - 1) * 86400);
+	var now = new Date(nS);
+	var year=now.getFullYear();     
+	var month=now.getMonth()+1;     
+    var date=now.getDate();     
+    return year+"-"+month+"-"+date;
 }
 </script>
 
@@ -33,9 +43,9 @@ function sh_sub_pnlc(id, day) {
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
 	<input type="hidden" name="ctr" value="sysagency" />
 	<input type="hidden" name="act" value="grouphistory" />
-	<label class="v"><input id="start_date" type="text" name="start_date" value="" placeholder="日期開始"></label>
-	<label class="v"><input id="end_date" type="text" name="end_date" value="" placeholder="日期結束"></label>
-	<label class="v"><input id="contact_name" type="text" name="contact_name" value="" placeholder="導遊"></label>
+	<label class="v"><input id="start_date" type="text" name="start_date" value="" placeholder="日期開始" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></label>
+	<label class="v"><input id="end_date" type="text" name="end_date" value="" placeholder="日期結束" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></label>
+	<label class="v"><input id="guide" type="text" name="guide" value="" placeholder="導遊"></label>
 	<label class="v"><input id="code" type="text" name="code" value="" placeholder="團號"></label>
 	<label class="s"><input type="submit" class="gm_t1_btn" value="查詢" /></label>	
 </form>
@@ -46,11 +56,11 @@ function sh_sub_pnlc(id, day) {
 	{{foreach from=$rowset item=item key=key}}
 	<div class="item">
 		<div class="item_title">
-			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">关闭</a>
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
 			團號：{{$item->code}} &nbsp;&nbsp; 團名：{{$item->name}} &nbsp;&nbsp; 導遊：{{$item->guide->name}} &nbsp;&nbsp; 進度：
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}">
-			
+			<input type="hidden" id="hdn_start_date_{{$item->id}}" value="{{$item->start_date}}" />
 			<!-- schedule -->
 			
 		</div>
@@ -60,9 +70,10 @@ function sh_sub_pnlc(id, day) {
 			success: function(json){
 				var data = eval('('+json+')');
 				$.each(data,function(day,schedule){
+					var date = getLocalTime($("#hdn_start_date_{{$item->id}}").val(), day);
 					var html_day = '<div class="sub_item_title">'+
 								   '<a href="#" onclick="return sh_sub_pnlc({{$item->id}}, '+day+');" id="btnc_sub_{{$item->id}}_'+day+'">關閉</a>'+
-								   'D'+day+' &nbsp;&nbsp; {日期} &nbsp;&nbsp;{状态}</div>'+
+								   'D'+day+' &nbsp;&nbsp; '+date+' &nbsp;&nbsp;{状态}</div>'+
 								   '<div class="sub_item_content" id="pnlc_sub_{{$item->id}}_'+day+'">'+
 								   '<table border="0" width="100%" cellpadding="2" cellspacing="1">';
 			 					 
