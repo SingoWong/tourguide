@@ -248,7 +248,7 @@ class Guide extends Base_Controller {
         $re = $order->saveRestaurantOrder($row);
         
         if ($re) {
-            alert('下單成功', url('guide/restaurant_order'));
+            redirect(url('guide/restaurant_order'));
         } else {
             alert('下單失敗', null, true);
         }

@@ -22,6 +22,7 @@ $(document).ready(function(){
 	$("#type_{{$item->day}}_"+t).val("{{$item->type}}");
 	$("#time_{{$item->day}}_"+t).val('{{$item->time|date_format:"%H:%M"}}');
 	$("#location_{{$item->day}}_"+t).val("{{$item->location}}");
+	$("#rname_{{$item->day}}_"+t).val("{{$item->location}}");
 	$("#hid_{{$item->day}}_"+t).val("{{$item->hid}}");
 	$("#money_{{$item->day}}_"+t).val("{{$item->money}}");
 	$("#detail_{{$item->day}}_"+t).val("{{$item->detail}}");
@@ -48,6 +49,7 @@ var count_days = 0;
 var curr_day = 0;
 var type_list = '<option value="0">機</option><option value="1">景</option><option value="2">中</option><option value="3">晚</option><option value="4">住</option>';
 var hotel_list = '{{$html_hotel}}';
+var restaurant_list = '{{$html_restaurant}}';
 
 function add_day() {
 	count_days++;
@@ -77,6 +79,7 @@ function add_route(day) {
 	 				 '<td class="i_time"><input type="text" name="time_'+day+'[]" id="time_'+day+'_'+t+'" day="'+day+'" placeholder="時間" /></td>'+
 	 				 '<td class="i_other">'+
 	 				 '<div id="i_type_'+day+'_location_'+t+'"><input type="text" name="location_'+day+'[]" id="location_'+day+'_'+t+'" day="'+day+'" placeholder="地点" /></div>'+
+	 				 '<div id="i_type_'+day+'_restaurant_'+t+'" style="display:none"><select name="rname_'+day+'[]" id="rname_'+day+'_'+t+'" day="'+day+'" class="restaurant_list">'+restaurant_list+'</select></div>'+
 	 				 '<div id="i_type_'+day+'_hotel_'+t+'" style="display:none"><select name="hid_'+day+'[]" id="hid_'+day+'_'+t+'" day="'+day+'" class="hotel_list">'+hotel_list+'</select>&nbsp;<input type="text" name="money_'+day+'[]" id="money_'+day+'_'+t+'" day="'+day+'" placeholder="金额" /></div>'+
 	 				 '</td></tr><tr>'+
 	 				 '<td colspan="3" class="i_detail"><textarea name="detail_'+day+'[]" id="detail_'+day+'_'+t+'"></textarea></td></tr></table></div>';
@@ -110,9 +113,15 @@ function change_type(sender) {
 	var o = $(sender);
 	if (o.val() == "4") {
 		$("#i_type_"+o.attr("day")+"_location_"+o.attr("t")).hide();
+		$("#i_type_"+o.attr("day")+"_restaurant_"+o.attr("t")).hide();
 		$("#i_type_"+o.attr("day")+"_hotel_"+o.attr("t")).show();
+	} else if (o.val() == "2" || o.val() == "3") {
+		$("#i_type_"+o.attr("day")+"_location_"+o.attr("t")).hide();
+		$("#i_type_"+o.attr("day")+"_restaurant_"+o.attr("t")).show();
+		$("#i_type_"+o.attr("day")+"_hotel_"+o.attr("t")).hide();
 	} else {
 		$("#i_type_"+o.attr("day")+"_location_"+o.attr("t")).show();
+		$("#i_type_"+o.attr("day")+"_restaurant_"+o.attr("t")).hide();
 		$("#i_type_"+o.attr("day")+"_hotel_"+o.attr("t")).hide();
 	}
 }

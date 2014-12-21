@@ -30,6 +30,56 @@ function getLocalTime(start_date, day) {
     return year+"-"+month+"-"+date;
 }
 </script>
+<style type="text/css">
+.sub_item_title {
+	background: #66CCCC url(/theme/images/sbg_line.png) 11px top repeat-y!important;
+	background-size: 12px!important;
+	padding-left: 2px!important;
+}
+.sub_item_title em {
+	display: block;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	background: #E8AF28;
+	float: left;
+	margin-right: 6px;
+	text-align: center;
+	color: #FFF;
+	font-size: 12px;
+}
+.schedule_table tr td.l {
+	background: #FFF url(/theme/images/sbg_line.png) 10px top repeat-y!important;
+	background-size: 12px!important;
+}
+.schedule_table tr td.l .t {
+	display: block;
+	width: 25px;
+	height: 25px;
+	border-radius: 25px;
+	background: #028FD7;
+	float: left;
+	margin-right: 10px;
+	text-align: center;
+	color: #FFF;
+	font-size: 12px;
+}
+.schedule_table tr td.l .t_0:before {
+	content: "機";
+}
+.schedule_table tr td.l .t_1:before {
+	content: "景";
+}
+.schedule_table tr td.l .t_2:before {
+	content: "中";
+}
+.schedule_table tr td.l .t_3:before {
+	content: "晚";
+}
+.schedule_table tr td.l .t_4:before {
+	content: "住";
+}
+</style>
 
 <div class="title_panel">
 	旅行團進度
@@ -44,6 +94,7 @@ function getLocalTime(start_date, day) {
 	<div class="item">
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">关闭</a>
+			<a href="index.php?ctr=sysagency&act=groupschedule&id={{$item->id}}">修改</a>
 			團號：{{$item->code}} &nbsp;&nbsp; 團名：{{$item->name}} &nbsp;&nbsp; 導遊：{{$item->guide->name}} &nbsp;&nbsp; 進度：
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}">
@@ -60,23 +111,22 @@ function getLocalTime(start_date, day) {
 					var date = getLocalTime($("#hdn_start_date_{{$item->id}}").val(), day);
 					var html_day = '<div class="sub_item_title">'+
 								   '<a href="#" onclick="return sh_sub_pnlc({{$item->id}}, '+day+');" id="btnc_sub_{{$item->id}}_'+day+'">關閉</a>'+
-								   'D'+day+' &nbsp;&nbsp; '+date+' &nbsp;&nbsp;{状态}</div>'+
+								   '<em>D'+day+'</em> '+date+' &nbsp;&nbsp;{狀態}</div>'+
 								   '<div class="sub_item_content" id="pnlc_sub_{{$item->id}}_'+day+'">'+
-								   '<table border="0" width="100%" cellpadding="2" cellspacing="1">';
+								   '<table border="0" width="100%" cellpadding="2" cellspacing="1" class="schedule_table">';
 			 					 
 					$.each(schedule,function(route,item){
 						switch (item['type']) {
 						case '0':
 						case '1':
+							html_day += '<tr><td colspan="5" class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;{鉤}</td></tr>';
+							break;
 						case '2':
-							html_day += '<tr><td colspan="5">'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;{钩}</td></tr>';
-							break;
 						case '3':
-						case '4':
-							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐{钩}</td><td class="s_status">已訂餐未確認{钩}</td><td class="s_status">已訂餐已確認{钩}</td><td class="s_status">餐畢付款{钩}</td></tr>';
+							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐{鉤}</td><td class="s_status">已訂餐未確認{鉤}</td><td class="s_status">已訂餐已確認{鉤}</td><td class="s_status">餐畢付款{鉤}</td></tr>';
 							break;
-						case '5':
-							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂房{钩}</td><td class="s_status">CHKIN{钩}</td><td class="s_status">未結帳{钩}</td><td class="s_status">CHKOUT{钩}</td></tr>';
+						case '4':
+							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂房{鉤}</td><td class="s_status">CHKIN{鉤}</td><td class="s_status">未結帳{鉤}</td><td class="s_status">CHKOUT{鉤}</td></tr>';
 							break;
 						}
 					});

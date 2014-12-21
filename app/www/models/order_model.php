@@ -80,8 +80,9 @@ class Order_Model extends CI_Model {
 		$orders = new Restaurant_Order();
 		
 		$orders->where('status !=', STATUS_RORDER_PAYMENG);
-		$orders->where('created >=', strtotime(date('Y-m-d 00:00:00')));
-		$orders->where('created <', strtotime(date('Y-m-d 23:59:59')));
+		$orders->where('status !=', STATUS_RORDER_CANCEL);
+		//$orders->where('created >=', strtotime(date('Y-m-d 00:00:00')));
+		//$orders->where('created <', strtotime(date('Y-m-d 23:59:59')));
 		$orders->where('rid', $rid);
 		$orders->get();
 		

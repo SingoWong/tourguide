@@ -201,6 +201,13 @@ class SysAgency extends Base_Controller {
         $this->smarty->assign('row',$re);
         $this->smarty->display('./agency/group_edit_base.html');
     }
+	
+	public function groupmapupload() {
+		//上傳文件
+		$upload = $this->file_upload('file','group',date('Ymd'));
+		
+		echo json_encode($upload);
+	}
     
     public function groupsave() {
         $this->load->model('Group_Model');
@@ -286,6 +293,7 @@ class SysAgency extends Base_Controller {
     public function groupschedule() {
         $this->load->model('Group_Model');
 		$this->load->model('Users_Hotel_Model');
+		$this->load->model('Users_Restaurant_Model');
 		
         $gid = $this->input->get('id');
         if (!$gid || $gid == '') {
@@ -302,10 +310,18 @@ class SysAgency extends Base_Controller {
 		foreach($re_hotel as $rh) {
 			$html_hotel .= '<option value="'.$rh->users->id.'">'.$rh->users->name.'</option>';
 		}
+		
+		$restaurant = new Users_Restaurant_Model();
+		$re_restaurant = $restaurant->getContractRestaurant(null, true);
+		$html_restaurant = '';
+		foreach($re_restaurant as $rh) {
+			$html_restaurant .= '<option value="'.$rh->users->name.'">'.$rh->users->name.'</option>';
+		}
         
         $this->smarty->assign('id',$gid);
         $this->smarty->assign('rowset',$re);
 		$this->smarty->assign('html_hotel',$html_hotel);
+		$this->smarty->assign('html_restaurant',$html_restaurant);
         $this->smarty->display('./agency/group_edit_schedule.html');
     }
     
@@ -321,6 +337,7 @@ class SysAgency extends Base_Controller {
             $types = $this->input->post("type_".$day);
             $times = $this->input->post("time_".$day);
             $hids = $this->input->post("hid_".$day);
+			$rnames = $this->input->post("rname_".$day);
             $locations = $this->input->post("location_".$day);
             $moneys = $this->input->post("money_".$day);
             $details = $this->input->post("detail_".$day);
@@ -333,7 +350,7 @@ class SysAgency extends Base_Controller {
                 $row['type'] = $types[$i];
                 $row['time'] = $times[$i];
                 $row['hid'] = $hids[$i];
-                $row['location'] = $locations[$i];
+                $row['location'] = ($types[$i]=='2'||$types[$i]=='3')?$rnames[$i]:$locations[$i];
                 $row['money'] = $moneys[$i];
                 $row['detail'] = $details[$i];
 				$row['tab'] = $tabs;
@@ -484,7 +501,7 @@ class SysAgency extends Base_Controller {
             $r['day'] = $row->day;
             $r['route'] = $row->route;
             $r['type'] = $row->type;
-            $r['time'] = date('H:m', $row->time);
+            $r['time'] = date('H:i', $row->time);
             $r['hid'] = $row->hid;
             $r['rid'] = $row->rid;
             $r['hstatus'] = $row->hstatus;
