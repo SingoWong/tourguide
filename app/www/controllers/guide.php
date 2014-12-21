@@ -116,6 +116,7 @@ class Guide extends Base_Controller {
         $this->smarty->assign('url_restaurant_search', url('guide/restaurant_search').'&gid='.$re['info']->id);
         $this->smarty->assign('url_restaurant_payment', url('guide/restaurant_payment').'&gid='.$re['info']->id);
         $this->smarty->assign('url_restaurant_payment_checklist', url('guide/restaurant_payment_checklist').'&gid='.$re['info']->id);
+		$this->smarty->assign('url_restaurant_confirm', url('guide/restaurant_confirm'));
         $this->smarty->display('./guide/restaurant_base.html');
     }
     
@@ -184,7 +185,7 @@ class Guide extends Base_Controller {
         $type = $this->input->get('type');
         
         $restaurant = new Users_Restaurant_Model();
-        $re_resstaurant = $restaurant->getRestaurantById($rid);
+        $re_restaurant = $restaurant->getRestaurantById($rid);
         
         $group = new Group_Model();
         $re_group = $group->getGroupBase($gid);
@@ -192,9 +193,9 @@ class Guide extends Base_Controller {
         
         $agency = new Users_Agency_Model();
         $re_agency = $agency->getAgencyById($re_group->aid);
-        
-        $date = date('Y-m-d');
-        $rname = $re_resstaurant->users->name;
+		
+        $date = date('Y-m-d', $re_group->start_date+($day*86400));
+        $rname = $re_restaurant->users->name;
         $code = $re_group->code;
         $amount = $re_group->amount;
         $gname = $re_group_info->guide_name;
@@ -262,12 +263,27 @@ class Guide extends Base_Controller {
     }
     
     /**
-     * 餐厅已经回复
+     * 導遊自己確定訂單
      */
     public function restaurant_confirm() {
-        
-        $this->smarty->display('./guide/restaurant_confirm.html');
+        $this->load->model('order_model');
+		
+    		$sid = $this->input->get('sid');
+		
+		$order = new Order_Model();
+		$re_order = $order->getRestaurantOrderBySid($sid);
+		$re = $order->approveRestaurantOrder($re_order->id);
+    	
+		if ($re) {
+	    		redirect(url('guide/restaurant_confirm_finish'));
+		} else {
+			alert('訂單確認失敗', null, true);
+		}
     }
+	
+	public function restaurant_confirm_finish() {
+		$this->smarty->display('./guide/restaurant_confirm_finish.html');
+	}
     
     /**
      * 检查餐厅是否已经回复
@@ -411,8 +427,22 @@ class Guide extends Base_Controller {
         
         $this->smarty->assign($re);
         $this->smarty->assign('url_hotel_payment', url('guide/hotel_payment').'&gid='.$re['info']->id);
+		$this->smarty->assign('url_hotel_info', url('guide/hotel_info'));
         $this->smarty->display('./guide/hotel_base.html');
     }
+
+	public function hotel_info() {
+		$this->load->model('Group_Model');
+        $group = new Group_Model();
+		
+		$sid = $this->input->get('sid');
+		
+		$schedule = $group->getScheduleBySid($sid);
+		$room = $group->getGroupRoom($schedule->gid);
+		
+		$this->smarty->assign('room', $room);
+        $this->smarty->display('./guide/hotel_info.html');
+	}
     
     /**
      * 住房Checkin成功

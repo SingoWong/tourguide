@@ -71,13 +71,13 @@
 		function show_ctrl(day,route,item) {
 			var html = '';
 			if (item['rstatus'] == '0') {
-				html += '<a href="#" class="e">CHKOUT</a><a href="{{$url_hotel_payment}}&day='+day+'&route='+route+'">退房<br/>付款</a><a href="#">入住<br/>完成</a><a href="#" class="e">CHKIN</a><a href="#">重新<br/>訂房</a>';
+				html += '未訂房';
 			} else if (item['rstatus'] == '1') {
-				html += '<a href="#" class="e">CHKOUT</a><a href="{{$url_hotel_payment}}&day='+day+'&route='+route+'">退房<br/>付款</a><a href="#">入住<br/>完成</a>';
+				html += '<a href="{{$url_hotel_payment}}&day='+day+'&route='+route+'">退房<br/>付款</a><a href="{{$url_hotel_info}}&sid='+item['id']+'">分房<br/>資訊</a>';
 			} else if (item['rstatus'] == '2') {
-				html += '<a href="#" class="e">CHKOUT</a><a href="{{$url_hotel_payment}}&day='+day+'&route='+route+'">退房<br/>付款</a>';
+				html += '<a href="{{$url_hotel_payment}}&day='+day+'&route='+route+'">退房<br/>付款</a><a href="{{$url_hotel_info}}&sid='+item['id']+'">分房<br/>資訊</a>';
 			} else if (item['rstatus'] == '3') {
-				html += '<a href="#" class="e">CHKOUT</a>';
+				html += '已結帳';
 			} else {
 				html += '';
 			}

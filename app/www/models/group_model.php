@@ -446,6 +446,18 @@ class Group_Model extends CI_Model {
         
         return array('result'=>$result);
     }
+
+	/**
+	 * 獲取旅行團行程資訊
+	 */
+	function getScheduleBySid($sid) {
+		$schedule = new Group_Schedule();
+        
+        $schedule->where('id', $sid);
+        $schedule->get(1);
+		
+		return $schedule->all[0];
+	}
     
     /**
      * 获取旅行团的行程资讯

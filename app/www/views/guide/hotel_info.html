@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CheckIn</title>
+		
+		{{include file="_common/minclude.html"}}
+		
+		<style type="text/css">
+			.quick-nav {
+				padding: 0 50px;
+			}
+			.info-hotel {
+				padding: 10px;
+			}
+			.item-room {
+				padding: 10px;
+				border-bottom: 1px solid #EAEAEA;
+			}
+			.item-room em {
+				display: inline-block;
+				width: 50px;
+			}
+			.item-room span {
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{{$url_menu}}"></a>
+			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
+			<div class="quick-nav">
+				<div id="sc-nav" class="mui-segmented-control">
+					<a class="mui-control-item" onclick="location.href='{{$url_info}}'">團號</a>
+					<a class="mui-control-item" onclick="location.href='{{$url_restaurant}}'">訂餐</a>
+					<a class="mui-control-item mui-active" onclick="location.href='{{$url_hotel}}'">訂房</a>
+					<a class="mui-control-item" onclick="location.href='{{$url_accident}}'">意外</a>
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div class="item-room">
+				<em>單人房</em>
+				<span>{{$room->single_room}}</span>
+			</div>
+			<div class="item-room">
+				<em>雙人房</em>
+				<span>{{$room->double_room}}</span>
+			</div>
+			<div class="item-room">
+				<em>三人房</em>
+				<span>{{$room->full_room}}</span>
+			</div>
+			<div class="item-room">
+				<em>加床</em>
+				<span>{{$room->plus_room}}</span>
+			</div>
+			<div class="item-room">
+				<em>兒童床</em>
+				<span>{{$room->kid_room}}</span>
+			</div>
+			<div class="item-room">
+				<em>總計</em>
+				<span>{{math equation="s+(d*2)+(f*3)+p+k" s=$room->single_room d=$room->double_room f=$room->full_room p=$room->plus_room k=$room->kid_room}}</span>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		  <a class="mui-tab-item mui-active" href="#">
+		    訂房資訊
+		  </a>
+		  <a class="mui-tab-item" href="#">
+		    &nbsp
+		  </a>
+		</nav>
+	</body>
+</html>

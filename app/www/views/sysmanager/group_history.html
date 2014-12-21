@@ -83,14 +83,14 @@ function getLocalTime(start_date, day) {
 						case '0':
 						case '1':
 						case '2':
-							html_day += '<tr><td colspan="5">'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;{钩}</td></tr>';
+							html_day += '<tr><td colspan="4">'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;{钩}</td></tr>';
 							break;
 						case '3':
 						case '4':
-							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐{钩}</td><td class="s_status">已訂餐未確認{钩}</td><td class="s_status">已訂餐已確認{钩}</td><td class="s_status">餐畢付款{钩}</td></tr>';
+							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐未確認{钩}</td><td class="s_status">已訂餐已確認{钩}</td><td class="s_status">餐畢付款{钩}</td></tr>';
 							break;
 						case '5':
-							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂房{钩}</td><td class="s_status">CHKIN{钩}</td><td class="s_status">未結帳{钩}</td><td class="s_status">CHKOUT{钩}</td></tr>';
+							html_day += '<tr><td>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">CHKIN{钩}</td><td class="s_status">未結帳{钩}</td><td class="s_status">CHKOUT{钩}</td></tr>';
 							break;
 						}
 					});

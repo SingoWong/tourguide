@@ -104,6 +104,7 @@ class Users_Hotel_Model extends CI_Model {
                 $re = false;
             } else {
                 $hotel->uid = $row['uid'];
+				$hotel->title = $row['title'];
                 $hotel->address = $row['address'];
                 $hotel->code = $row['code'];
                 $hotel->contact = $row['contact'];

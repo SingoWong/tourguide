@@ -52,15 +52,15 @@ class Restaurant extends Base_Controller {
      * 接受订单
      */
     public function order_confirm() {
-    	$this->load->model('order_model');
+    		$this->load->model('order_model');
 		
-    	$oid = $this->input->get('oid');
+    		$oid = $this->input->get('oid');
 		
 		$order = new Order_Model();
 		$re = $order->approveRestaurantOrder($oid);
     	
 		if ($re) {
-	    	alert('訂單已確認', url('restaurant/order_confirm_finish'));
+	    		alert('訂單已確認', url('restaurant/order_confirm_finish'));
 		} else {
 			alert('訂單確認失敗', null, true);
 		}

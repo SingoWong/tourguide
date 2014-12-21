@@ -73,6 +73,7 @@ class SysHotel extends Base_Controller {
         $users_hotel_model = new Users_Hotel_Model();
     
         $row['name'] = $this->input->post('name');
+		$row['title'] = $this->input->post('title');
         $row['address'] = $this->input->post('address');
         $row['code'] = $this->input->post('code');
         $row['contact'] = $this->input->post('contact');

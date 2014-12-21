@@ -302,6 +302,16 @@ class Order_Model extends CI_Model {
 	}
 	
 	/**
+	 * 獲取下單訂單信息
+	 */
+	function getRestaurantOrderBySid($sid) {
+		$order = new Restaurant_Order();
+		$order->where('sid',$sid)->get(1);
+		
+		return $order->all[0];
+	}
+	
+	/**
      * 保存飯店訂單
      * @param unknown $row
      * @return multitype:string NULL

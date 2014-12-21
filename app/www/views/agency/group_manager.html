@@ -119,14 +119,14 @@ function getLocalTime(start_date, day) {
 						switch (item['type']) {
 						case '0':
 						case '1':
-							html_day += '<tr><td colspan="5" class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;{鉤}</td></tr>';
+							html_day += '<tr><td colspan="4" class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;{鉤}</td></tr>';
 							break;
 						case '2':
 						case '3':
-							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐{鉤}</td><td class="s_status">已訂餐未確認{鉤}</td><td class="s_status">已訂餐已確認{鉤}</td><td class="s_status">餐畢付款{鉤}</td></tr>';
+							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐未確認{鉤}</td><td class="s_status">已訂餐已確認{鉤}</td><td class="s_status">餐畢付款{鉤}</td></tr>';
 							break;
 						case '4':
-							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂房{鉤}</td><td class="s_status">CHKIN{鉤}</td><td class="s_status">未結帳{鉤}</td><td class="s_status">CHKOUT{鉤}</td></tr>';
+							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">CHKIN{鉤}</td><td class="s_status">未結帳{鉤}</td><td class="s_status">CHKOUT{鉤}</td></tr>';
 							break;
 						}
 					});
