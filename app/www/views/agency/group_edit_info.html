@@ -12,6 +12,20 @@
 		$("#guide_name").val(json_guide[guide_id]['name']);
 		$("#guide_tel").val(json_guide[guide_id]['contact_tel']);
 	}
+	
+	function onbuildguide() {
+		window.closeWindow();
+		$.ajax({
+			url: "index.php?ctr=sysagency&act=guide",
+			success: function(json){
+				var data = eval('('+json+')');
+				$("#guide_id").html("");
+				for(var i=0; i<data.length; i++) {
+					$("#guide_id").append("<option value='"+data[i]['id']+"'>"+data[i]['name']+"</option>");
+				}
+			}
+		});
+	}
 </script>
 
 <div class="flowset">
@@ -61,9 +75,10 @@
 	<table class="table_form">
 		<tr>
 			<td class="tf_key">導遊帳號</td>
-			<td><span class="v"><select id="guide_id" name="guide_id" onchange="onchooseguide(this);">{{$html_guide}}</select></span></td>
-			<td class="tf_key"></td>
-			<td></td>
+			<td colspan="3">
+				<span class="v"><select id="guide_id" name="guide_id" onchange="onchooseguide(this);">{{$html_guide}}</select></span>
+				<a href="index.php?ctr=sysagency&act=guideedit" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加導遊]</a>
+			</td>
 		</tr>
 		<tr>
 			<td class="tf_key">導遊</td>

@@ -514,6 +514,45 @@ class SysAgency extends Base_Controller {
         
         echo json_encode($re);
     }
+	
+	public function guide() {
+		$this->load->model('Users_Guide_Model');
+		
+		$guide = new Users_Guide_Model();
+		$re_guide = $guide->getContractGuide(null, TRUE);
+		$guides = array();
+		foreach($re_guide as $rg) {
+			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）');
+			$guides[] = $row;
+		}
+		
+		echo json_encode($guides);
+	}
+	
+	public function guideedit() {
+		
+        $this->smarty->display('./agency/guide_edit.html');
+	}
+	
+	public function guidesave() {
+		$this->load->model('Users_Guide_Model');
+        $users_guide_model = new Users_Guide_Model();
+    
+        $row['name'] = $this->input->post('name');
+        $row['code'] = $this->input->post('code');
+        $row['contact_tel'] = $this->input->post('contact_tel');
+        $row['sign_date_start'] = strtotime($this->input->post('sign_date_start'));
+        $row['sign_date_end'] = strtotime($this->input->post('sign_date_end'));
+    
+        $re = $users_guide_model->save($row);
+		
+		if ($re) {
+            echo '<script>alert("保存成功");</script>';
+			echo '<script>window.parent.onbuildguide();</script>';
+        } else {
+            alert('保存失敗', null, true);
+        }
+	}
     
     private function _gen_room_selector($id, $default) {
         $html = '<select id="'.$id.'" name="'.$id.'" onchange="calc();">';

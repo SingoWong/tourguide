@@ -97,7 +97,7 @@ class Restaurant extends Base_Controller {
 		$re = $order->rejectRestaurantOrder($oid, $reson);
 		
 		if ($re) {
-	    	alert('訂單已拒絕', url('restaurant/order_reject_finish'));
+	    		alert('訂單已拒絕', url('restaurant/order_reject_finish'));
 		} else {
 			alert('訂單拒絕失敗', null, true);
 		}

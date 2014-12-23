@@ -74,6 +74,8 @@
 				html += '<a href="{{$url_restaurant_payment}}&day='+day+'&route='+route+'">選擇<br/>付款</a><a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'">重新<br/>訂餐</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
 			} else if (item['rstatus'] == '3') {
 				html += '餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
+			} else if (item['rstatus'] == '4') {
+				html += '<a href="{{$url_restaurant_search}}&day='+day+'&route='+route+'&type='+item['type']+'" class="restaurant-order">請訂餐</a>';
 			}
 			
 			return html;

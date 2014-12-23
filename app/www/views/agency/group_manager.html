@@ -79,6 +79,10 @@ function getLocalTime(start_date, day) {
 .schedule_table tr td.l .t_4:before {
 	content: "住";
 }
+.bi {
+	border-right: 1px solid #0062CC;
+	padding:0 5px;
+}
 </style>
 
 <div class="title_panel">
@@ -94,7 +98,8 @@ function getLocalTime(start_date, day) {
 	<div class="item">
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">关闭</a>
-			<a href="index.php?ctr=sysagency&act=groupschedule&id={{$item->id}}">修改</a>
+			<a href="index.php?ctr=sysagency&act=groupschedule&id={{$item->id}}" class="bi">修改</a>
+			<a href="index.php?ctr=sysagency&act=groupinfo&id={{$item->id}}" class="bi">指派導遊</a>
 			團號：{{$item->code}} &nbsp;&nbsp; 團名：{{$item->name}} &nbsp;&nbsp; 導遊：{{$item->guide->name}} &nbsp;&nbsp; 進度：
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}">

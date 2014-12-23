@@ -49,6 +49,9 @@
 							<p>人數：{{$item->amount}}人</p>
 							<p>餐標：{{$item->price_unit}}</p>
 							<p>金額：{{math equation="amount*unit" amount=$item->amount unit=$item->price_unit}}</p>
+							<p>用餐時間：{{$item->eattime|date_format:"%Y-%m-%d"}}</p>
+							<p>注意事项：{{$item->attention}}</p>
+							<p>口味選擇：{{$item->option}}</p>
 							<button class="mui-btn mui-btn-primary" onclick="location.href='{{$url_approve}}&oid={{$item->id}}';">接受</button>
 							<button class="mui-btn mui-btn-primary" onclick="location.href='{{$url_reject}}&oid={{$item->id}}';">拒絕</button>
 						</div>
