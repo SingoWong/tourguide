@@ -26,9 +26,17 @@ class Restaurant extends Base_Controller {
     public function today() {
         $this->load->model('order_model');
 		
-		$order = new Order_Model();
-		$re = $order->getRestaurantOrdersToday($this->user['id'], true);
+		$status = $this->input->get('status');
 		
+		$conditions = array();
+		if ($status != '') {
+			$conditions['status'] = $status;
+		}
+		
+		$order = new Order_Model();
+		$re = $order->getRestaurantOrdersToday($this->user['id'], $conditions, true);
+		
+		$this->smarty->assign('status', $status);
 		$this->smarty->assign('rowset', $re);
 		$this->smarty->display('./restaurant/today_order.html');
     }
@@ -114,6 +122,8 @@ class Restaurant extends Base_Controller {
      * 报表查询
      */
     public function report() {
+    	
+		$this->smarty->assign('url_restaurant_result',url('restaurant/report_result'));
         $this->smarty->display('./restaurant/report_search.html');
     }
     
@@ -121,6 +131,18 @@ class Restaurant extends Base_Controller {
      * 报表结果
      */
     public function report_result() {
+    		$this->load->model('order_model');
+		
+		$agency = $this->input->post('agency');
+		$guide = $this->input->post('guide');
+		$date = $this->input->post('date');
+		
+		$conditions = array();
+		
+		$order = new Order_Model();
+		$re = $order->getRestaurantOrdersReport($this->user['id'], $conditions, true);
+		
+		$this->smarty->assign('rowset', $re);
         $this->smarty->display('./restaurant/report_result.html');
     }
 }

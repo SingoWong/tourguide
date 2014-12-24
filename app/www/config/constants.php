@@ -50,5 +50,33 @@ define('ROLE_ID_AGENCY', '31');
 define('UPLOAD_PATH', 'uploads');
 define('RES_SERVER', 'http://www.heiscloud.com');
 
+//餐廳行程狀態
+define('STATUS_R_PANDING', '0'); //未訂餐
+define('STATUS_R_BOOKED', '1'); //已訂餐未確認
+define('STATUS_R_CONFIRM', '2'); //已訂餐已確認
+define('STATUS_R_PAYMENT', '3'); //已結帳
+define('STATUS_R_CANCEL', '4'); //已取消
+
+//飯店行程狀態
+define('STATUS_H_PANDING', '0'); //未訂房
+define('STATUS_H_BOOKED', '1'); //已訂房未確認
+define('STATUS_H_CONFIRM', '2'); //已訂餐已確認
+define('STATUS_H_PAYMENT', '3'); //已結帳
+define('STATUS_H_CANCEL', '4'); //已取消
+
+//餐廳訂單狀態
+define('STATUS_RORDER_PANDING', '0'); //已下單未確認
+define('STATUS_RORDER_CONFIRM', '1'); //已下單已確認
+define('STATUS_RORDER_UNDERWAY', '2');//用餐中
+define('STATUS_RORDER_PAYMENG', '3'); //已結帳
+define('STATUS_RORDER_CANCEL', '4');  //已取消
+
+//飯店訂單狀態
+define('STATUS_HORDER_PANDING', '0'); //已下單未確認
+define('STATUS_HORDER_CONFIRM', '1'); //已下單已確認
+define('STATUS_HORDER_CHKIN', '2');   //到店CHKIN
+define('STATUS_HORDER_CHKOUT', '3');  //CHKOUT結帳
+define('STATUS_HORDER_CANCEL', '4');  //已取消
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

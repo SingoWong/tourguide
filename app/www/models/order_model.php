@@ -1,16 +1,4 @@
 <?php
-define('STATUS_RORDER_PANDING', '0'); //已下單未確認
-define('STATUS_RORDER_CONFIRM', '1'); //已下單已確認（定位）
-define('STATUS_RORDER_UNDERWAY', '2');//用餐中
-define('STATUS_RORDER_PAYMENG', '3'); //已結帳
-define('STATUS_RORDER_CANCEL', '4');  //已取消
-
-define('STATUS_HORDER_PANDING', '0'); //已下單未確認
-define('STATUS_HORDER_CONFIRM', '1'); //已下單已確認
-define('STATUS_HORDER_CHKIN', '2');   //到店CHKIN
-define('STATUS_HORDER_CHKOUT', '3');  //CHKOUT結帳
-define('STATUS_HORDER_CANCEL', '4');  //已取消
-
 class Order_Model extends CI_Model {
     
     function __construct() {
@@ -28,31 +16,45 @@ class Order_Model extends CI_Model {
         //保存訂單信息
         $restaurant_order = new Restaurant_Order();
         $restaurant_order->where('gid',$row['gid']);
-        $restaurant_order->where('sid',$row['sid']);
+		$restaurant_order->where('day',$row['day']);
+		$restaurant_order->where('route',$row['route']);
         $restaurant_order->get();
         
+		$create_order = false;
         if ($restaurant_order->result_count() > 0) {
-            $restaurant_order->where('gid',$row['gid']);
-            $restaurant_order->where('sid',$row['sid']);
-			
-            $re = $restaurant_order->update($row);
+        		foreach ($restaurant_order->all as $ro) {
+        			if ($ro->rid != $row['rid']) {
+        				//重新訂餐，取消原有訂單
+		            $restaurant_order->where('id',$or->id);
+					$urow['status'] = STATUS_RORDER_CANCEL;
+		            $re = $restaurant_order->update($urow);
+					$create_order = true; //餐廳有修改，所以重新下單
+        				break;
+        			}
+        		}
         } else {
-            $restaurant_order->gid = $row['gid'];
-            $restaurant_order->sid = $row['sid'];
-            $restaurant_order->rid = $row['rid'];
-            $restaurant_order->amount = $row['amount'];
-            $restaurant_order->price_unit = $row['price_unit'];
+        		$create_order = true; //還沒有過訂餐，所以下單
+        }
+
+		if ($create_order) {
+	        $restaurant_order->gid = $row['gid'];
+	        $restaurant_order->sid = $row['sid'];
+			$restaurant_order->day = $row['day'];
+			$restaurant_order->route = $row['route'];
+	        $restaurant_order->rid = $row['rid'];
+	        $restaurant_order->amount = $row['amount'];
+	        $restaurant_order->price_unit = $row['price_unit'];
 			$restaurant_order->eattime = $row['eattime'];
 			$restaurant_order->attention = $row['attention'];
-            $restaurant_order->option = $row['option'];
+	        $restaurant_order->option = $row['option'];
 			$restaurant_order->status = STATUS_RORDER_PANDING;
 			$restaurant_order->created = time();
-            
-            $re = $restaurant_order->save();
-        }
+	        
+	        $re = $restaurant_order->save();
+		}
         
         //更新行程狀態
-        $rstatus = STATUS_RORDER_CONFIRM;
+        $rstatus = STATUS_R_BOOKED;
         $schedule = new Group_Schedule();
         $schedule->where('id',$row['sid'])->get();
         
@@ -76,13 +78,18 @@ class Order_Model extends CI_Model {
 	/**
 	 * 餐廳－获取今日订单
 	 */
-	function getRestaurantOrdersToday($rid, $with_relation=false) {
+	function getRestaurantOrdersToday($rid, $conditions, $with_relation=false) {
 		$orders = new Restaurant_Order();
 		
 		$orders->where('status !=', STATUS_RORDER_PAYMENG);
 		$orders->where('status !=', STATUS_RORDER_CANCEL);
-		//$orders->where('created >=', strtotime(date('Y-m-d 00:00:00')));
-		//$orders->where('created <', strtotime(date('Y-m-d 23:59:59')));
+		foreach ($conditions as $field=>$value) {
+        		if (is_array($value)) {
+        			$orders->where_in($field, $value);
+        		} else {
+	            $orders->where($field, $value);
+			}
+        }
 		$orders->where('rid', $rid);
 		$orders->get();
 		
@@ -186,6 +193,82 @@ class Order_Model extends CI_Model {
                 for ($i=0; $i<sizeof($orders->all); $i++) {
                     $orders->all[$i]->group = $us[$orders->all[$i]->gid];
 					$ids_aid[] = $orders->all[$i]->group->aid;
+                }
+				unset($us);
+            }
+			
+			if (sizeof($ids_aid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_aid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($orders->all); $i++) {
+                    $orders->all[$i]->agency = $us[$orders->all[$i]->group->aid];
+                }
+				unset($us);
+            }
+        }
+		
+		return $orders->all;
+	}
+
+	/**
+	 * 獲取報表訂單
+	 */
+	function getRestaurantOrdersReport($rid, $conditions, $with_relation=false) {
+		$orders = new Restaurant_Order();
+		
+		foreach ($conditions as $field=>$value) {
+        		if (is_array($value)) {
+        			$orders->where_in($field, $value);
+        		} else {
+	            $orders->where($field, $value);
+			}
+        }
+		$orders->where('rid', $rid);
+		$orders->get();
+		
+		if ($with_relation) {
+            $ids_sid = array();
+			$ids_gid = array();
+			$ids_aid = array();
+            for ($i=0; $i<sizeof($orders->all); $i++) {
+                $ids_sid[] = $orders->all[$i]->sid;
+				$ids_gid[] = $orders->all[$i]->gid;
+            }
+            
+            if (sizeof($ids_sid) > 0) {
+                $schedule = new Group_Schedule();
+                $schedule->where_in('id', $ids_sid)->get();
+                
+                $us = array_to_hashmap($schedule->all, 'id');
+                
+                for ($i=0; $i<sizeof($orders->all); $i++) {
+                    $orders->all[$i]->schedule = $us[$orders->all[$i]->sid];
+                }
+				unset($us);
+            }
+			
+			if (sizeof($ids_gid) > 0) {
+                $group = new Group();
+                $group->where_in('id', $ids_gid)->get();
+                
+                $us = array_to_hashmap($group->all, 'id');
+                
+                for ($i=0; $i<sizeof($orders->all); $i++) {
+                    $orders->all[$i]->group = $us[$orders->all[$i]->gid];
+					$ids_aid[] = $orders->all[$i]->group->aid;
+                }
+				unset($us);
+				
+				$info = new Group_Info();
+                $info->where_in('gid', $ids_gid)->get();
+                
+                $us = array_to_hashmap($info->all, 'gid');
+                
+                for ($i=0; $i<sizeof($orders->all); $i++) {
+                    $orders->all[$i]->info = $us[$orders->all[$i]->gid];
                 }
 				unset($us);
             }
@@ -347,7 +430,7 @@ class Order_Model extends CI_Model {
         }
         
         //更新行程狀態
-        $hstatus = STATUS_HORDER_CONFIRM;
+        $hstatus = STATUS_H_BOOKED;
         $schedule = new Group_Schedule();
         $schedule->where('id',$row['sid'])->get();
         

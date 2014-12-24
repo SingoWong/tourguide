@@ -13,6 +13,13 @@
 			.info-search {
 				padding: 10px;
 			}
+			.info-search h3 {
+				background: #CCC!important;
+				padding: 10px!important;
+				border-radius: 5px!important;
+				text-align: center;
+				font-size: 16px;
+			}
 		</style>
 	</head>
 	<body>
@@ -30,17 +37,17 @@
 		<div class="mui-content">
 			<div class="info-search">
 				<h3>报表查询</h3>
-				<form class="mui-input-group">
+				<form class="mui-input-group" action="{{$url_restaurant_result}}" method="post">
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="旅行社">
+						<input type="text" class="mui-input-clear" name="agency" placeholder="旅行社">
 					</div>
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="导游">
+						<input type="text" class="mui-input-clear" name="guide" placeholder="导游">
 					</div>
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="日期">
+						<input type="text" class="mui-input-clear" name="date" placeholder="日期">
 					</div>
-					
+					<br />
 					<div class="signin_submit">
 						<button class="mui-btn mui-btn-primary mui-btn-block btn-signin">登陆</button>
 					</div>

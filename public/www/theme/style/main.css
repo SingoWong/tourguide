@@ -229,4 +229,20 @@ body {
 	float: right;
 	display: block;
 	padding: 0 5px;
+	width: 66px;
+	text-align: center;
+}
+.title_status {
+	padding: 10px;
+	background: #FFF;
+	border-radius: 5px;
+	margin: 10px;
+}
+.title_status label {
+	display: inline-block;
+}
+.title_status select {
+	display: inline-block;
+	width: 200px;
+	margin: 0!important;
 }

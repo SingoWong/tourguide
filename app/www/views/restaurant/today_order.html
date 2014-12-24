@@ -6,6 +6,9 @@
 		
 		{{include file="_common/minclude.html"}}
 		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#status").val("{{$status}}");
+			});
 			function sh_detail(sender) {
 				var id = $(sender).attr("idx");
 				if ($("#pnl_detail_"+id).css("display") == 'none') {
@@ -14,15 +17,11 @@
 					$("#pnl_detail_"+id).hide();
 				}
 			}
-		</script>
-		<style type="text/css">
-			.title_status {
-				padding: 10px;
-				background: #FFF;
-				border-radius: 5px;
-				margin: 10px;
+			function filter(sender) {
+				var status = $(sender).val();
+				location.href = 'index.php?ctr=restaurant&act=today&status='+status;
 			}
-		</style>
+		</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -39,12 +38,30 @@
 		<div class="mui-content">
 			<div class="order-result">
 				<div class="title_status">
-					選擇狀態：-
+					<label>選擇狀態：</label>
+					<select id="status" onchange="filter(this);">
+						<option value="">全部</option>
+						<option value="1">已訂餐</option>
+						<option value="3">已結帳</option>
+						<option value="4">已取消</option>
+					</select>
 				</div>
 				<ul class="mui-table-view">
 					{{foreach from=$rowset item=item key=key}}
 					<li class="mui-table-view-cell mui-media">
-						<a href="#" class="detail_item_status"></a>
+						<a href="#" onclick="return false;" class="detail_item_status">
+							{{if $item->status == '0'}}
+							-
+							{{elseif $item->status == '1'}}
+							已訂餐
+							{{elseif $item->status == '2'}}
+							用餐中
+							{{elseif $item->status == '3'}}
+							已結帳
+							{{elseif $item->status == '4'}}
+							已取消
+							{{/if}}
+						</a>
 						<a href="#" idx="{{$item->id}}" class="detail_item_swith" onclick="sh_detail(this);return false;">
 							<div class="mui-media-body">
 								{{$item->created|date_format:"%Y-%m-%d"}} {{$item->aid}}

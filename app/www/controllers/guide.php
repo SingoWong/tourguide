@@ -238,6 +238,8 @@ class Guide extends Base_Controller {
         
         $row['gid'] = $gid;
         $row['sid'] = $re_group->id;
+		$row['day'] = $day;
+		$row['route'] = $route;
         $row['rid'] = $rid;
         $row['amount'] = $amount;
         $row['price_unit'] = $unit;

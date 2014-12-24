@@ -1,10 +1,4 @@
 <?php
-define('STATUS_R_PANDING', '0');
-define('STATUS_R_BOOKED', '1');
-define('STATUS_R_CONFIRM', '2');
-define('STATUS_R_PAYMENT', '3');
-define('STATUS_R_CANCEL', '4');
-
 class Group_Model extends CI_Model {
     
     function __construct() {
