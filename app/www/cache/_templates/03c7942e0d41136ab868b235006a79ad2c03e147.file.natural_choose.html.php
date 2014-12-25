@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-10 16:50:22
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-20 01:39:08
          compiled from "../../app/www/views/accident/natural_choose.html" */ ?>
 <?php /*%%SmartyHeaderCode:2088165551547f51aa888c18-87432867%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '03c7942e0d41136ab868b235006a79ad2c03e147' => 
     array (
       0 => '../../app/www/views/accident/natural_choose.html',
-      1 => 1417632110,
+      1 => 1419009993,
       2 => 'file',
     ),
   ),
@@ -78,7 +78,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</header>
 		<div class="mui-content">
 			<form class="mui-input-group" action="<?php echo $_smarty_tpl->tpl_vars['url_natural_photo_submit']->value;?>
-" method="post" id="form">
+" method="post" id="form" enctype="multipart/form-data">
 		
 			<div class="photo-form">
 				<div class="upload_photo">

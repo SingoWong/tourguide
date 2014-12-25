@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-09 14:17:22
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-23 01:39:11
          compiled from "../../app/www/views/restaurant/new_order.html" */ ?>
 <?php /*%%SmartyHeaderCode:790601969548491b45ef9d5-46461611%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'dd53b77e9424649aacae79a1f15adefc12aa5adb' => 
     array (
       0 => '../../app/www/views/restaurant/new_order.html',
-      1 => 1418134402,
+      1 => 1419269949,
       2 => 'file',
     ),
   ),
@@ -24,12 +24,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'url_report' => 0,
     'rowset' => 0,
     'item' => 0,
+    'RBAC_USER_NAME' => 0,
     'url_approve' => 0,
     'url_reject' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_548491b4633a48_27259814')) {function content_548491b4633a48_27259814($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Users/singowong/Project/default/tourguide/core/libraries/Smarty/libs/plugins/modifier.date_format.php';
+if (!is_callable('smarty_function_math')) include '/Users/singowong/Project/default/tourguide/core/libraries/Smarty/libs/plugins/function.math.php';
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -56,11 +58,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
 					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_today']->value;?>
-';">今日</a>
+';">準備</a>
 					<a class="mui-control-item mui-active" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_new_order']->value;?>
-';">新进</a>
+';">新進</a>
 					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_report']->value;?>
-';">报表</a>
+';">報表</a>
 				</div>
 			</div>
 		</header>
@@ -90,20 +92,27 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ">
 							<p>日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->created,"%Y-%m-%d");?>
 </p>
-							<p>餐別：<?php if ($_smarty_tpl->tpl_vars['item']->value->type=='2') {?>中餐<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->type=='3') {?>午餐<?php }?></p>
-							<p>餐廳名稱：<?php echo $_smarty_tpl->tpl_vars['item']->value->rname;?>
+							<p>餐別：<?php if ($_smarty_tpl->tpl_vars['item']->value->schedule->type=='2') {?>中餐<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->schedule->type=='3') {?>午餐<?php }?></p>
+							<p>餐廳名稱：<?php echo $_smarty_tpl->tpl_vars['RBAC_USER_NAME']->value;?>
 </p>
-							<p>旅行社：<?php echo $_smarty_tpl->tpl_vars['item']->value->aname;?>
+							<p>旅行社：<?php echo $_smarty_tpl->tpl_vars['item']->value->agency->name;?>
 </p>
-							<p>團號：<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
+							<p>團號：<?php echo $_smarty_tpl->tpl_vars['item']->value->group->code;?>
 </p>
-							<p>導遊：<?php echo $_smarty_tpl->tpl_vars['item']->value->gname;?>
+							<p>導遊：<?php echo $_smarty_tpl->tpl_vars['item']->value->info->guide_name;?>
 </p>
 							<p>人數：<?php echo $_smarty_tpl->tpl_vars['item']->value->amount;?>
 人</p>
 							<p>餐標：<?php echo $_smarty_tpl->tpl_vars['item']->value->price_unit;?>
 </p>
-							<p>金額：</p>
+							<p>金額：<?php echo smarty_function_math(array('equation'=>"amount*unit",'amount'=>$_smarty_tpl->tpl_vars['item']->value->amount,'unit'=>$_smarty_tpl->tpl_vars['item']->value->price_unit),$_smarty_tpl);?>
+</p>
+							<p>用餐時間：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->eattime,"%Y-%m-%d");?>
+</p>
+							<p>注意事项：<?php echo $_smarty_tpl->tpl_vars['item']->value->attention;?>
+</p>
+							<p>口味選擇：<?php echo $_smarty_tpl->tpl_vars['item']->value->option;?>
+</p>
 							<button class="mui-btn mui-btn-primary" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_approve']->value;?>
 &oid=<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 ';">接受</button>

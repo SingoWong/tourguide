@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-03 18:20:37
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-20 01:40:52
          compiled from "../../app/www/views/accident/natural_form.html" */ ?>
 <?php /*%%SmartyHeaderCode:1388218920547f521e838c58-57448975%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'af50785c8ad1bb832cfff063206f599cd29a3a01' => 
     array (
       0 => '../../app/www/views/accident/natural_form.html',
-      1 => 1417630774,
+      1 => 1419010850,
       2 => 'file',
     ),
   ),
@@ -46,6 +46,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			.info-hotel {
 				padding: 10px;
 			}
+			.mui-input-row {
+				padding: 3px 0!important;
+			}
+			.mui-input-row select {
+				padding-left: 10px!important;
+			}
 		</style>
 	</head>
 	<body>
@@ -77,8 +83,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<input type="text" class="mui-input-clear" name="location" placeholder="發生地點">
 				</div>
 				<div class="mui-input-row">
+					<label>請選擇天災情況：</label>
 					<select name="atype">
-						<option value="">請選擇天災情況</option>
+						<option value="">－</option>
 						<option value="1">情況1</option>
 						<option value="2">情況2</option>
 						<option value="3">情況3</option>
@@ -99,13 +106,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="tel://119">
-		    救护车119
+		    救護車119
 		  </a>
 		  <a class="mui-tab-item mui-active" href="tel://110">
-		    报警110
+		    報警110
 		  </a>
 		  <a class="mui-tab-item mui-active" href="#">
-		    联系旅行社
+		    聯繫旅行社
 		  </a>
 		</nav>
 	</body>

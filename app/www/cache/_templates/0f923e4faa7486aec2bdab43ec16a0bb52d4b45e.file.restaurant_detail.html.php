@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-13 16:46:32
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-16 04:05:35
          compiled from "../../app/www/views/guide/restaurant_detail.html" */ ?>
 <?php /*%%SmartyHeaderCode:216729511547ded392d2ed7-81322712%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0f923e4faa7486aec2bdab43ec16a0bb52d4b45e' => 
     array (
       0 => '../../app/www/views/guide/restaurant_detail.html',
-      1 => 1418489105,
+      1 => 1418673299,
       2 => 'file',
     ),
   ),
@@ -76,6 +76,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		}
 		</script>
 		<style type="text/css">
+			.restaurant-detail {
+				border-bottom: 1px dotted #CCC;
+			}
 			.restaurant-detail p a {
 				display: inline-block;
 				height: 40px;
@@ -91,8 +94,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				width: 60px;
 				text-align: center;
 			}
+			.info-detail h3 {
+				background: #CCC!important;
+				padding: 10px!important;
+				border-radius: 5px!important;
+				text-align: center;
+				font-size: 16px;
+			}
+			.attention {
+				padding: 5px;
+			}
 			.attention textarea {
 				border: 1px solid #CCC;
+				border-radius: 5px;
+			}
+			h5.mui-content-padded {
+				padding: 10px!important;
 			}
 		</style>
 	</head>
@@ -120,7 +137,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<div class="restaurant-detail">
 					<p>日期：<?php echo $_smarty_tpl->tpl_vars['date']->value;?>
 </p>
-					<p>餐別：<?php if ($_smarty_tpl->tpl_vars['type']->value=='2') {?>中餐<?php } elseif ($_smarty_tpl->tpl_vars['type']->value=='3') {?>午餐<?php }?></p>
+					<p>餐別：<?php if ($_smarty_tpl->tpl_vars['type']->value=='2') {?>中餐<?php } elseif ($_smarty_tpl->tpl_vars['type']->value=='3') {?>晚餐<?php }?></p>
 					<p>餐廳名稱：<?php echo $_smarty_tpl->tpl_vars['rname']->value;?>
 </p>
 					<p>旅行社：<?php echo $_smarty_tpl->tpl_vars['aname']->value;?>
@@ -200,35 +217,35 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</div>
 					<h5 class="mui-content-padded">注意事項</h5>
 					<div class="restaurant-option">
-						<div class="attention"><textarea name="attention"></textarea></div>
+						<div class="attention"><textarea name="attention" placeholder="這裏填寫注意事項"></textarea></div>
 						<div class="mui-card">
 							<div class="mui-input-row mui-checkbox mui-left">
 								<label>重鹹</label>
 								<input name="note[]" type="checkbox" value="重鹹">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
+								<label>重油</label>
+								<input name="note[]" type="checkbox" value="重油">
+							</div>
+							<div class="mui-input-row mui-checkbox mui-left">
 								<label>重辣</label>
 								<input name="note[]" type="checkbox" value="重辣">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>重甜</label>
-								<input name="note[]" type="checkbox" value="重甜">
+								<label>勿糖</label>
+								<input name="note[]" type="checkbox" value="勿糖">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>素</label>
-								<input name="note[]" type="checkbox" value="素">
-							</div>
-							<div class="mui-input-row mui-checkbox mui-left">
-								<label>不吃豬</label>
-								<input name="note[]" type="checkbox" value="不吃豬">
+								<label>勿辣</label>
+								<input name="note[]" type="checkbox" value="勿辣">
 							</div> 
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>不吃牛</label>
-								<input name="note[]" type="checkbox" value="不吃牛">
+								<label>備公筷洗碗水</label>
+								<input name="note[]" type="checkbox" value="備公筷洗碗水">
 							</div>
 							<div class="mui-input-row mui-checkbox mui-left">
-								<label>其他</label>
-								<input name="note[]" type="checkbox" value="其他">
+								<label>麵食</label>
+								<input name="note[]" type="checkbox" value="麵食">
 							</div>
 						</div>
 					</div>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-06 06:42:13
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-21 14:15:49
          compiled from "../../app/www/views/agency/group_edit_base.html" */ ?>
 <?php /*%%SmartyHeaderCode:15720755635474907282df07-87166571%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '15977d703a9dc2b0e4b17d11125baa8c96ae726a' => 
     array (
       0 => '../../app/www/views/agency/group_edit_base.html',
-      1 => 1417848130,
+      1 => 1419142547,
       2 => 'file',
     ),
   ),
@@ -168,12 +168,58 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	</table>
 </div>
 
+<div class="title_panel">
+	開團資訊
+</div>
+<div class="form_inner">
+	<table class="table_form">
+		<tr>
+			<td class="tf_key">行程導圖</td>
+			<td><span class="v">
+				<input type="text" id="map" name="map" value="<?php echo $_smarty_tpl->tpl_vars['row']->value->map;?>
+">
+				<a href="#" onclick="choose_map();return false;">[上傳]</a>
+			</span></td>
+		</tr>
+	</table>
+</div>
 <hr size="1" />
 <div>
 	<input type="hidden" name="id" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 " />
 	<input type="submit" class="gm_t1_btn" value="提交訊息">
 </div>
+</form>
+
+<script type="text/javascript">
+function choose_map() {
+	$("#map_file").click();
+}
+function upload_map() {
+	var fileObj = $("#map_file")[0].files[0]; // 获取文件对象
+    var FileController = "/index.php?ctr=sysagency&act=groupmapupload";                    // 接收上传文件的后台地址 
+
+    // FormData 对象
+    var form = new FormData();
+    form.append("file", fileObj);                           // 文件对象
+
+    // XMLHttpRequest 对象
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", FileController, true);
+    xhr.onload = function () {
+		var data = xhr.responseText;
+		var re = eval("("+data+")");
+		if (re['result'] == '1') {
+			$("#map").val(re['url']);
+		} else {
+			alert(re['msg']);
+		}
+    };
+    xhr.send(form);
+}
+</script>
+<form style="display: none;">
+<input type="file" name="map_file" id="map_file" onchange="upload_map();" />
 </form>
 
 <?php echo $_smarty_tpl->getSubTemplate ("_common/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>

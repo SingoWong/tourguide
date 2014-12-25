@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-11 19:23:14
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-21 23:06:00
          compiled from "../../app/www/views/sysmanager/restaurant_edit.html" */ ?>
 <?php /*%%SmartyHeaderCode:4265926925470a35a4c6035-44905062%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'abc418610a2533bd0d331c59fa281e55af199583' => 
     array (
       0 => '../../app/www/views/sysmanager/restaurant_edit.html',
-      1 => 1418325678,
+      1 => 1419174357,
       2 => 'file',
     ),
   ),
@@ -38,6 +38,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <li>
         	<b>餐廳名稱：</b>
             <span class="v"><input type="text" id="name" name="name" placeholder="餐廳名稱"><em></em></span>
+        </li>
+        <li>
+        	<b>發票抬頭：</b>
+            <span class="v"><input type="text" id="title" name="title" placeholder="發票抬頭"><em></em></span>
         </li>
         <li>
         	<b>地址：</b>

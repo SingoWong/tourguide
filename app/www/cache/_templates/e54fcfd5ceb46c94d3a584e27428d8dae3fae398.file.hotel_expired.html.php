@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-05 20:50:00
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-19 23:03:18
          compiled from "../../app/www/views/sysmanager/hotel_expired.html" */ ?>
 <?php /*%%SmartyHeaderCode:21381566885470a3eed47af4-12768658%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e54fcfd5ceb46c94d3a584e27428d8dae3fae398' => 
     array (
       0 => '../../app/www/views/sysmanager/hotel_expired.html',
-      1 => 1417812142,
+      1 => 1418924576,
       2 => 'file',
     ),
   ),
@@ -50,7 +50,7 @@ function sh_pnlc(id) {
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
-	<input type="hidden" name="ctr" value="sysagency" />
+	<input type="hidden" name="ctr" value="syshotel" />
 	<input type="hidden" name="act" value="expired" />
 	<label class="v"><input id="name" type="text" name="name" value="" placeholder="飯店"></label>
 	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>

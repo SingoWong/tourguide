@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-05 19:22:46
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-19 22:51:29
          compiled from "../../app/www/views/sysmanager/agency_expired.html" */ ?>
 <?php /*%%SmartyHeaderCode:662288125470a25cd3cc10-56198950%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd29b4734948b059408e88a378e20c818d1a0c9a3' => 
     array (
       0 => '../../app/www/views/sysmanager/agency_expired.html',
-      1 => 1417807355,
+      1 => 1417811285,
       2 => 'file',
     ),
   ),
@@ -31,10 +31,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("關閉");
+		$("#btnc_"+id).html("關閉");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展開");
+		$("#btnc_"+id).html("展開");
 	}
 	return false;
 }

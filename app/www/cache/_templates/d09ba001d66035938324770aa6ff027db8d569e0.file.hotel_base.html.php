@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-07 06:55:41
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-22 02:09:13
          compiled from "../../app/www/views/guide/hotel_base.html" */ ?>
 <?php /*%%SmartyHeaderCode:32300137654703124e03bf8-17046285%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd09ba001d66035938324770aa6ff027db8d569e0' => 
     array (
       0 => '../../app/www/views/guide/hotel_base.html',
-      1 => 1417935338,
+      1 => 1419182053,
       2 => 'file',
     ),
   ),
@@ -26,6 +26,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'url_accident' => 0,
     'schedule' => 0,
     'url_hotel_payment' => 0,
+    'url_hotel_info' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -109,16 +110,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		function show_ctrl(day,route,item) {
 			var html = '';
 			if (item['rstatus'] == '0') {
-				html += '<a href="#" class="e">CHKOUT</a><a href="<?php echo $_smarty_tpl->tpl_vars['url_hotel_payment']->value;?>
-&day='+day+'&route='+route+'">退房<br/>付款</a><a href="#">入住<br/>完成</a><a href="#" class="e">CHKIN</a><a href="#">重新<br/>訂房</a>';
+				html += '未訂房';
 			} else if (item['rstatus'] == '1') {
-				html += '<a href="#" class="e">CHKOUT</a><a href="<?php echo $_smarty_tpl->tpl_vars['url_hotel_payment']->value;?>
-&day='+day+'&route='+route+'">退房<br/>付款</a><a href="#">入住<br/>完成</a>';
+				html += '<a href="<?php echo $_smarty_tpl->tpl_vars['url_hotel_payment']->value;?>
+&day='+day+'&route='+route+'">退房<br/>付款</a><a href="<?php echo $_smarty_tpl->tpl_vars['url_hotel_info']->value;?>
+&sid='+item['id']+'">分房<br/>資訊</a>';
 			} else if (item['rstatus'] == '2') {
-				html += '<a href="#" class="e">CHKOUT</a><a href="<?php echo $_smarty_tpl->tpl_vars['url_hotel_payment']->value;?>
-&day='+day+'&route='+route+'">退房<br/>付款</a>';
+				html += '<a href="<?php echo $_smarty_tpl->tpl_vars['url_hotel_payment']->value;?>
+&day='+day+'&route='+route+'">退房<br/>付款</a><a href="<?php echo $_smarty_tpl->tpl_vars['url_hotel_info']->value;?>
+&sid='+item['id']+'">分房<br/>資訊</a>';
 			} else if (item['rstatus'] == '3') {
-				html += '<a href="#" class="e">CHKOUT</a>';
+				html += '已結帳';
 			} else {
 				html += '';
 			}
@@ -130,7 +132,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</script>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="#">
-		    订房资讯
+		    訂房資訊
 		  </a>
 		  <a class="mui-tab-item" href="#">
 		    &nbsp;

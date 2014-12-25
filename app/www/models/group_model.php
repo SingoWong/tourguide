@@ -520,14 +520,17 @@ class Group_Model extends CI_Model {
     function getCurrGroupByGuideId($gid) {
         $group = new Group();
         
-//      $today_start = strtotime(date('Y-m-d'));
-//      $today_end = strtotime(date('Y-m-d 23:59:59'));
 		$today = strtotime(date('Y-m-d'));
         
         $group->where('gid', $gid);
-//      $group->where('start_date <=', $today_start);
         $group->where('end_date >', $today);
         $group->get();
+		
+		$group_info = new Group_Info();
+		$group_info->where('gid', $group->all[0]->id);
+		$group_info->get();
+		
+		$group->all[0]->info = $group_info->all[0];
         
         return $group->all[0];
     }

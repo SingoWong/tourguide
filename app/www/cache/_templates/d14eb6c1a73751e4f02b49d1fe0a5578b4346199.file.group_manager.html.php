@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-06 19:23:50
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-19 23:07:27
          compiled from "../../app/www/views/sysmanager/group_manager.html" */ ?>
 <?php /*%%SmartyHeaderCode:14466150675470a65747d4b5-77261803%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd14eb6c1a73751e4f02b49d1fe0a5578b4346199' => 
     array (
       0 => '../../app/www/views/sysmanager/group_manager.html',
-      1 => 1417811302,
+      1 => 1418918261,
       2 => 'file',
     ),
   ),
@@ -50,7 +50,7 @@ function sh_sub_pnlc(id, day) {
 </script>
 
 <div class="title_panel">
-	旅遊團查詢 - 進度
+	旅行團查詢 - 進度
 </div>
 
 <input type="button" class="gm_t1_btn" value="旅遊團進度" onclick="self.location.href='index.php?ctr=sysgroup';">
@@ -72,7 +72,7 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ">關閉</a>
 			團號：<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
  &nbsp;&nbsp; 團名：<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
- &nbsp;&nbsp; 導遊：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_name;?>
+ &nbsp;&nbsp; 導遊：<?php echo $_smarty_tpl->tpl_vars['item']->value->guide->name;?>
  &nbsp;&nbsp; 進度：
 		</div>
 		<div class="item_content" id="pnlc_<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>

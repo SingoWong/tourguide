@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-06 06:19:18
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-19 22:59:05
          compiled from "../../app/www/views/sysmanager/restaurant_manager.html" */ ?>
 <?php /*%%SmartyHeaderCode:6149987275470a3585b5103-35678727%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9c54a1843ecccdb7d948f3262753152f75c5d120' => 
     array (
       0 => '../../app/www/views/sysmanager/restaurant_manager.html',
-      1 => 1417812080,
+      1 => 1418924559,
       2 => 'file',
     ),
   ),
@@ -50,7 +50,7 @@ function sh_pnlc(id) {
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
-	<input type="hidden" name="ctr" value="sysagency" />
+	<input type="hidden" name="ctr" value="sysrestaurant" />
 	<input type="hidden" name="act" value="index" />
 	<label class="v"><input id="name" type="text" name="name" value="" placeholder="餐廳"></label>
 	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
@@ -75,7 +75,7 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ">關閉</a>
 			<?php echo $_smarty_tpl->tpl_vars['item']->value->users->name;?>
 &nbsp;&nbsp;<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
-&nbsp;签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
+&nbsp;簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 
 		</div>

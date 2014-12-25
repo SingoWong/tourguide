@@ -89,14 +89,14 @@
 								<p>出國日期：{{$info->start_date|date_format:"%Y-%m-%d"}}</p>
 								<p>班機代號：{{$info->start_flight_num}}</p>
 								<p>班機行程：{{$info->start_flight_code}}</p>
-								<p>起飛時間：{{$info->start_flight_departure_time}}</p>
-								<p>抵達時間：{{$info->start_flight_arrive_time|date_format:"%H:%i"}}</p>
+								<p>起飛時間：{{$info->start_departure_time|date_format:"%H:%M"}}</p>
+								<p>抵達時間：{{$info->start_arrive_time|date_format:"%H:%M"}}</p>
 								<br/>
 								<p>回國日期：{{$info->end_date|date_format:"%Y-%m-%d"}}</p>
 								<p>班機代號：{{$info->end_flight_num}}</p>
 								<p>班機行程：{{$info->end_flight_code}}</p>
-								<p>起飛時間：{{$info->end_flight_departure_time}}</p>
-								<p>抵達時間：{{$info->end_flight_arrive_time|date_format:"%H:%i"}}</p>
+								<p>起飛時間：{{$info->end_departure_time|date_format:"%H:%M"}}</p>
+								<p>抵達時間：{{$info->end_arrive_time|date_format:"%H:%M"}}</p>
 							</li>
 						</ul>
 					</li>

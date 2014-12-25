@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-06 07:06:41
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-21 05:05:34
          compiled from "../../app/www/views/agency/group_edit_room.html" */ ?>
 <?php /*%%SmartyHeaderCode:257460465474b1c055d245-38588446%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a88d5fbc35fd8e6942606a38a4410edff8c16f88' => 
     array (
       0 => '../../app/www/views/agency/group_edit_room.html',
-      1 => 1417849599,
+      1 => 1419107683,
       2 => 'file',
     ),
   ),
@@ -62,7 +62,7 @@ function calc() {
 
 <form method="post" action="index.php?ctr=sysagency&act=grouproomsave">
 <div class="title_panel">
-	房型类型
+	房型類型
 </div>
 <div class="form_inner">
 	<table class="table_form">

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-13 17:17:56
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-16 04:17:27
          compiled from "../../app/www/views/guide/restaurant_payment_checklist.html" */ ?>
 <?php /*%%SmartyHeaderCode:1247331208547bc6264402f4-02095985%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0499c6d5e9514c16e32802f44ac848163ef18d1c' => 
     array (
       0 => '../../app/www/views/guide/restaurant_payment_checklist.html',
-      1 => 1418491072,
+      1 => 1418674627,
       2 => 'file',
     ),
   ),
@@ -27,7 +27,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'date' => 0,
     'schedule' => 0,
     'restaurant' => 0,
+    'agency' => 0,
     'group' => 0,
+    'info' => 0,
+    'order' => 0,
     'mode' => 0,
     'gid' => 0,
     'day' => 0,
@@ -35,7 +38,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_547bc626441026_64037241')) {function content_547bc626441026_64037241($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_547bc626441026_64037241')) {function content_547bc626441026_64037241($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include '/Users/singowong/Project/default/tourguide/core/libraries/Smarty/libs/plugins/function.math.php';
+?><!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -103,15 +107,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<p>餐別：<?php if ($_smarty_tpl->tpl_vars['schedule']->value->type=='2') {?>中餐<?php } elseif ($_smarty_tpl->tpl_vars['schedule']->value->type=='3') {?>晚餐<?php }?></p>
 					<p>餐廳名：<?php echo $_smarty_tpl->tpl_vars['restaurant']->value->users->name;?>
 </p>
-					<p>旅行社：</p>
+					<p>旅行社：<?php echo $_smarty_tpl->tpl_vars['agency']->value->users->name;?>
+</p>
 					<p>團號：<?php echo $_smarty_tpl->tpl_vars['group']->value->code;?>
 </p>
-					<p>導遊：<?php echo $_smarty_tpl->tpl_vars['group']->value->contact_name;?>
+					<p>導遊：<?php echo $_smarty_tpl->tpl_vars['info']->value->guide_name;?>
 </p>
-					<p>人數：<?php echo $_smarty_tpl->tpl_vars['group']->value->amount;?>
+					<p>人數：<?php echo $_smarty_tpl->tpl_vars['order']->value->amount;?>
 </p>
-					<p>餐標：</p>
-					<p>金額：</p>
+					<p>餐標：<?php echo $_smarty_tpl->tpl_vars['order']->value->price_unit;?>
+</p>
+					<p>金額：<?php echo smarty_function_math(array('equation'=>"amount*unit",'amount'=>$_smarty_tpl->tpl_vars['order']->value->amount,'unit'=>$_smarty_tpl->tpl_vars['order']->value->price_unit),$_smarty_tpl);?>
+</p>
 					<p>結帳方式：<?php if ($_smarty_tpl->tpl_vars['mode']->value=='0') {?>現金<?php } elseif ($_smarty_tpl->tpl_vars['mode']->value=='1') {?>刷卡<?php } elseif ($_smarty_tpl->tpl_vars['mode']->value=='2') {?>簽單<?php }?></p>
 				</div>
 				<div class="upload_receive">

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-11 17:17:11
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-15 13:51:59
          compiled from "../../app/www/views/mobile/login.html" */ ?>
 <?php /*%%SmartyHeaderCode:186414532547c59a75a0844-56311164%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'edd9c5327223f4aaf83a1b311e98bf7a75d2c219' => 
     array (
       0 => '../../app/www/views/mobile/login.html',
-      1 => 1418318222,
+      1 => 1418651517,
       2 => 'file',
     ),
   ),
@@ -38,10 +38,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 		
 		<style type="text/css">
+			body, .mui-content, .mui-input-group {
+				background: #15181c!important;
+			}
+			.mui-bar-nav {
+				background: #000!important;
+			}
 			.logo {
-				background: url(./theme/images/slogo.png) center 10px no-repeat;
-				background-size: 210px;
-				height: 210px;
+				background: url(./theme/images/slogo.png) center 30px no-repeat;
+				background-size: 150px;
+				height: 180px;
 				width: 210px;
 				margin: auto;
 			}
@@ -65,18 +71,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				overflow: hidden;
 			}
 			.signin_submit .btn-signin {
-				margin-right: 60px;
 				height: 50px;
 			}
+			.signin_submit .btn-signin button {
+				background: #e9af27!important;
+			}
 			.signin_submit .btn-forgot {
-				float: right;
-				width: 55px;
-				height: 58px;
-				line-height: 20px!important;
+				display: inline-block;
 				padding-top: 8px;
+				color: #FFF;
 			}
 			.agreement {
 				text-align: center;
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				padding: 10px;
+				color: #FFF;
 			}
 		</style>
 	</head>
@@ -98,9 +109,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				</div>
 				
 				<div class="signin_submit">
-					<a class="mui-btn mui-btn-block btn-forgot" href="<?php echo $_smarty_tpl->tpl_vars['url_forgot_guide']->value;?>
-">忘記<br/>密碼</a>
 					<div class="btn-signin"><button class="mui-btn mui-btn-primary mui-btn-block">登入</button></div>
+					<div><a class="btn-forgot" href="<?php echo $_smarty_tpl->tpl_vars['url_forgot_guide']->value;?>
+">忘記密碼</a></div>
 				</div>
 				<div class="agreement">
 					按下登入，表示統一<a href="<?php echo $_smarty_tpl->tpl_vars['url_services']->value;?>

@@ -1,26 +1,25 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-25 00:48:42
-         compiled from "../../app/www/views/restaurant/today_order.html" */ ?>
-<?php /*%%SmartyHeaderCode:184821603954848fee543362-67254336%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-25 01:11:28
+         compiled from "../../app/www/views/restaurant/report_result.html" */ ?>
+<?php /*%%SmartyHeaderCode:1585668763549af32dc6fc36-56901903%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'ba557e937b9421646b9d424b8985e3b0657da02a' => 
+    'ab963ab5c4ec749a04f590ee7c54da35a94ba3ab' => 
     array (
-      0 => '../../app/www/views/restaurant/today_order.html',
-      1 => 1419439720,
+      0 => '../../app/www/views/restaurant/report_result.html',
+      1 => 1419441081,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '184821603954848fee543362-67254336',
+  'nocache_hash' => '1585668763549af32dc6fc36-56901903',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.16',
-  'unifunc' => 'content_54848fee585511_25571225',
+  'unifunc' => 'content_549af32dceea40_82763387',
   'variables' => 
   array (
     'status' => 0,
-    'url_menu' => 0,
     'url_today' => 0,
     'url_new_order' => 0,
     'url_report' => 0,
@@ -30,13 +29,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54848fee585511_25571225')) {function content_54848fee585511_25571225($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Users/singowong/Project/default/tourguide/core/libraries/Smarty/libs/plugins/modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_549af32dceea40_82763387')) {function content_549af32dceea40_82763387($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Users/singowong/Project/default/tourguide/core/libraries/Smarty/libs/plugins/modifier.date_format.php';
 if (!is_callable('smarty_function_math')) include '/Users/singowong/Project/default/tourguide/core/libraries/Smarty/libs/plugins/function.math.php';
 ?><!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title>餐厅搜索结果</title>
 		
 		<?php echo $_smarty_tpl->getSubTemplate ("_common/minclude.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
@@ -61,31 +60,21 @@ if (!is_callable('smarty_function_math')) include '/Users/singowong/Project/defa
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a href="#" class="mui-icon mui-icon-bars mui-pull-left" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_menu']->value;?>
-';"></a>
+			<a href="#" class="mui-icon mui-icon-bars mui-pull-left" onclick="history.go(-1);return false;"></a>
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
-					<a class="mui-control-item mui-active" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_today']->value;?>
+					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_today']->value;?>
 ';">準備</a>
 					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_new_order']->value;?>
 ';">新進</a>
-					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_report']->value;?>
+					<a class="mui-control-item mui-active" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_report']->value;?>
 ';">報表</a>
 				</div>
 			</div>
 		</header>
 		<div class="mui-content">
-			<div class="order-result">
-				<div class="title_status">
-					<label>選擇狀態：</label>
-					<select id="status" onchange="filter(this);">
-						<option value="">全部</option>
-						<option value="1">已訂餐</option>
-						<option value="3">已結帳</option>
-						<option value="4">已取消</option>
-					</select>
-				</div>
+			<div class="info-result">
 				<ul class="mui-table-view">
 					<?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
  $_smarty_tpl->tpl_vars['key'] = new Smarty_Variable;
@@ -95,19 +84,6 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_smarty_tpl->tpl_vars['key']->value = $_smarty_tpl->tpl_vars['item']->key;
 ?>
 					<li class="mui-table-view-cell mui-media">
-						<a href="#" onclick="return false;" class="detail_item_status">
-							<?php if ($_smarty_tpl->tpl_vars['item']->value->status=='0') {?>
-							-
-							<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->status=='1') {?>
-							已訂餐
-							<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->status=='2') {?>
-							用餐中
-							<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->status=='3') {?>
-							已結帳
-							<?php } elseif ($_smarty_tpl->tpl_vars['item']->value->status=='4') {?>
-							已取消
-							<?php }?>
-						</a>
 						<a href="#" idx="<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 " class="detail_item_swith" onclick="sh_detail(this);return false;">
 							<div class="mui-media-body">
@@ -144,6 +120,14 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 				</ul>
 			</div>
 		</div>
+		<nav class="mui-bar mui-bar-tab">
+		  <a class="mui-tab-item" href="#">
+		    订餐资讯
+		  </a>
+		  <a class="mui-tab-item mui-active" href="#">
+		    餐厅搜索
+		  </a>
+		</nav>
 	</body>
 </html>
 <?php }} ?>

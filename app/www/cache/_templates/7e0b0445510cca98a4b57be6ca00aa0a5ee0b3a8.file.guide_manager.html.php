@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-05 20:31:12
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-19 23:03:23
          compiled from "../../app/www/views/sysmanager/guide_manager.html" */ ?>
 <?php /*%%SmartyHeaderCode:8104254685470a4777555a1-59333485%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7e0b0445510cca98a4b57be6ca00aa0a5ee0b3a8' => 
     array (
       0 => '../../app/www/views/sysmanager/guide_manager.html',
-      1 => 1417811316,
+      1 => 1418924580,
       2 => 'file',
     ),
   ),
@@ -50,7 +50,7 @@ function sh_pnlc(id) {
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
-	<input type="hidden" name="ctr" value="sysagency" />
+	<input type="hidden" name="ctr" value="sysguide" />
 	<input type="hidden" name="act" value="index" />
 	<label class="v"><input id="name" type="text" name="name" value="" placeholder="導遊"></label>
 	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
@@ -83,17 +83,19 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td colspan="2">帳號：<?php echo $_smarty_tpl->tpl_vars['item']->value->username;?>
+					<td colspan="2">帳號：<?php echo $_smarty_tpl->tpl_vars['item']->value->users->username;?>
 </td>
 					<td>密碼：******</td>
-					<td width="10%"><a href="">重置密碼</a></td>
+					<td width="10%"><a href="index.php?ctr=sysguide&act=resetpassword&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
+" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">導遊名稱：<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
+					<td colspan="2">導遊名稱：<?php echo $_smarty_tpl->tpl_vars['item']->value->users->name;?>
 </td>
 					<td>電話：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_tel;?>
 </td>
-					<td><a href="#">修改</a></td>
+					<td><a href="index.php?ctr=sysguide&act=updateprofile&type=contact_tel&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
 					<td colspan="2" width="50%">流水號：<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
@@ -107,8 +109,10 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 				</tr>
 			</table>
 			<div class="item_footer">
-				<a href="">續約</a>
-				<a href="">停權</a>
+				<a href="index.php?ctr=sysguide&act=renewal&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','400',false,0.3)">續約</a>
+				<a href="index.php?ctr=sysguide&act=suspended&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="if(!confirm('確定要停權這個帳號嗎？')){return false;}">停權</a>
 				簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 

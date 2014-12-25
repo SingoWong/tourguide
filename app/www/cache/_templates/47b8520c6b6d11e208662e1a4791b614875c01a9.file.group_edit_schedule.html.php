@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-09 14:48:13
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-23 22:24:10
          compiled from "../../app/www/views/agency/group_edit_schedule.html" */ ?>
 <?php /*%%SmartyHeaderCode:2314181265478897dad71a9-69216105%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '47b8520c6b6d11e208662e1a4791b614875c01a9' => 
     array (
       0 => '../../app/www/views/agency/group_edit_schedule.html',
-      1 => 1418136394,
+      1 => 1419321991,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'rowset' => 0,
     'item' => 0,
     'html_hotel' => 0,
+    'html_restaurant' => 0,
     'id' => 0,
   ),
   'has_nocache_code' => false,
@@ -63,6 +64,9 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ] = '1';
 	}
 	
+	$("#tab_<?php echo $_smarty_tpl->tpl_vars['item']->value->day;?>
+").val("<?php echo $_smarty_tpl->tpl_vars['item']->value->tab;?>
+");
 	$("#type_<?php echo $_smarty_tpl->tpl_vars['item']->value->day;?>
 _"+t).val("<?php echo $_smarty_tpl->tpl_vars['item']->value->type;?>
 ");
@@ -70,6 +74,9 @@ _"+t).val("<?php echo $_smarty_tpl->tpl_vars['item']->value->type;?>
 _"+t).val('<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->time,"%H:%M");?>
 ');
 	$("#location_<?php echo $_smarty_tpl->tpl_vars['item']->value->day;?>
+_"+t).val("<?php echo $_smarty_tpl->tpl_vars['item']->value->location;?>
+");
+	$("#rname_<?php echo $_smarty_tpl->tpl_vars['item']->value->day;?>
 _"+t).val("<?php echo $_smarty_tpl->tpl_vars['item']->value->location;?>
 ");
 	$("#hid_<?php echo $_smarty_tpl->tpl_vars['item']->value->day;?>
@@ -86,7 +93,19 @@ _"+t).val("<?php echo $_smarty_tpl->tpl_vars['item']->value->detail;?>
 _"+t)[0]);
 	
 	<?php } ?>
+	
+	$(document).keydown(checkkey);
 });
+
+var checkkey = function(e) {
+	var ev = e || window.event;//获取event对象  
+    var obj = ev.target || ev.srcElement;//获取事件源  
+    var t = obj.type || obj.getAttribute('type');//获取事件源类型  
+    if(ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea"){
+    		alert("您還沒保存喔");
+        return false;  
+    }
+}
 
 var t = 0;
 var count_days = 0;
@@ -94,11 +113,14 @@ var curr_day = 0;
 var type_list = '<option value="0">機</option><option value="1">景</option><option value="2">中</option><option value="3">晚</option><option value="4">住</option>';
 var hotel_list = '<?php echo $_smarty_tpl->tpl_vars['html_hotel']->value;?>
 ';
+var restaurant_list = '<?php echo $_smarty_tpl->tpl_vars['html_restaurant']->value;?>
+';
 
 function add_day() {
 	count_days++;
-	var html_btnday = '<input type="button" class="gm_t1_btn_alt_disabled" value="第'+count_days+'天" onclick="change_day('+count_days+');" />\n';
+	var html_btnday = '<input type="button" class="btn_days gm_t1_btn_alt_disabled" day="'+count_days+'" value="第'+count_days+'天" onclick="change_day('+count_days+');" />\n';
 	var html_pnlday = '<div id="day_'+count_days+'" class="day_item"><div id="day_'+count_days+'_items" class="item"></div><div><input type="button" class="gm_t1_btn" value="+增加行程" onclick="add_route('+count_days+');"></div></div><input type="hidden" name="days[]" value="'+count_days+'" />';
+	
 	$("#list_days").append(html_btnday);
 	$("#list_route").append(html_pnlday);
 	
@@ -106,6 +128,12 @@ function add_day() {
 	add_route(count_days);
 }
 function add_route(day) {
+	
+	if ($("#day_"+day+"_items").html() == "") {
+		var html_tab = "<div style=\"padding:10px\">D"+day+"標簽 <input type=\"text\" name=\"tab_"+day+"\" id=\"tab_"+day+"\" style=\"height:30px;line-height:30px;width:200px\" placeholder=\"標簽\" /><div>";
+		$("#day_"+day+"_items").append(html_tab);
+	}
+	
 	t++;
 	var html_route = '<div id="route_'+day+'_'+t+'"><div class="item_title"><a href="#" onclick="return close_route('+day+','+t+');" id="btnc_'+day+''+t+'">X</a>行程<em class="route_'+day+'_num"><em></div>'+
 	 				 '<table border="0" width="100%" cellpadding="2" cellspacing="1">'+
@@ -116,6 +144,7 @@ function add_route(day) {
 	 				 '<td class="i_time"><input type="text" name="time_'+day+'[]" id="time_'+day+'_'+t+'" day="'+day+'" placeholder="時間" /></td>'+
 	 				 '<td class="i_other">'+
 	 				 '<div id="i_type_'+day+'_location_'+t+'"><input type="text" name="location_'+day+'[]" id="location_'+day+'_'+t+'" day="'+day+'" placeholder="地点" /></div>'+
+	 				 '<div id="i_type_'+day+'_restaurant_'+t+'" style="display:none"><select name="rname_'+day+'[]" id="rname_'+day+'_'+t+'" day="'+day+'" class="restaurant_list">'+restaurant_list+'</select></div>'+
 	 				 '<div id="i_type_'+day+'_hotel_'+t+'" style="display:none"><select name="hid_'+day+'[]" id="hid_'+day+'_'+t+'" day="'+day+'" class="hotel_list">'+hotel_list+'</select>&nbsp;<input type="text" name="money_'+day+'[]" id="money_'+day+'_'+t+'" day="'+day+'" placeholder="金额" /></div>'+
 	 				 '</td></tr><tr>'+
 	 				 '<td colspan="3" class="i_detail"><textarea name="detail_'+day+'[]" id="detail_'+day+'_'+t+'"></textarea></td></tr></table></div>';
@@ -134,14 +163,30 @@ function change_day(day) {
 	$("#day_"+day).show();
 	$("#day_"+curr_day).hide();
 	curr_day = day;
+	
+	$(".btn_days").each(function() {
+		if ($(this).attr('day') == curr_day) {
+			$(this).removeClass("gm_t1_btn_alt_disabled");
+			$(this).addClass("gm_t1_btn");
+		} else {
+			$(this).removeClass("gm_t1_btn");
+			$(this).addClass("gm_t1_btn_alt_disabled");
+		}
+	})
 }
 function change_type(sender) {
 	var o = $(sender);
 	if (o.val() == "4") {
 		$("#i_type_"+o.attr("day")+"_location_"+o.attr("t")).hide();
+		$("#i_type_"+o.attr("day")+"_restaurant_"+o.attr("t")).hide();
 		$("#i_type_"+o.attr("day")+"_hotel_"+o.attr("t")).show();
+	} else if (o.val() == "2" || o.val() == "3") {
+		$("#i_type_"+o.attr("day")+"_location_"+o.attr("t")).hide();
+		$("#i_type_"+o.attr("day")+"_restaurant_"+o.attr("t")).show();
+		$("#i_type_"+o.attr("day")+"_hotel_"+o.attr("t")).hide();
 	} else {
 		$("#i_type_"+o.attr("day")+"_location_"+o.attr("t")).show();
+		$("#i_type_"+o.attr("day")+"_restaurant_"+o.attr("t")).hide();
 		$("#i_type_"+o.attr("day")+"_hotel_"+o.attr("t")).hide();
 	}
 }

@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-15 13:12:21
-         compiled from "../../app/www/views/sysmanager/guide_edit.html" */ ?>
-<?php /*%%SmartyHeaderCode:13031262505470a479326574-42785343%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-23 14:53:00
+         compiled from "../../app/www/views/agency/guide_edit.html" */ ?>
+<?php /*%%SmartyHeaderCode:5189288854990f04833cb6-76954838%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'd632bddb611c58a776850f7afef0310c4a23f2db' => 
+    'e2b36928b0133d0ea28a586e67cf41fee73cb2e6' => 
     array (
-      0 => '../../app/www/views/sysmanager/guide_edit.html',
-      1 => 1418648969,
+      0 => '../../app/www/views/agency/guide_edit.html',
+      1 => 1419317017,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '13031262505470a479326574-42785343',
+  'nocache_hash' => '5189288854990f04833cb6-76954838',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.16',
-  'unifunc' => 'content_5470a479394d70_67843079',
+  'unifunc' => 'content_54990f04899318_99147787',
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5470a479394d70_67843079')) {function content_5470a479394d70_67843079($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("_common/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_54990f04899318_99147787')) {function content_54990f04899318_99147787($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("_common/popup_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <script type="text/javascript" src="./libs/jquery/core.date.js"></script>
 
@@ -27,13 +27,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	導遊管理 - 新增導遊
 </div>
 
-<input type="button" class="gm_t1_btn_alt_disabled" value="續約導遊" onclick="self.location.href='index.php?ctr=sysguide';">
-<input type="button" class="gm_t1_btn_alt_disabled" value="過期導遊" onclick="self.location.href='index.php?ctr=sysguide&act=expired';">
-<input type="button" class="gm_t1_btn" value="新增導遊" onclick="self.location.href='index.php?ctr=sysguide&act=edit';">
-
 <div class="form_inner">
 
-<form action="index.php?ctr=sysguide&act=save" method="post" class="gm_t1_form">
+<form action="index.php?ctr=sysagency&act=guidesave" method="post" class="gm_t1_form">
     <ul>
         <li>
         	<b>導遊名稱：</b>
@@ -70,5 +66,5 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 </div>
 
-<?php echo $_smarty_tpl->getSubTemplate ("_common/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php echo $_smarty_tpl->getSubTemplate ("_common/popup_footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 <?php }} ?>

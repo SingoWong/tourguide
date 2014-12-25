@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-03 18:01:05
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-20 01:26:20
          compiled from "../../app/www/views/accident/desert_form.html" */ ?>
 <?php /*%%SmartyHeaderCode:1109494126547f4f4d6b7787-57851203%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '645a874cde87cbbe9f1cd0a390f065c01f7216f8' => 
     array (
       0 => '../../app/www/views/accident/desert_form.html',
-      1 => 1417629644,
+      1 => 1417632186,
       2 => 'file',
     ),
   ),
@@ -91,13 +91,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="tel://119">
-		    救护车119
+		    救護車119
 		  </a>
 		  <a class="mui-tab-item mui-active" href="tel://110">
-		    报警110
+		    報警110
 		  </a>
 		  <a class="mui-tab-item mui-active" href="#">
-		    联系旅行社
+		    聯繫旅行社
 		  </a>
 		</nav>
 	</body>

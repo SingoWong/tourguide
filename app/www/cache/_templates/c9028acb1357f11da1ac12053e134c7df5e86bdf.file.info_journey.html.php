@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-14 16:14:17
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-17 22:39:25
          compiled from "../../app/www/views/guide/info_journey.html" */ ?>
 <?php /*%%SmartyHeaderCode:3460976615470312a6341e8-30470229%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c9028acb1357f11da1ac12053e134c7df5e86bdf' => 
     array (
       0 => '../../app/www/views/guide/info_journey.html',
-      1 => 1418494323,
+      1 => 1418826070,
       2 => 'file',
     ),
   ),
@@ -61,7 +61,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<div class="mui-content">
 			<div class="info-journey">
 				<div class="info-map"><img src="<?php echo $_smarty_tpl->tpl_vars['map']->value;?>
-" width="100%" /></div>
+" width="100%" onerror="this.src='/theme/images/error.jpg';this.height='200'" /></div>
 				<div class="info-flow"></div>
 			</div>
 		</div>
@@ -69,8 +69,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		var data = eval('(<?php echo $_smarty_tpl->tpl_vars['schedule']->value;?>
 )');
 		$.each(data,function(day,schedule){
-			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>'+schedule[0]['tab']+'</a><div class="flow-item-list" id="pnl_day_'+day+'">';
-			console.log(schedule);
+			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>'+schedule[0]['tab']+'&nbsp;</a><div class="flow-item-list" id="pnl_day_'+day+'">';
+
 			$.each(schedule,function(route,item){
 				html_day += '<a class="flow-item-stitle" href="#" onclick="return sh_schedule('+day+','+route+');"><span>'+item['time']+'</span><em>'+item['type_label']+'</em>';
 				html_day += item['location']+'</a><div class="flow-item-sdetail" id="pnl_schedule_'+day+'_'+route+'">';

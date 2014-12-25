@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-05 20:49:57
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-19 23:02:56
          compiled from "../../app/www/views/sysmanager/hotel_manager.html" */ ?>
 <?php /*%%SmartyHeaderCode:18579325265470a3ed9bbb46-20098616%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'dc6dfa2ce221677952ab13969160071bde014ef9' => 
     array (
       0 => '../../app/www/views/sysmanager/hotel_manager.html',
-      1 => 1417812004,
+      1 => 1418924571,
       2 => 'file',
     ),
   ),
@@ -50,7 +50,7 @@ function sh_pnlc(id) {
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
-	<input type="hidden" name="ctr" value="sysagency" />
+	<input type="hidden" name="ctr" value="syshotel" />
 	<input type="hidden" name="act" value="index" />
 	<label class="v"><input id="name" type="text" name="name" value="" placeholder="旅行社"></label>
 	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>

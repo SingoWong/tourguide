@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-03 17:51:56
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-20 01:35:40
          compiled from "../../app/www/views/accident/medicine_acc_choose.html" */ ?>
 <?php /*%%SmartyHeaderCode:120587716547f4dbcd3bfd2-92586855%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f3068ad2a440fb2f386b3043cd602d06b4f99f7e' => 
     array (
       0 => '../../app/www/views/accident/medicine_acc_choose.html',
-      1 => 1417629100,
+      1 => 1419009963,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.16',
+  'unifunc' => 'content_547f4dbcdb38d0_52075548',
   'variables' => 
   array (
     'url_menu' => 0,
@@ -25,8 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'url_medicine_photo_submit' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.16',
-  'unifunc' => 'content_547f4dbcdb38d0_52075548',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_547f4dbcdb38d0_52075548')) {function content_547f4dbcdb38d0_52075548($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -78,7 +78,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</header>
 		<div class="mui-content">
 			<form class="mui-input-group" action="<?php echo $_smarty_tpl->tpl_vars['url_medicine_photo_submit']->value;?>
-" method="post" id="form">
+" method="post" id="form" enctype="multipart/form-data">
 		
 			<div class="photo-form">
 				<div class="upload_photo">
@@ -103,13 +103,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="tel://119">
-		    救护车119
+		    救護車119
 		  </a>
 		  <a class="mui-tab-item mui-active" href="tel://110">
-		    报警110
+		    報警110
 		  </a>
 		  <a class="mui-tab-item mui-active" href="#">
-		    联系旅行社
+		    聯繫旅行社
 		  </a>
 		</nav>
 	</body>

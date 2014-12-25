@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-13 16:52:58
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-25 00:52:00
          compiled from "../../app/www/views/guide/restaurant_base.html" */ ?>
 <?php /*%%SmartyHeaderCode:104942899354702d47168a23-76198650%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f26082f5cc29ea2061611a0c65ef9645773c6144' => 
     array (
       0 => '../../app/www/views/guide/restaurant_base.html',
-      1 => 1418489574,
+      1 => 1419272865,
       2 => 'file',
     ),
   ),
@@ -26,6 +26,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'url_accident' => 0,
     'schedule' => 0,
     'url_restaurant_search' => 0,
+    'url_restaurant_confirm' => 0,
     'url_restaurant_payment' => 0,
   ),
   'has_nocache_code' => false,
@@ -110,13 +111,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 &day='+day+'&route='+route+'&type='+item['type']+'" class="restaurant-order">請訂餐</a>';
 			} else if (item['rstatus'] == '1') {
 				html += '<a href="<?php echo $_smarty_tpl->tpl_vars['url_restaurant_search']->value;?>
-&day='+day+'&route='+route+'&type='+item['type']+'">重新<br/>訂餐</a><a href="tel://'+item['rcontact']+'">電話<br/>確認</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
+&day='+day+'&route='+route+'&type='+item['type']+'">重新<br/>訂餐</a><a href="tel://'+item['rcontact']+'">電話<br/>確認</a><a href="<?php echo $_smarty_tpl->tpl_vars['url_restaurant_confirm']->value;?>
+&sid='+item['id']+'" onclick="if (!confirm(\'您確定已經和餐廳確認訂單了嗎？\')){return false;}">訂餐<br/>確認</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
 			} else if (item['rstatus'] == '2') {
 				html += '<a href="<?php echo $_smarty_tpl->tpl_vars['url_restaurant_payment']->value;?>
 &day='+day+'&route='+route+'">選擇<br/>付款</a><a href="<?php echo $_smarty_tpl->tpl_vars['url_restaurant_search']->value;?>
 &day='+day+'&route='+route+'">重新<br/>訂餐</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
 			} else if (item['rstatus'] == '3') {
-				html += '</a>餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
+				html += '餐廳名稱：'+item['rname']+'<br/>收據上傳：'+item['receive_status'];
+			} else if (item['rstatus'] == '4') {
+				html += '<a href="<?php echo $_smarty_tpl->tpl_vars['url_restaurant_search']->value;?>
+&day='+day+'&route='+route+'&type='+item['type']+'" class="restaurant-order">請訂餐</a>';
 			}
 			
 			return html;

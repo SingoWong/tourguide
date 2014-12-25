@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-10 17:24:29
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-14 18:25:26
          compiled from "../../app/www/views/accident/bus_acc_form.html" */ ?>
 <?php /*%%SmartyHeaderCode:1277426729547f41d2b1e7b8-00846775%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '472bb80a2b261263d7a544303707f1882e975cb8' => 
     array (
       0 => '../../app/www/views/accident/bus_acc_form.html',
-      1 => 1417632174,
+      1 => 1418581524,
       2 => 'file',
     ),
   ),
@@ -46,6 +46,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			.info-hotel {
 				padding: 10px;
 			}
+			.mui-input-row {
+				padding: 3px 0!important;
+			}
+			.mui-input-row select {
+				padding-left: 10px!important;
+			}
 		</style>
 	</head>
 	<body>
@@ -77,11 +83,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<input type="text" class="mui-input-clear" name="location" placeholder="發生地點">
 				</div>
 				<div class="mui-input-row">
-					<label>事故狀況：</label>
+					<label><b>事故狀況：</b></label>
 				</div>
 				<div class="mui-input-row">
+					<label>司機狀況：</label>
 					<select name="driver_status">
-						<option value="">請選擇司機狀況</option>
+						<option value="">-</option>
 						<option value="0">死亡</option>
 						<option value="1">重傷</option>
 						<option value="2">輕傷</option>
@@ -89,8 +96,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</select>
 				</div>
 				<div class="mui-input-row">
+					<label>旅客狀況：</label>
 					<select name="member_status">
-						<option value="">請選擇旅客狀況</option>
+						<option value="">-</option>
 						<option value="0">死亡</option>
 						<option value="1">重傷</option>
 						<option value="2">輕傷</option>
@@ -98,8 +106,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</select>
 				</div>
 				<div class="mui-input-row">
+					<label>遊覽車狀況：</label>
 					<select name="bus_status">
-						<option value="">請選擇遊覽車狀況</option>
+						<option value="">-</option>
 						<option value="0">可行進</option>
 						<option value="1">無法行進</option>
 					</select>

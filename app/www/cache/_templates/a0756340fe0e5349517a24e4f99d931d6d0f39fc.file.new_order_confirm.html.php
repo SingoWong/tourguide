@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-10 12:51:06
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-15 16:35:20
          compiled from "../../app/www/views/restaurant/new_order_confirm.html" */ ?>
 <?php /*%%SmartyHeaderCode:6178616655484a2ff0f9ce2-05831589%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a0756340fe0e5349517a24e4f99d931d6d0f39fc' => 
     array (
       0 => '../../app/www/views/restaurant/new_order_confirm.html',
-      1 => 1418135217,
+      1 => 1418661319,
       2 => 'file',
     ),
   ),
@@ -39,6 +39,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			.quick-nav {
 				padding: 0 50px;
 			}
+			.info-detail {
+				padding: 10px;
+			}
+			.info-detail * {
+				text-align: center;
+				font-size: 12px;
+			}
+			.info-detail h1 {
+				font-size: 14px;
+			}
 		</style>
 	</head>
 	<body>
@@ -51,14 +61,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_today']->value;?>
 ';">今日</a>
 					<a class="mui-control-item mui-active" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_new_order']->value;?>
-';">新进</a>
+';">新進</a>
 					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_report']->value;?>
-';">报表</a>
+';">報表</a>
 				</div>
 			</div>
 		</header>
-		<div class="mui-content">
-			<h1>接受订单成功</h1>
+		<div class="mui-content result-page">
+			<div class="icon_success"></div>
+			<div class="info-detail">
+				<h1>接受订单成功</h1>
+			</div>
 		</div>
 	</body>
 </html>

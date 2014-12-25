@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-03 17:52:04
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-20 01:35:47
          compiled from "../../app/www/views/accident/medicine_acc_form.html" */ ?>
 <?php /*%%SmartyHeaderCode:1853069428547f4dc466b1e1-34339711%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '581f74fd21b7ec59ec2143d2ea182a4fcb7cfcbc' => 
     array (
       0 => '../../app/www/views/accident/medicine_acc_form.html',
-      1 => 1417629065,
+      1 => 1417632205,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.16',
+  'unifunc' => 'content_547f4dc46e2da5_15923713',
   'variables' => 
   array (
     'url_menu' => 0,
@@ -27,8 +29,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'id' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.16',
-  'unifunc' => 'content_547f4dc46e2da5_15923713',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_547f4dc46e2da5_15923713')) {function content_547f4dc46e2da5_15923713($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -98,13 +98,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="tel://119">
-		    救护车119
+		    救護車119
 		  </a>
 		  <a class="mui-tab-item mui-active" href="tel://110">
-		    报警110
+		    報警110
 		  </a>
 		  <a class="mui-tab-item mui-active" href="#">
-		    联系旅行社
+		    聯繫旅行社
 		  </a>
 		</nav>
 	</body>

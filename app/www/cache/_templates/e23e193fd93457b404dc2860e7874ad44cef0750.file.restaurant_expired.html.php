@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-05 19:43:51
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-19 23:01:46
          compiled from "../../app/www/views/sysmanager/restaurant_expired.html" */ ?>
 <?php /*%%SmartyHeaderCode:666657595470a3598cbc23-83065496%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e23e193fd93457b404dc2860e7874ad44cef0750' => 
     array (
       0 => '../../app/www/views/sysmanager/restaurant_expired.html',
-      1 => 1417532990,
+      1 => 1418924565,
       2 => 'file',
     ),
   ),
@@ -31,10 +31,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
-		$("#btnc_"+id).htm("关闭");
+		$("#btnc_"+id).html("关闭");
 	} else {
 		$("#pnlc_"+id).hide();
-		$("#btnc_"+id).htm("展开");
+		$("#btnc_"+id).html("展开");
 	}
 	return false;
 }
@@ -50,7 +50,7 @@ function sh_pnlc(id) {
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
-	<input type="hidden" name="ctr" value="sysagency" />
+	<input type="hidden" name="ctr" value="sysrestaurant" />
 	<input type="hidden" name="act" value="expired" />
 	<label class="v"><input id="name" type="text" name="name" value="" placeholder="餐廳"></label>
 	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
@@ -73,9 +73,9 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 			<a href="#" onclick="return sh_pnlc(<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 );" id="btnc_<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
 ">關閉</a>
-			<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
- <?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
- 签约日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
+			<?php echo $_smarty_tpl->tpl_vars['item']->value->users->name;?>
+&nbsp;&nbsp;<?php echo $_smarty_tpl->tpl_vars['item']->value->code;?>
+&nbsp;簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y-%m-%d');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y-%m-%d');?>
 
 		</div>
@@ -83,17 +83,19 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 ">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
-					<td colspan="2">帳號：<?php echo $_smarty_tpl->tpl_vars['item']->value->username;?>
+					<td colspan="2">帳號：<?php echo $_smarty_tpl->tpl_vars['item']->value->users->username;?>
 </td>
 					<td>密碼：******</td>
-					<td width="10%"><a href="">重置密碼</a></td>
+					<td width="10%"><a href="index.php?ctr=sysrestaurant&act=resetpassword&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
+" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">餐廳名稱：<?php echo $_smarty_tpl->tpl_vars['item']->value->name;?>
+					<td colspan="2">餐廳名稱：<?php echo $_smarty_tpl->tpl_vars['item']->value->users->name;?>
 </td>
 					<td>地址：<?php echo $_smarty_tpl->tpl_vars['item']->value->address;?>
 </td>
-					<td><a href="">修改</a></td>
+					<td><a href="index.php?ctr=sysrestaurant&act=updateprofile&type=address&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
 					<td colspan="2" width="50%">流水號：<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
@@ -104,10 +106,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 				<tr>
 					<td>聯絡人：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact;?>
 </td>
-					<td width="10%"><a href="#">修改</a></td>
+					<td width="10%"><a href="index.php?ctr=sysrestaurant&act=updateprofile&type=contact&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 					<td>電話：<?php echo $_smarty_tpl->tpl_vars['item']->value->contact_tel;?>
 </td>
-					<td><a href="#">修改</a></td>
+					<td><a href="index.php?ctr=sysrestaurant&act=updateprofile&type=contact_tel&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
 					<td colspan="2">上月訂餐總數：</td>
@@ -115,8 +119,10 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 				</tr>
 			</table>
 			<div class="item_footer">
-				<a href="">續約</a>
-				<a href="">停權</a>
+				<a href="index.php?ctr=sysrestaurant&act=renewal&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="return window.openWindow(this.href,'600','400',false,0.3)">續約</a>
+				<a href="index.php?ctr=sysrestaurant&act=suspended&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->uid;?>
+" onclick="if(!confirm('確定要停權這個帳號嗎？')){return false;}">停權</a>
 				簽約日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_start,'%Y年%m月%d日');?>
  至 <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['item']->value->sign_date_end,'%Y年%m月%d日');?>
 

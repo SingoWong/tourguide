@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-07 07:07:50
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-14 18:31:34
          compiled from "../../app/www/views/guide/restaurant_search.html" */ ?>
 <?php /*%%SmartyHeaderCode:132375434547a133ce2e310-81866480%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8c1d2bb3f355c20f3e40233ae3e4144d71fc293b' => 
     array (
       0 => '../../app/www/views/guide/restaurant_search.html',
-      1 => 1417935987,
+      1 => 1418581893,
       2 => 'file',
     ),
   ),
@@ -48,6 +48,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			.info-search {
 				padding: 10px;
 			}
+			.info-search h3 {
+				background: #CCC!important;
+				padding: 10px!important;
+				border-radius: 5px!important;
+				text-align: center;
+				font-size: 16px;
+			}
+			.mui-input-row {
+				height: 50px!important;
+				margin-bottom: 10px!important;
+			}
+			.mui-input-row input.mui-input-clear {
+				background: #FFF;
+				border-radius: 5px;
+				height: 50px;
+				line-height: 50px;
+			}
+			.mui-icon-clear {
+				top: 15px!important;
+			}
 		</style>
 	</head>
 	<body>
@@ -79,9 +99,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<div class="mui-input-row">
 						<input type="text" class="mui-input-clear" name="name" placeholder="名稱">
 					</div>
-					<div class="mui-input-row">
+					<!--<div class="mui-input-row">
 						<input type="text" class="mui-input-clear" name="scenic" placeholder="附近景點">
-					</div>
+					</div>-->
 					
 					<div class="signin_submit">
 						<input type="hidden" name="gid" value="<?php echo $_smarty_tpl->tpl_vars['gid']->value;?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-06 06:26:34
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-15 12:54:51
          compiled from "../../app/www/views/sysmanager/hotel_edit.html" */ ?>
 <?php /*%%SmartyHeaderCode:8457014335470a3ef8b1d48-08322031%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1fb2c6062dfa3cbafcf7bcbe8af3d18ccd4df37e' => 
     array (
       0 => '../../app/www/views/sysmanager/hotel_edit.html',
-      1 => 1417847191,
+      1 => 1418325736,
       2 => 'file',
     ),
   ),
@@ -36,29 +36,36 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <form action="index.php?ctr=syshotel&act=save" method="post" class="gm_t1_form">
     <ul>
         <li>
+        	<b>飯店名稱：</b>
             <span class="v"><input type="text" id="name" name="name" placeholder="飯店名稱"><em></em></span>
         </li>
         <li>
+        	<b>地址：</b>
             <span class="v"><input type="text" id="address" name="address" placeholder="地址"><em></em></span>
         </li>
         <!-- <li>
             <span class="v"><input type="text" id="" name="" placeholder="流水號"><em></em></span>
         </li> -->
         <li>
+        	<b>統一編碼：</b>
             <span class="v"><input type="text" id="code" name="code" placeholder="統一編碼"><em></em></span>
         </li>
         <li>
+        	<b>聯絡人：</b>
             <span class="v"><input type="text" id="contact" name="contact" placeholder="聯絡人"><em></em></span>
         </li>
         <li>
+        	<b>電話：</b>
             <span class="v"><input type="text" id="contact_tel" name="contact_tel" placeholder="電話"><em></em></span>
         </li>
         <li>
+        	<b>選擇簽約開始日期：</b>
             <span class="v">
             	<input type="text" id="sign_date_start" name="sign_date_start" placeholder="選擇簽約开始日期" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
             </span>
         </li>
         <li>
+        	<b>選擇簽約結束日期：</b>
             <span class="v">
             	<input type="text" id="sign_date_end" name="sign_date_end" placeholder="選擇簽約结束日期" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
             </span>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-11 14:48:16
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-25 01:09:00
          compiled from "../../app/www/views/restaurant/report_search.html" */ ?>
 <?php /*%%SmartyHeaderCode:10529782225489aeb0c85331-68711375%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '607461f0dca5d213aa959b9c7c5608922b438531' => 
     array (
       0 => '../../app/www/views/restaurant/report_search.html',
-      1 => 1418134392,
+      1 => 1419440938,
       2 => 'file',
     ),
   ),
@@ -15,15 +15,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.16',
+  'unifunc' => 'content_5489aeb0cf2f91_86506615',
   'variables' => 
   array (
     'url_today' => 0,
     'url_new_order' => 0,
     'url_report' => 0,
+    'url_restaurant_result' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.16',
-  'unifunc' => 'content_5489aeb0cf2f91_86506615',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5489aeb0cf2f91_86506615')) {function content_5489aeb0cf2f91_86506615($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -41,6 +42,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			.info-search {
 				padding: 10px;
 			}
+			.info-search h3 {
+				background: #CCC!important;
+				padding: 10px!important;
+				border-radius: 5px!important;
+				text-align: center;
+				font-size: 16px;
+			}
 		</style>
 	</head>
 	<body>
@@ -50,28 +58,29 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
 					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_today']->value;?>
-';">今日</a>
+';">準備</a>
 					<a class="mui-control-item" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_new_order']->value;?>
-';">新进</a>
+';">新進</a>
 					<a class="mui-control-item mui-active" onclick="location.href='<?php echo $_smarty_tpl->tpl_vars['url_report']->value;?>
-';">报表</a>
+';">報表</a>
 				</div>
 			</div>
 		</header>
 		<div class="mui-content">
 			<div class="info-search">
 				<h3>报表查询</h3>
-				<form class="mui-input-group">
+				<form class="mui-input-group" action="<?php echo $_smarty_tpl->tpl_vars['url_restaurant_result']->value;?>
+" method="post">
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="旅行社">
+						<input type="text" class="mui-input-clear" name="agency" placeholder="旅行社">
 					</div>
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="导游">
+						<input type="text" class="mui-input-clear" name="guide" placeholder="导游">
 					</div>
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" placeholder="日期">
+						<input type="text" class="mui-input-clear" name="date" placeholder="日期">
 					</div>
-					
+					<br />
 					<div class="signin_submit">
 						<button class="mui-btn mui-btn-primary mui-btn-block btn-signin">登陆</button>
 					</div>

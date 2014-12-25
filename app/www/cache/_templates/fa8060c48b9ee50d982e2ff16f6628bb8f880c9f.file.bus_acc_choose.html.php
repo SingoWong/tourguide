@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-07 06:55:51
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-20 00:05:10
          compiled from "../../app/www/views/accident/bus_acc_choose.html" */ ?>
 <?php /*%%SmartyHeaderCode:1638311035547f3c52700411-93489301%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fa8060c48b9ee50d982e2ff16f6628bb8f880c9f' => 
     array (
       0 => '../../app/www/views/accident/bus_acc_choose.html',
-      1 => 1417632163,
+      1 => 1419005005,
       2 => 'file',
     ),
   ),
@@ -78,7 +78,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</header>
 		<div class="mui-content">
 			<form class="mui-input-group" action="<?php echo $_smarty_tpl->tpl_vars['url_bus_photo_submit']->value;?>
-" method="post" id="form">
+" method="post" id="form" enctype="multipart/form-data">
 		
 			<div class="photo-form">
 				<div class="upload_photo">

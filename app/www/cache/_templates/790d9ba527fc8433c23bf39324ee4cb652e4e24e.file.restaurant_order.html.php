@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-07 08:08:36
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-21 04:50:32
          compiled from "../../app/www/views/guide/restaurant_order.html" */ ?>
 <?php /*%%SmartyHeaderCode:151325825454840b048db0f4-89554697%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '790d9ba527fc8433c23bf39324ee4cb652e4e24e' => 
     array (
       0 => '../../app/www/views/guide/restaurant_order.html',
-      1 => 1417616513,
+      1 => 1419108601,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.16',
+  'unifunc' => 'content_54840b049cb274_43668337',
   'variables' => 
   array (
     'url_menu' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'url_accident' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.16',
-  'unifunc' => 'content_54840b049cb274_43668337',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_54840b049cb274_43668337')) {function content_54840b049cb274_43668337($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -66,12 +66,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				</div>
 			</div>
 		</header>
-		<div class="mui-content">
-			<div class="info-detail">
-				<h1>訂餐信息已送出</h1>
-				<h1>請等待餐廳回復</h1>
-				<div>觸碰螢幕回到訂餐系統主畫面</div>
-			</div>
+		<div class="mui-content result-page">
+			<div class="icon_success"></div>
+			<div class="result-tips">訂餐信息已送出</div>
+			<div class="result-tips">請等待餐廳回復</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item" href="<?php echo $_smarty_tpl->tpl_vars['url_restaurant']->value;?>

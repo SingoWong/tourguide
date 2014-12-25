@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-12-13 13:56:18
+<?php /* Smarty version Smarty-3.1.16, created on 2014-12-25 21:53:27
          compiled from "../../app/www/views/guide/info_base.html" */ ?>
 <?php /*%%SmartyHeaderCode:16024723154702cde8acc76-88205240%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f1f48856f2e7f2727b618339ca3004372f2236e4' => 
     array (
       0 => '../../app/www/views/guide/info_base.html',
-      1 => 1418478976,
+      1 => 1419515596,
       2 => 'file',
     ),
   ),
@@ -115,17 +115,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">相關聯絡人資訊</a>
 						<ul class="mui-table-view mui-table-view-chevron" id="pnl_info_contact">
 							<li class="mui-table-view-cell">
-								<p>送機人員：</p>
-								<p>手機：</p>
-								<p>胸章：</p>
+								<!--<p>送機人員：</p>-->
+								<!--<p>手機：</p>-->
+								<!--<p>胸章：</p>-->
 								<p>領隊：<?php echo $_smarty_tpl->tpl_vars['info']->value->info->leader;?>
 </p>
 								<p>手機：<?php echo $_smarty_tpl->tpl_vars['info']->value->info->leader_tel;?>
 </p>
-								<p>行李牌：</p>
+								<!--<p>行李牌：</p>-->
 								<p>注意事項：<?php echo $_smarty_tpl->tpl_vars['info']->value->info->attention;?>
 </p>
-								<p>緊急聯絡：</p>
+								<p>緊急聯絡：<?php echo $_smarty_tpl->tpl_vars['info']->value->contact_tel;?>
+</p>
 							</li>
 						</ul>
 					</li>
@@ -138,9 +139,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </p>
 								<p>班機行程：<?php echo $_smarty_tpl->tpl_vars['info']->value->start_flight_code;?>
 </p>
-								<p>起飛時間：<?php echo $_smarty_tpl->tpl_vars['info']->value->start_flight_departure_time;?>
+								<p>起飛時間：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['info']->value->start_departure_time,"%H:%M");?>
 </p>
-								<p>抵達時間：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['info']->value->start_flight_arrive_time,"%H:%i");?>
+								<p>抵達時間：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['info']->value->start_arrive_time,"%H:%M");?>
 </p>
 								<br/>
 								<p>回國日期：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['info']->value->end_date,"%Y-%m-%d");?>
@@ -149,9 +150,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </p>
 								<p>班機行程：<?php echo $_smarty_tpl->tpl_vars['info']->value->end_flight_code;?>
 </p>
-								<p>起飛時間：<?php echo $_smarty_tpl->tpl_vars['info']->value->end_flight_departure_time;?>
+								<p>起飛時間：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['info']->value->end_departure_time,"%H:%M");?>
 </p>
-								<p>抵達時間：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['info']->value->end_flight_arrive_time,"%H:%i");?>
+								<p>抵達時間：<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['info']->value->end_arrive_time,"%H:%M");?>
 </p>
 							</li>
 						</ul>
