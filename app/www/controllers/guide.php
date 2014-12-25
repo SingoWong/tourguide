@@ -28,6 +28,10 @@ class Guide extends Base_Controller {
         $group = new Group_Model();
         
         $re = $group->getCurrGroupByGuideId($this->user['id']);
+		
+		if ($_REQUEST['debug'] == '1') {
+			dump($re);
+		}
         
         $this->smarty->assign('info', $re);
         $this->smarty->assign( 'url_info_journey', url('guide/info_journey') );

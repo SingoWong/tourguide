@@ -15,7 +15,7 @@ class Accident_Model extends CI_Model {
      * @return multitype:
      */
     function getAccident($with_relation=false, $group_aid=0) {
-        $accident = new Accident();
+        $accident = new Accidents();
         
         if ($group_aid == 0) {
             $accident->get();
