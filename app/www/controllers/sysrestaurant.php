@@ -74,6 +74,7 @@ class SysRestaurant extends Base_Controller {
         
         $row['name'] = $this->input->post('name');
 		$row['title'] = $this->input->post('title');
+		$row['region'] = $this->input->post('region');
         $row['address'] = $this->input->post('address');
         $row['code'] = $this->input->post('code');
         $row['contact'] = $this->input->post('contact');

@@ -127,6 +127,7 @@ class Users_Restaurant_Model extends CI_Model {
             } else {
                 $restaurant->uid = $row['uid'];
 				$restaurant->title = $row['title'];
+				$restaurant->region = $row['region'];
                 $restaurant->address = $row['address'];
                 $restaurant->code = $row['code'];
                 $restaurant->contact = $row['contact'];

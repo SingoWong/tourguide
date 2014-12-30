@@ -5,15 +5,23 @@
 		<title>餐厅搜索结果</title>
 		
 		{{include file="_common/minclude.html"}}
-		
-		<style type="text/css">
-			.quick-nav {
-				padding: 0 50px;
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#status").val("{{$status}}");
+			});
+			function sh_detail(sender) {
+				var id = $(sender).attr("idx");
+				if ($("#pnl_detail_"+id).css("display") == 'none') {
+					$("#pnl_detail_"+id).show();
+				} else {
+					$("#pnl_detail_"+id).hide();
+				}
 			}
-			.info-result {
-				padding: 10px;
+			function filter(sender) {
+				var status = $(sender).val();
+				location.href = 'index.php?ctr=hotel&act=today&status='+status;
 			}
-		</style>
+		</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -30,38 +38,27 @@
 		<div class="mui-content">
 			<div class="info-result">
 				<ul class="mui-table-view">
+					{{foreach from=$rowset item=item key=key}}
 					<li class="mui-table-view-cell mui-media">
-						<a href="#">
+						<a href="#" class="detail_item_status"></a>
+						<a href="#" idx="{{$item->id}}" class="detail_item_swith" onclick="sh_detail(this);return false;">
 							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
+								{{$item->created|date_format:"%Y-%m-%d"}} {{$item->aid}}
+								<p class='mui-ellipsis'>導遊:{{$item->gid}} {{$item->amount}}人</p>
 							</div>
 						</a>
+						<div class="detail_item" id="pnl_detail_{{$item->id}}">
+							<p>日期：{{$item->created|date_format:"%Y-%m-%d"}}</p>
+							<p>飯店名稱：{{$item->rname}}</p>
+							<p>旅行社：{{$item->aname}}</p>
+							<p>團號：{{$item->code}}</p>
+							<p>導遊：{{$item->gname}}</p>
+							<p>房客數：-</p>
+							<p>房價：-</p>
+							<p>金額：-</p>
+						</div>
 					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="#">
-							<div class="mui-media-body">
-								五天一页台北游
-								<p class='mui-ellipsis'>这里是旅行团的详细信息</p>
-							</div>
-						</a>
-					</li>
+					{{/foreach}}
 				</ul>
 			</div>
 		</div>

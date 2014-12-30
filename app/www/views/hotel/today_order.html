@@ -6,6 +6,9 @@
 		
 		{{include file="_common/minclude.html"}}
 		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#status").val("{{$status}}");
+			});
 			function sh_detail(sender) {
 				var id = $(sender).attr("idx");
 				if ($("#pnl_detail_"+id).css("display") == 'none') {
@@ -13,6 +16,10 @@
 				} else {
 					$("#pnl_detail_"+id).hide();
 				}
+			}
+			function filter(sender) {
+				var status = $(sender).val();
+				location.href = 'index.php?ctr=hotel&act=today&status='+status;
 			}
 		</script>
 	</head>
@@ -30,8 +37,14 @@
 		</header>
 		<div class="mui-content">
 			<div class="order-result">
-				<div>
-					选择状态：
+				<div class="title_status">
+					<label>選擇狀態：</label>
+					<select id="status" onchange="filter(this);">
+						<option value="">全部</option>
+						<option value="1">已訂餐</option>
+						<option value="3">已結帳</option>
+						<option value="4">已取消</option>
+					</select>
 				</div>
 				<ul class="mui-table-view">
 					{{foreach from=$rowset item=item key=key}}

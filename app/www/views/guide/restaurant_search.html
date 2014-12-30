@@ -34,6 +34,14 @@
 				top: 15px!important;
 			}
 		</style>
+		<script type="text/javascript">
+			function choosecity() {
+				$("#region").click();
+			}
+			function setcity(sender) {
+				$("#city").val($(sender).val());
+			}
+		</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -53,7 +61,17 @@
 				<h3>搜索餐廳</h3>
 				<form class="mui-input-group" action="{{$url_restaurant_result}}" method="post">
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" name="city" placeholder="城市">
+						<input type="text" class="mui-input-clear" id="city" name="city" placeholder="城市" readonly="readonly" onclick="choosecity();">
+						<select name="region" id="region" style="display: none;" onchange="setcity(this);">
+							<option value="">全部</option>
+		            			<option value="臺北">臺北</option>
+		            			<option value="高雄">高雄</option>
+		            			<option value="基隆">基隆</option>
+		            			<option value="臺南">臺南</option>
+		            			<option value="臺中">臺中</option>
+		            			<option value="新竹">新竹</option>
+		            			<option value="嘉義">嘉義</option>
+		            		</select>
 					</div>
 					<div class="mui-input-row">
 						<input type="text" class="mui-input-clear" name="name" placeholder="名稱">

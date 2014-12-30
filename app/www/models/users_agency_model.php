@@ -208,5 +208,19 @@ class Users_Agency_Model extends CI_Model {
         
         return $re;
     }
+	
+	/**
+	 * 獲得旅行社簽約的餐廳
+	 */
+	function getAgencySignRestaurant($aid) {
+		
+	}
+	
+	/**
+	 * 保存旅行社簽約的餐廳
+	 */
+	function saveAgencySignRestaurant($aid, $rids) {
+		
+	}
 }
 ?>

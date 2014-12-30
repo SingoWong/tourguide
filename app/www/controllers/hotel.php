@@ -24,11 +24,19 @@ class Hotel extends Base_Controller {
      * 今日订单
      */
     public function today() {
-    	$this->load->model('order_model');
+    		$this->load->model('order_model');
+		
+		$status = $this->input->get('status');
+		
+		$conditions = array();
+		if ($status != '') {
+			$conditions['status'] = $status;
+		}
 		
 		$order = new Order_Model();
 		$re = $order->getHotelOrdersToday($this->user['id']);
 		
+		$this->smarty->assign('status', $status);
 		$this->smarty->assign('rowset', $re);
 		$this->smarty->display('./hotel/today_order.html');
     }
@@ -37,7 +45,7 @@ class Hotel extends Base_Controller {
      * 新增订单
      */
     public function new_order() {
-    	$this->load->model('order_model');
+    		$this->load->model('order_model');
 		
 		$order = new Order_Model();
 		$re = $order->getHotelOrdersReview($this->user['id']);
@@ -52,15 +60,15 @@ class Hotel extends Base_Controller {
      * 接受订单
      */
     public function order_confirm() {
-    	$this->load->model('order_model');
+    		$this->load->model('order_model');
 		
-    	$oid = $this->input->get('oid');
+    		$oid = $this->input->get('oid');
 		
 		$order = new Order_Model();
 		$re = $order->approveHotelOrder($oid);
     	
 		if ($re) {
-	    	alert('訂單已確認', url('hotel/order_confirm_finish'));
+	    		alert('訂單已確認', url('hotel/order_confirm_finish'));
 		} else {
 			alert('訂單確認失敗', null, true);
 		}
@@ -114,14 +122,28 @@ class Hotel extends Base_Controller {
      * 报表查询
      */
     public function report() {
-    	$this->smarty->display('./restaurant/report_search.html');
+    	
+		$this->smarty->assign('url_hotel_result',url('hotel/report_result'));
+    		$this->smarty->display('./hotel/report_search.html');
     }
     
     /**
      * 报表结果
      */
     public function report_result() {
-    	$this->smarty->display('./restaurant/report_result.html');
+    		$this->load->model('order_model');
+		
+		$agency = $this->input->post('agency');
+		$guide = $this->input->post('guide');
+		$date = $this->input->post('date');
+		
+		$conditions = array();
+		
+		$order = new Order_Model();
+		$re = $order->getHotelOrdersReport($this->user['id'], $conditions, true);
+		
+		$this->smarty->assign('rowset', $re);
+    		$this->smarty->display('./hotel/report_result.html');
     }
 }
 ?>
