@@ -153,13 +153,10 @@ class Guide extends Base_Controller {
         
         $conditions = array();
         if ($city != '') {
-            
+            $conditions['region'] = $city;
         }
         if ($name != '') {
             
-        }
-        if ($scenic != '') {
-        
         }
         
         $restaurant = new Users_Restaurant_Model();
