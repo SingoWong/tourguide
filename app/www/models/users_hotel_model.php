@@ -23,7 +23,7 @@ class Users_Hotel_Model extends CI_Model {
 			}
         }
         $hotel->get_paged($page,$size);
-
+dump($hotel->all[0]);
         if ($with_relation) {
             $ids = array();
             for ($i=0; $i<sizeof($hotel->all); $i++) {
