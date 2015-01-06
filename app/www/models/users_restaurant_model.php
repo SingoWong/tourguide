@@ -10,7 +10,7 @@ class Users_Restaurant_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getContractRestaurant($conditions, $with_relation=false) {
+    function getContractRestaurant($conditions, $with_relation=false, $page=0, $size=20) {
         $restaurant = new Users_Restaurant();
         
         $restaurant->where('sign_date_start <=', time());
@@ -22,7 +22,7 @@ class Users_Restaurant_Model extends CI_Model {
 	            $restaurant->where($field, $value);
 			}
         }
-        $restaurant->get();
+        $restaurant->get_paged($page,$size);
 
         if ($with_relation) {
             $ids = array();
@@ -42,7 +42,7 @@ class Users_Restaurant_Model extends CI_Model {
             }
         }
 
-        return $restaurant->all;
+		return array('rowset'=>$restaurant->all,'pager'=>$hotel->paged);
     }
     
     /**
@@ -50,7 +50,7 @@ class Users_Restaurant_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getExpiredRestaurant($conditions) {
+    function getExpiredRestaurant($conditions, $page=0, $size=20) {
         $restaurant = new Users_Restaurant();
         
         $restaurant->where('sign_date_end <', time());
@@ -61,7 +61,7 @@ class Users_Restaurant_Model extends CI_Model {
 	            $restaurant->where($field, $value);
 			}
         }
-        $restaurant->get();
+        $restaurant->get_paged($page,$size);
 
         if ($with_relation) {
             $ids = array();
@@ -81,7 +81,7 @@ class Users_Restaurant_Model extends CI_Model {
             }
         }
         
-        return $restaurant->all;
+		return array('rowset'=>$restaurant->all,'pager'=>$hotel->paged);
     }
     
     /**

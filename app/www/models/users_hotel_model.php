@@ -10,7 +10,7 @@ class Users_Hotel_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getContractHotel($conditions, $with_relation=false) {
+    function getContractHotel($conditions, $with_relation=false, $page=0, $size=20) {
         $hotel = new Users_Hotel();
         
         $hotel->where('sign_date_start <=', time());
@@ -22,7 +22,7 @@ class Users_Hotel_Model extends CI_Model {
 	            $hotel->where($field, $value);
 			}
         }
-        $hotel->get();
+        $hotel->get_paged($page,$size);
 
         if ($with_relation) {
             $ids = array();
@@ -41,8 +41,8 @@ class Users_Hotel_Model extends CI_Model {
                 }
             }
         }
-        
-        return $hotel->all;
+
+        return array('rowset'=>$hotel->all,'pager'=>$hotel->paged);
     }
     
     /**
@@ -50,7 +50,7 @@ class Users_Hotel_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getExpiredHotel($conditions) {
+    function getExpiredHotel($conditions, $page=0, $size=20) {
         $hotel = new Users_Hotel();
         
         $hotel->where('sign_date_end <', time());
@@ -61,9 +61,9 @@ class Users_Hotel_Model extends CI_Model {
 	            $hotel->where($field, $value);
 			}
         }
-        $hotel->get();
+        $hotel->get_paged($page,$size);
         
-        return $hotel->all;
+        return array('rowset'=>$hotel->all,'pager'=>$hotel->paged);
     }
     
     /**

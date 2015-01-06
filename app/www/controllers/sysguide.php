@@ -13,6 +13,7 @@ class SysGuide extends Base_Controller {
         
         $name = $this->input->get('name');
         $username = $this->input->get('username');
+		$page = $this->input->get('page');
         
         $conditions = array();
         if (($name && $name != '') || ($username && $username != '')) {
@@ -29,9 +30,10 @@ class SysGuide extends Base_Controller {
 			}
         }
         
-        $re = $users_guide_model->getContractGuide($conditions, true);
+        $re = $users_guide_model->getContractGuide($conditions, true, $page);
         
-        $this->smarty->assign('rowset', $re);
+        $this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/guide_manager.html');
     }
     
@@ -41,6 +43,7 @@ class SysGuide extends Base_Controller {
         
         $name = $this->input->get('name');
         $username = $this->input->get('username');
+		$page = $this->input->get('page');
         
         $conditions = array();
         if (($name && $name != '') || ($username && $username != '')) {
@@ -57,9 +60,10 @@ class SysGuide extends Base_Controller {
 			}
         }
         
-        $re = $users_guide_model->getExpiredGuide($conditions, true);
+        $re = $users_guide_model->getExpiredGuide($conditions, true, $page);
         
-        $this->smarty->assign('rowset', $re);
+        $this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/guide_expired.html');
     }
     

@@ -77,4 +77,70 @@ if ( ! function_exists('alert'))
         
     }
 }
+
+if ( ! function_exists('pagerui'))
+{
+    function pagerui($data) {
+		$ctr = $_GET['ctr'];
+		$act = ($_GET['act']=='')?'index':$_GET['act'];
+		$base_url = url($ctr.'/'.$act);
+		$html = '';
+		
+		//输出第一页
+		if ($data->current_page == '1') {
+			$html .= '<span>第一页</span>';
+		} else {
+			$html .= '<a href="'.$base_url.'&page=1">第一页</a>';
+		}
+		
+		//输出上一页
+		if ($data->has_previous != '1') {
+			$html .= '<span>上一页</span>';
+		} else {
+			$html .= '<a href="'.$base_url.'&page='.$data->previous_page.'">上一页</a>';
+		}
+		
+		//输出页码
+		if ($data->current_page < 5) {
+			$start_i=0;
+			$end_i=10;
+		} elseif ($data->current_page > $data->total_pages-5) {
+			$start_i=$data->total_pages-10;
+			$end_i=$data->total_pages;
+		} else {
+			$start_i=$data->current_page-5;
+			$end_i=$data->current_page+5;
+		}
+		if ($start_i != 0) {
+			$html .= '<em>...</em>';
+		}
+		for ($i=$start_i;$i<$end_i;$i++) {
+			$page = $i+1;
+			if ($data->current_page==$page) {
+				$html .= '<span class="curr_item">'.$page.'</span>';
+			} else {
+				$html .= '<a href="'.$base_url.'&page='.$page.'">'.$page.'</a>';
+			}
+		}
+		if ($data->total_pages != $end_i) {
+			$html .= '<em>...</em>';
+		}
+		
+		//输出下一页
+		if ($data->has_next != '1') {
+			$html .= '<span>下一页</span>';
+		} else {
+			$html .= '<a href="'.$base_url.'&page='.$data->next_page.'">下一页</a>';
+		}
+		
+		//输出第一页
+		if ($data->current_page == $data->total_pages) {
+			$html .= '<span>最后页</span>';
+		} else {
+			$html .= '<a href="'.$base_url.'&page='.$data->total_pages.'">最后页</a>';
+		}
+		
+		return $html;
+	}
+}
 ?>

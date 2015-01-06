@@ -10,7 +10,7 @@ class Users_Guide_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getContractGuide($conditions, $with_relation=false) {
+    function getContractGuide($conditions, $with_relation=false, $page=0, $size=20) {
         $guide = new Users_Guide();
         
         $guide->where('sign_date_start <=', time());
@@ -22,7 +22,7 @@ class Users_Guide_Model extends CI_Model {
 	            $guide->where($field, $value);
 			}
         }
-        $guide->get();
+        $guide->get_paged($page,$size);
 		
 		if ($with_relation) {
             $ids = array();
@@ -42,7 +42,7 @@ class Users_Guide_Model extends CI_Model {
             }
         }
         
-        return $guide->all;
+		return array('rowset'=>$guide->all,'pager'=>$hotel->paged);
     }
     
     /**
@@ -50,7 +50,7 @@ class Users_Guide_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getExpiredGuide($conditions, $with_relation=false) {
+    function getExpiredGuide($conditions, $with_relation=false, $page=0, $size=20) {
         $guide = new Users_Guide();
         
         $guide->where('sign_date_end <', time());
@@ -61,7 +61,7 @@ class Users_Guide_Model extends CI_Model {
 	            $guide->where($field, $value);
 			}
         }
-        $guide->get();
+        $guide->get_paged($page,$size);
 		
 		if ($with_relation) {
             $ids = array();
@@ -81,7 +81,7 @@ class Users_Guide_Model extends CI_Model {
             }
         }
         
-        return $guide->all;
+		return array('rowset'=>$guide->all,'pager'=>$hotel->paged);
     }
     
     /**

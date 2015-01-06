@@ -1,5 +1,8 @@
 {{include file="_common/header.html"}}
 <script type="text/javascript">
+$(document).ready(function(){
+	sh_pnlc($(".item_content").first().attr("idx"));
+});
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
@@ -39,7 +42,7 @@ function sh_pnlc(id) {
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
 			{{$item->users->name}}&nbsp;&nbsp;{{$item->code}}&nbsp;簽約日期：{{$item->sign_date_start|date_format:'%Y-%m-%d'}} 至 {{$item->sign_date_end|date_format:'%Y-%m-%d'}}
 		</div>
-		<div class="item_content" id="pnlc_{{$item->id}}">
+		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
 					<td colspan="2">帳號：{{$item->users->username}}</td>
@@ -77,5 +80,7 @@ function sh_pnlc(id) {
 	<!-- foreach -->
 	
 </div>
+
+<div class="pager">{{$pager}}</div>
 
 {{include file="_common/footer.html"}}

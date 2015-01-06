@@ -1,5 +1,8 @@
 {{include file="_common/header.html"}}
 <script type="text/javascript">
+$(document).ready(function(){
+	sh_pnlc($(".item_content").first().attr("idx"));
+});
 function sh_pnlc(id) {
 	if ($("#pnlc_"+id).css("display") == "none") {
 		$("#pnlc_"+id).show();
@@ -46,7 +49,7 @@ function getLocalTime(start_date, day) {
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
 			團號：{{$item->code}} &nbsp;&nbsp; 團名：{{$item->name}} &nbsp;&nbsp; 導遊：{{$item->guide->name}} &nbsp;&nbsp; 進度：
 		</div>
-		<div class="item_content" id="pnlc_{{$item->id}}">
+		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
 			<input type="hidden" id="hdn_start_date_{{$item->id}}" value="{{$item->start_date}}" />
 			<!-- schedule -->
 			
@@ -92,5 +95,7 @@ function getLocalTime(start_date, day) {
 	{{/foreach}}
 	<!-- foreach -->
 </div>
+
+<div class="pager">{{$pager}}</div>
 	
 {{include file="_common/footer.html"}}

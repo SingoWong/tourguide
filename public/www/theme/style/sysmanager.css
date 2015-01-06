@@ -349,3 +349,26 @@ a#closeButton{
 	display: block;
 	padding-top: 5px;
 }
+.item_content {
+	display: none;
+}
+.pager {
+	padding: 10px auto;
+}
+.pager a, .pager span {
+	display: inline-block;
+	padding: 5px;
+	margin-right: 3px;
+	border-radius: 3px;
+}
+.pager span {
+	background: #0099CC;
+	color: #FFF;
+}
+.pager a {
+	background: #CCC;
+}
+.pager em {
+	display: inline-block;
+	padding: 3px;
+}
