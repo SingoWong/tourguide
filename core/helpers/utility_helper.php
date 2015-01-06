@@ -88,16 +88,16 @@ if ( ! function_exists('pagerui'))
 		
 		//输出第一页
 		if ($data->current_page == '1') {
-			$html .= '<span>第一页</span>';
+			$html .= '<span>第一頁</span>';
 		} else {
-			$html .= '<a href="'.$base_url.'&page=1">第一页</a>';
+			$html .= '<a href="'.$base_url.'&page=1">第一頁</a>';
 		}
 		
 		//输出上一页
 		if ($data->has_previous != '1') {
-			$html .= '<span>上一页</span>';
+			$html .= '<span>上一頁</span>';
 		} else {
-			$html .= '<a href="'.$base_url.'&page='.$data->previous_page.'">上一页</a>';
+			$html .= '<a href="'.$base_url.'&page='.$data->previous_page.'">上一頁</a>';
 		}
 		
 		//输出页码
@@ -128,16 +128,16 @@ if ( ! function_exists('pagerui'))
 		
 		//输出下一页
 		if ($data->has_next != '1') {
-			$html .= '<span>下一页</span>';
+			$html .= '<span>下一頁</span>';
 		} else {
-			$html .= '<a href="'.$base_url.'&page='.$data->next_page.'">下一页</a>';
+			$html .= '<a href="'.$base_url.'&page='.$data->next_page.'">下一頁</a>';
 		}
 		
 		//输出第一页
 		if ($data->current_page == $data->total_pages) {
-			$html .= '<span>最后页</span>';
+			$html .= '<span>最後頁</span>';
 		} else {
-			$html .= '<a href="'.$base_url.'&page='.$data->total_pages.'">最后页</a>';
+			$html .= '<a href="'.$base_url.'&page='.$data->total_pages.'">最後頁</a>';
 		}
 		
 		return $html;
