@@ -111,6 +111,9 @@ if ( ! function_exists('pagerui'))
 			$start_i=$data->current_page-5;
 			$end_i=$data->current_page+5;
 		}
+		if ($end_i > $data->total_pages) {
+			$end_i = $data->total_pages;
+		}
 		if ($start_i != 0) {
 			$html .= '<em>...</em>';
 		}

@@ -46,7 +46,7 @@ function getLocalTime(start_date, day) {
 	{{foreach from=$rowset item=item key=key}}
 	<div class="item">
 		<div class="item_title">
-			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">展開</a>
 			團號：{{$item->code}} &nbsp;&nbsp; 團名：{{$item->name}} &nbsp;&nbsp; 導遊：{{$item->guide->name}} &nbsp;&nbsp; 進度：
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">

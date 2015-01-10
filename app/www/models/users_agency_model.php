@@ -10,7 +10,7 @@ class Users_Agency_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getContractAgency($conditions, $with_relation=false) {
+    function getContractAgency($conditions, $with_relation=false, $page=0, $size=20) {
         $agency = new Users_Agency();
         
         $agency->where('sign_date_start <=', time());
@@ -22,7 +22,7 @@ class Users_Agency_Model extends CI_Model {
 	            $agency->where($field, $value);
 			}
         }
-        $agency->get();
+        $agency->get_paged($page,$size);
         
         if ($with_relation) {
             $ids = array();
@@ -42,7 +42,7 @@ class Users_Agency_Model extends CI_Model {
             }
         }
         
-        return $agency->all;
+        return array('rowset'=>$agency->all,'pager'=>$agency->paged);
     }
     
     /**
@@ -50,7 +50,7 @@ class Users_Agency_Model extends CI_Model {
      * @param unknown $conditions
      * @return multitype:
      */
-    function getExpiredAgency($conditions) {
+    function getExpiredAgency($conditions, $page=0, $size=20) {
         $agency = new Users_Agency();
         
         $agency->where('sign_date_end <', time());
@@ -61,7 +61,7 @@ class Users_Agency_Model extends CI_Model {
 	            $agency->where($field, $value);
 			}
         }
-        $agency->get();
+        $agency->get_paged($page,$size);
 
         if ($with_relation) {
             $ids = array();
@@ -81,7 +81,7 @@ class Users_Agency_Model extends CI_Model {
             }
         }
         
-        return $agency->all;
+        return array('rowset'=>$agency->all,'pager'=>$agency->paged);
     }
     
     /**

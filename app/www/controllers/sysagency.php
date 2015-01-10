@@ -13,6 +13,7 @@ class SysAgency extends Base_Controller {
         
         $name = $this->input->get('name');
         $username = $this->input->get('username');
+		$page = $this->input->get('page');
         
         $conditions = array();
         if (($name && $name != '') || ($username && $username != '')) {
@@ -29,9 +30,10 @@ class SysAgency extends Base_Controller {
 			}
         }
         
-        $re = $users_agent_model->getContractAgency($conditions, true);
+        $re = $users_agent_model->getContractAgency($conditions, true, $page);
 
-        $this->smarty->assign('rowset', $re);
+        $this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/agency_manager.html');
     }
     
@@ -41,6 +43,7 @@ class SysAgency extends Base_Controller {
         
         $name = $this->input->get('name');
         $username = $this->input->get('username');
+		$page = $this->input->get('page');
         
         $conditions = array();
         if (($name && $name != '') || ($username && $username != '')) {
@@ -57,9 +60,10 @@ class SysAgency extends Base_Controller {
 			}
         }
         
-        $re = $users_agent_model->getExpiredAgency($conditions, true);
+        $re = $users_agent_model->getExpiredAgency($conditions, true, $page);
         
-        $this->smarty->assign('rowset', $re);
+        $this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/agency_expired.html');
     }
     
@@ -305,14 +309,14 @@ class SysAgency extends Base_Controller {
         $re = $group->getGroupSchedule($gid);
 		
 		$hotel = new Users_Hotel_Model();
-		$re_hotel = $hotel->getContractHotel(null, true);
+		$re_hotel = $hotel->getScheduleContractHotel(null, true);
 		$html_hotel = '';
 		foreach($re_hotel as $rh) {
 			$html_hotel .= '<option value="'.$rh->users->id.'">'.$rh->users->name.'</option>';
 		}
 		
 		$restaurant = new Users_Restaurant_Model();
-		$re_restaurant = $restaurant->getContractRestaurant(null, true);
+		$re_restaurant = $restaurant->getScheduleContractRestaurant(null, true);
 		$html_restaurant = '';
 		foreach($re_restaurant as $rh) {
 			$html_restaurant .= '<option value="'.$rh->users->name.'">'.$rh->users->name.'</option>';
@@ -383,7 +387,7 @@ class SysAgency extends Base_Controller {
 		
 		//獲得導遊列表
 		$guide = new Users_Guide_Model();
-		$re_guide = $guide->getContractGuide(null, TRUE);
+		$re_guide = $guide->getAgencyContractGuide(null, $this->user['id']);
 		$html_guide = '';
 		$guides = array();
 		foreach($re_guide as $rg) {

@@ -83,6 +83,44 @@ class Users_Restaurant_Model extends CI_Model {
         
 		return array('rowset'=>$restaurant->all,'pager'=>$hotel->paged);
     }
+
+	/**
+	 * 获取可选的餐厅
+	 */
+	function getScheduleContractRestaurant($conditions, $aid) {
+        $restaurant = new Users_Restaurant();
+        
+        $restaurant->where('sign_date_start <=', time());
+        $restaurant->where('sign_date_end >=', time());
+        foreach ($conditions as $field=>$value) {
+        		if (is_array($value)) {
+        			$restaurant->where_in($field, $value);
+        		} else {
+	            $restaurant->where($field, $value);
+			}
+        }
+        $restaurant->get();
+
+        if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($restaurant->all); $i++) {
+                $ids[] = $restaurant->all[$i]->uid;
+            }
+            
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+        
+                $us = array_to_hashmap($users->all, 'id');
+        
+                for ($i=0; $i<sizeof($restaurant->all); $i++) {
+                    $restaurant->all[$i]->users = $us[$restaurant->all[$i]->uid];
+                }
+            }
+        }
+
+		return $restaurant->all;
+    }
     
     /**
      * 根据用户编号获取详细数据

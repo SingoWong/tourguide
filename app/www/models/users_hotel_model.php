@@ -23,7 +23,7 @@ class Users_Hotel_Model extends CI_Model {
 			}
         }
         $hotel->get_paged($page,$size);
-dump($hotel->all[0]);
+
         if ($with_relation) {
             $ids = array();
             for ($i=0; $i<sizeof($hotel->all); $i++) {
@@ -64,6 +64,44 @@ dump($hotel->all[0]);
         $hotel->get_paged($page,$size);
         
         return array('rowset'=>$hotel->all,'pager'=>$hotel->paged);
+    }
+	
+	/**
+	 * 获取可选的饭店
+	 */
+	function getScheduleContractHotel($conditions, $aid) {
+        $hotel = new Users_Hotel();
+        
+        $hotel->where('sign_date_start <=', time());
+        $hotel->where('sign_date_end >=', time());
+        foreach ($conditions as $field=>$value) {
+        		if (is_array($value)) {
+        			$hotel->where_in($field, $value);
+        		} else {
+	            $hotel->where($field, $value);
+			}
+        }
+        $hotel->get();
+
+        if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($hotel->all); $i++) {
+                $ids[] = $hotel->all[$i]->uid;
+            }
+        
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+        
+                $us = array_to_hashmap($users->all, 'id');
+        
+                for ($i=0; $i<sizeof($hotel->all); $i++) {
+                    $hotel->all[$i]->users = $us[$hotel->all[$i]->uid];
+                }
+            }
+        }
+
+        return $hotel->all;
     }
     
     /**

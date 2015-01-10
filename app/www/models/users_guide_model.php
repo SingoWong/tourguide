@@ -83,6 +83,44 @@ class Users_Guide_Model extends CI_Model {
         
 		return array('rowset'=>$guide->all,'pager'=>$hotel->paged);
     }
+
+	/**
+	 * 获取可选择的导游
+	 */
+	function getAgencyContractGuide($conditions, $aid) {
+		$guide = new Users_Guide();
+        
+        $guide->where('sign_date_start <=', time());
+        $guide->where('sign_date_end >=', time());
+		foreach ($conditions as $field=>$value) {
+        		if (is_array($value)) {
+        			$guide->where_in($field, $value);
+        		} else {
+	            $guide->where($field, $value);
+			}
+        }
+        $guide->get();
+		
+		if ($with_relation) {
+            $ids = array();
+            for ($i=0; $i<sizeof($guide->all); $i++) {
+                $ids[] = $guide->all[$i]->uid;
+            }
+        
+            if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+        
+                $us = array_to_hashmap($users->all, 'id');
+        
+                for ($i=0; $i<sizeof($guide->all); $i++) {
+                    $guide->all[$i]->users = $us[$guide->all[$i]->uid];
+                }
+            }
+        }
+        
+		return $guide->all;
+	}
     
     /**
      * 根据用户编号获取详细数据
