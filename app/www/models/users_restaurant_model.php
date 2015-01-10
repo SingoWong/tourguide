@@ -99,7 +99,7 @@ class Users_Restaurant_Model extends CI_Model {
 	            $restaurant->where($field, $value);
 			}
         }
-        $restaurant->get();
+        $restaurant->get_paged(1,100);
 
         $ids = array();
         for ($i=0; $i<sizeof($restaurant->all); $i++) {

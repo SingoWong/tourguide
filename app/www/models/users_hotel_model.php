@@ -81,7 +81,7 @@ class Users_Hotel_Model extends CI_Model {
 	            $hotel->where($field, $value);
 			}
         }
-        $hotel->get();
+        $hotel->get_paged(1,100);
 
         $ids = array();
         for ($i=0; $i<sizeof($hotel->all); $i++) {
