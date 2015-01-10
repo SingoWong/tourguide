@@ -87,7 +87,7 @@ class Users_Restaurant_Model extends CI_Model {
 	/**
 	 * 获取可选的餐厅
 	 */
-	function getScheduleContractRestaurant($conditions, $aid) {
+	function getScheduleContractRestaurant($conditions, $uid) {
         $restaurant = new Users_Restaurant();
         
         $restaurant->where('sign_date_start <=', time());

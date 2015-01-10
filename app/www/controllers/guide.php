@@ -160,7 +160,7 @@ class Guide extends Base_Controller {
         }
         
         $restaurant = new Users_Restaurant_Model();
-        $re = $restaurant->getContractRestaurant($conditions, true);
+        $re = $restaurant->getScheduleContractRestaurant($conditions, $this->user['id']);
         
         $this->smarty->assign('url_restaurant_detail', url('guide/restaurant_detail').'&gid='.$gid.'&day='.$day.'&route='.$route.'&type='.$type);
         $this->smarty->assign('rowset',$re);
