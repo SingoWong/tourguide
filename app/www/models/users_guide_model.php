@@ -101,21 +101,19 @@ class Users_Guide_Model extends CI_Model {
         }
         $guide->get();
 		
-		if ($with_relation) {
-            $ids = array();
+        $ids = array();
+        for ($i=0; $i<sizeof($guide->all); $i++) {
+            $ids[] = $guide->all[$i]->uid;
+        }
+    
+        if (sizeof($ids) > 0) {
+            $users = new Users();
+            $users->where_in('id', $ids)->get();
+    
+            $us = array_to_hashmap($users->all, 'id');
+    
             for ($i=0; $i<sizeof($guide->all); $i++) {
-                $ids[] = $guide->all[$i]->uid;
-            }
-        
-            if (sizeof($ids) > 0) {
-                $users = new Users();
-                $users->where_in('id', $ids)->get();
-        
-                $us = array_to_hashmap($users->all, 'id');
-        
-                for ($i=0; $i<sizeof($guide->all); $i++) {
-                    $guide->all[$i]->users = $us[$guide->all[$i]->uid];
-                }
+                $guide->all[$i]->users = $us[$guide->all[$i]->uid];
             }
         }
         
