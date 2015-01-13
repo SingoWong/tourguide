@@ -350,7 +350,7 @@ class Guide extends Base_Controller {
      * 提交小票
      */
     public function restaurant_payment_submit() {
-    	$this->load->model('Order_Model');
+    		$this->load->model('Order_Model');
 		
         $gid = $this->input->post('gid');
         $day = $this->input->post('day');
@@ -358,16 +358,16 @@ class Guide extends Base_Controller {
         $mode = $this->input->post('mode');
         
         //上传图片文件
+        if(!file_exists("./upload/restaurant/".date("Y/m/d"))) {  
+        		mkdir("./upload/restaurant/".date("Y/m/d"),0777,true);//原图路径  
+        }
         $config['upload_path']="./upload/restaurant/".date("Y/m/d");//文件上传目录  
-        if(!file_exists("./upload/restaurant/".date("Y/m/d"))){  
-        	mkdir("./upload/source/".date("Y/m/d"),0777,true);//原图路径  
-        }  
         $config['allowed_types']="gif|jpg|png";//文件类型  
         $config['max_size']="20000";//最大上传大小  
         $this->load->library("upload",$config);  
-        //if($this->upload->do_upload('receive')) {
-        if (true) { //TODO
-        	$data = $this->upload->data();
+        
+        if ($this->upload->do_upload('receive')) {
+        		$data = $this->upload->data();
 			$url = $config['upload_path'].'/'.$data['file_name'];
 			
 			$order = new Order_Model();
@@ -499,9 +499,30 @@ class Guide extends Base_Controller {
         $url = $this->input->post('url');
         
         //上传图片文件
-        //TODO
+        if(!file_exists("./upload/hotel/".date("Y/m/d"))) {  
+        		mkdir("./upload/hotel/".date("Y/m/d"),0777,true);//原图路径  
+        }
+        $config['upload_path']="./upload/hotel/".date("Y/m/d");//文件上传目录  
+        $config['allowed_types']="gif|jpg|png";//文件类型  
+        $config['max_size']="20000";//最大上传大小  
+        $this->load->library("upload",$config);  
         
-        redirect(url('guide/hotel_payment_finish'));
+        if ($this->upload->do_upload('receive')) {
+        		$data = $this->upload->data();
+			$url = $config['upload_path'].'/'.$data['file_name'];
+			
+			$order = new Order_Model();
+			$re_order = $order->getRestaurantOrder($gid, $day, $route);
+			//$re = $order->paymentRestaurant($re_order->id, $mode, $url); //TODO
+			
+			if ($re) {
+				redirect(url('guide/hotel_payment_finish'));
+			} else {
+				alert('保存訂單狀態失敗',null,true);
+			}
+		} else {
+			alert('上傳失敗',null,true);
+		}
     }
     
     /**
