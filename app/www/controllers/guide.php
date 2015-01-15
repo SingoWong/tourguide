@@ -375,6 +375,9 @@ class Guide extends Base_Controller {
 			$re = $order->paymentRestaurant($re_order->id, $mode, $url);
 			
 			if ($re) {
+				$report = new Report_Model();
+				$report->logRestaurantPayment($re_order, $url);
+				
 				redirect(url('guide/restaurant_payment_finish'));
 			} else {
 				alert('保存訂單狀態失敗',null,true);
@@ -516,6 +519,9 @@ class Guide extends Base_Controller {
 			//$re = $order->paymentRestaurant($re_order->id, $mode, $url); //TODO
 			
 			if ($re) {
+				$report = new Report_Model();
+				$report->logHotelPayment($re_order, $url);
+				
 				redirect(url('guide/hotel_payment_finish'));
 			} else {
 				alert('保存訂單狀態失敗',null,true);
