@@ -376,7 +376,7 @@ class Guide extends Base_Controller {
 				alert('保存訂單狀態失敗',null,true);
 			}
 		} else {
-			alert('上傳失敗',null,true);
+			alert($upload['msg'],null,true);
 		}
     }
     
