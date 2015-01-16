@@ -368,6 +368,7 @@ class Guide extends Base_Controller {
 			$re = $order->paymentRestaurant($re_order->id, $mode, $url);
 			
 			if ($re) {
+				$this->load->model('Report_Model');
 				$report = new Report_Model();
 				$report->logRestaurantPayment($re_order, $url);
 				
@@ -505,6 +506,7 @@ class Guide extends Base_Controller {
 			//$re = $order->paymentRestaurant($re_order->id, $mode, $url); //TODO
 			
 			if ($re) {
+				$this->load->model('Report_Model');
 				$report = new Report_Model();
 				$report->logHotelPayment($re_order, $url);
 				
