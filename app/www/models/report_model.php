@@ -13,6 +13,10 @@ class Report_Model extends CI_Model {
 		$user = new Users_Restaurant_Model();
 		$re_user = $user->getRestaurantById($order->rid);
 				
+		$row['aid'] = $re_group->aid;
+		$row['gid'] = $order->gid;
+		$row['sid'] = $order->sid;
+		$row['rid'] = $order->rid;
 		$row['code'] = $re_group->code;
 		$row['date'] = date('Y-m-d');
 		$row['name'] = $re_user->users->name;
@@ -34,6 +38,10 @@ class Report_Model extends CI_Model {
 		$user = new Users_Restaurant_Model();
 		$re_user = $user->getRestaurantById($order->hid);
 				
+		$row['aid'] = $re_group->aid;
+		$row['gid'] = $order->gid;
+		$row['sid'] = $order->sid;
+		$row['hid'] = $order->hid;
 		$row['code'] = $re_group->code;
 		$row['date'] = date('Y-m-d');
 		$row['name'] = $re_user->users->name;

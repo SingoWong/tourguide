@@ -358,17 +358,10 @@ class Guide extends Base_Controller {
         $mode = $this->input->post('mode');
         
         //上传图片文件
-        if(!file_exists("./upload/restaurant/".date("Y/m/d"))) {  
-        		mkdir("./upload/restaurant/".date("Y/m/d"),0777,true);//原图路径  
-        }
-        $config['upload_path']="./upload/restaurant/".date("Y/m/d");//文件上传目录  
-        $config['allowed_types']="gif|jpg|png";//文件类型  
-        $config['max_size']="20000";//最大上传大小  
-        $this->load->library("upload",$config);  
+        $upload = $this->file_upload('receive','restaurant',date('Ymd'));
         
-        if ($this->upload->do_upload('receive')) {
-        		$data = $this->upload->data();
-			$url = $config['upload_path'].'/'.$data['file_name'];
+        if ($upload['result']) {
+			$url = $upload['url'];
 			
 			$order = new Order_Model();
 			$re_order = $order->getRestaurantOrder($gid, $day, $route);
@@ -502,17 +495,10 @@ class Guide extends Base_Controller {
         $url = $this->input->post('url');
         
         //上传图片文件
-        if(!file_exists("./upload/hotel/".date("Y/m/d"))) {  
-        		mkdir("./upload/hotel/".date("Y/m/d"),0777,true);//原图路径  
-        }
-        $config['upload_path']="./upload/hotel/".date("Y/m/d");//文件上传目录  
-        $config['allowed_types']="gif|jpg|png";//文件类型  
-        $config['max_size']="20000";//最大上传大小  
-        $this->load->library("upload",$config);  
+        $upload = $this->file_upload('receive','hotel',date('Ymd'));
         
-        if ($this->upload->do_upload('receive')) {
-        		$data = $this->upload->data();
-			$url = $config['upload_path'].'/'.$data['file_name'];
+        if ($upload['result']) {
+			$url = $upload['url'];
 			
 			$order = new Order_Model();
 			$re_order = $order->getRestaurantOrder($gid, $day, $route);
@@ -527,7 +513,7 @@ class Guide extends Base_Controller {
 				alert('保存訂單狀態失敗',null,true);
 			}
 		} else {
-			alert('上傳失敗',null,true);
+			alert($upload['msg'],null,true);
 		}
     }
     
