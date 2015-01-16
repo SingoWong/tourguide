@@ -6,6 +6,9 @@ class Report_Model extends CI_Model {
     }
 	
 	public function logRestaurantPayment($order, $receive) {
+        $this->load->model('Group_Model');
+        $this->load->model('Users_Restaurant_Model');
+		
 		$group = new Group_Model();
 		$re_group = $group->getGroupBase($order->gid);
 		$re_schedule = $group->getScheduleBySid($order->sid);
@@ -31,6 +34,9 @@ class Report_Model extends CI_Model {
 	}
 	
 	public function logHotelPayment($order, $receive) {
+        $this->load->model('Group_Model');
+        $this->load->model('Users_Restaurant_Model');
+		
 		$group = new Group_Model();
 		$re_group = $group->getGroupBase($order->gid);
 		$re_schedule = $group->getScheduleBySid($order->sid);
