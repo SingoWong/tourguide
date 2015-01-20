@@ -4,7 +4,7 @@ class SysAgency extends Base_Controller {
     function __construct() {
         parent::__construct();
         
-        $this->check_belogin(array(ROLE_ID_ADMIN,ROLE_ID_AGENCY));
+        $this->check_belogin(array(ROLE_ID_ADMIN,ROLE_ID_AGENCY,ROLE_ID_UNION));
     }
     
     public function index() {
@@ -186,6 +186,27 @@ class SysAgency extends Base_Controller {
     }
     
     public function groupedit() {
+        $this->load->model('Group_Model');
+        $group = new Group_Model();
+        
+        $gid = $this->input->get('id');
+        $re = $group->getGroupBase($gid);
+        
+        if ($re && sizeof($re>0)) {
+            $re->start_date = date('Y-m-d', $re->start_date);
+            $re->end_date = date('Y-m-d', $re->end_date);
+            $re->start_departure_time = date('H:i', $re->start_departure_time);
+            $re->start_arrive_time = date('H:i', $re->start_arrive_time);
+            $re->end_departure_time = date('H:i', $re->end_departure_time);
+            $re->end_arrive_time = date('H:i', $re->end_arrive_time);
+        }
+        
+        $this->smarty->assign('id',$gid);
+        $this->smarty->assign('row',$re);
+        $this->smarty->display('./agency/group_edit_base.html');
+    }
+	
+	public function groupedit_out() {//TODO
         $this->load->model('Group_Model');
         $group = new Group_Model();
         
@@ -480,6 +501,17 @@ class SysAgency extends Base_Controller {
     }
     
     public function accident() {
+        $this->load->model('Accident_Model');
+        $accident = new Accident_Model();
+        
+        $re = $accident->getAccident(true, $this->user['id']);
+        
+        $this->smarty->assign('rowset', $re->all);
+        $this->smarty->assign('res', json_encode($re->res));
+        $this->smarty->display('./agency/accidents.html');
+    }
+	
+	public function accident_out() { //TODO
         $this->load->model('Accident_Model');
         $accident = new Accident_Model();
         

@@ -13,18 +13,18 @@ function sh_pnlc(id) {
 </script>
 
 <div class="title_panel">
-	導遊管理 - 過期導遊
+	領隊管理 - 過期領隊
 </div>
 
-<input type="button" class="gm_t1_btn_alt_disabled" value="續約導遊" onclick="self.location.href='index.php?ctr=sysguide';">
-<input type="button" class="gm_t1_btn" value="過期導遊" onclick="self.location.href='index.php?ctr=sysguide&act=expired';">
-<input type="button" class="gm_t1_btn_alt_disabled" value="新增導遊" onclick="self.location.href='index.php?ctr=sysguide&act=edit';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="續約領隊" onclick="self.location.href='index.php?ctr=sysleader';">
+<input type="button" class="gm_t1_btn" value="過期領隊" onclick="self.location.href='index.php?ctr=sysleader&act=expired';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="新增領隊" onclick="self.location.href='index.php?ctr=sysleader&act=edit';">
 
 <div class="search-inner">
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
-	<input type="hidden" name="ctr" value="sysguide" />
-	<input type="hidden" name="act" value="index" />
-	<label class="v"><input id="name" type="text" name="name" value="" placeholder="導遊"></label>
+	<input type="hidden" name="ctr" value="sysleader" />
+	<input type="hidden" name="act" value="expired" />
+	<label class="v"><input id="name" type="text" name="name" value="" placeholder="領隊"></label>
 	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
 	<label class="s"><input type="submit" class="gm_t1_btn" value="查詢" /></label>	
 </form>
@@ -47,7 +47,7 @@ function sh_pnlc(id) {
 					<td width="10%"><a href="">重置密碼</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">導遊名稱：{{$item->name}}</td>
+					<td colspan="2">領隊名稱：{{$item->name}}</td>
 					<td>電話：{{$item->contact_tel}}</td>
 					<td><a href="#">修改</a></td>
 				</tr>

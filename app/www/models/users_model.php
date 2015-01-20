@@ -134,6 +134,31 @@ class Users_Model extends CI_Model {
 	    return $re;
 	}
 	
+	public function setpassword($username, $password) {
+		$this->db->trans_start();
+	     
+	    //创建用户
+	    $users = new Users();
+	    $users->where('username', $username)->get();
+	     
+	    if ($users->result_count() > 0) {
+	        $row['password'] = $this->_encrypt_password($users->all[0]->username, $password);
+	        $users->where('username', $username)->update($row);
+	    } else {
+	        $re = false;
+	    }
+	     
+	    if ($this->db->trans_status() === FALSE){
+	        $this->db->trans_rollback();
+	        $re['result'] = false;
+	    } else {
+	        $this->db->trans_commit();
+	        $re['result'] = true;
+	    }
+	     
+	    return $re;
+	}
+	
 	public function suspended($id) {
 	    $this->db->trans_start();
 	    

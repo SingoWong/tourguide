@@ -17,13 +17,16 @@ class Mobile extends CI_Controller {
         } elseif ($role == ROLE_ID_HOTEL) {
             $title = '飯店登陸';
             $url_forgot = url('mobile/hotel_forgot');
+        } elseif ($role == ROLE_ID_LEADER) {
+            $title = '領隊登陸';
+            $url_forgot = url('mobile/leader_forgot');
         }
         
         $this->smarty->assign('title', $title);
         $this->smarty->assign('url_do_login', url('mobile/do_login'));
         $this->smarty->assign('url_services', url('mobile/services'));
         $this->smarty->assign('url_policy', url('mobile/policy'));
-        $this->smarty->assign('url_forgot_guide', $url_forgot);
+        $this->smarty->assign('url_forgot', $url_forgot);
         $this->smarty->display('./mobile/login.html');
     }
     
@@ -57,6 +60,11 @@ class Mobile extends CI_Controller {
 
         $this->smarty->display('./hotel/forgot.html');
     }
+	
+	public function leader_forgot() {
+
+        $this->smarty->display('./leader/forgot.html');
+	}
     
     public function services() {
         

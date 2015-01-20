@@ -2,19 +2,19 @@
 <script type="text/javascript" src="./libs/jquery/core.date.js"></script>
 
 <div class="title_panel">
-	導遊管理 - 新增導遊
+	領隊管理 - 新增領隊
 </div>
 
-<input type="button" class="gm_t1_btn_alt_disabled" value="續約導遊" onclick="self.location.href='index.php?ctr=sysguide';">
-<input type="button" class="gm_t1_btn_alt_disabled" value="過期導遊" onclick="self.location.href='index.php?ctr=sysguide&act=expired';">
-<input type="button" class="gm_t1_btn" value="新增導遊" onclick="self.location.href='index.php?ctr=sysguide&act=edit';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="續約領隊" onclick="self.location.href='index.php?ctr=sysleader';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="過期領隊" onclick="self.location.href='index.php?ctr=sysleader&act=expired';">
+<input type="button" class="gm_t1_btn" value="新增領隊" onclick="self.location.href='index.php?ctr=sysleader&act=edit';">
 
 <div class="form_inner">
 
-<form action="index.php?ctr=sysguide&act=save" method="post" class="gm_t1_form">
+<form action="index.php?ctr=sysleader&act=save" method="post" class="gm_t1_form">
     <ul>
         <li>
-        	<b>導遊名稱：</b>
+        	<b>領隊名稱：</b>
             <span class="v"><input type="text" id="name" name="name" placeholder="導遊名稱"><em></em></span>
         </li>
         <li>
@@ -25,7 +25,7 @@
             <span class="v"><input type="text" id="" name="" placeholder="流水號"><em></em></span>
         </li>-->
         <li>
-        	<b>導遊證號：</b>
+        	<b>領隊證號：</b>
             <span class="v"><input type="text" id="code" name="code" placeholder="統一編碼"><em></em></span>
         </li>
         <li>

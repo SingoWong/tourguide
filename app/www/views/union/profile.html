@@ -1,0 +1,35 @@
+{{include file="_common/header.html"}}
+<style type="text/css">
+ul.profile li {
+	height: 30px;
+	line-height: 30px;
+	padding-left:20px;
+	font-size:14px;
+}
+</style>
+
+<div class="title_panel">
+	全聯會管理
+</div>
+
+<div class="form_inner">
+
+<form action="index.php?ctr=sysunion&act=save" method="post" class="gm_t1_form">
+	<ul>
+	    <li>
+	    		<b>帳號：</b>
+	        <span class="v"><input type="text" id="username" name="username" readonly="readonly" value="{{$union_username}}"><em></em></span>
+	    </li>
+	    <li>
+	    		<b>密碼：</b>
+	        <span class="v"><input type="password" id="password" name="password" placeholder="密碼"><em></em></span>
+	    </li>
+        <li class="gm_t1_form_btn" style="height:auto;">
+            <input type="submit" class="gm_t1_btn" value="保存">
+        </li>
+	</ul>
+</form>
+
+</div>
+
+{{include file="_common/footer.html"}}

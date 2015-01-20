@@ -46,6 +46,10 @@ define('ROLE_ID_GUIDE', '24');
 define('ROLE_ID_RESTAURANT', '28');
 define('ROLE_ID_HOTEL', '30');
 define('ROLE_ID_AGENCY', '31');
+define('ROLE_ID_LEADER', '32');
+define('ROLE_ID_UNION', '33');
+
+define('UNION_USERNAME', 'union');
 
 define('UPLOAD_PATH', 'uploads');
 define('RES_SERVER', 'http://www.heiscloud.com');

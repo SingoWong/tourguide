@@ -4,7 +4,7 @@ class SysGroup extends Base_Controller {
     function __construct() {
         parent::__construct();
         
-        $this->check_belogin(ROLE_ID_ADMIN);
+        $this->check_belogin(array(ROLE_ID_ADMIN,ROLE_ID_UNION));
     }
     
     public function index() {
