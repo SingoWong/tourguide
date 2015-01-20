@@ -29,8 +29,8 @@ class Report_Model extends CI_Model {
 		$row['receive'] = $receive;
 		
 		$this->_logReportAgency($row);
-		$this->_logReportRestaurant($rrow);
-		$this->_logReportGuide($rrow);
+		$this->_logReportRestaurant($row);
+		$this->_logReportGuide($row);
 	}
 	
 	public function logHotelPayment($order, $receive) {
@@ -57,8 +57,8 @@ class Report_Model extends CI_Model {
 		$row['receive'] = $receive;
 		
 		$this->_logReportAgency($row);
-		$this->_logReportHotel($rrow);
-		$this->_logReportGuide($rrow);
+		$this->_logReportHotel($row);
+		$this->_logReportGuide($row);
 	}
 	
 	public function getReportAgency($conditions, $page, $size=20) {

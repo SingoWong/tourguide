@@ -1,0 +1,78 @@
+{{include file="_common/header.html"}}
+<script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+
+<div class="flowset">
+	<a href="index.php?ctr=sysagency&act=groupedit_out&id={{$id}}" class="curr">旅行社的基本資料</a>
+</div>
+
+<form method="post" action="index.php?ctr=sysagency&act=groupsave_out">
+<div class="title_panel">
+	基本資料
+</div>
+<div class="form_inner">
+	<table class="table_form">
+		<tr>
+			<td class="tf_key">團號</td>
+			<td colspan="3"><span class="v"><input type="text" id="code" name="code" value="{{$row->code}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">行程導圖</td>
+			<td colspan="3"><span class="v">
+				<input type="text" id="map" name="map" value="{{$row->map}}">
+				<a href="#" onclick="choose_map();return false;">[上傳]</a>
+			</span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">指派領隊</td>
+			<td colspan="3">
+				<span class="v"><select id="lid" name="lid" onchange="onchooseguide(this);">{{$html_leader}}</select></span>
+				<a href="index.php?ctr=sysagency&act=guideedit_out" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加領隊]</a>
+			</td>
+		</tr>
+		<tr>
+			<td class="tf_key">領隊</td>
+			<td><span class="v"><input type="text" id="contact_name" name="contact_name" value="{{$row->contact_name}}"></span></td>
+			<td class="tf_key">手機</td>
+			<td><span class="v"><input type="text" id="contact_tel" name="contact_tel" value="{{$row->contact_tel}}"></span></td>
+		</tr>
+	</table>
+</div>
+<hr size="1" />
+<div>
+	<input type="hidden" name="id" value="{{$id}}" />
+	<input type="submit" class="gm_t1_btn" value="提交訊息">
+</div>
+</form>
+
+<script type="text/javascript">
+function choose_map() {
+	$("#map_file").click();
+}
+function upload_map() {
+	var fileObj = $("#map_file")[0].files[0]; // 获取文件对象
+    var FileController = "/index.php?ctr=sysagency&act=groupmapupload";                    // 接收上传文件的后台地址 
+
+    // FormData 对象
+    var form = new FormData();
+    form.append("file", fileObj);                           // 文件对象
+
+    // XMLHttpRequest 对象
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", FileController, true);
+    xhr.onload = function () {
+		var data = xhr.responseText;
+		var re = eval("("+data+")");
+		if (re['result'] == '1') {
+			$("#map").val(re['url']);
+		} else {
+			alert(re['msg']);
+		}
+    };
+    xhr.send(form);
+}
+</script>
+<form style="display: none;">
+<input type="file" name="map_file" id="map_file" onchange="upload_map();" />
+</form>
+
+{{include file="_common/footer.html"}}

@@ -205,34 +205,6 @@ class SysAgency extends Base_Controller {
         $this->smarty->assign('row',$re);
         $this->smarty->display('./agency/group_edit_base.html');
     }
-	
-	public function groupedit_out() {//TODO
-        $this->load->model('Group_Model');
-        $group = new Group_Model();
-        
-        $gid = $this->input->get('id');
-        $re = $group->getGroupBase($gid);
-        
-        if ($re && sizeof($re>0)) {
-            $re->start_date = date('Y-m-d', $re->start_date);
-            $re->end_date = date('Y-m-d', $re->end_date);
-            $re->start_departure_time = date('H:i', $re->start_departure_time);
-            $re->start_arrive_time = date('H:i', $re->start_arrive_time);
-            $re->end_departure_time = date('H:i', $re->end_departure_time);
-            $re->end_arrive_time = date('H:i', $re->end_arrive_time);
-        }
-        
-        $this->smarty->assign('id',$gid);
-        $this->smarty->assign('row',$re);
-        $this->smarty->display('./agency/group_edit_base.html');
-    }
-	
-	public function groupmapupload() {
-		//上傳文件
-		$upload = $this->file_upload('file','group',date('Ymd'));
-		
-		echo json_encode($upload);
-	}
     
     public function groupsave() {
         $this->load->model('Group_Model');
@@ -264,10 +236,65 @@ class SysAgency extends Base_Controller {
         
         $re = $group->saveGroupBase($row);
         
-        if ($re['result']) {
+        if ($re['result']=='1') {
             redirect(url('sysagency/grouproom').'&id='.$re['id']);
         }
     }
+	
+	public function groupedit_out() {
+        $this->load->model('Group_Out_Model');
+		$this->load->model('Users_Leader_Model');
+		
+        $group = new Group_Out_Model();
+        $gid = $this->input->get('id');
+        $re = $group->getGroupOutById($gid);
+		
+		//獲得導遊列表
+		$leader = new Users_Leader_Model();
+		$re_leader = $leader->getAgencyContractLeader(null, $this->user['id']);
+		$html_leader = '';
+		$leaders = array();
+		foreach($re_leader as $rg) {
+			if ($rg->users->id == $re->lid) {
+				$selected = 'selected="selected"';
+			} else {
+				$selected = '';
+			}
+			$html_leader .= '<option value="'.$rg->users->id.'" '.$selected.'>'.$rg->users->username.'（'.$rg->users->name.'）</option>';
+			$leaders[$rg->users->id] = array('name'=>$rg->users->name, 'contact_tel'=>$rg->contact_tel);
+		}
+        
+        $this->smarty->assign('id',$gid);
+        $this->smarty->assign('row',$re);
+		$this->smarty->assign('html_leader',$html_leader);
+		$this->smarty->assign('json_leader',json_encode($leaders));
+        $this->smarty->display('./agency/group_edit_out.html');
+    }
+    
+    public function groupsave_out() {
+        $this->load->model('Group_Out_Model');
+        $group = new Group_Out_Model();
+        
+        $row['aid'] = $this->user['id'];
+		$row['lid'] = $this->user['lid'];
+        $row['code'] = $this->input->post('code');
+		$row['map'] = $this->input->post('map');
+        $row['contact_name'] = $this->input->post('contact_name');
+        $row['contact_tel'] = $this->input->post('contact_tel');
+        
+        $re = $group->saveGroupOut($row);
+        
+        if ($re['result']=='1') {
+        		alert('保存成功',url('sysagency/groupedit_out'))
+        }
+    }
+	
+	public function groupmapupload() {
+		//上傳文件
+		$upload = $this->file_upload('file','group',date('Ymd'));
+		
+		echo json_encode($upload);
+	}
     
     public function grouproom() {
         $this->load->model('Group_Model');
