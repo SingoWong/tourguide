@@ -18,7 +18,11 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+ if ($_REQUEST['debug']=='1') {
+ 	define('ENVIRONMENT', 'development');
+ } else {
 	define('ENVIRONMENT', 'testing');
+ }
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

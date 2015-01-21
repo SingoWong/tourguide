@@ -210,6 +210,9 @@ class SysAgency extends Base_Controller {
         $this->load->model('Group_Model');
         $group = new Group_Model();
         
+		if ($this->input->post("id")) {
+			$row['id'] = $this->input->post("id");
+		}
         $row['aid'] = $this->user['id'];
         $row['code'] = $this->input->post('code');
         $row['gcode'] = $this->input->post('gcode');
@@ -238,6 +241,8 @@ class SysAgency extends Base_Controller {
         
         if ($re['result']=='1') {
             redirect(url('sysagency/grouproom').'&id='.$re['id']);
+        } else {
+        		alert('保存失敗',null,TRUE);
         }
     }
 	
@@ -275,17 +280,22 @@ class SysAgency extends Base_Controller {
         $this->load->model('Group_Out_Model');
         $group = new Group_Out_Model();
         
+		if ($this->input->post("id")) {
+			$row['id'] = $this->input->post("id");
+		}
         $row['aid'] = $this->user['id'];
-		$row['lid'] = $this->user['lid'];
+		$row['gid'] = $this->input->post('guide_id');
         $row['code'] = $this->input->post('code');
 		$row['map'] = $this->input->post('map');
-        $row['contact_name'] = $this->input->post('contact_name');
-        $row['contact_tel'] = $this->input->post('contact_tel');
+        $row['contact_name'] = $this->input->post('guide_name');
+        $row['contact_tel'] = $this->input->post('guide_tel');
         
         $re = $group->saveGroupOut($row);
         
         if ($re['result']=='1') {
-        		alert('保存成功',url('sysagency/groupedit_out'))
+        		alert('保存成功',url('sysagency/groupedit_out'));
+        } else {
+        		alert('保存失敗',null,TRUE);
         }
     }
 	
@@ -474,7 +484,7 @@ class SysAgency extends Base_Controller {
 		
 		//檢查導遊是否已經占團
 		if (!$group->checkGroupGuide($gid, $row['guide_id'])) {
-			alert('导游档期已满，请确认时间！', null, TRUE);
+			alert('導遊檔期已滿，請確認時間！', null, TRUE);
 			exit();
 		}
         

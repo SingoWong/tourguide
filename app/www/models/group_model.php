@@ -247,7 +247,7 @@ class Group_Model extends CI_Model {
             $row['end_departure_time'] = strtotime($row['end_date'].' '.$row['end_departure_time'].':00');
             $row['end_arrive_time'] = strtotime($row['end_date'].' '.$row['end_arrive_time'].':00');
             
-            $re = $this->where('id', $row['id'])->update($row);
+            $re = $group->where('id', $row['id'])->update($row);
         } else {
             $group->aid = $row['aid'];
             $group->code = $row['code'];
@@ -405,8 +405,8 @@ class Group_Model extends CI_Model {
      * @return boolean
      */
     function saveGroupInfo($gid, $row) {
-    	$group = new Group();
-        $info = new Group_Info();
+		$group = new Group();
+       	$info = new Group_Info();
         
         $info->where('gid', $gid)->get();
         
@@ -523,6 +523,7 @@ class Group_Model extends CI_Model {
 		$today = strtotime(date('Y-m-d'));
         
         $group->where('gid', $gid);
+		$group->where('type', '0');
         $group->where('end_date >', $today);
         $group->get();
 		

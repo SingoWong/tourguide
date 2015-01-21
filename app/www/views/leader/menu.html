@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		{{include file="_common/minclude.html"}}
+		
+		<style type="text/css">
+			.menu-list {
+				padding: 10px;
+			}
+			.menu_map img {
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-bars mui-pull-left" href="/"></a>
+			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
+			<h1 class="mui-title">請選擇項目</h1>
+		</header>
+		<div class="mui-content">
+			<div class="menu-list">
+				<button class="mui-btn mui-btn-block" onclick="location.href='{{$url_accident}}';">意外通報</button>
+			</div>
+			<div class="menu_map">
+				<img src="{{$map}}" />
+			</div>
+		</div>
+	</body>
+</html>

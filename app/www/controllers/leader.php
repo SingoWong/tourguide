@@ -13,6 +13,13 @@ class Leader extends Base_Controller {
      * 领队界面导航
      */
     public function index() {
+    		$this->load->model('Group_Out_Model');
+        $group = new Group_Out_Model();
+        
+        $re = $group->getCurrGroupByLeaderId($this->user['id']);
+		
+        $this->smarty->assign('info', $re);
+        $this->smarty->assign( 'url_accident', url('accident/index') );
         $this->smarty->display('./leader/menu.html');
     }
 }

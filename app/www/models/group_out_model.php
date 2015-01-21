@@ -11,25 +11,26 @@ class Group_Out_Model extends CI_Model {
      * @return boolean
      */
     function saveGroupOut($row) {
-        $group = new Group_Out();
+        $group = new Group();
         
         $group->where('id', $row['id'])->get();
         
         if ($group->result_count() > 0) {
-        		$row['lid'] = $row['lid'];
+        		$row['gid'] = $row['gid'];
 			$row['code'] = $row['code'];
 			$row['map'] = $row['map'];
 			$row['contact_name'] = $row['contact_name'];
 			$row['contact_tel'] = $row['contact_tel'];
             
-            $re = $this->where('id', $row['id'])->update($row);
+            $re = $group->where('id', $row['id'])->update($row);
         } else {
-            $group->aid = $row['aid'];
-			$group->lid = $row['lid'];
-            $group->code = $row['code'];
+            	$group->aid = $row['aid'];
+			$group->gid = $row['gid'];
+            	$group->code = $row['code'];
 			$group->map = $row['map'];
-            $group->contact_name = $row['contact_name'];
-            $group->contact_tel = $row['contact_tel'];
+            	$group->contact_name = $row['contact_name'];
+            	$group->contact_tel = $row['contact_tel'];
+			$group->type = '1';
             
             $re = $group->save();
         }
@@ -49,9 +50,27 @@ class Group_Out_Model extends CI_Model {
      * @return multitype:
      */
     function getGroupOutById($gid) {
-        $group = new Group_Out();
+        $group = new Group();
         
         $group->where('id', $gid)->get(1);
+        
+        return $group->all[0];
+    }
+	
+	/**
+     * 获得导游当前的旅行团信息
+     * @param unknown $gid
+     * @return multitype:
+     */
+    function getCurrGroupByLeaderId($gid) {
+        $group = new Group();
+        
+		$today = strtotime(date('Y-m-d'));
+        
+        $group->where('gid', $gid);
+		$group->where('type', '1');
+        $group->where('end_date >', $today);
+        $group->get();
         
         return $group->all[0];
     }

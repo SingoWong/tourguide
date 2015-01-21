@@ -25,15 +25,15 @@
 		<tr>
 			<td class="tf_key">指派領隊</td>
 			<td colspan="3">
-				<span class="v"><select id="lid" name="lid" onchange="onchooseguide(this);">{{$html_leader}}</select></span>
-				<a href="index.php?ctr=sysagency&act=guideedit_out" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加領隊]</a>
+				<span class="v"><select id="guide_id" name="guide_id" onchange="onchooseguide(this);">{{$html_leader}}</select></span>
+				<a href="index.php?ctr=sysagency&act=leaderedit" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加領隊]</a>
 			</td>
 		</tr>
 		<tr>
 			<td class="tf_key">領隊</td>
-			<td><span class="v"><input type="text" id="contact_name" name="contact_name" value="{{$row->contact_name}}"></span></td>
+			<td><span class="v"><input type="text" id="guide_name" name="guide_name" value="{{$row->guide_name}}"></span></td>
 			<td class="tf_key">手機</td>
-			<td><span class="v"><input type="text" id="contact_tel" name="contact_tel" value="{{$row->contact_tel}}"></span></td>
+			<td><span class="v"><input type="text" id="guide_tel" name="guide_tel" value="{{$row->guide_tel}}"></span></td>
 		</tr>
 	</table>
 </div>
