@@ -254,6 +254,11 @@ class SysAgency extends Base_Controller {
         $gid = $this->input->get('id');
         $re = $group->getGroupOutById($gid);
 		
+		if ($re && sizeof($re>0)) {
+            $re->start_date = date('Y-m-d', $re->start_date);
+            $re->end_date = date('Y-m-d', $re->end_date);
+        }
+		
 		//獲得導遊列表
 		$leader = new Users_Leader_Model();
 		$re_leader = $leader->getAgencyContractLeader(null, $this->user['id']);
@@ -289,6 +294,8 @@ class SysAgency extends Base_Controller {
 		$row['map'] = $this->input->post('map');
         $row['contact_name'] = $this->input->post('guide_name');
         $row['contact_tel'] = $this->input->post('guide_tel');
+		$row['start_date'] = $this->input->post('start_date');
+        $row['end_date'] = $this->input->post('end_date');
         
         $re = $group->saveGroupOut($row);
         
@@ -594,7 +601,7 @@ class SysAgency extends Base_Controller {
 		$guide = new Users_Guide_Model();
 		$re_guide = $guide->getContractGuide(null, TRUE);
 		$guides = array();
-		foreach($re_guide as $rg) {
+		foreach($re_guide['rowset'] as $rg) {
 			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）');
 			$guides[] = $row;
 		}
@@ -602,9 +609,28 @@ class SysAgency extends Base_Controller {
 		echo json_encode($guides);
 	}
 	
+	public function leader() {
+		$this->load->model('Users_Leader_Model');
+		
+		$leader = new Users_Leader_Model();
+		$re_leader = $leader->getContractLeader(null, TRUE);
+		$leaders = array();
+		foreach($re_leader['rowset'] as $rg) {
+			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）');
+			$leaders[] = $row;
+		}
+		
+		echo json_encode($leaders);
+	}
+	
 	public function guideedit() {
 		
         $this->smarty->display('./agency/guide_edit.html');
+	}
+	
+	public function leaderedit() {
+		
+        $this->smarty->display('./agency/leader_edit.html');
 	}
 	
 	public function guidesave() {
@@ -622,6 +648,26 @@ class SysAgency extends Base_Controller {
 		if ($re) {
             echo '<script>alert("保存成功");</script>';
 			echo '<script>window.parent.onbuildguide();</script>';
+        } else {
+            alert('保存失敗', null, true);
+        }
+	}
+	
+	public function leadersave() {
+		$this->load->model('Users_Leader_Model');
+        $users_leader_model = new Users_Leader_Model();
+    
+        $row['name'] = $this->input->post('name');
+        $row['code'] = $this->input->post('code');
+        $row['contact_tel'] = $this->input->post('contact_tel');
+        $row['sign_date_start'] = strtotime($this->input->post('sign_date_start'));
+        $row['sign_date_end'] = strtotime($this->input->post('sign_date_end'));
+    
+        $re = $users_leader_model->save($row);
+		
+		if ($re) {
+            echo '<script>alert("保存成功");</script>';
+			echo '<script>window.parent.onbuildleader();</script>';
         } else {
             alert('保存失敗', null, true);
         }

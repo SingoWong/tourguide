@@ -21,6 +21,8 @@ class Group_Out_Model extends CI_Model {
 			$row['map'] = $row['map'];
 			$row['contact_name'] = $row['contact_name'];
 			$row['contact_tel'] = $row['contact_tel'];
+			$row['start_date'] = strtotime($row['start_date']);
+            $row['end_date'] = strtotime($row['end_date']);
             
             $re = $group->where('id', $row['id'])->update($row);
         } else {
@@ -30,6 +32,8 @@ class Group_Out_Model extends CI_Model {
 			$group->map = $row['map'];
             	$group->contact_name = $row['contact_name'];
             	$group->contact_tel = $row['contact_tel'];
+			$group->start_date = strtotime($row['start_date']);
+            	$group->end_date = strtotime($row['end_date']);
 			$group->type = '1';
             
             $re = $group->save();

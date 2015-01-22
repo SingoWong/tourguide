@@ -1,5 +1,32 @@
 {{include file="_common/header.html"}}
 <script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+<script type="text/javascript">
+	var json_guide = eval('({{$json_leader}})');
+	
+	$(document).ready(function(){
+		onchooseleader($("#guide_id")[0]);
+	});
+	
+	function onchooseleader(sender) {
+		var guide_id = $(sender).val();
+		$("#guide_name").val(json_guide[guide_id]['name']);
+		$("#guide_tel").val(json_guide[guide_id]['contact_tel']);
+	}
+	
+	function onbuildleader() {
+		window.closeWindow();
+		$.ajax({
+			url: "index.php?ctr=sysagency&act=leader",
+			success: function(json){
+				var data = eval('('+json+')');
+				$("#guide_id").html("");
+				for(var i=0; i<data.length; i++) {
+					$("#guide_id").append("<option value='"+data[i]['id']+"'>"+data[i]['name']+"</option>");
+				}
+			}
+		});
+	}
+</script>
 
 <div class="flowset">
 	<a href="index.php?ctr=sysagency&act=groupedit_out&id={{$id}}" class="curr">旅行社的基本資料</a>
@@ -16,6 +43,12 @@
 			<td colspan="3"><span class="v"><input type="text" id="code" name="code" value="{{$row->code}}"></span></td>
 		</tr>
 		<tr>
+			<td class="tf_key">出國日期</td>
+			<td><span class="v"><input type="text" id="start_date" name="start_date" value="{{$row->start_date}}" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></span></td>
+			<td class="tf_key">回國日期</td>
+			<td><span class="v"><input type="text" id="end_date" name="end_date" value="{{$row->end_date}}" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></span></td>
+		</tr>
+		<tr>
 			<td class="tf_key">行程導圖</td>
 			<td colspan="3"><span class="v">
 				<input type="text" id="map" name="map" value="{{$row->map}}">
@@ -25,7 +58,7 @@
 		<tr>
 			<td class="tf_key">指派領隊</td>
 			<td colspan="3">
-				<span class="v"><select id="guide_id" name="guide_id" onchange="onchooseguide(this);">{{$html_leader}}</select></span>
+				<span class="v"><select id="guide_id" name="guide_id" onchange="onchooseleader(this);">{{$html_leader}}</select></span>
 				<a href="index.php?ctr=sysagency&act=leaderedit" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加領隊]</a>
 			</td>
 		</tr>
