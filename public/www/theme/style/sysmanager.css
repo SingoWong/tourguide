@@ -83,7 +83,7 @@ a#closeButton{
 	text-indent: -9999px;
 	height:29px;
 	width:160px;
-	background:url(../images/logo.png) 0 0 no-repeat;
+	background:url(../images/logo.png?v=2015) 0 0 no-repeat;
 }
 .viewport .view-content {
 	min-height:500px;
