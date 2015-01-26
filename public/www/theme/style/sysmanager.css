@@ -112,7 +112,8 @@ a#closeButton{
 	text-indent: -9999px;
 	height:29px;
 	width:160px;
-	background:url(../images/logo.png) 0 0 no-repeat;
+	background:url(../images/logob.png?v=2015) 0 0 no-repeat;
+	background-size:160px;
 }
 .viewport .view-footer .footer-inner .info {
 	float:right;
