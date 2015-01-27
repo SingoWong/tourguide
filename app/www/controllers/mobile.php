@@ -1,5 +1,5 @@
 <?php
-class Mobile extends CI_Controller {
+class Mobile extends Base_Controller {
 
     function __construct() {
         parent::__construct();
@@ -11,6 +11,7 @@ class Mobile extends CI_Controller {
         if ($role == ROLE_ID_GUIDE) {
             $title = '導遊登陸';
             $url_forgot = url('mobile/guide_forgot');
+			$dialog = '1';
         } elseif ($role == ROLE_ID_RESTAURANT) {
             $title = '餐廳登陸';
             $url_forgot = url('mobile/restaurant_forgot');
@@ -23,6 +24,7 @@ class Mobile extends CI_Controller {
         }
         
         $this->smarty->assign('title', $title);
+		$this->smarty->assign('dialog', $dialog);
         $this->smarty->assign('url_do_login', url('mobile/do_login'));
         $this->smarty->assign('url_services', url('mobile/services'));
         $this->smarty->assign('url_policy', url('mobile/policy'));
@@ -40,11 +42,23 @@ class Mobile extends CI_Controller {
         $re = $user->login($username, $password);
         
         if ($re['result'] == '1') {
-            redirect($re['default_url']);
+        		if ($re['first'] == '1') {
+        			redirect(url('mobile/first_login').'&url='.urlencode($re['default_url']));
+        		} else {
+        			redirect($re['default_url']);
+        		}
         } else {
             alert($re['msg'], url('mobile/login'));
         }
     }
+	
+	public function first_login() {
+		$url = $this->input->get('url');
+		
+		$this->smarty->assign('url_confirm', url('mobile/secret').'&url='.$url);
+		$this->smarty->assign('url_cancel', url('mobile/logout'));
+		$this->smarty->display('./mobile/first.html');
+	}
     
     public function guide_forgot() {
 
@@ -77,12 +91,44 @@ class Mobile extends CI_Controller {
     }
     
     public function secret() {
-        
+    		$url = $this->input->get('url');
+			
+		$this->smarty->assign('url_default', $url);
+        $this->smarty->assign('url_secret_save', url('mobile/secret_save'));
+        $this->smarty->display('./mobile/secret.html');
     }
+	
+	public function secret_save() {
+		$this->load->model('Users_Model');
+		
+		$uid = $this->user['id'];
+		$password = $this->input->post('password');
+		$repassword = $this->input->post('repassword');
+		$url = $this->input->post('url');
+		
+		if ($password != $repassword) {
+			alert('兩次輸入的密碼不正確，請核對後再試。', null, TRUE);
+		} else {
+			$user = new Users_Model();
+			$o = $user->getUserByUid($uid);
+			$sre = $user->setpassword($o->username, $password);
+			$ure = $user->unlock($uid);
+			
+			if ($sre && $ure) {
+				alert('密碼修改成功', $url);
+			} else {
+				alert('密碼修改失敗', null, TRUE);
+			}
+		}
+	}
     
     public function logout() {
+    		$this->load->model('Users_Model');
+		
         $user = new Users_Model();
         $user->logout();
+		
+		redirect('/');
     }
 }
 ?>

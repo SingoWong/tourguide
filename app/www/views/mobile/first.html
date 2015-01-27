@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{$title}}</title>
+		
+		{{include file="_common/minclude.html"}}
+		
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div class="dialog">
+			<div class="dialog_title">您好</div>
+			<div class="dialog_content">
+				第一次登入請修改密碼才可進入!!
+			</div>
+			<div class="dialog_option">
+				<a href="{{$url_confirm}}" class="dialog_btn">立即修改</a>
+				<a href="{{$url_cancel}}" class="dialog_btn">稍後登入</a>
+			</div>
+		</div>
+	</body>
+</html>

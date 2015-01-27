@@ -84,5 +84,20 @@
 				</div>
 			</form>
 		</div>
+		{{if $dialog == '1'}}
+		<div class="dialog">
+			<div class="dialog_title">您好</div>
+			<div class="dialog_content">
+				<p>歡迎使用Hei's APP</p>
+				<p>使用本軟體將會產生傳輸費用。<br/>僅提供本地(台灣)語言內容版本。</p>
+				<p>使用該產品，表示您同意我們的<br/><a href="{{$url_services}}">服務條款</a>及<a href="{{$url_policy}}">隱私權政策</a></p>
+			</div>
+			<div class="dialog_option">
+				<a href="#" onclick="$('.dialog').hide();$('.mars').hide();return false" class="dialog_btn">同意</a>
+				<a href="/" class="dialog_btn">不同意</a>
+			</div>
+		</div>
+		<div class="mars"></div>
+		{{/if}}
 	</body>
 </html>

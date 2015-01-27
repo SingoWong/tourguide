@@ -66,6 +66,7 @@ class Users_Model extends CI_Model {
 	    if ($re['result'] == '1') {
 	        $uid = $users->all[0]->id;
 	        $name = $users->all[0]->name;
+			$re['first'] = $users->all[0]->first;
 	        
 	        //建立RBAC
 	        $users_roles = new Users_Roles();
@@ -207,6 +208,38 @@ class Users_Model extends CI_Model {
 	    }
 	     
 	    return $re;
+	}
+	
+	public function unlock($id) {
+		 $this->db->trans_start();
+	     
+	    //创建用户
+	    $users = new Users();
+	    $users->where('id', $id)->get();
+	     
+	    if ($users->result_count() > 0) {
+	        $row['first'] = '0';
+	        $users->where('id', $id)->update($row);
+	    } else {
+	        $re = false;
+	    }
+	     
+	    if ($this->db->trans_status() === FALSE){
+	        $this->db->trans_rollback();
+	        $re['result'] = false;
+	    } else {
+	        $this->db->trans_commit();
+	        $re['result'] = true;
+	    }
+	     
+	    return $re;
+	}
+	
+	public function getUserByUid($uid) {
+		$users = new Users();
+	    $users->where('id', $uid)->get(1);
+		
+		return $users->all[0];
 	}
 	
 	public function getUserByUsername($username) {
