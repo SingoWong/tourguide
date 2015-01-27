@@ -33,7 +33,7 @@ function hideAddressBar_android(){
 		self.webkitRequestFullScreen();
 	}
 };
-window.addEventListener("load",function(){
+$(document).ready(function(){
 	navigator.userAgent.match(/Android/i) ? hideAddressBar_android() : hideAddressBar_ios();
 });
 </script>
