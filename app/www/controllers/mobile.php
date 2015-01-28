@@ -55,7 +55,7 @@ class Mobile extends Base_Controller {
 	public function first_login() {
 		$url = $this->input->get('url');
 		
-		$this->smarty->assign('url_confirm', url('mobile/secret').'&url='.$url);
+		$this->smarty->assign('url_confirm', url('mobile/secret').'&url='.urlencode($url));
 		$this->smarty->assign('url_cancel', url('mobile/logout'));
 		$this->smarty->display('./mobile/first.html');
 	}
