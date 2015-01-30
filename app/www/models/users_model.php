@@ -110,6 +110,24 @@ class Users_Model extends CI_Model {
 	    $this->session->unset_userdata($rbac);
 	}
 	
+	public function update_username($uid, $username) {
+		$users = new Users();
+	    $users->where('username', $username)->get();
+	     
+	    if ($users->result_count() == 0) {
+	    		$row['username'] = $username;
+			$users->where('id', $uid)->update($row);
+			
+			$this->reset($uid);
+			
+			$re['result'] = '1';
+		} else {
+			$re['result'] = '0';
+		}
+		
+		return $re;
+	}
+	
 	public function reset($id) {
 	    $this->db->trans_start();
 	     

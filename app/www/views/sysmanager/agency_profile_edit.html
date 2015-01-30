@@ -15,6 +15,8 @@
             <span class="v"><input type="text" id="contact" name="contact" placeholder="聯繫人" value="{{$profile->contact}}"></span>
             {{elseif $type == 'contact_tel'}}
             <span class="v"><input type="text" id="contact_tel" name="contact_tel" placeholder="聯繫電話" value="{{$profile->contact_tel}}"></span>
+            {{elseif $type == 'code'}}
+            <span class="v"><input type="text" id="code" name="code" placeholder="統一編號" value="{{$profile->code}}"></span>
             {{/if}}
         </li>
         <li class="gm_t1_form_btn" style="height:auto;">

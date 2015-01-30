@@ -123,7 +123,14 @@ class SysAgency extends Base_Controller {
         } elseif ($type == 'renewal') {
             $row['sign_date_start'] = strtotime($this->input->post('sign_date_start'));
             $row['sign_date_end'] = strtotime($this->input->post('sign_date_end'));
-        }
+        } elseif ($type == 'code') {
+        		$row['code'] = $this->input->post('code');
+			
+			$this->load->model('Users_Model');
+        		$users_model = new Users_Model();
+				
+			$users_model->update_username($uid, $row['code']);
+		}
         
         $re = $users_agent_model->update($uid, $row);
         
