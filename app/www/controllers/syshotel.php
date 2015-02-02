@@ -60,7 +60,7 @@ class SysHotel extends Base_Controller {
 			}
         }
         
-        $re = $users_hotel_model->getExpiredHotel($conditions, true, $page);
+        $re = $users_hotel_model->getExpiredHotel($conditions, $page);
         
         $this->smarty->assign('rowset', $re['rowset']);
 		$this->smarty->assign('pager', pagerui($re['pager']));

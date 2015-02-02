@@ -62,6 +62,22 @@ class Users_Hotel_Model extends CI_Model {
 			}
         }
         $hotel->get_paged($page,$size);
+		
+		$ids = array();
+        for ($i=0; $i<sizeof($hotel->all); $i++) {
+            $ids[] = $hotel->all[$i]->uid;
+        }
+    
+        if (sizeof($ids) > 0) {
+            $users = new Users();
+            $users->where_in('id', $ids)->get();
+    
+            $us = array_to_hashmap($users->all, 'id');
+    
+            for ($i=0; $i<sizeof($hotel->all); $i++) {
+                $hotel->all[$i]->users = $us[$hotel->all[$i]->uid];
+            }
+        }
         
         return array('rowset'=>$hotel->all,'pager'=>$hotel->paged);
     }

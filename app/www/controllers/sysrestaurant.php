@@ -60,7 +60,7 @@ class SysRestaurant extends Base_Controller {
 			}
         }
         
-        $re = $users_restaurant_model->getExpiredRestaurant($conditions, true, $page);
+        $re = $users_restaurant_model->getExpiredRestaurant($conditions, $page);
         
         $this->smarty->assign('rowset', $re['rowset']);
 		$this->smarty->assign('pager', pagerui($re['pager']));
