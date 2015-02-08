@@ -52,7 +52,7 @@ class Guide extends Base_Controller {
             $r['route'] = $row->route;
             $r['type'] = $row->type;
             $r['type_label'] = $this->_get_type_label($row->type);
-            $r['time'] = date('H:m', $row->time);
+            $r['time'] = date('H:i', $row->time);
             $r['hid'] = $row->hid;
             $r['rid'] = $row->rid;
             $r['hstatus'] = $row->hstatus;
@@ -94,7 +94,7 @@ class Guide extends Base_Controller {
             $r['route'] = $row->route;
             $r['type'] = $row->type;
             $r['type_label'] = $this->_get_type_label($row->type);
-            $r['time'] = date('H:m', $row->time);
+            $r['time'] = date('H:i', $row->time);
             $r['hid'] = $row->hid;
             $r['rid'] = $row->rid;
             $r['hstatus'] = $row->hstatus;
@@ -407,7 +407,7 @@ class Guide extends Base_Controller {
             $r['route'] = $row->route;
             $r['type'] = $row->type;
             $r['type_label'] = $this->_get_type_label($row->type);
-            $r['time'] = date('H:m', $row->time);
+            $r['time'] = date('H:i', $row->time);
             $r['hid'] = $row->hid;
             $r['rid'] = $row->rid;
             $r['hstatus'] = $row->hstatus;
