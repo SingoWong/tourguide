@@ -60,7 +60,7 @@ class SysAgency extends Base_Controller {
 			}
         }
         
-        $re = $users_agent_model->getExpiredAgency($conditions, true, $page);
+        $re = $users_agent_model->getExpiredAgency($conditions, $page);
         
         $this->smarty->assign('rowset', $re['rowset']);
 		$this->smarty->assign('pager', pagerui($re['pager']));
