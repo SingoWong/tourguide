@@ -63,21 +63,19 @@ class Users_Agency_Model extends CI_Model {
         }
         $agency->get_paged($page,$size);
 
-        if ($with_relation) {
-            $ids = array();
+        $ids = array();
+        for ($i=0; $i<sizeof($agency->all); $i++) {
+            $ids[] = $agency->all[$i]->uid;
+        }
+    
+        if (sizeof($ids) > 0) {
+            $users = new Users();
+            $users->where_in('id', $ids)->get();
+    
+            $us = array_to_hashmap($users->all, 'id');
+    
             for ($i=0; $i<sizeof($agency->all); $i++) {
-                $ids[] = $agency->all[$i]->id;
-            }
-        
-            if (sizeof($ids) > 0) {
-                $users = new Users();
-                $users->where_in('id', $ids)->get();
-        
-                $us = array_to_hashmap($users->all, 'id');
-        
-                for ($i=0; $i<sizeof($agency->all); $i++) {
-                    $agency->all[$i]->users = $us[$agency->all[$i]->uid];
-                }
+                $agency->all[$i]->users = $us[$agency->all[$i]->uid];
             }
         }
         

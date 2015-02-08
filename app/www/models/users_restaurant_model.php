@@ -65,7 +65,7 @@ class Users_Restaurant_Model extends CI_Model {
 
         $ids = array();
         for ($i=0; $i<sizeof($restaurant->all); $i++) {
-            $ids[] = $restaurant->all[$i]->id;
+            $ids[] = $restaurant->all[$i]->uid;
         }
     
         if (sizeof($ids) > 0) {
