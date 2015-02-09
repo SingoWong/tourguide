@@ -21,7 +21,7 @@ class Report_Model extends CI_Model {
 		$row['sid'] = $order->sid;
 		$row['rid'] = $order->rid;
 		$row['code'] = $re_group->code;
-		$row['date'] = date('Y-m-d');
+		$row['date'] = strtotime(date('Y-m-d'));
 		$row['name'] = $re_user->users->name;
 		$row['type'] = $re_schedule->type;
 		$row['guide_id'] = $re_group->gid;
@@ -49,7 +49,7 @@ class Report_Model extends CI_Model {
 		$row['sid'] = $order->sid;
 		$row['hid'] = $order->hid;
 		$row['code'] = $re_group->code;
-		$row['date'] = date('Y-m-d');
+		$row['date'] = strtotime(date('Y-m-d'));
 		$row['name'] = $re_user->users->name;
 		$row['type'] = $re_schedule->type;
 		$row['guide_id'] = $re_group->gid;
@@ -61,48 +61,76 @@ class Report_Model extends CI_Model {
 		$this->_logReportGuide($row);
 	}
 	
-	public function getReportAgency($conditions, $page, $size=20) {
+	public function getReportAgency($conditions) {
 		$report_agency = new Report_Agency();
         
         foreach ($conditions as $field=>$value) {
-        		$report_agency->where($field, $value);
+        		if (is_array($value)) {
+        			$report_agency->where_in($field, $value);
+        		} else {
+	            $report_agency->where($field, $value);
+			}
         }
-        $report_agency->get_paged($page,$size);
+        $report_agency->get();
+		
+		$total->count = $report_agency->result_count();
+		$total->summation = $total->count * 5;
         
-        return array('rowset'=>$report_agency->all,'pager'=>$report_agency->paged);
+        return array('rowset'=>$report_agency->all, 'total'=>$total);
 	}
 	
 	public function getReportHotel($conditions, $page, $size=20) {
 		$report_hotel = new Report_Hotel();
         
         foreach ($conditions as $field=>$value) {
-        		$report_hotel->where($field, $value);
+        		if (is_array($value)) {
+        			$report_hotel->where_in($field, $value);
+        		} else {
+	            $report_hotel->where($field, $value);
+			}
         }
-        $report_hotel->get_paged($page,$size);
+        $report_hotel->get();
+		
+		$total->count = $report_hotel->result_count();
+		$total->summation = $total->count * 5;
         
-        return array('rowset'=>$report_hotel->all,'pager'=>$report_hotel->paged);
+        return array('rowset'=>$report_hotel->all, 'total'=>$total);
 	}
 	
 	public function getReportRestaurant($conditions, $page, $size=20) {
 		$report_restaurant = new Report_Restaurant();
         
         foreach ($conditions as $field=>$value) {
-        		$report_restaurant->where($field, $value);
+        		if (is_array($value)) {
+        			$report_restaurant->where_in($field, $value);
+        		} else {
+	            $report_restaurant->where($field, $value);
+			}
         }
-        $report_restaurant->get_paged($page,$size);
+        $report_restaurant->get();
+		
+		$total->count = $report_restaurant->result_count();
+		$total->summation = $total->count * 5;
         
-        return array('rowset'=>$report_restaurant->all,'pager'=>$report_restaurant->paged);
+        return array('rowset'=>$report_agency->all, 'total'=>$total);
 	}
 	
 	public function getReportGuide($conditions, $page, $size=20) {
 		$report_guide = new Report_Guide();
         
         foreach ($conditions as $field=>$value) {
-        		$report_guide->where($field, $value);
+        		if (is_array($value)) {
+        			$report_guide->where_in($field, $value);
+        		} else {
+	            $report_guide->where($field, $value);
+			}
         }
-        $report_guide->get_paged($page,$size);
+        $report_guide->get();
+		
+		$total->count = $report_guide->result_count();
+		$total->summation = $total->count * 5;
         
-        return array('rowset'=>$report_guide->all,'pager'=>$report_guide->paged);
+        return array('rowset'=>$report_guide->all, 'total'=>$total);
 	}
 	
 	private function _logReportAgency($row) {
