@@ -186,8 +186,7 @@ class Users_Restaurant_Model extends CI_Model {
     }
     
     function update($uid, $row) {
-        $this->load->model('Users_Restaurant_Model');
-        $restaurant = new Users_Restaurant_Model();
+        $restaurant = new Users_Restaurant();
         
         $this->db->trans_start();
         
