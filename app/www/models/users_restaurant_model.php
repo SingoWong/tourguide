@@ -42,7 +42,7 @@ class Users_Restaurant_Model extends CI_Model {
             }
         }
 
-		return array('rowset'=>$restaurant->all,'pager'=>$hotel->paged);
+		return array('rowset'=>$restaurant->all,'pager'=>$restaurant->paged);
     }
     
     /**
@@ -79,7 +79,7 @@ class Users_Restaurant_Model extends CI_Model {
             }
         }
         
-		return array('rowset'=>$restaurant->all,'pager'=>$hotel->paged);
+		return array('rowset'=>$restaurant->all,'pager'=>$restaurant->paged);
     }
 
 	/**
