@@ -172,5 +172,17 @@ class SysHotel extends Base_Controller {
         $this->smarty->assign('uid', $uid);
         $this->smarty->display('./sysmanager/hotel_renewal.html');
     }
+	
+	public function contracta() {
+		$hid = $this->input->get('hid');
+		
+        $this->smarty->display('./sysmanager/hotel_contracta.html');
+	}
+	
+	public function contractaedit() {
+		$hid = $this->input->get('hid');
+		
+        $this->smarty->display('./sysmanager/hotel_contracta_edit.html');
+	}
 }
 ?>

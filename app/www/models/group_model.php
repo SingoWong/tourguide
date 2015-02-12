@@ -536,6 +536,24 @@ class Group_Model extends CI_Model {
         return $group->all[0];
     }
 	
+	function getCurrSchedualByGuideId($gid) {
+		$group = new Group();
+		$schedual = new Group_Schedule();
+        
+		$today = strtotime(date('Y-m-d'));
+        
+        $group->where('gid', $gid);
+		$group->where('type', '0');
+        $group->where('end_date >', $today);
+        $group->get();
+		
+		$schedual->where('gid', $group->all[0]->id);
+		$schedual->where_in('type', array(2,3));
+		$schedual->get();
+		
+		return $schedual->all;
+	}
+	
 	/**
 	 * 检查导游是否已经有空闲
 	 */

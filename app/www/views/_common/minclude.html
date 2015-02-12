@@ -35,5 +35,14 @@ function hideAddressBar_android(){
 };
 $(document).ready(function(){
 	navigator.userAgent.match(/Android/i) ? hideAddressBar_android() : hideAddressBar_ios();
+	
+	setTimeout(function(){
+		$.ajax({
+			url: "index.php?ctr=main&act=check_dialog",
+			success: function(html){
+				$("body").append(html);
+			}
+		});
+	}, 300);
 });
 </script>

@@ -179,15 +179,25 @@ class SysAgency extends Base_Controller {
     }
     
 	public function contractr() {
-		
+		$aid = $this->input->get('aid');
 		
         $this->smarty->display('./sysmanager/agency_contractr.html');
 	}
 	
 	public function contracth() {
-		
+		$aid = $this->input->get('aid');
 		
         $this->smarty->display('./sysmanager/agency_contracth.html');
+	}
+	
+	public function contractredit() {
+		
+        $this->smarty->display('./sysmanager/agency_contractr_edit.html');
+	}
+	
+	public function contracthedit() {
+		
+        $this->smarty->display('./sysmanager/agency_contracth_edit.html');
 	}
 	
     /*****************************

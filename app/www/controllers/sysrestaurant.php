@@ -172,5 +172,17 @@ class SysRestaurant extends Base_Controller {
         $this->smarty->assign('uid', $uid);
         $this->smarty->display('./sysmanager/restaurant_renewal.html');
     }
+	
+	public function contracta() {
+		$rid = $this->input->get('rid');
+		
+        $this->smarty->display('./sysmanager/restaurant_contracta.html');
+	}
+	
+	public function contractaedit() {
+		$rid = $this->input->get('rid');
+		
+        $this->smarty->display('./sysmanager/restaurant_contracta_edit.html');
+	}
 }
 ?>
