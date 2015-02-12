@@ -32,7 +32,7 @@ class Notify_Model extends CI_Model {
 				$row['link2'] = 'javascript:$(\'#dialog-x\').hide();';
 				$row['sound'] = true;
 				$this->show_dialog($row);
-			} elseif ($schedual->type='2' && $schedual->rstatus='1' && $time > ($schedual->time - 3600)) {
+			} elseif ($schedual->type='2' && $schedual->rstatus='1' && $time > ($schedual->time - 3600) && $time < $schedual->time) {
 				$row['message'] = '提醒您!! 您的訂單尚未完成，是否考慮「重新訂餐」或「電話確認」?';
 				$row['btn1'] = '重新訂餐';
 				$row['link1'] = 'index.php?ctr=guide&act=restaurant';
@@ -48,7 +48,7 @@ class Notify_Model extends CI_Model {
 				$row['link2'] = 'javascript:$(\'#dialog-x\').hide();';
 				$row['sound'] = true;
 				$this->show_dialog($row);
-			} elseif ($schedual->type='3' && $schedual->rstatus='1' && $time > ($schedual->time - 3600)) {
+			} elseif ($schedual->type='3' && $schedual->rstatus='1' && $time > ($schedual->time - 3600) && $time < $schedual->time) {
 				$row['message'] = '提醒您!! 您的訂單尚未完成，是否考慮「重新訂餐」或「電話確認」?';
 				$row['btn1'] = '重新訂餐';
 				$row['link1'] = 'index.php?ctr=guide&act=restaurant';
