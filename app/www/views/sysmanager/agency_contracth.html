@@ -1,0 +1,24 @@
+{{include file="_common/header.html"}}
+<script type="text/javascript">
+$(document).ready(function(){
+	
+});
+</script>
+
+<div class="title_panel">
+	旅行社管理 - 合約飯店
+</div>
+
+<div class="list_inner">
+	
+	<!-- foreach -->
+	{{foreach from=$rowset item=item key=key}}
+	
+	{{/foreach}}
+	<!-- foreach -->
+	
+</div>
+
+<div class="pager">{{$pager}}</div>
+
+{{include file="_common/footer.html"}}

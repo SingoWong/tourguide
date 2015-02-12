@@ -178,6 +178,18 @@ class SysAgency extends Base_Controller {
         $this->smarty->display('./sysmanager/agency_renewal.html');
     }
     
+	public function contractr() {
+		
+		
+        $this->smarty->display('./sysmanager/agency_contractr.html');
+	}
+	
+	public function contracth() {
+		
+		
+        $this->smarty->display('./sysmanager/agency_contracth.html');
+	}
+	
     /*****************************
      * 旅行社后台管理
      *****************************/

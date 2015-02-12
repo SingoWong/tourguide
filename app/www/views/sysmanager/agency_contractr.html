@@ -1,0 +1,29 @@
+{{include file="_common/header.html"}}
+<script type="text/javascript">
+$(document).ready(function(){
+	
+});
+</script>
+
+<div class="title_panel">
+	旅行社管理 - 合約餐廳
+</div>
+
+<div class="list_inner">
+	
+	<div class="item">
+		<div class="item_title">
+			{{$item->users->name}}&nbsp;&nbsp;{{$item->code}}&nbsp;&nbsp;簽約日期：{{$item->sign_date_start|date_format:'%Y年%m月%d日'}} 至 {{$item->sign_date_end|date_format:'%Y年%m月%d日'}}
+		</div>
+	</div>
+	<!-- foreach -->
+	{{foreach from=$rowset item=item key=key}}
+	
+	{{/foreach}}
+	<!-- foreach -->
+	
+</div>
+
+<div class="pager">{{$pager}}</div>
+
+{{include file="_common/footer.html"}}
