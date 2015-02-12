@@ -31,7 +31,7 @@ class SysReport extends Base_Controller {
 				$ids[] = $r->id;
 			}
 			if (sizeof($ids) > 0) {
-	            $conditions['uid'] = $ids;
+	            $conditions['aid'] = $ids;
 			}
         }
 		if (!$start_date || $start_date == '') {
@@ -71,7 +71,7 @@ class SysReport extends Base_Controller {
 				$ids[] = $r->id;
 			}
 			if (sizeof($ids) > 0) {
-	            $conditions['uid'] = $ids;
+	            $conditions['rid'] = $ids;
 			}
         }
 		if (!$start_date || $start_date == '') {
@@ -111,7 +111,7 @@ class SysReport extends Base_Controller {
 				$ids[] = $r->id;
 			}
 			if (sizeof($ids) > 0) {
-	            $conditions['uid'] = $ids;
+	            $conditions['hid'] = $ids;
 			}
         }
 		if (!$start_date || $start_date == '') {
@@ -151,7 +151,7 @@ class SysReport extends Base_Controller {
 				$ids[] = $r->id;
 			}
 			if (sizeof($ids) > 0) {
-	            $conditions['uid'] = $ids;
+	            $conditions['guide_id'] = $ids;
 			}
         }
 		if (!$start_date || $start_date == '') {
