@@ -47,7 +47,7 @@ function sh_pnlc(id) {
 				<tr>
 					<td colspan="2">帳號：{{$item->users->username}}</td>
 					<td>密碼：******</td>
-					<td width="10%"><a href="index.php?ctr=sysguide&act=resetpassword&id={{$item->id}}" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
+					<td width="10%"><a href="index.php?ctr=sysguide&act=resetpassword&id={{$item->uid}}" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
 					<td colspan="2">導遊名稱：{{$item->users->name}}</td>

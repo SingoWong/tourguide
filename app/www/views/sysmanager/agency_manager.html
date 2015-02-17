@@ -40,8 +40,8 @@ function sh_pnlc(id) {
 	<div class="item">
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">展開</a>
-			<a href="index.php?ctr=sysagency&act=contracth&gid={{$item->id}}" style="padding: 0 5px;">合約飯店</a>
-			<a href="index.php?ctr=sysagency&act=contractr&gid={{$item->id}}" style="padding: 0 5px;">合約餐廳</a>
+			<a href="index.php?ctr=sysagency&act=contracth&gid={{$item->uid}}" style="padding: 0 5px;">合約飯店</a>
+			<a href="index.php?ctr=sysagency&act=contractr&gid={{$item->uid}}" style="padding: 0 5px;">合約餐廳</a>
 			{{$item->users->name}}&nbsp;&nbsp;{{$item->code}}&nbsp;&nbsp;簽約日期：{{$item->sign_date_start|date_format:'%Y年%m月%d日'}} 至 {{$item->sign_date_end|date_format:'%Y年%m月%d日'}}
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
@@ -49,7 +49,7 @@ function sh_pnlc(id) {
 				<tr>
 					<td colspan="2">帳號：{{$item->users->username}}</td>
 					<td>密碼：******</td>
-					<td width="10%"><a href="index.php?ctr=sysagency&act=resetpassword&id={{$item->id}}" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
+					<td width="10%"><a href="index.php?ctr=sysagency&act=resetpassword&id={{$item->uid}}" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
 				</tr>
 				<tr>
 					<td colspan="2">旅行社名稱：{{$item->users->name}}</td>

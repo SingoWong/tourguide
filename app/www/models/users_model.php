@@ -134,7 +134,7 @@ class Users_Model extends CI_Model {
 	    //创建用户
 	    $users = new Users();
 	    $users->where('id', $id)->get();
-	     
+		
 	    if ($users->result_count() > 0) {
 	        $row['password'] = $this->_encrypt_password($users->all[0]->username, $this->_gen_password($users->all[0]->username));
 	        $users->where('id', $id)->update($row);
