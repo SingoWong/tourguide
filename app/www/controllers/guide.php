@@ -223,6 +223,7 @@ class Guide extends Base_Controller {
         $gid = $this->input->post('gid');
         $rid = $this->input->post('rid');
         $amount = $this->input->post('amount');
+		$eatdate = $this->input->post('eatdate');
 		$eattime = $this->input->post('eattime');
 		$attention = $this->input->post('attention');
         $option = $this->input->post('note');
@@ -240,7 +241,7 @@ class Guide extends Base_Controller {
         $row['rid'] = $rid;
         $row['amount'] = $amount;
         $row['price_unit'] = $unit;
-		$row['eattime'] = strtotime(date('Y-m-d').' '.$eattime.':00');
+		$row['eattime'] = strtotime($eatdate.' '.$eattime.':00');
 		$row['attention'] = $attention;
         $row['option'] = join(',',$option);
         
