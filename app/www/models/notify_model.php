@@ -61,6 +61,26 @@ class Notify_Model extends CI_Model {
 		
 		//TODO
 	}
+
+	function getRestaurantNotifyById($uid) {
+		$orders = new Restaurant_Order();
+		
+		$orders->where('status', STATUS_RORDER_PANDING);
+		$orders->where('rid', $rid);
+		$orders->get();
+		
+		if ($orders->result_count() > 0) {
+			$row['message'] = '您有新進訂單!!';
+			$row['btn1'] = '立即檢視';
+			$row['link1'] = 'index.php?ctr=restaurant&act=new_order';
+			$row['btn2'] = '稍後檢視';
+			$row['link2'] = 'javascript:$(\'#dialog-x\').hide();';
+			$row['sound'] = false;
+			$this->show_dialog($row);
+		}
+		
+		//TODO
+	}
 	
 	private function show_dialog($row) {
 		$this->load->helper('cookie');

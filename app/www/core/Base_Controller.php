@@ -89,16 +89,5 @@ class Base_Controller extends CI_Controller {
         $this->smarty->assign('RBAC_ROLE_ID', $this->role['id']);
         $this->smarty->assign('RBAC_ROLE_NAME', $this->role['name']);
     }
-	
-	public function check_dialog() {
-		if ($this->logined) {
-			$this->load->model('Notify_Model');
-			$notify_model = new Notify_Model();
-			
-			if ($this->role['id'] == ROLE_ID_GUIDE) {
-				$notify_model->getGuideNotifyByUid($this->user['id']);
-			}
-		}
-	}
 }
 ?>

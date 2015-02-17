@@ -38,7 +38,7 @@ $(document).ready(function(){
 	
 	setTimeout(function(){
 		$.ajax({
-			url: "index.php?ctr=main&act=check_dialog",
+			url: "index.php?ctr=notify&act=check_dialog",
 			success: function(html){
 				$("body").append(html);
 			}
