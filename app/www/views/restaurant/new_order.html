@@ -40,7 +40,7 @@
 							</div>
 						</a>
 						<div class="detail_item" id="pnl_detail_{{$item->id}}">
-							<p>日期：{{$item->created|date_format:"%Y-%m-%d"}}</p>
+							<p>日期：{{$item->eattime|date_format:"%Y-%m-%d"}}</p>
 							<p>餐別：{{if $item->schedule->type=='2'}}中餐{{elseif $item->schedule->type=='3'}}晚餐{{/if}}</p>
 							<p>餐廳名稱：{{$RBAC_USER_NAME}}</p>
 							<p>旅行社：{{$item->agency->name}}</p>
@@ -49,7 +49,7 @@
 							<p>人數：{{$item->amount}}人</p>
 							<p>餐標：{{$item->price_unit}}</p>
 							<p>金額：{{math equation="amount*unit" amount=$item->amount unit=$item->price_unit}}</p>
-							<p>用餐時間：{{$item->eattime|date_format:"%Y-%m-%d"}}</p>
+							<p>用餐時間：{{$item->eattime|date_format:"%Y-%m-%d %H:%M"}}</p>
 							<p>注意事项：{{$item->attention}}</p>
 							<p>口味選擇：{{$item->option}}</p>
 							<button class="mui-btn mui-btn-primary" onclick="location.href='{{$url_approve}}&oid={{$item->id}}';">接受</button>
