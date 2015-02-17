@@ -31,7 +31,6 @@ class Notify_Model extends CI_Model {
 				$row['btn2'] = '稍後訂餐';
 				$row['link2'] = 'javascript:$(\'#dialog-x\').hide();';
 				$row['sound'] = true;
-				$this->show_dialog($row);
 			} elseif ($schedual->type='2' && $schedual->rstatus='1' && $time > ($schedual->time - 3600) && $time < $schedual->time) {
 				$row['message'] = '提醒您!! 您的訂單尚未完成，是否考慮「重新訂餐」或「電話確認」?';
 				$row['btn1'] = '重新訂餐';
@@ -39,7 +38,6 @@ class Notify_Model extends CI_Model {
 				$row['btn2'] = '電話確認';
 				$row['link2'] = 'index.php?ctr=guide&act=restaurant';
 				$row['sound'] = true;
-				$this->show_dialog($row);
 			} elseif ($schedual->type='3' && $schedual->rstatus='0' && $time > $alert_ltime && $time < $schedual->time) {
 				$row['message'] = '提醒您!! 您尚未訂餐，請立即訂餐!!';
 				$row['btn1'] = '立即訂餐';
@@ -47,7 +45,6 @@ class Notify_Model extends CI_Model {
 				$row['btn2'] = '稍後訂餐';
 				$row['link2'] = 'javascript:$(\'#dialog-x\').hide();';
 				$row['sound'] = true;
-				$this->show_dialog($row);
 			} elseif ($schedual->type='3' && $schedual->rstatus='1' && $time > ($schedual->time - 3600) && $time < $schedual->time) {
 				$row['message'] = '提醒您!! 您的訂單尚未完成，是否考慮「重新訂餐」或「電話確認」?';
 				$row['btn1'] = '重新訂餐';
@@ -55,8 +52,8 @@ class Notify_Model extends CI_Model {
 				$row['btn2'] = '電話確認';
 				$row['link2'] = 'index.php?ctr=guide&act=restaurant';
 				$row['sound'] = true;
-				$this->show_dialog($row);
 			}
+			$this->show_dialog($row, $uid);
 		}
 		
 		//TODO
@@ -76,19 +73,19 @@ class Notify_Model extends CI_Model {
 			$row['btn2'] = '稍後檢視';
 			$row['link2'] = 'javascript:$(\'#dialog-x\').hide();';
 			$row['sound'] = false;
-			$this->show_dialog($row);
+			$this->show_dialog($row, $uid);
 		}
 		
 		//TODO
 	}
 	
-	private function show_dialog($row) {
+	private function show_dialog($row, $uid) {
 		$this->load->helper('cookie');
-		if (get_cookie('dialog-x-flag') == '1') {
+		if (get_cookie('dialog-x-flag-'.$uid) == '1') {
 			return;
 		}
 		
-		set_cookie('dialog-x-flag','1',60*5);
+		set_cookie('dialog-x-flag-'.$uid,'1',60*5);
 		
 		$html = '<div class="dialog" id="dialog-x"><div class="dialog_content">'.$row['message'].'</div><div class="dialog_option"><a href="'.$row['link1'].'" class="dialog_btn">'.$row['btn1'].'</a><a href="'.$row['link2'].'" class="dialog_btn">'.$row['btn2'].'</a></div></div>';
 		if ($row['sound']) {
