@@ -31,6 +31,7 @@ class Notify_Model extends CI_Model {
 				$row['btn2'] = '稍後訂餐';
 				$row['link2'] = 'javascript:$(\'#dialog-x\').hide();';
 				$row['sound'] = true;
+				$this->show_dialog($row, $uid);
 			} elseif ($schedual->type='2' && $schedual->rstatus='1' && $time > ($schedual->time - 3600) && $time < $schedual->time) {
 				$row['message'] = '提醒您!! 您的訂單尚未完成，是否考慮「重新訂餐」或「電話確認」?';
 				$row['btn1'] = '重新訂餐';
@@ -38,6 +39,7 @@ class Notify_Model extends CI_Model {
 				$row['btn2'] = '電話確認';
 				$row['link2'] = 'index.php?ctr=guide&act=restaurant';
 				$row['sound'] = true;
+				$this->show_dialog($row, $uid);
 			} elseif ($schedual->type='3' && $schedual->rstatus='0' && $time > $alert_ltime && $time < $schedual->time) {
 				$row['message'] = '提醒您!! 您尚未訂餐，請立即訂餐!!';
 				$row['btn1'] = '立即訂餐';
@@ -45,6 +47,7 @@ class Notify_Model extends CI_Model {
 				$row['btn2'] = '稍後訂餐';
 				$row['link2'] = 'javascript:$(\'#dialog-x\').hide();';
 				$row['sound'] = true;
+				$this->show_dialog($row, $uid);
 			} elseif ($schedual->type='3' && $schedual->rstatus='1' && $time > ($schedual->time - 3600) && $time < $schedual->time) {
 				$row['message'] = '提醒您!! 您的訂單尚未完成，是否考慮「重新訂餐」或「電話確認」?';
 				$row['btn1'] = '重新訂餐';
@@ -52,8 +55,8 @@ class Notify_Model extends CI_Model {
 				$row['btn2'] = '電話確認';
 				$row['link2'] = 'index.php?ctr=guide&act=restaurant';
 				$row['sound'] = true;
+				$this->show_dialog($row, $uid);
 			}
-			$this->show_dialog($row, $uid);
 		}
 		
 		//TODO
