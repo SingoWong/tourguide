@@ -63,7 +63,7 @@ class Notify_Model extends CI_Model {
 		$orders = new Restaurant_Order();
 		
 		$orders->where('status', STATUS_RORDER_PANDING);
-		$orders->where('rid', $rid);
+		$orders->where('rid', $uid);
 		$orders->get();
 		
 		if ($orders->result_count() > 0) {
@@ -81,11 +81,11 @@ class Notify_Model extends CI_Model {
 	
 	private function show_dialog($row, $uid) {
 		$this->load->helper('cookie');
-		if (get_cookie('dialog-x-flag-'.$uid) == '1') {
+		if (get_cookie('dialog-x-'.$uid) == '1') {
 			return;
 		}
 		
-		set_cookie('dialog-x-flag-'.$uid,'1',60*5);
+		set_cookie('dialog-x-'.$uid,'1',60*5);
 		
 		$html = '<div class="dialog" id="dialog-x"><div class="dialog_content">'.$row['message'].'</div><div class="dialog_option"><a href="'.$row['link1'].'" class="dialog_btn">'.$row['btn1'].'</a><a href="'.$row['link2'].'" class="dialog_btn">'.$row['btn2'].'</a></div></div>';
 		if ($row['sound']) {
