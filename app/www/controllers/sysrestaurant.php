@@ -174,15 +174,80 @@ class SysRestaurant extends Base_Controller {
     }
 	
 	public function contracta() {
-		$rid = $this->input->get('rid');
+		$this->load->model('Contract_Restaurant_Model');
+		$crm = new Contract_Restaurant_Model();
 		
+		$rid = $this->input->get('rid');
+		$re = $crm->getCAgencyByRestaurant($rid);
+		
+		$this->smarty->assign('rid', $rid);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/restaurant_contracta.html');
 	}
 	
 	public function contractaedit() {
+		$this->load->model('Users_Agency_Model');
+        $users_agency_model = new Users_Agency_Model();
+        
+        $name = $this->input->get('name');
+        $username = $this->input->get('username');
+		$page = $this->input->get('page');
+		$rid = $this->input->get('rid');
+        
+        $conditions = array();
+        if (($name && $name != '') || ($username && $username != '')) {
+        		$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($name, $username);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['uid'] = $ids;
+			}
+        }
+        
+        $re = $users_agency_model->getContractAgency($conditions, true, $page, 8);
+        
+		$this->smarty->assign('rid', $rid);
+        $this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
+        $this->smarty->display('./sysmanager/restaurant_contracta_edit.html');
+	}
+	
+	public function contractasave() {
+		$this->load->model('Contract_Restaurant_Model');
+		$crm = new Contract_Restaurant_Model();
+		
+		$aid = $this->input->get('aid');
 		$rid = $this->input->get('rid');
 		
-        $this->smarty->display('./sysmanager/restaurant_contracta_edit.html');
+		$re = $crm->createContractAR($aid, $rid);
+		
+		if ($re['result']) {
+			alert('添加成功',url('sysrestaurant/contracta').'&rid='.$rid);
+		} else {
+			alert($re['msg'],null,TRUE);
+		}
+	}
+	
+	public function contractaremove() {
+		$this->load->model('Contract_Restaurant_Model');
+		$crm = new Contract_Restaurant_Model();
+		
+		$id = $this->input->get('id');
+		$rid = $this->input->get('rid');
+		
+		$re = $crm->removeContractAR($id);
+		
+		if ($re) {
+			alert('已成功解除合約關係',url('sysrestaurant/contracta').'&rid='.$rid);
+		} else {
+			alert('解除合約關係失敗',null,TRUE);
+		}
 	}
 }
 ?>

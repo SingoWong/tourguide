@@ -174,15 +174,80 @@ class SysHotel extends Base_Controller {
     }
 	
 	public function contracta() {
-		$hid = $this->input->get('hid');
+		$this->load->model('Contract_Hotel_Model');
+		$chm = new Contract_Hotel_Model();
 		
+		$hid = $this->input->get('hid');
+		$re = $chm->getCAgencyByHotel($hid);
+		
+		$this->smarty->assign('hid', $hid);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/hotel_contracta.html');
 	}
 	
 	public function contractaedit() {
+		$this->load->model('Users_Agency_Model');
+        $users_agency_model = new Users_Agency_Model();
+        
+        $name = $this->input->get('name');
+        $username = $this->input->get('username');
+		$page = $this->input->get('page');
+		$hid = $this->input->get('hid');
+        
+        $conditions = array();
+        if (($name && $name != '') || ($username && $username != '')) {
+        		$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($name, $username);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['uid'] = $ids;
+			}
+        }
+        
+        $re = $users_agency_model->getContractAgency($conditions, true, $page, 8);
+        
+		$this->smarty->assign('hid', $hid);
+        $this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
+        $this->smarty->display('./sysmanager/hotel_contracta_edit.html');
+	}
+	
+	public function contractasave() {
+		$this->load->model('Contract_Hotel_Model');
+		$chm = new Contract_Hotel_Model();
+		
+		$aid = $this->input->get('aid');
 		$hid = $this->input->get('hid');
 		
-        $this->smarty->display('./sysmanager/hotel_contracta_edit.html');
+		$re = $chm->createContractAH($aid, $hid);
+		
+		if ($re['result']) {
+			alert('添加成功',url('syshotel/contracta').'&hid='.$hid);
+		} else {
+			alert($re['msg'],null,TRUE);
+		}
+	}
+	
+	public function contractaremove() {
+		$this->load->model('Contract_Hotel_Model');
+		$chm = new Contract_Hotel_Model();
+		
+		$id = $this->input->get('id');
+		$hid = $this->input->get('hid');
+		
+		$re = $chm->removeContractAH($id);
+		
+		if ($re) {
+			alert('已成功解除合約關係',url('syshotel/contracta').'&hid='.$hid);
+		} else {
+			alert('解除合約關係失敗',null,TRUE);
+		}
 	}
 }
 ?>

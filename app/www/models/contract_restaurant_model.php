@@ -61,7 +61,7 @@ class Contract_Restaurant_Model extends CI_Model {
 		
 		if ($uar->result_count() > 0) {
 			$re['result'] = '0';
-			$re['msg'] = '餐廳已存在';
+			$re['msg'] = '餐廳和旅行社已建立合約';
 		} elseif ($uar->save()) {
 			$re['result'] = '1';
 			$re['id'] = $uar->id;

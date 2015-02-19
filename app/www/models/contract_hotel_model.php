@@ -35,7 +35,7 @@ class Contract_Hotel_Model extends CI_Model {
 		
 		$ids = array();
         for ($i=0; $i<sizeof($uah->all); $i++) {
-            $ids[] = $uah->all[$i]->hid;
+            $ids[] = $uah->all[$i]->aid;
         }
         if (sizeof($ids) > 0) {
             $users = new Users();
@@ -61,7 +61,7 @@ class Contract_Hotel_Model extends CI_Model {
 		
 		if ($uah->result_count() > 0) {
 			$re['result'] = '0';
-			$re['msg'] = '飯店已存在';
+			$re['msg'] = '旅行社和飯店已建立合約';
 		} elseif ($uah->save()) {
 			$re['result'] = '1';
 			$re['id'] = $uah->id;

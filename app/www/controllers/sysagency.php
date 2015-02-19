@@ -249,7 +249,7 @@ class SysAgency extends Base_Controller {
 		$re = $crm->removeContractAR($id);
 		
 		if ($re) {
-			alert('已成功接觸合約關係',url('sysagency/contractr').'&aid='.$aid);
+			alert('已成功解除合約關係',url('sysagency/contractr').'&aid='.$aid);
 		} else {
 			alert('解除合約關係失敗',null,TRUE);
 		}
@@ -326,7 +326,7 @@ class SysAgency extends Base_Controller {
 		$re = $chm->removeContractAH($id);
 		
 		if ($re) {
-			alert('已成功接觸合約關係',url('sysagency/contracth').'&aid='.$aid);
+			alert('已成功解除合約關係',url('sysagency/contracth').'&aid='.$aid);
 		} else {
 			alert('解除合約關係失敗',null,TRUE);
 		}

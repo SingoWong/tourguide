@@ -9,23 +9,27 @@ $(document).ready(function(){
 	餐廳管理 - 合約旅行社
 </div>
 
-<input type="button" class="gm_t1_btn" value="增加" onclick="self.location.href='index.php?ctr=sysrestaurant&act=contractaedit';">
+<input type="button" class="gm_t1_btn" value="增加" onclick="return window.openWindow('index.php?ctr=sysrestaurant&act=contractaedit&rid={{$rid}}','700','500',false,0.3)">
 
 <div class="list_inner">
-	
-	<div class="item">
-		<div class="item_title">
-			{{$item->users->name}}&nbsp;&nbsp;{{$item->code}}&nbsp;&nbsp;簽約日期：{{$item->sign_date_start|date_format:'%Y年%m月%d日'}} 至 {{$item->sign_date_end|date_format:'%Y年%m月%d日'}}
-		</div>
-	</div>
-	<!-- foreach -->
-	{{foreach from=$rowset item=item key=key}}
-	
-	{{/foreach}}
-	<!-- foreach -->
-	
+	<table border="0" width="100%" cellpadding="2" cellspacing="1">
+		<tr>
+			<th width="20%">編號</th>
+			<th>旅行社</th>
+			<th width="10%">操作</th>
+		</tr>
+		<!-- foreach -->
+		{{foreach from=$rowset item=item key=key}}
+		<tr>
+			<td align="center">{{$item->id}}</td>
+			<td>{{$item->agency->name}}</td>
+			<td align="center"><a href="index.php?ctr=sysrestaurant&act=contractaremove&id={{$item->id}}&rid={{$rid}}" onclick="if(!confirm('確定解除合約關係嗎？')){return false;}">删除</a></td>
+		</tr>
+		{{/foreach}}
+		<!-- foreach -->
+	</table>
 </div>
-
+<br />
 <div class="pager">{{$pager}}</div>
 
 {{include file="_common/footer.html"}}
