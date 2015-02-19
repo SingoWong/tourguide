@@ -179,25 +179,157 @@ class SysAgency extends Base_Controller {
     }
     
 	public function contractr() {
-		$aid = $this->input->get('aid');
+		$this->load->model('Contract_Restaurant_Model');
+		$crm = new Contract_Restaurant_Model();
 		
+		$aid = $this->input->get('aid');
+		$re = $crm->getCRestaurantByAgency($aid);
+		
+		$this->smarty->assign('aid', $aid);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/agency_contractr.html');
 	}
-	
-	public function contracth() {
-		$aid = $this->input->get('aid');
-		
-        $this->smarty->display('./sysmanager/agency_contracth.html');
-	}
-	
+
 	public function contractredit() {
-		
+		$this->load->model('Users_Restaurant_Model');
+        $users_restaurant_model = new Users_Restaurant_Model();
+        
+        $name = $this->input->get('name');
+        $username = $this->input->get('username');
+		$page = $this->input->get('page');
+		$aid = $this->input->get('aid');
+        
+        $conditions = array();
+        if (($name && $name != '') || ($username && $username != '')) {
+        		$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($name, $username);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['uid'] = $ids;
+			}
+        }
+        
+        $re = $users_restaurant_model->getContractRestaurant($conditions, true, $page, 8);
+        
+		$this->smarty->assign('aid', $aid);
+        $this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/agency_contractr_edit.html');
 	}
 	
-	public function contracthedit() {
+	public function contractrsave() {
+		$this->load->model('Contract_Restaurant_Model');
+		$crm = new Contract_Restaurant_Model();
 		
+		$aid = $this->input->get('aid');
+		$rid = $this->input->get('rid');
+		
+		$re = $crm->createContractAR($aid, $rid);
+		
+		if ($re['result']) {
+			alert('添加成功',url('sysagency/contractr').'&aid='.$aid);
+		} else {
+			alert($re['msg'],null,TRUE);
+		}
+	}
+	
+	public function contractrremove() {
+		$this->load->model('Contract_Restaurant_Model');
+		$crm = new Contract_Restaurant_Model();
+		
+		$id = $this->input->get('id');
+		$aid = $this->input->get('aid');
+		
+		$re = $crm->removeContractAR($id);
+		
+		if ($re) {
+			alert('已成功接觸合約關係',url('sysagency/contractr').'&aid='.$aid);
+		} else {
+			alert('解除合約關係失敗',null,TRUE);
+		}
+	}
+	
+	public function contracth() {
+		$this->load->model('Contract_Hotel_Model');
+		$chm = new Contract_Hotel_Model();
+		
+		$aid = $this->input->get('aid');
+		$re = $chm->getCHotelByAgency($aid);
+		
+		$this->smarty->assign('aid', $aid);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
+        $this->smarty->display('./sysmanager/agency_contracth.html');
+	}
+	
+	public function contracthedit() {
+		$this->load->model('Users_Hotel_Model');
+        $users_hotel_model = new Users_Hotel_Model();
+        
+        $name = $this->input->get('name');
+        $username = $this->input->get('username');
+		$page = $this->input->get('page');
+		$aid = $this->input->get('aid');
+        
+        $conditions = array();
+        if (($name && $name != '') || ($username && $username != '')) {
+        		$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($name, $username);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['uid'] = $ids;
+			}
+        }
+        
+        $re = $users_hotel_model->getContractHotel($conditions, true, $page, 8);
+        
+		$this->smarty->assign('aid', $aid);
+        $this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/agency_contracth_edit.html');
+	}
+	
+	public function contracthsave() {
+		$this->load->model('Contract_Hotel_Model');
+		$chm = new Contract_Hotel_Model();
+		
+		$aid = $this->input->get('aid');
+		$hid = $this->input->get('hid');
+		
+		$re = $chm->createContractAH($aid, $hid);
+		
+		if ($re['result']) {
+			alert('添加成功',url('sysagency/contracth').'&aid='.$aid);
+		} else {
+			alert($re['msg'],null,TRUE);
+		}
+	}
+
+	public function contracthremove() {
+		$this->load->model('Contract_Hotel_Model');
+		$chm = new Contract_Hotel_Model();
+		
+		$id = $this->input->get('id');
+		$aid = $this->input->get('aid');
+		
+		$re = $chm->removeContractAH($id);
+		
+		if ($re) {
+			alert('已成功接觸合約關係',url('sysagency/contracth').'&aid='.$aid);
+		} else {
+			alert('解除合約關係失敗',null,TRUE);
+		}
 	}
 	
     /*****************************

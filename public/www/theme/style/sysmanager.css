@@ -196,6 +196,22 @@ a#closeButton{
 .list_inner, .form_inner {
 	margin-top: 10px;
 }
+.list_inner table {
+	border: 1px solid #CCC;
+	background: #CCC;
+}
+.list_inner table tr th {
+	background: #2288CC;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+.list_inner table tr td {
+	line-height: 25px;
+	padding: 3px;
+	background: #FFF;
+}
 .item {
 	border: 1px solid #CCC;
 	margin-bottom: 10px;

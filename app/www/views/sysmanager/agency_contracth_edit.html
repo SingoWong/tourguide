@@ -1,0 +1,35 @@
+{{include file="_common/popup_header.html"}}
+
+<div class="title_panel">
+	旅行社管理 - 合約飯店 - 增加飯店
+</div>
+
+<div class="search-inner">
+<form class="gm_t1_form" id="reg_form" action="" method="GET">
+	<input type="hidden" name="ctr" value="sysagency" />
+	<input type="hidden" name="act" value="contracthedit" />
+	<input type="hidden" name="aid" value="{{$aid}}" />
+	<label class="v"><input id="name" type="text" name="name" value="" placeholder="飯店"></label>
+	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
+	<label class="s"><input type="submit" class="gm_t1_btn" value="查詢" /></label>	
+</form>
+</div>
+
+<div class="list_inner">
+	
+	<!-- foreach -->
+	{{foreach from=$rowset item=item key=key}}
+	<div class="item">
+		<div class="item_title">
+			<a href="index.php?ctr=sysagency&act=contracthsave&aid={{$aid}}&hid={{$item->uid}}">添加</a>
+			{{$item->users->name}}&nbsp;&nbsp;{{$item->code}}&nbsp;簽約日期：{{$item->sign_date_start|date_format:'%Y年%m月%d日'}} 至 {{$item->sign_date_end|date_format:'%Y年%m月%d日'}}
+		</div>
+	</div>
+	{{/foreach}}
+	<!-- foreach -->
+	
+</div>
+
+<div class="pager">{{$pager}}</div>
+
+{{include file="_common/popup_footer.html"}}
