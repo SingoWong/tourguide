@@ -3,10 +3,12 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	var res = eval('{'+'{{$res}}'+'}');
-	console.log(res[1]);
+	
 	for (var i=0; i<res.length; i++) {
 		$("#res_"+res[i]['aid']).append('<a href="'+res[i]['pic_url']+'" target="_blank" class="res_item"><img src="'+res[i]['pic_url']+'" /></a>');
 	}
+	
+	sh_pnlc($(".item_content").first().attr("idx"));
 });
 
 function sh_pnlc(id) {
@@ -31,14 +33,14 @@ function sh_pnlc(id) {
 	{{foreach from=$rowset item=item key=key}}
 	<div class="item">
 		<div class="item_title">
-			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
-			{{$item->time|date_format:'%Y-%m-%d %H:%i'}}&nbsp;&nbsp;
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">展開</a>
+			{{$item->time|date_format:'%Y-%m-%d %H:%M'}}&nbsp;&nbsp;
 			{{$item->type}}&nbsp;&nbsp;
-			團號：{{$item->gid}}&nbsp;&nbsp;
-			導遊：{{$item->gid}}&nbsp;&nbsp;
+			團號：{{$item->group->code}}&nbsp;&nbsp;
+			導遊：{{$item->guide->name}}&nbsp;&nbsp;
 			緊急事故
 		</div>
-		<div class="item_content" id="pnlc_{{$item->id}}">
+		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
 					<td width="10%">流水號</td>
@@ -46,7 +48,7 @@ function sh_pnlc(id) {
 				</tr>
 				<tr>
 					<td width="10%">發生時間</td>
-					<td>{{$item->time|date_format:'%Y-%m-%d %H:%i'}}</td>
+					<td>{{$item->time|date_format:'%Y-%m-%d %H:%M'}}</td>
 				</tr>
 				<tr>
 					<td width="10%">發生地點</td>
