@@ -64,7 +64,7 @@
 						</a>
 						<a href="#" idx="{{$item->id}}" class="detail_item_swith" onclick="sh_detail(this);return false;">
 							<div class="mui-media-body">
-								{{$item->created|date_format:"%Y-%m-%d"}} {{$item->aid}}
+								{{$item->eattime|date_format:"%Y-%m-%d %H:%M"}} {{$item->aid}}
 								<p class='mui-ellipsis'>導遊:{{$item->info->guide_name}} {{$item->amount}}人</p>
 							</div>
 						</a>

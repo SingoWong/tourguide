@@ -5,7 +5,17 @@
 		<title>訂房資訊</title>
 		
 		{{include file="_common/minclude.html"}}
-		
+		<script>
+		function getLocalTime(start_date, day) {
+			var nS = parseInt(start_date) + ((parseInt(day) - 1) * 86400);
+			var now = new Date(nS*1000);
+			var year=now.getFullYear();     
+			var month=now.getMonth()+1;     
+		    var date=now.getDate();
+		    
+		    return year+"-"+month+"-"+date;
+		}
+		</script>
 		<style type="text/css">
 			.quick-nav {
 				padding: 0 50px;
@@ -33,7 +43,7 @@
 		<script type="text/javascript">
 		var data = eval('({{$schedule}})');
 		$.each(data,function(day,schedule){
-			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>'+schedule[0]['tab']+'</a><div class="flow-item-list" id="pnl_day_'+day+'">';
+			var html_day = '<a class="flow-item-title" href="#" onclick="return sh_day('+day+');"><em>D'+day+'</em>'+getLocalTime({{$info->start_date}}, day)+' '+schedule[0]['tab']+'</a><div class="flow-item-list" id="pnl_day_'+day+'">';
 	 					 
 			$.each(schedule,function(route,item){
 				if (item['type']=='4') {
@@ -71,7 +81,7 @@
 		function show_ctrl(day,route,item) {
 			var html = '';
 			if (item['rstatus'] == '0') {
-				html += '未訂房';
+				html += '{{$room_label}}';
 			} else if (item['rstatus'] == '1') {
 				html += '<a href="{{$url_hotel_payment}}&day='+day+'&route='+route+'">退房<br/>付款</a><a href="{{$url_hotel_info}}&sid='+item['id']+'">分房<br/>資訊</a>';
 			} else if (item['rstatus'] == '2') {

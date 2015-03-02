@@ -191,7 +191,7 @@ class Guide extends Base_Controller {
         $agency = new Users_Agency_Model();
         $re_agency = $agency->getAgencyById($re_group->aid);
 		
-        $date = date('Y-m-d', $re_group->start_date+($day*86400));
+        $date = date('Y-m-d', $re_group->start_date+(($day-1)*86400));
         $rname = $re_restaurant->users->name;
         $code = $re_group->code;
         $amount = $re_group->amount;
@@ -399,6 +399,7 @@ class Guide extends Base_Controller {
         
         $re['info'] = $group->getCurrGroupByGuideId($this->user['id']);
         $schedule = $group->getScheduleById($re['info']->id);
+		$rooms = $group->getGroupRoom($re['info']->id);
         
         $rows = array();
         foreach ($schedule as $row) {
@@ -425,6 +426,7 @@ class Guide extends Base_Controller {
         $this->smarty->assign($re);
         $this->smarty->assign('url_hotel_payment', url('guide/hotel_payment').'&gid='.$re['info']->id);
 		$this->smarty->assign('url_hotel_info', url('guide/hotel_info'));
+		$this->smarty->assign('room_label',$this->_get_room_label($rooms));
         $this->smarty->display('./guide/hotel_base.html');
     }
 
@@ -568,5 +570,15 @@ class Guide extends Base_Controller {
         
         return $label;
     }
+	
+	private function _get_room_label($rooms) {
+		$html .= '<p>單人房:'.$rooms->single_room.'</p>';
+		$html .= '<p>雙人房:'.$rooms->double_room.'</p>';
+		$html .= '<p>三人房:'.$rooms->full_room.'</p>';
+		$html .= '<p>加床:'.$rooms->plus_room.'</p>';
+		$html .= '<p>兒童床:'.$rooms->kid_room.'</p>';
+		
+		return $html;
+	}
 }
 ?>

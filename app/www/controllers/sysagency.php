@@ -183,6 +183,9 @@ class SysAgency extends Base_Controller {
 		$crm = new Contract_Restaurant_Model();
 		
 		$aid = $this->input->get('aid');
+		if (!$aid || $aid == '') {
+			$aid = $this->user['id'];
+		}
 		$re = $crm->getCRestaurantByAgency($aid);
 		
 		$this->smarty->assign('aid', $aid);
@@ -260,6 +263,9 @@ class SysAgency extends Base_Controller {
 		$chm = new Contract_Hotel_Model();
 		
 		$aid = $this->input->get('aid');
+		if (!$aid || $aid == '') {
+			$aid = $this->user['id'];
+		}
 		$re = $chm->getCHotelByAgency($aid);
 		
 		$this->smarty->assign('aid', $aid);

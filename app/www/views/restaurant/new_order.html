@@ -36,7 +36,7 @@
 						<a href="#" idx="{{$item->id}}" onclick="sh_detail(this);return false;">
 							<div class="mui-media-body">
 								{{$item->eattime|date_format:"%Y-%m-%d"}} {{$item->aid}}
-								<p class='mui-ellipsis'>導遊:{{$item->info->guide_name}} {{$item->amount}}人</p>
+								<p class='mui-ellipsis'>導遊:{{$item->info->guide_name}} {{$item->amount}}人 {{$item->info->guide_tel}}</p>
 							</div>
 						</a>
 						<div class="detail_item" id="pnl_detail_{{$item->id}}">
