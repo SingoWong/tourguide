@@ -21,8 +21,13 @@ $(document).ready(function(){
 	$("#tab_{{$item->day}}").val("{{$item->tab}}");
 	$("#type_{{$item->day}}_"+t).val("{{$item->type}}");
 	$("#time_{{$item->day}}_"+t).val('{{$item->time|date_format:"%H:%M"}}');
-	$("#location_{{$item->day}}_"+t).val("{{$item->location}}");
+	{{if $item->type == '4'}}
+	$("#hname_{{$item->day}}_"+t).val("{{$item->location}}");
+	{{elseif $item->type == '2' || $item->type == '3'}}
 	$("#rname_{{$item->day}}_"+t).val("{{$item->location}}");
+	{{else}}
+	$("#location_{{$item->day}}_"+t).val("{{$item->location}}");
+	{{/if}}
 	$("#hid_{{$item->day}}_"+t).val("{{$item->hid}}");
 	$("#money_{{$item->day}}_"+t).val("{{$item->money}}");
 	$("#detail_{{$item->day}}_"+t).val("{{$item->detail}}");
@@ -80,7 +85,7 @@ function add_route(day) {
 	 				 '<td class="i_other">'+
 	 				 '<div id="i_type_'+day+'_location_'+t+'"><input type="text" name="location_'+day+'[]" id="location_'+day+'_'+t+'" day="'+day+'" placeholder="地点" /></div>'+
 	 				 '<div id="i_type_'+day+'_restaurant_'+t+'" style="display:none"><select name="rname_'+day+'[]" id="rname_'+day+'_'+t+'" day="'+day+'" class="restaurant_list">'+restaurant_list+'</select></div>'+
-	 				 '<div id="i_type_'+day+'_hotel_'+t+'" style="display:none"><select name="hid_'+day+'[]" id="hid_'+day+'_'+t+'" day="'+day+'" class="hotel_list">'+hotel_list+'</select>&nbsp;<input type="text" name="money_'+day+'[]" id="money_'+day+'_'+t+'" day="'+day+'" placeholder="金额" /></div>'+
+	 				 '<div id="i_type_'+day+'_hotel_'+t+'" style="display:none"><select name="hid_'+day+'[]" id="hid_'+day+'_'+t+'" day="'+day+'" t="'+t+'" onchange="choose_hotel(this)" class="hotel_list">'+hotel_list+'</select>&nbsp;<input type="text" name="money_'+day+'[]" id="money_'+day+'_'+t+'" day="'+day+'" placeholder="金额" /><input type="hidden" name="hname_'+day+'[]" id="hname_'+day+'_'+t+'" day="'+day+'" /></div>'+
 	 				 '</td></tr><tr>'+
 	 				 '<td colspan="3" class="i_detail"><textarea name="detail_'+day+'[]" id="detail_'+day+'_'+t+'"></textarea></td></tr></table></div>';
 	$("#day_"+day+"_items").append(html_route);
@@ -129,6 +134,10 @@ function fix_route_num(day) {
 	$(".route_"+day+"_num").each(function(i){
 		$(this).html(i+1);
 	});
+}
+function choose_hotel(sender) {
+	var s = $(sender);
+	$("#hname_"+s.attr("day")+"_"+s.attr("t")).val($("#hid_"+s.attr("day")+"_"+s.attr("t")).find("option:selected").text());
 }
 </script>
 

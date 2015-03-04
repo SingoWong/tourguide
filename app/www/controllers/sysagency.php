@@ -574,6 +574,7 @@ class SysAgency extends Base_Controller {
             $times = $this->input->post("time_".$day);
             $hids = $this->input->post("hid_".$day);
 			$rnames = $this->input->post("rname_".$day);
+			$hnames = $this->input->post("hname_".$day);
             $locations = $this->input->post("location_".$day);
             $moneys = $this->input->post("money_".$day);
             $details = $this->input->post("detail_".$day);
@@ -586,7 +587,13 @@ class SysAgency extends Base_Controller {
                 $row['type'] = $types[$i];
                 $row['time'] = $times[$i];
                 $row['hid'] = $hids[$i];
-                $row['location'] = ($types[$i]=='2'||$types[$i]=='3')?$rnames[$i]:$locations[$i];
+				if ($types[$i]=='4') {
+					$row['location'] = $hnames[$i];
+				} elseif ($types[$i]=='2'||$types[$i]=='3') {
+					$row['location'] = $rnames[$i];
+				} else {
+					$row['location'] = $locations[$i];
+				}
                 $row['money'] = $moneys[$i];
                 $row['detail'] = $details[$i];
 				$row['tab'] = $tabs;

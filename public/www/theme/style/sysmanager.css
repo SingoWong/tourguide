@@ -232,6 +232,18 @@ a#closeButton{
 	text-align: center;
 	color: #FFF;
 }
+.item .item_title span {
+	display: inline-table;
+}
+.item .item_title span.tt_item_code {
+	width: 180px;
+}
+.item .item_title span.tt_item_name {
+	width: 200px;
+}
+.item .item_title span.tt_item_guide {
+	width: 100px;
+}
 .item .item_content table {
 	background: #CCC;
 }

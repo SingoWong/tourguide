@@ -103,7 +103,10 @@ function getLocalTime(start_date, day) {
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">展開</a>
 			<a href="index.php?ctr=sysagency&act=groupschedule&id={{$item->id}}" class="bi">修改</a>
 			<a href="index.php?ctr=sysagency&act=groupinfo&id={{$item->id}}" class="bi">指派導遊</a>
-			團號：{{$item->code}} &nbsp;&nbsp; 團名：{{$item->name}} &nbsp;&nbsp; 導遊：{{$item->guide->name}} &nbsp;&nbsp; 進度：
+			<span class="tt_item_code">團號：{{$item->code}}</span> 
+			<span class="tt_item_name">團名：{{$item->name}}</span> 
+			<span class="tt_item_guide">導遊：{{$item->guide->name}}</span> 
+			<span class="tt_item_proc">進度：</span>
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
 			<input type="hidden" id="hdn_start_date_{{$item->id}}" value="{{$item->start_date}}" />
