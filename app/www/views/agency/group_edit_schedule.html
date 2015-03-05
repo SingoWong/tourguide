@@ -53,6 +53,7 @@ var t = 0;
 var count_days = 0;
 var curr_day = 0;
 var type_list = '<option value="0">機</option><option value="1">景</option><option value="2">中</option><option value="3">晚</option><option value="4">住</option>';
+var region_list = '<option value="台北市">台北市</option><option value="北區">北區</option><option value="中區">中區</option><option value="南區">南區</option><option value="其他區">其他區</option>';
 var hotel_list = '{{$html_hotel}}';
 var restaurant_list = '{{$html_restaurant}}';
 
@@ -70,7 +71,7 @@ function add_day() {
 function add_route(day) {
 	
 	if ($("#day_"+day+"_items").html() == "") {
-		var html_tab = "<div style=\"padding:10px\">D"+day+"標簽 <input type=\"text\" name=\"tab_"+day+"\" id=\"tab_"+day+"\" style=\"height:30px;line-height:30px;width:200px\" placeholder=\"標簽\" /><div>";
+		var html_tab = "<div style=\"padding:10px\">D"+day+"標籤 <input type=\"text\" name=\"tab_"+day+"\" id=\"tab_"+day+"\" style=\"height:30px;line-height:30px;width:200px\" placeholder=\"標籤\" /><div>";
 		$("#day_"+day+"_items").append(html_tab);
 	}
 	
@@ -84,7 +85,7 @@ function add_route(day) {
 	 				 '<td class="i_time"><input type="text" name="time_'+day+'[]" id="time_'+day+'_'+t+'" day="'+day+'" placeholder="時間" /></td>'+
 	 				 '<td class="i_other">'+
 	 				 '<div id="i_type_'+day+'_location_'+t+'"><input type="text" name="location_'+day+'[]" id="location_'+day+'_'+t+'" day="'+day+'" placeholder="地点" /></div>'+
-	 				 '<div id="i_type_'+day+'_restaurant_'+t+'" style="display:none"><select name="rname_'+day+'[]" id="rname_'+day+'_'+t+'" day="'+day+'" class="restaurant_list">'+restaurant_list+'</select></div>'+
+	 				 '<div id="i_type_'+day+'_restaurant_'+t+'" style="display:none"><select name="rregion_'+day+'[]" id="rregion_'+day+'_'+t+'">'+region_list+'</select>&nbsp;<select name="rname_'+day+'[]" id="rname_'+day+'_'+t+'" day="'+day+'" class="restaurant_list">'+restaurant_list+'</select></div>'+
 	 				 '<div id="i_type_'+day+'_hotel_'+t+'" style="display:none"><select name="hid_'+day+'[]" id="hid_'+day+'_'+t+'" day="'+day+'" t="'+t+'" onchange="choose_hotel(this)" class="hotel_list">'+hotel_list+'</select>&nbsp;<input type="text" name="money_'+day+'[]" id="money_'+day+'_'+t+'" day="'+day+'" placeholder="金额" /><input type="hidden" name="hname_'+day+'[]" id="hname_'+day+'_'+t+'" day="'+day+'" /></div>'+
 	 				 '</td></tr><tr>'+
 	 				 '<td colspan="3" class="i_detail"><textarea name="detail_'+day+'[]" id="detail_'+day+'_'+t+'"></textarea></td></tr></table></div>';

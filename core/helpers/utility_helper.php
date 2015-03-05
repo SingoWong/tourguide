@@ -108,7 +108,7 @@ if ( ! function_exists('pagerui'))
 			$start_i=$data->total_pages-10;
 			$end_i=$data->total_pages;
 		} else {
-			$start_i=$data->current_page-5;
+			$start_i=($data->current_page-5<1)?1:$data->current_page-5;
 			$end_i=$data->current_page+5;
 		}
 		if ($end_i > $data->total_pages) {

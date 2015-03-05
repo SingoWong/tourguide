@@ -717,6 +717,48 @@ class SysAgency extends Base_Controller {
         $this->smarty->assign('rowset', $re);
         $this->smarty->display('./agency/group_history.html');
     }
+
+	public function groupprogress_out() {
+        $this->load->model('Group_Model');
+        
+        $group_model = new Group_Model();
+        $re = $group_model->getActiveGroupOutByAid($this->user['id'], true);
+        
+        $this->smarty->assign('rowset', $re);
+        $this->smarty->display('./agency/group_manager_out.html');
+    }
+    
+    public function grouphistory_out() {
+        $this->load->model('Group_Model');
+        
+        $date_start = $this->input->get('start_date');
+        $date_end = $this->input->get('end_date');
+        $guide = $this->input->get('guide');
+        $code = $this->input->get('code');
+        
+        $conditions['aid'] = $this->user['id'];
+        if ($date_start != '') {
+            $conditions['end_date >'] = strtotime($date_start);
+        }
+        if ($date_end != '') {
+            $conditions['start_date <'] = strtotime($date_end);
+        }
+        if ($guide != '') {
+        		$this->load->model('Users_Model');
+			$gde = new Users_Model();
+			$re_gde = $gde->getUserByKeyword($guide);
+            $conditions['gid'] = $re_gde->id;
+        }
+        if ($code != '') {
+            $conditions['code'] = $code;
+        }
+        
+        $group_model = new Group_Model();
+        $re = $group_model->getGroupOutByConditions($conditions, true);
+        
+        $this->smarty->assign('rowset', $re);
+        $this->smarty->display('./agency/group_history_out.html');
+    }
     
     public function accident() {
         $this->load->model('Accident_Model');

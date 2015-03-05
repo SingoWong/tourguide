@@ -55,6 +55,47 @@ class Group_Model extends CI_Model {
 		$today = strtotime(date('Y-m-d'));
     
         $group->where('aid', $aid);
+		$group->where('type', '0');
+//      $group->where('start_date <=', $today_start);
+        $group->where('end_date >', $today);
+        $group->get();
+		
+		if ($with_relation) {
+			$ids_gid = array();
+			for ($i=0; $i<sizeof($group->all); $i++) {
+				$ids_gid[] = $group->all[$i]->gid;
+            }
+			
+			if (sizeof($ids_gid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_gid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($group->all); $i++) {
+                    $group->all[$i]->guide = $us[$group->all[$i]->gid];
+                }
+				unset($us);
+            }
+		}
+    
+        return $group->all;
+    }
+	
+	/**
+     * 查看旅行社下的旅行团(Out)
+     * @param unknown $aid
+     * @return multitype:
+     */
+    function getActiveGroupOutByAid($aid, $with_relation=false) {
+        $group = new Group();
+    
+//      $today_start = strtotime(date('Y-m-d'));
+//      $today_end = strtotime(date('Y-m-d 23:59:59'));
+		$today = strtotime(date('Y-m-d'));
+    
+        $group->where('aid', $aid);
+		$group->where('type', '1');
 //      $group->where('start_date <=', $today_start);
         $group->where('end_date >', $today);
         $group->get();
@@ -89,6 +130,44 @@ class Group_Model extends CI_Model {
     function getGroupByConditions($conditions, $with_relation=false) {
         $group = new Group();
         
+		$group->where('type', '0');
+        foreach ($conditions as $field=>$value) {
+            $group->where($field, $value);
+        }
+        
+        $group->get();
+		
+		if ($with_relation) {
+			$ids_gid = array();
+			for ($i=0; $i<sizeof($schedule->all); $i++) {
+				$ids_gid[] = $group->all[$i]->gid;
+            }
+			
+			if (sizeof($ids_gid) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids_gid)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($group->all); $i++) {
+                    $group->all[$i]->guide = $us[$group->all[$i]->gid];
+                }
+				unset($us);
+            }
+		}
+        
+        return $group->all;
+    }
+	
+	/**
+     * 按条件搜索旅行团
+     * @param unknown $conditions
+     * @return multitype:
+     */
+    function getGroupOutByConditions($conditions, $with_relation=false) {
+        $group = new Group();
+        
+		$group->where('type', '1');
         foreach ($conditions as $field=>$value) {
             $group->where($field, $value);
         }
