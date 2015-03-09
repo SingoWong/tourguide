@@ -34,8 +34,22 @@ class Base_Controller extends CI_Controller {
         }
     }
     
-    function check_felogin($role) {
-        if (!$this->logined || $this->role['id'] != $role) {
+    function check_felogin($roles) {
+    		$check = false;
+        if (is_array($roles)) {
+            foreach ($roles as $k=>$role) {
+                if ($this->logined && $this->role['id'] == $role) {
+                    $check = true;
+                    break;
+                }
+            }
+        } else {
+            if ($this->logined && $this->role['id'] == $roles) {
+                $check = true;
+            }
+        }
+
+        if (!$check) {
             redirect(url('mobile/login').'&role='.$role);
         }
     }

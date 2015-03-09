@@ -818,7 +818,7 @@ class SysAgency extends Base_Controller {
 		$re_guide = $guide->getContractGuide(null, TRUE);
 		$guides = array();
 		foreach($re_guide['rowset'] as $rg) {
-			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）');
+			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）', 'nickname'=>$rg->users->name, 'contact_tel'=>$rg->contact_tel);
 			$guides[] = $row;
 		}
 		
@@ -832,7 +832,7 @@ class SysAgency extends Base_Controller {
 		$re_leader = $leader->getContractLeader(null, TRUE);
 		$leaders = array();
 		foreach($re_leader['rowset'] as $rg) {
-			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）');
+			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）', 'nickname'=>$rg->users->name, 'contact_tel'=>$rg->contact_tel);
 			$leaders[] = $row;
 		}
 		

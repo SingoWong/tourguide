@@ -86,6 +86,15 @@ if ( ! function_exists('pagerui'))
 		$base_url = url($ctr.'/'.$act);
 		$html = '';
 		
+		//追加参数
+		$params = $_REQUEST;
+		unset($params['ctr']);
+		unset($params['act']);
+		unset($params['page']);
+		foreach($params as $k=>$v) {
+			$base_url .= '&'.$k.'='.$v;
+		}
+		
 		//输出第一页
 		if ($data->current_page == '1') {
 			$html .= '<span>第一頁</span>';

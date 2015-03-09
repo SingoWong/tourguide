@@ -22,7 +22,7 @@ $(document).ready(function() {
 <form class="gm_t1_form" id="reg_form" action="" method="GET">
 	<input type="hidden" name="ctr" value="sysreport" />
 	<input type="hidden" name="act" value="agency" />
-	<label class="v"><input id="agency" type="text" name="agency" value="" placeholder="查詢旅行社"></label>
+	<label class="v"><input id="name" type="text" name="name" value="{{$name}}" placeholder="查詢旅行社"></label>
 	<label class="v"><input id="start_date" type="text" name="start_date" value="{{$start_date}}" placeholder="報表開始日期" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></label>
 	<label class="v"><input id="end_date" type="text" name="end_date" value="{{$end_date}}" placeholder="報表結束日期" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></label>
 	<label class="s"><input type="submit" class="gm_t1_btn" value="查詢" /></label>	
@@ -78,8 +78,8 @@ $(document).ready(function() {
 	
 </div>
 
-<input type="button" class="gm_t1_btn" value="匯出Excel">
-<input type="button" class="gm_t1_btn" value="列印">
+<input type="button" class="gm_t1_btn" value="匯出Excel" onclick="window.open('/index.php?ctr=sysreport&act=explore&report=agency&name={{$name}}&start_date={{$start_date}}&end_date={{$end_date}}');">
+<input type="button" class="gm_t1_btn" value="列印" onclick="window.open('/index.php?ctr=sysreport&act=printer&report=agency&name={{$name}}&start_date={{$start_date}}&end_date={{$end_date}}');">
 
 <!--<div class="pager">{{$pager}}</div>-->
 

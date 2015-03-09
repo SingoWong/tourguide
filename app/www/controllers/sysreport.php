@@ -16,15 +16,15 @@ class SysReport extends Base_Controller {
     public function agency() {
         $this->load->model('Report_Model');
 		
-		$agency = $this->input->get('agency');
+		$name = $this->input->get('name');
 		$start_date = $this->input->get('start_date');
 		$end_date = $this->input->get('end_date');
 		
 		$conditions = array();
-        if ($agency && $agency != '') {
+        if ($name && $name != '') {
         		$this->load->model('Users_Model');
 			$users = new Users_Model();
-			$re = $users->getUsersByName($agency, $agency);
+			$re = $users->getUsersByName($name, $name);
 			
 			$ids = array(0);
 			foreach ($re as $r) {
@@ -48,6 +48,7 @@ class SysReport extends Base_Controller {
 		
 		$this->smarty->assign('start_date', $start_date);
 		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
 		$this->smarty->assign('rowset', $re['rowset']);
 		$this->smarty->assign('total', $re['total']);
         $this->smarty->display('./sysmanager/report_agency.html');
@@ -56,15 +57,15 @@ class SysReport extends Base_Controller {
     public function restaurant() {
         $this->load->model('Report_Model');
 
-		$agency = $this->input->get('agency');
+		$name = $this->input->get('name');
 		$start_date = $this->input->get('start_date');
 		$end_date = $this->input->get('end_date');
 		
 		$conditions = array();
-        if ($agency && $agency != '') {
+        if ($name && $name != '') {
         		$this->load->model('Users_Model');
 			$users = new Users_Model();
-			$re = $users->getUsersByName($agency, $agency);
+			$re = $users->getUsersByName($name, $name);
 			
 			$ids = array(0);
 			foreach ($re as $r) {
@@ -88,6 +89,7 @@ class SysReport extends Base_Controller {
 		
 		$this->smarty->assign('start_date', $start_date);
 		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
 		$this->smarty->assign('rowset', $re['rowset']);
 		$this->smarty->assign('total', $re['total']);
         $this->smarty->display('./sysmanager/report_restaurant.html');
@@ -96,15 +98,15 @@ class SysReport extends Base_Controller {
     public function hotel() {
         $this->load->model('Report_Model');
 
-		$agency = $this->input->get('agency');
+		$name = $this->input->get('name');
 		$start_date = $this->input->get('start_date');
 		$end_date = $this->input->get('end_date');
 		
 		$conditions = array();
-        if ($agency && $agency != '') {
+        if ($name && $name != '') {
         		$this->load->model('Users_Model');
 			$users = new Users_Model();
-			$re = $users->getUsersByName($agency, $agency);
+			$re = $users->getUsersByName($name, $name);
 			
 			$ids = array(0);
 			foreach ($re as $r) {
@@ -128,6 +130,7 @@ class SysReport extends Base_Controller {
 		
 		$this->smarty->assign('start_date', $start_date);
 		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
 		$this->smarty->assign('rowset', $re['rowset']);
 		$this->smarty->assign('total', $re['total']);
         $this->smarty->display('./sysmanager/report_hotel.html');
@@ -136,15 +139,15 @@ class SysReport extends Base_Controller {
     public function guide() {
         $this->load->model('Report_Model');
 
-		$agency = $this->input->get('agency');
+		$name = $this->input->get('name');
 		$start_date = $this->input->get('start_date');
 		$end_date = $this->input->get('end_date');
 		
 		$conditions = array();
-        if ($agency && $agency != '') {
+        if ($name && $name != '') {
         		$this->load->model('Users_Model');
 			$users = new Users_Model();
-			$re = $users->getUsersByName($agency, $agency);
+			$re = $users->getUsersByName($name, $name);
 			
 			$ids = array(0);
 			foreach ($re as $r) {
@@ -168,9 +171,33 @@ class SysReport extends Base_Controller {
 		
 		$this->smarty->assign('start_date', $start_date);
 		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
 		$this->smarty->assign('rowset', $re['rowset']);
 		$this->smarty->assign('total', $re['total']);
         $this->smarty->display('./sysmanager/report_guide.html');
     }
+
+	public function explore() {
+		
+		
+		$report = $this->input->get("report");
+		$name = $this->input->get("name");
+		$start_date = $this->input->get("start_date");
+		$end_date = $this->input->get("end_date");
+		
+		header("Content-type:application/vnd.ms-excel");
+		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").xls");
+		
+		
+	}
+	
+	public function printer() {
+		
+		$report = $this->input->get("report");
+		$name = $this->input->get("name");
+		$start_date = $this->input->get("start_date");
+		$end_date = $this->input->get("end_date");
+		
+	}
 }
 ?>

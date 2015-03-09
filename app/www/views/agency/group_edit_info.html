@@ -22,6 +22,9 @@
 				$("#guide_id").html("");
 				for(var i=0; i<data.length; i++) {
 					$("#guide_id").append("<option value='"+data[i]['id']+"'>"+data[i]['name']+"</option>");
+					if (json_guide[data[i]['id']] == undefined) {
+						json_guide[data[i]['id']] = {"name":data[i]['nickname'],"contact_tel":data[i]['contact_tel']};
+					}
 				}
 			}
 		});

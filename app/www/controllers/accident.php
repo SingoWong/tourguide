@@ -4,7 +4,7 @@ class Accident extends Base_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->check_felogin(ROLE_ID_GUIDE);
+        $this->check_felogin(array(ROLE_ID_GUIDE,ROLE_ID_LEADER));
         
         $this->smarty->assign( 'url_menu', url('guide/index') );
         $this->smarty->assign( 'url_info', url('guide/info') );
