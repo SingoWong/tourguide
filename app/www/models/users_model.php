@@ -276,7 +276,7 @@ class Users_Model extends CI_Model {
 	
 	public function getUsersByName($name, $username) {
 		$users = new Users();
-		$users->like('name',$name)->like('username',$username)->get();
+		$users->like('name',$name)->or_like('username',$username)->get();
 		
 		return $users->all;
 		

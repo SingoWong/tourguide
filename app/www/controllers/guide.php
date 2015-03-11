@@ -147,20 +147,30 @@ class Guide extends Base_Controller {
         $day = $this->input->post('day');
         $route = $this->input->post('route');
         $type = $this->input->post('type');
-        $city = $this->input->post('city');
+        $region = $this->input->post('region');
         $name = $this->input->post('name');
         $scenic = $this->input->post('scenic');
         
         $conditions = array();
-        if ($city != '') {
-            $conditions['region'] = $city;
+        if ($region != '') {
+            $conditions['region'] = $region;
         }
         if ($name != '') {
-            
+            $this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($name, $name);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['uid'] = $ids;
+			}
         }
-        
+
         $restaurant = new Users_Restaurant_Model();
-        $re = $restaurant->getScheduleContractRestaurant($conditions, $this->user['id']);
+        $re = $restaurant->getScheduleContractRestaurant($conditions, $gid);
         
         $this->smarty->assign('url_restaurant_detail', url('guide/restaurant_detail').'&gid='.$gid.'&day='.$day.'&route='.$route.'&type='.$type);
         $this->smarty->assign('rowset',$re);

@@ -85,7 +85,21 @@ class Users_Restaurant_Model extends CI_Model {
 	/**
 	 * 获取可选的餐厅
 	 */
-	function getScheduleContractRestaurant($conditions, $uid) {
+	function getScheduleContractRestaurant($conditions, $gid) {
+		//篩選合作的餐廳
+		if ($gid != '0') {
+			$group = new Group();
+			$group->where('id',$gid)->get();
+			$aid = $group->all[0]->aid;
+			
+			$agency_restaurant = new  Users_Agency_Restaurant();
+			$agency_restaurant->where('aid', $aid)->get();
+			$rids = array(0);
+			foreach ($agency_restaurant as $ar) {
+				$rids[] = $ar->rid;
+			}
+		}
+		
         $restaurant = new Users_Restaurant();
         
         $restaurant->where('sign_date_start <=', time());
@@ -97,6 +111,9 @@ class Users_Restaurant_Model extends CI_Model {
 	            $restaurant->where($field, $value);
 			}
         }
+		if (sizeof($rids) > 0) {
+            $restaurant->where_in('uid', $rids);
+		}
         $restaurant->get_paged(1,100);
 
         $ids = array();

@@ -548,7 +548,7 @@ class SysAgency extends Base_Controller {
 		}
 		
 		$restaurant = new Users_Restaurant_Model();
-		$re_restaurant = $restaurant->getScheduleContractRestaurant(null, true);
+		$re_restaurant = $restaurant->getScheduleContractRestaurant(null, 0);
 		$html_restaurant = '';
 		foreach($re_restaurant as $rh) {
 			$html_restaurant .= '<option value="'.$rh->users->name.'">'.$rh->users->name.'</option>';
