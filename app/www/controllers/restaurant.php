@@ -139,6 +139,38 @@ class Restaurant extends Base_Controller {
 		
 		$conditions = array();
 		
+		if ($date != '') {
+			$conditions['eattime'] = strtotime($date);
+		}
+		if ($guide != '') {
+			$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($guide, $guide);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['guide_id'] = $ids;
+			}
+			unset($ids);
+		}
+		if ($agency != '') {
+			$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($agency, $agency);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['agency_id'] = $ids;
+			}
+			unset($ids);
+		}
+		
 		$order = new Order_Model();
 		$re = $order->getRestaurantOrdersReport($this->user['id'], $conditions, true);
 		

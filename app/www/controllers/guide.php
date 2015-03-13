@@ -242,13 +242,16 @@ class Guide extends Base_Controller {
         $route = $this->input->post('route');
         
         $group = new Group_Model();
-        $re_group = $group->getGroupScheduleWhitRoute($gid, $day, $route);
+        $re_group_schedule = $group->getGroupScheduleWhitRoute($gid, $day, $route);
+		$re_group = $group->getGroupBase($gid);
         
         $row['gid'] = $gid;
-        $row['sid'] = $re_group->id;
+        $row['sid'] = $re_group_schedule->id;
 		$row['day'] = $day;
 		$row['route'] = $route;
         $row['rid'] = $rid;
+		$row['guide_id'] = $this->user['id'];
+		$row['agency_id'] = $re_group->aid;
         $row['amount'] = $amount;
         $row['price_unit'] = $unit;
 		$row['eattime'] = strtotime($eatdate.' '.$eattime.':00');

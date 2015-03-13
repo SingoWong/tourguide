@@ -42,6 +42,8 @@ class Order_Model extends CI_Model {
 			$restaurant_order->day = $row['day'];
 			$restaurant_order->route = $row['route'];
 	        $restaurant_order->rid = $row['rid'];
+			$restaurant_order->guide_id = $row['guide_id'];
+			$restaurant_order->agency_id = $row['agency_id'];
 	        $restaurant_order->amount = $row['amount'];
 	        $restaurant_order->price_unit = $row['price_unit'];
 			$restaurant_order->eattime = $row['eattime'];

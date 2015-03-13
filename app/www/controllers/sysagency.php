@@ -182,11 +182,12 @@ class SysAgency extends Base_Controller {
 		$this->load->model('Contract_Restaurant_Model');
 		$crm = new Contract_Restaurant_Model();
 		
+		$page = $this->input->get('page');
 		$aid = $this->input->get('aid');
 		if (!$aid || $aid == '') {
 			$aid = $this->user['id'];
 		}
-		$re = $crm->getCRestaurantByAgency($aid);
+		$re = $crm->getCRestaurantByAgency($aid,$page);
 		
 		$this->smarty->assign('aid', $aid);
 		$this->smarty->assign('rowset', $re['rowset']);
@@ -262,11 +263,12 @@ class SysAgency extends Base_Controller {
 		$this->load->model('Contract_Hotel_Model');
 		$chm = new Contract_Hotel_Model();
 		
+		$page = $this->input->get('page');
 		$aid = $this->input->get('aid');
 		if (!$aid || $aid == '') {
 			$aid = $this->user['id'];
 		}
-		$re = $chm->getCHotelByAgency($aid);
+		$re = $chm->getCHotelByAgency($aid, $page);
 		
 		$this->smarty->assign('aid', $aid);
 		$this->smarty->assign('rowset', $re['rowset']);
