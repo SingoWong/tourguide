@@ -37,7 +37,7 @@ function sh_pnlc(id) {
 			{{$item->time|date_format:'%Y-%m-%d %H:%M'}}&nbsp;&nbsp;
 			{{$item->type}}&nbsp;&nbsp;
 			團號：{{$item->group->code}}&nbsp;&nbsp;
-			導遊：{{$item->guide->name}}&nbsp;&nbsp;
+			{{$label_op}}：{{$item->guide->name}}&nbsp;&nbsp;
 			緊急事故
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">

@@ -768,6 +768,7 @@ class SysAgency extends Base_Controller {
         
         $re = $accident->getAccident(true, $this->user['id']);
         
+		$this->smarty->assign('label_op', '導遊');
         $this->smarty->assign('rowset', $re->all);
         $this->smarty->assign('res', json_encode($re->res));
         $this->smarty->display('./agency/accidents.html');
@@ -779,6 +780,7 @@ class SysAgency extends Base_Controller {
         
         $re = $accident->getAccident(true, $this->user['id']);
         
+		$this->smarty->assign('label_op', '領隊');
         $this->smarty->assign('rowset', $re->all);
         $this->smarty->assign('res', json_encode($re->res));
         $this->smarty->display('./agency/accidents.html');

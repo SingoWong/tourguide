@@ -585,11 +585,13 @@ class Guide extends Base_Controller {
     }
 	
 	private function _get_room_label($rooms) {
+		$total = $rooms->single_room + ($rooms->double_room * 2) + ($rooms->full_room * 3) + $rooms->plus_room + $rooms->kid_room;
 		$html .= '<p>單人房:'.$rooms->single_room.'</p>';
 		$html .= '<p>雙人房:'.$rooms->double_room.'</p>';
 		$html .= '<p>三人房:'.$rooms->full_room.'</p>';
 		$html .= '<p>加床:'.$rooms->plus_room.'</p>';
 		$html .= '<p>兒童床:'.$rooms->kid_room.'</p>';
+		$html .= '<p>總計:'.$total.'人</p>';
 		
 		return $html;
 	}
