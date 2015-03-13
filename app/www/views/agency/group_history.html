@@ -116,7 +116,7 @@ function getLocalTime(start_date, day) {
 			<span class="tt_item_code">團號：{{$item->code}}</span> 
 			<span class="tt_item_name">團名：{{$item->name}}</span> 
 			<span class="tt_item_guide">導遊：{{$item->guide->name}}</span> 
-			<span class="tt_item_proc">進度：</span>
+			<!--<span class="tt_item_proc">進度：</span>-->
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
 			<input type="hidden" id="hdn_start_date_{{$item->id}}" value="{{$item->start_date}}" />
@@ -132,7 +132,7 @@ function getLocalTime(start_date, day) {
 					var date = getLocalTime($("#hdn_start_date_{{$item->id}}").val(), day);
 					var html_day = '<div class="sub_item_title">'+
 								   '<a href="#" onclick="return sh_sub_pnlc({{$item->id}}, '+day+');" id="btnc_sub_{{$item->id}}_'+day+'">關閉</a>'+
-								   '<em>D'+day+'</em> '+date+' &nbsp;&nbsp;{狀態}</div>'+
+								   '<em>D'+day+'</em> '+date+'</div>'+
 								   '<div class="sub_item_content" id="pnlc_sub_{{$item->id}}_'+day+'">'+
 								   '<table border="0" width="100%" cellpadding="2" cellspacing="1" class="schedule_table">';
 			 					 
@@ -140,14 +140,14 @@ function getLocalTime(start_date, day) {
 						switch (item['type']) {
 						case '0':
 						case '1':
-							html_day += '<tr><td colspan="4" class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;{鉤}</td></tr>';
+							html_day += '<tr><td colspan="4" class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'&nbsp;&nbsp;</td></tr>';
 							break;
 						case '2':
 						case '3':
-							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐未確認{鉤}</td><td class="s_status">已訂餐已確認{鉤}</td><td class="s_status">餐畢付款{鉤}</td></tr>';
+							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">已訂餐未確認</td><td class="s_status">已訂餐已確認</td><td class="s_status">餐畢付款</td></tr>';
 							break;
 						case '4':
-							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">CHKIN{鉤}</td><td class="s_status">未結帳{鉤}</td><td class="s_status">CHKOUT{鉤}</td></tr>';
+							html_day += '<tr><td class="l"><em class="t t_'+item['type']+'"></em>'+item['time']+'&nbsp;&nbsp;'+item['location']+'</td><td class="s_status">CHKIN</td><td class="s_status">未結帳</td><td class="s_status">CHKOUT</td></tr>';
 							break;
 						}
 					});

@@ -91,10 +91,10 @@ class Notify_Model extends CI_Model {
 		set_cookie('dialog-x-'.$uid,'1',60*5);
 		
 		$html = '<div class="dialog" id="dialog-x"><div class="dialog_content">'.$row['message'].'</div><div class="dialog_option"><a href="'.$row['link1'].'" class="dialog_btn">'.$row['btn1'].'</a><a href="'.$row['link2'].'" class="dialog_btn">'.$row['btn2'].'</a></div></div>';
-		if ($row['sound']) {
+		//if ($row['sound']) {
 			$html .= '<audio id=\'notify_audio\'><source src=\'/theme/sound/notify.ogg\' type=\'audio/ogg\'><source src=\'/theme/sound/notify.mp3\' type=\'audio/mpeg\'><source src=\'/theme/sound/notify.wav\' type=\'audio/wav\'></audio>';
 			$html .= '<script>$(\'#notify_audio\').play();</script>';
-		}
+		//}
 		
 		echo $html;
 	}
