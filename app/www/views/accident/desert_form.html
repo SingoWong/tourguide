@@ -19,6 +19,7 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{{$url_menu}}"></a>
 			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
+			{{if $RBAC_ROLE_ID == '24'}}
 			<div class="quick-nav">
 				<div id="sc-nav" class="mui-segmented-control">
 					<a class="mui-control-item" onclick="location.href='{{$url_info}}'">團號</a>
@@ -27,6 +28,9 @@
 					<a class="mui-control-item mui-active" onclick="location.href='{{$url_accident}}'">意外</a>
 				</div>
 			</div>
+			{{else}}
+			<h1 class="mui-title">意外通報</h1>
+			{{/if}}
 		</header>
 		<div class="mui-content">
 			<form class="mui-input-group" action="{{$url_desert_submit}}" method="post" id="form">
