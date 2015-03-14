@@ -42,7 +42,9 @@ function sh_pnlc(id) {
 		<div class="item_title">
 			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">展開</a>
 			<a href="index.php?ctr=syshotel&act=contracta&hid={{$item->uid}}" style="padding: 0 5px; width: 65px;">合約旅行社</a>
-			{{$item->users->name}}&nbsp;&nbsp;{{$item->code}}&nbsp;&nbsp;簽約日期：{{$item->sign_date_start|date_format:'%Y年%m月%d日'}} 至 {{$item->sign_date_end|date_format:'%Y年%m月%d日'}}
+			<span class="tt_item_name">{{$item->users->name}}</span>
+			<span class="tt_item_code">{{$item->code}}</span>
+			<span class="tt_item_date">簽約日期：{{$item->sign_date_start|date_format:'%Y年%m月%d日'}} 至 {{$item->sign_date_end|date_format:'%Y年%m月%d日'}}</span>
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
