@@ -99,7 +99,7 @@ class SysReport extends Base_Controller {
 		$html .= "餐別\t";
 		$html .= "\n";
 		for ($i=0;$i<sizeof($re['rowset']);$i++) {
-			$item = $re[$i];
+			$item = $re['rowset'][$i];
 			
 			$html .= $item->id."\t";
 			$html .= $item->date."\t";
