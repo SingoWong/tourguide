@@ -14,11 +14,128 @@ class SysReport extends Base_Controller {
     }
     
     public function agency() {
-        $this->load->model('Report_Model');
-		
 		$name = $this->input->get('name');
 		$start_date = $this->input->get('start_date');
 		$end_date = $this->input->get('end_date');
+		
+		$re = $this->_get_agency_report_data($name, $start_date, $end_date);
+		
+		$this->smarty->assign('start_date', $start_date);
+		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('total', $re['total']);
+        $this->smarty->display('./sysmanager/report_agency.html');
+    }
+    
+    public function restaurant() {
+		$name = $this->input->get('name');
+		$start_date = $this->input->get('start_date');
+		$end_date = $this->input->get('end_date');
+		
+		$re = $this->_get_restaurant_report_data($name, $start_date, $end_date);
+		
+		$this->smarty->assign('start_date', $start_date);
+		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('total', $re['total']);
+        $this->smarty->display('./sysmanager/report_restaurant.html');
+    }
+    
+    public function hotel() {
+        $name = $this->input->get('name');
+		$start_date = $this->input->get('start_date');
+		$end_date = $this->input->get('end_date');
+		
+		$re = $this->_get_hotel_report_data($name, $start_date, $end_date);
+		
+		$this->smarty->assign('start_date', $start_date);
+		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('total', $re['total']);
+        $this->smarty->display('./sysmanager/report_hotel.html');
+    }
+    
+    public function guide() {
+		$name = $this->input->get('name');
+		$start_date = $this->input->get('start_date');
+		$end_date = $this->input->get('end_date');
+		
+		$re = $this->_get_guide_report_data($name, $start_date, $end_date);
+		
+		$this->smarty->assign('start_date', $start_date);
+		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('total', $re['total']);
+        $this->smarty->display('./sysmanager/report_guide.html');
+    }
+
+	public function explore() {
+		$report = $this->input->get("report");
+		$name = $this->input->get("name");
+		$start_date = $this->input->get("start_date");
+		$end_date = $this->input->get("end_date");
+		
+		header("Content-type:application/vnd.ms-excel");
+		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").xls");
+		
+		if ($report == 'agency') {
+			$re = $this->_get_agency_report_data($name, $start_date, $end_date);
+		} elseif ($report == 'restaurant') {
+			$re = $this->_get_restaurant_report_data($name, $start_date, $end_date);
+		} elseif ($report == 'hotel') {
+			$re = $this->_get_hotel_report_data($name, $start_date, $end_date);
+		} elseif ($report == 'guide') {
+			$re = $this->_get_guide_report_data($name, $start_date, $end_date);
+		}
+		
+		$html .= "序號\t";
+		$html .= "用餐日期\t";
+		$html .= "團號\t";
+		$html .= "導遊\t";
+		$html .= "餐別\t";
+		$html .= "\n";
+		for ($i=0;$i<sizeof($re);$i++) {
+			$item = $re[$i];
+			
+			$html .= $item['rowset']->id."\t";
+			$html .= $item['rowset']->date."\t";
+			$html .= $item['rowset']->code."\t";
+			$html .= $item['rowset']->guide_name."\t";
+			if ($item['rowset']->type == '0') {
+				$html .= '機';
+			} elseif ($item['rowset']->type == '1') {
+				$html .= '景';
+			} elseif ($item['rowset']->type == '2') {
+				$html .= '中';
+			} elseif ($item['rowset']->type == '3') {
+				$html .= '晚';
+			} elseif ($item['rowset']->type == '4') {
+				$html .= '住';
+			}
+			$html .= "\t\n";
+		}
+		$html .= "\t\n";
+		$html .= "總計 ".$item['total']->count." 筆 (".$item['total']->count."筆*5=".$item['total']->summation.")";
+		$html .= "\t\n";
+		
+		echo $html;
+	}
+	
+	public function printer() {
+		
+		$report = $this->input->get("report");
+		$name = $this->input->get("name");
+		$start_date = $this->input->get("start_date");
+		$end_date = $this->input->get("end_date");
+		
+	}
+	
+	private function _get_agency_report_data($name, $start_date, $end_date) {
+		$this->load->model('Report_Model');
 		
 		$conditions = array();
         if ($name && $name != '') {
@@ -46,20 +163,11 @@ class SysReport extends Base_Controller {
 		$report = new Report_Model();
 		$re = $report->getReportAgency($conditions);
 		
-		$this->smarty->assign('start_date', $start_date);
-		$this->smarty->assign('end_date', $end_date);
-		$this->smarty->assign('name', $name);
-		$this->smarty->assign('rowset', $re['rowset']);
-		$this->smarty->assign('total', $re['total']);
-        $this->smarty->display('./sysmanager/report_agency.html');
-    }
-    
-    public function restaurant() {
-        $this->load->model('Report_Model');
-
-		$name = $this->input->get('name');
-		$start_date = $this->input->get('start_date');
-		$end_date = $this->input->get('end_date');
+		return $re;
+	}
+	
+	private function _get_restaurant_report_data($name, $start_date, $end_date) {
+		$this->load->model('Report_Model');
 		
 		$conditions = array();
         if ($name && $name != '') {
@@ -87,20 +195,11 @@ class SysReport extends Base_Controller {
 		$report = new Report_Model();
 		$re = $report->getReportRestaurant($conditions);
 		
-		$this->smarty->assign('start_date', $start_date);
-		$this->smarty->assign('end_date', $end_date);
-		$this->smarty->assign('name', $name);
-		$this->smarty->assign('rowset', $re['rowset']);
-		$this->smarty->assign('total', $re['total']);
-        $this->smarty->display('./sysmanager/report_restaurant.html');
-    }
-    
-    public function hotel() {
-        $this->load->model('Report_Model');
-
-		$name = $this->input->get('name');
-		$start_date = $this->input->get('start_date');
-		$end_date = $this->input->get('end_date');
+		return $re;
+	}
+	
+	private function _get_hotel_report_data($name, $start_date, $end_date) {
+		$this->load->model('Report_Model');
 		
 		$conditions = array();
         if ($name && $name != '') {
@@ -128,20 +227,11 @@ class SysReport extends Base_Controller {
 		$report = new Report_Model();
 		$re = $report->getReportHotel($conditions, $page);
 		
-		$this->smarty->assign('start_date', $start_date);
-		$this->smarty->assign('end_date', $end_date);
-		$this->smarty->assign('name', $name);
-		$this->smarty->assign('rowset', $re['rowset']);
-		$this->smarty->assign('total', $re['total']);
-        $this->smarty->display('./sysmanager/report_hotel.html');
-    }
-    
-    public function guide() {
-        $this->load->model('Report_Model');
-
-		$name = $this->input->get('name');
-		$start_date = $this->input->get('start_date');
-		$end_date = $this->input->get('end_date');
+		return $re;
+	}
+	
+	private function _get_guide_report_data($name, $start_date, $end_date) {
+		$this->load->model('Report_Model');
 		
 		$conditions = array();
         if ($name && $name != '') {
@@ -169,35 +259,7 @@ class SysReport extends Base_Controller {
 		$report = new Report_Model();
 		$re = $report->getReportGuide($conditions, $page);
 		
-		$this->smarty->assign('start_date', $start_date);
-		$this->smarty->assign('end_date', $end_date);
-		$this->smarty->assign('name', $name);
-		$this->smarty->assign('rowset', $re['rowset']);
-		$this->smarty->assign('total', $re['total']);
-        $this->smarty->display('./sysmanager/report_guide.html');
-    }
-
-	public function explore() {
-		
-		
-		$report = $this->input->get("report");
-		$name = $this->input->get("name");
-		$start_date = $this->input->get("start_date");
-		$end_date = $this->input->get("end_date");
-		
-		header("Content-type:application/vnd.ms-excel");
-		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").xls");
-		
-		
-	}
-	
-	public function printer() {
-		
-		$report = $this->input->get("report");
-		$name = $this->input->get("name");
-		$start_date = $this->input->get("start_date");
-		$end_date = $this->input->get("end_date");
-		
+		return $re;
 	}
 }
 ?>
