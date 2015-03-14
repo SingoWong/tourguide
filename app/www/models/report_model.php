@@ -11,6 +11,7 @@ class Report_Model extends CI_Model {
 		
 		$group = new Group_Model();
 		$re_group = $group->getGroupBase($order->gid);
+		$re_group_info = $group->getGroupInfo($order->gid);
 		$re_schedule = $group->getScheduleBySid($order->sid);
 		
 		$user = new Users_Restaurant_Model();
@@ -25,7 +26,7 @@ class Report_Model extends CI_Model {
 		$row['name'] = $re_user->users->name;
 		$row['type'] = $re_schedule->type;
 		$row['guide_id'] = $re_group->gid;
-		$row['guide_name'] = $re_group->contact_name;
+		$row['guide_name'] = $re_group_info->guide_name;
 		$row['receive'] = $receive;
 		
 		$this->_logReportAgency($row);
@@ -39,6 +40,7 @@ class Report_Model extends CI_Model {
 		
 		$group = new Group_Model();
 		$re_group = $group->getGroupBase($order->gid);
+		$re_group_info = $group->getGroupInfo($order->gid);
 		$re_schedule = $group->getScheduleBySid($order->sid);
 		
 		$user = new Users_Restaurant_Model();
@@ -53,7 +55,7 @@ class Report_Model extends CI_Model {
 		$row['name'] = $re_user->users->name;
 		$row['type'] = $re_schedule->type;
 		$row['guide_id'] = $re_group->gid;
-		$row['guide_name'] = $re_group->contact_name;
+		$row['guide_name'] = $re_group_info->guide_name;
 		$row['receive'] = $receive;
 		
 		$this->_logReportAgency($row);
