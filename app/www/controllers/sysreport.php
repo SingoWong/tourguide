@@ -98,28 +98,28 @@ class SysReport extends Base_Controller {
 		$html .= "導遊\t";
 		$html .= "餐別\t";
 		$html .= "\n";
-		for ($i=0;$i<sizeof($re);$i++) {
+		for ($i=0;$i<sizeof($re['rowset']);$i++) {
 			$item = $re[$i];
 			
-			$html .= $item['rowset']->id."\t";
-			$html .= $item['rowset']->date."\t";
-			$html .= $item['rowset']->code."\t";
-			$html .= $item['rowset']->guide_name."\t";
-			if ($item['rowset']->type == '0') {
+			$html .= $item->id."\t";
+			$html .= $item->date."\t";
+			$html .= $item->code."\t";
+			$html .= $item->guide_name."\t";
+			if ($item->type == '0') {
 				$html .= '機';
-			} elseif ($item['rowset']->type == '1') {
+			} elseif ($item->type == '1') {
 				$html .= '景';
-			} elseif ($item['rowset']->type == '2') {
+			} elseif ($item->type == '2') {
 				$html .= '中';
-			} elseif ($item['rowset']->type == '3') {
+			} elseif ($item->type == '3') {
 				$html .= '晚';
-			} elseif ($item['rowset']->type == '4') {
+			} elseif ($item->type == '4') {
 				$html .= '住';
 			}
 			$html .= "\t\n";
 		}
 		$html .= "\t\n";
-		$html .= "總計 ".$item['total']->count." 筆 (".$item['total']->count."筆*5=".$item['total']->summation.")";
+		$html .= "總計 ".$re['total']->count." 筆 (".$re['total']->count."筆*5=".$re['total']->summation.")";
 		$html .= "\t\n";
 		
 		echo $html;
