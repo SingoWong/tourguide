@@ -5,6 +5,7 @@
 		<title>餐厅搜索</title>
 		
 		{{include file="_common/minclude.html"}}
+		<script type="text/javascript" src="./libs/jquery/core.date.js"></script>
 		
 		<style type="text/css">
 			.quick-nav {
@@ -45,7 +46,7 @@
 						<input type="text" class="mui-input-clear" name="guide" placeholder="導遊">
 					</div>
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" name="date" placeholder="日期">
+						<input type="text" class="mui-input-clear" name="date" placeholder="日期" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 					</div>
 					<br />
 					<div class="signin_submit">
