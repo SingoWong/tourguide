@@ -892,6 +892,75 @@ class SysAgency extends Base_Controller {
             alert('保存失敗', null, true);
         }
 	}
+	
+	public function report() {
+		$name = $this->input->get('name');
+		$start_date = $this->input->get('start_date');
+		$end_date = $this->input->get('end_date');
+		$aid = $this->user['id'];
+		
+		$re = $this->_get_agency_report_data($name, $start_date, $end_date, $aid);
+		
+		$this->smarty->assign('start_date', $start_date);
+		$this->smarty->assign('end_date', $end_date);
+		$this->smarty->assign('name', $name);
+		$this->smarty->assign('rowset', $re['rowset']);
+		$this->smarty->assign('total', $re['total']);
+        $this->smarty->display('./agency/report.html');
+	}
+	
+	public function reportexplore() {
+		$report = $this->input->get("report");
+		$name = $this->input->get("name");
+		$start_date = $this->input->get("start_date");
+		$end_date = $this->input->get("end_date");
+		
+		header("Content-type:application/vnd.ms-excel");
+		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").xls");
+		
+		$re = $this->_get_agency_report_data($name, $start_date, $end_date);
+		
+		$html .= "序號\t";
+		$html .= "用餐日期\t";
+		$html .= "團號\t";
+		$html .= "導遊\t";
+		$html .= "餐別\t";
+		$html .= "\n";
+		for ($i=0;$i<sizeof($re['rowset']);$i++) {
+			$item = $re['rowset'][$i];
+			
+			$html .= $item->id."\t";
+			$html .= $item->date."\t";
+			$html .= $item->code."\t";
+			$html .= $item->guide_name."\t";
+			if ($item->type == '0') {
+				$html .= '機';
+			} elseif ($item->type == '1') {
+				$html .= '景';
+			} elseif ($item->type == '2') {
+				$html .= '中';
+			} elseif ($item->type == '3') {
+				$html .= '晚';
+			} elseif ($item->type == '4') {
+				$html .= '住';
+			}
+			$html .= "\t\n";
+		}
+		$html .= "\t\n";
+		$html .= "總計 ".$re['total']->count." 筆 (".$re['total']->count."筆*5=".$re['total']->summation.")";
+		$html .= "\t\n";
+		
+		echo $html;
+	}
+
+	public function reportprinter() {
+		
+		$report = $this->input->get("report");
+		$name = $this->input->get("name");
+		$start_date = $this->input->get("start_date");
+		$end_date = $this->input->get("end_date");
+		
+	}
     
     private function _gen_room_selector($id, $default) {
         $html = '<select id="'.$id.'" name="'.$id.'" onchange="calc();">';
@@ -907,5 +976,38 @@ class SysAgency extends Base_Controller {
 		
 		return $html;
     }
+	
+	private function _get_agency_report_data($name, $start_date, $end_date, $aid) {
+		$this->load->model('Report_Model');
+		
+		$conditions = array();
+        if ($name && $name != '') {
+        		$this->load->model('Users_Model');
+			$users = new Users_Model();
+			$re = $users->getUsersByName($name, $name);
+			
+			$ids = array(0);
+			foreach ($re as $r) {
+				$ids[] = $r->id;
+			}
+			if (sizeof($ids) > 0) {
+	            $conditions['aid'] = $ids;
+			}
+        }
+		if (!$start_date || $start_date == '') {
+			$start_date = date('Y-m-d', strtotime('-1 Month'));
+		}
+		if (!$end_date || $end_date == '') {
+			$end_date = date('Y-m-d');
+		}
+		$conditions['date >='] = strtotime($start_date);
+		$conditions['date <='] = strtotime($end_date);
+		$conditions['aid'] = $aid;
+		
+		$report = new Report_Model();
+		$re = $report->getReportAgency($conditions);
+		
+		return $re;
+	}
 }
 ?>
