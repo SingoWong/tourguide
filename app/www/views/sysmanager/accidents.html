@@ -3,10 +3,12 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	var res = eval('{'+'{{$res}}'+'}');
-	console.log(res[1]);
+	
 	for (var i=0; i<res.length; i++) {
 		$("#res_"+res[i]['aid']).append('<a href="'+res[i]['pic_url']+'" target="_blank" class="res_item"><img src="'+res[i]['pic_url']+'" /></a>');
 	}
+	
+	sh_pnlc($(".item_content").first().attr("idx"));
 });
 
 function sh_pnlc(id) {
@@ -31,14 +33,24 @@ function sh_pnlc(id) {
 	{{foreach from=$rowset item=item key=key}}
 	<div class="item">
 		<div class="item_title">
-			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">關閉</a>
-			{{$item->time|date_format:'%Y-%m-%d %H:%i'}}&nbsp;&nbsp;
-			{{$item->type}}&nbsp;&nbsp;
-			團號：{{$item->gid}}&nbsp;&nbsp;
-			導遊：{{$item->gid}}&nbsp;&nbsp;
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">展開</a>
+			<span class="tt_item_code">{{$item->time|date_format:'%Y-%m-%d %H:%M'}}</span>
+			<span class="tt_item_type">
+				{{if $item->type == '0'}}
+				遊覽車事故
+				{{elseif $item->type == '1'}}
+				團員發生傷病
+				{{elseif $item->type == '2'}}
+				團員脫團
+				{{elseif $item->type == '3'}}
+				天災行程滯留
+				{{/if}}
+			</span>
+			<span class="tt_item_name">導遊：{{$item->guide->name}}</span>
 			緊急事故
 		</div>
-		<div class="item_content" id="pnlc_{{$item->id}}">
+		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
+			{{if $item->type == '0'}}
 			<table border="0" width="100%" cellpadding="2" cellspacing="1">
 				<tr>
 					<td width="10%">流水號</td>
@@ -46,15 +58,14 @@ function sh_pnlc(id) {
 				</tr>
 				<tr>
 					<td width="10%">發生時間</td>
-					<td>{{$item->time|date_format:'%Y-%m-%d %H:%i'}}</td>
+					<td>{{$item->time|date_format:'%Y-%m-%d %H:%M'}}</td>
 				</tr>
 				<tr>
 					<td width="10%">發生地點</td>
 					<td>{{$item->location}}</td>
 				</tr>
 				<tr>
-					<td width="10%">事故情況</td>
-					<td></td>
+					<td width="10%" colspan="2">事故情況</td>
 				</tr>
 				<tr>
 					<td width="10%">遊覽車</td>
@@ -99,6 +110,103 @@ function sh_pnlc(id) {
 					<td id="res_{{$item->id}}" class="res_list"></td>
 				</tr>
 			</table>
+			{{elseif $item->type == '1'}}
+			<table border="0" width="100%" cellpadding="2" cellspacing="1">
+				<tr>
+					<td width="10%">流水號</td>
+					<td>{{$item->id}}</td>
+				</tr>
+				<tr>
+					<td width="10%">發生時間</td>
+					<td>{{$item->time|date_format:'%Y-%m-%d %H:%M'}}</td>
+				</tr>
+				<tr>
+					<td width="10%">發生地點</td>
+					<td>{{$item->location}}</td>
+				</tr>
+				<tr>
+					<td width="10%" colspan="2">事故情況</td>
+				</tr>
+				<tr>
+					<td width="10%">旅客人數</td>
+					<td>
+						{{$item->medicine->amount}}
+					</td>
+				</tr>
+				<tr>
+					<td width="10%">備註</td>
+					<td>
+						{{$item->medicine->detail}}
+					</td>
+				</tr>
+				<tr>
+					<td width="10%">事故圖片</td>
+					<td id="res_{{$item->id}}" class="res_list"></td>
+				</tr>
+			</table>
+			{{elseif $item->type == '2'}}
+			<table border="0" width="100%" cellpadding="2" cellspacing="1">
+				<tr>
+					<td width="10%">流水號</td>
+					<td>{{$item->id}}</td>
+				</tr>
+				<tr>
+					<td width="10%">發生時間</td>
+					<td>{{$item->time|date_format:'%Y-%m-%d %H:%M'}}</td>
+				</tr>
+				<tr>
+					<td width="10%">發生地點</td>
+					<td>{{$item->location}}</td>
+				</tr>
+				<tr>
+					<td width="10%" colspan="2">事故情況</td>
+				</tr>
+				<tr>
+					<td width="10%">旅客姓名</td>
+					<td>
+						{{$item->desert->name}}
+					</td>
+				</tr>
+			</table>
+			{{elseif $item->type == '3'}}
+			<table border="0" width="100%" cellpadding="2" cellspacing="1">
+				<tr>
+					<td width="10%">流水號</td>
+					<td>{{$item->id}}</td>
+				</tr>
+				<tr>
+					<td width="10%">發生時間</td>
+					<td>{{$item->time|date_format:'%Y-%m-%d %H:%M'}}</td>
+				</tr>
+				<tr>
+					<td width="10%">發生地點</td>
+					<td>{{$item->location}}</td>
+				</tr>
+				<tr>
+					<td width="10%" colspan="2">事故情況</td>
+				</tr>
+				<tr>
+					<td width="10%">天災情況</td>
+					<td>
+						{{if $item->natural->atype == '1'}}
+						情況1
+						{{elseif $item->natural->atype == '2'}}
+						情況2
+						{{elseif $item->natural->atype == '3'}}
+						情況3
+						{{elseif $item->natural->atype == '4'}}
+						情況4
+						{{elseif $item->natural->atype == '5'}}
+						情況5
+						{{/if}}
+					</td>
+				</tr>
+				<tr>
+					<td width="10%">事故圖片</td>
+					<td id="res_{{$item->id}}" class="res_list"></td>
+				</tr>
+			</table>
+			{{/if}}
 		</div>
 	</div>
 	{{/foreach}}

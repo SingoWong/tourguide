@@ -42,6 +42,7 @@ class Accident extends Base_Controller {
 			
 			$row['group_aid'] = $re_group->aid;
 			$row['gid'] = $re_group->id;
+			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_BUS;
 			
 			$accident = new Accident_Model();
@@ -121,6 +122,7 @@ class Accident extends Base_Controller {
 			
 			$row['group_aid'] = $re_group->aid;
 			$row['gid'] = $re_group->id;
+			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_MEDICINE;
 			
 			$accident = new Accident_Model();
@@ -147,14 +149,30 @@ class Accident extends Base_Controller {
     }
     
     public function medicine_submit() {
+    		$this->load->model('Accident_Model');
+		
+    		$id = $this->input->post('id');
         $time = $this->input->post('time');
         $location = $this->input->post('location');
         $amount = $this->input->post('amount');
         $detail = $this->input->post('detail');
         
-        //TODO 保存提交的內容
-        
-        redirect(url('accident/medicine_finish'));
+        //保存提交的內容
+        $accident['time'] = strtotime($time);
+		$accident['location'] = $location;
+		
+		$accident_medicine['aid'] = $id;
+		$accident_medicine['amount'] = $amount;
+		$accident_medicine['detail'] = $detail;
+		
+		$ac = new Accident_Model();
+		$re = $ac->saveAccidentMedicine($id, $accident, $accident_medicine);
+		
+		if ($re) {
+			redirect(url('accident/medicine_finish'));
+		} else {
+			alert('保存失敗，請重試', url('accident/medicine_form').'&id='.$id);
+		}
     }
     
     public function medicine_finish() {
@@ -172,16 +190,41 @@ class Accident extends Base_Controller {
     }
     
     public function desert_submit() {
+    		$this->load->model('Accident_Model');
+		$this->load->model('Group_Model');
+		
         $time = $this->input->post('time');
         $location = $this->input->post('location');
         $names = $this->input->post('name');
-
-        //TODO 保存提交的內容
-        foreach ($names as $name) {
-            
-        }
+		
+		//創建一個意外通告
+		$group = new Group_Model();
+        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+		
+		$row['group_aid'] = $re_group->aid;
+		$row['gid'] = $re_group->id;
+		$row['guide_id'] = $this->user['id'];
+		$row['type'] = ACCIDENT_TYPE_DESERT;
+		
+		$accident_model = new Accident_Model();
+		$re_accident = $accident_model->createAccident($row);
+		$id = $re_accident['id'];
         
-        redirect(url('accident/desert_finish'));
+        //保存提交的內容
+        $accident['time'] = strtotime($time);
+		$accident['location'] = $location;
+		
+		$accident_desert['aid'] = $id;
+		$accident_desert['name'] = $names;
+		
+		$ac = new Accident_Model();
+		$re = $ac->saveAccidentDesert($id, $accident, $accident_desert);
+		
+		if ($re) {
+			redirect(url('accident/desert_finish'));
+		} else {
+			alert('保存失敗，請重試', url('accident/desert_form'));
+		}
     }
     
     public function desert_finish() {
@@ -209,6 +252,7 @@ class Accident extends Base_Controller {
 			
 			$row['group_aid'] = $re_group->aid;
 			$row['gid'] = $re_group->id;
+			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_NATURAL;
 			
 			$accident = new Accident_Model();

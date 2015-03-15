@@ -17,6 +17,7 @@ class Accident_Model extends CI_Model {
     function getAccident($with_relation=false, $group_aid=0) {
         $accident = new Accidents();
         
+		$accident->order_by('id', 'DESC');
         if ($group_aid == 0) {
             $accident->get();
         } else {
@@ -33,21 +34,25 @@ class Accident_Model extends CI_Model {
                 $accident_bus = new Accident_Bus();
                 $accident_desert = new Accident_Desert();
                 $accident_medicine = new Accident_Medicine();
+				$accident_natural = new Accident_Natural();
                 $accident_res = new Accident_Res();
                 
                 $accident_bus->where_in('aid', $ids)->get();
                 $accident_desert->where_in('aid', $ids)->get();
                 $accident_medicine->where_in('aid', $ids)->get();
+				$accident_natural->where_in('aid', $ids)->get();
                 $accident_res->where_in('aid', $ids)->get();
                 
                 $bus = array_to_hashmap($accident_bus->all, 'aid');
                 $desert = array_to_hashmap($accident_desert->all, 'aid');
                 $medicine = array_to_hashmap($accident_medicine->all, 'aid');
+				$natural = array_to_hashmap($accident_natural->all, 'aid');
                 
                 for ($i=0; $i<sizeof($accident->all); $i++) {
                     $accident->all[$i]->bus = $bus[$accident->all[$i]->id];
                     $accident->all[$i]->desert = $desert[$accident->all[$i]->id];
                     $accident->all[$i]->medicine = $medicine[$accident->all[$i]->id];
+					$accident->all[$i]->natural = $natural[$accident->all[$i]->id];
                 }
                 
                 $res = array();
@@ -59,6 +64,23 @@ class Accident_Model extends CI_Model {
                     $res[] = $row;
                 }
                 $accident->res = $res;
+            }
+			
+			unset($ids);
+			$ids = array();
+			for ($i=0; $i<sizeof($accident->all); $i++) {
+                $ids[] = $accident->all[$i]->guide_id;
+            }
+			
+			if (sizeof($ids) > 0) {
+                $users = new Users();
+                $users->where_in('id', $ids)->get();
+                
+                $us = array_to_hashmap($users->all, 'id');
+                
+                for ($i=0; $i<sizeof($accident->all); $i++) {
+                    $accident->all[$i]->guide = $us[$accident->all[$i]->guide_id];
+                }
             }
         }
         
@@ -138,6 +160,7 @@ class Accident_Model extends CI_Model {
 		
 		$accident->group_aid = $row['group_aid'];
 		$accident->gid = $row['gid'];
+		$accident->guide_id = $row['guide_id'];
 		$accident->type = $row['type'];
 			
 		if ($accident->save()) {
@@ -169,18 +192,63 @@ class Accident_Model extends CI_Model {
 		return $re;
 	}
 	
-	function saveAccidentBus($id, $accident, $accident_bus) {
+	function saveAccidentBus($id, $accident, $bus) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
 		$accidents->where('id',$id)->update($accident);
 		
 		$accidents_bus = new Accident_Bus();
-		$accidents_bus->aid = $accident_bus['aid'];
-		$accidents_bus->driver_status = $accident_bus['driver_status'];
-		$accidents_bus->member_status = $accident_bus['member_status'];
-		$accidents_bus->bus_status = $accident_bus['bus_status'];
+		$accidents_bus->aid = $bus['aid'];
+		$accidents_bus->driver_status = $bus['driver_status'];
+		$accidents_bus->member_status = $bus['member_status'];
+		$accidents_bus->bus_status = $bus['bus_status'];
 		$accidents_bus->save();
+		
+		if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
+	}
+	
+	function saveAccidentMedicine($id, $accident, $medicine) {
+		$this->db->trans_start();
+		
+		$accidents = new Accidents();
+		$accidents->where('id',$id)->update($accident);
+		
+		$accidents_medicine = new Accident_Medicine();
+		$accidents_medicine->aid = $medicine['aid'];
+		$accidents_medicine->amount = $medicine['amount'];
+		$accidents_medicine->detail = $medicine['detail'];
+		$accidents_medicine->save();
+		
+		if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
+	}
+
+	function saveAccidentDesert($id, $accident, $desert) {
+		$this->db->trans_start();
+		
+		$accidents = new Accidents();
+		$accidents->where('id',$id)->update($accident);
+		
+		$accident_desert = new Accident_Desert();
+		$accident_desert->aid = $desert['aid'];
+		$accident_desert->name = $desert['name'];
+		$accident_desert->save();
 		
 		if ($this->db->trans_status() === FALSE){
             $this->db->trans_rollback();

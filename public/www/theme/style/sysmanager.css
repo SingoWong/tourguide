@@ -247,6 +247,9 @@ a#closeButton{
 .item .item_title span.tt_item_date {
 	width: 320px;
 }
+.item .item_title span.tt_item_type {
+	width: 100px;
+}
 .item .item_content table {
 	background: #CCC;
 }
