@@ -456,10 +456,11 @@ class Group_Model extends CI_Model {
 	/**
 	 * 更新行程訂餐狀態
 	 */
-	function updateGroupSchedualRstatus($sid, $status) {
+	function updateGroupSchedualRstatus($sid, $status, $reson) {
 		$schedual = new Group_Schedule();
 		
 		$row['rstatus'] = $status;
+		$row['location'] = $reson;
 		$re = $schedual->where('id', $sid)->update($row);
 		
 		return $re;

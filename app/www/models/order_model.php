@@ -335,7 +335,7 @@ class Order_Model extends CI_Model {
 		$re_order = $order->where('id',$oid)->get(1);
 		$sid = $re_order->sid;
 		$group = new Group_Model();
-		$group->updateGroupSchedualRstatus($sid, STATUS_R_CANCEL);
+		$group->updateGroupSchedualRstatus($sid, STATUS_R_CANCEL, $reson);
 		
 		return $re;
 	}

@@ -101,7 +101,7 @@ class Guide extends Base_Controller {
             $r['rstatus'] = $row->rstatus;
 			$r['rname'] = ($row->rstatus)?$restaurant->getRestaurantNameById($row->rid):'-';
 			$r['rcontact'] = ($row->rstatus)?$restaurant->getRestaurantContactById($row->rid):'-';
-            $r['rstatus_label'] = $this->_get_rstatus_label($row->rstatus);
+            $r['rstatus_label'] = $this->_get_rstatus_label($row->rstatus, $r['rname'].' '.$row->location);
             $r['tab'] = $row->tab;
             $r['detail'] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $row->detail));
             $r['location'] = $row->location;
@@ -565,7 +565,7 @@ class Guide extends Base_Controller {
         return $label;
     }
     
-    private function _get_rstatus_label($status) {
+    private function _get_rstatus_label($status, $label) {
         switch ($status) {
             case '0':
                 $label = '未訂餐';
@@ -578,6 +578,9 @@ class Guide extends Base_Controller {
                 break;
             case '3':
                 $label = '餐畢付款';
+                break;
+			case '4':
+                $label = $label;
                 break;
         }
         
