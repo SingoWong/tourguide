@@ -505,7 +505,7 @@ class Group_Model extends CI_Model {
             $info->attention = $row['attention'];
             $info->guide_id = $row['guide_id'];
             $info->guide_name = $row['guide_name'];
-            $info->guide_tel = $row['guide_name'];
+            $info->guide_tel = $row['guide_tel'];
             $info->regulator = $row['regulator'];
             $info->regulator_tel = $row['regulator_tel'];
             $info->member_names = $row['member_names'];

@@ -79,7 +79,9 @@ class SysReport extends Base_Controller {
 		$start_date = $this->input->get("start_date");
 		$end_date = $this->input->get("end_date");
 		
-		header("Content-type:application/vnd.ms-excel");
+		
+		
+		header("Content-type:application/vnd.ms-excel;charset=utf-8");
 		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").xls");
 		
 		if ($report == 'agency') {
