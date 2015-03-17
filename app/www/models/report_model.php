@@ -73,6 +73,7 @@ class Report_Model extends CI_Model {
 	            $report_agency->where($field, $value);
 			}
         }
+		$report_agency->order_by('id','ASC');
         $report_agency->get();
 		
 		$total->count = $report_agency->result_count();
@@ -91,6 +92,7 @@ class Report_Model extends CI_Model {
 	            $report_hotel->where($field, $value);
 			}
         }
+		$report_hotel->order_by('id','ASC');
         $report_hotel->get();
 		
 		$total->count = $report_hotel->result_count();
@@ -109,6 +111,7 @@ class Report_Model extends CI_Model {
 	            $report_restaurant->where($field, $value);
 			}
         }
+		$report_restaurant->order_by('id','ASC');
         $report_restaurant->get();
 		
 		$total->count = $report_restaurant->result_count();
@@ -127,6 +130,7 @@ class Report_Model extends CI_Model {
 	            $report_guide->where($field, $value);
 			}
         }
+		$report_guide->order_by('id','ASC');
         $report_guide->get();
 		
 		$total->count = $report_guide->result_count();

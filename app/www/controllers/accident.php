@@ -44,6 +44,7 @@ class Accident extends Base_Controller {
 			$row['gid'] = $re_group->id;
 			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_BUS;
+			$row['source'] ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
 			
 			$accident = new Accident_Model();
 			$re_accident = $accident->createAccident($row);
@@ -124,6 +125,7 @@ class Accident extends Base_Controller {
 			$row['gid'] = $re_group->id;
 			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_MEDICINE;
+			$row['source'] ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
 			
 			$accident = new Accident_Model();
 			$re_accident = $accident->createAccident($row);
@@ -205,6 +207,7 @@ class Accident extends Base_Controller {
 		$row['gid'] = $re_group->id;
 		$row['guide_id'] = $this->user['id'];
 		$row['type'] = ACCIDENT_TYPE_DESERT;
+		$row['source'] ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
 		
 		$accident_model = new Accident_Model();
 		$re_accident = $accident_model->createAccident($row);
@@ -254,6 +257,7 @@ class Accident extends Base_Controller {
 			$row['gid'] = $re_group->id;
 			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_NATURAL;
+			$row['source'] ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
 			
 			$accident = new Accident_Model();
 			$re_accident = $accident->createAccident($row);

@@ -14,10 +14,11 @@ class Accident_Model extends CI_Model {
      * 获取所有意外通报
      * @return multitype:
      */
-    function getAccident($with_relation=false, $group_aid=0) {
+    function getAccident($with_relation=false, $group_aid=0, $source='0') {
         $accident = new Accidents();
         
 		$accident->order_by('id', 'DESC');
+		$accident->where('source',$source);
         if ($group_aid == 0) {
             $accident->get();
         } else {
@@ -73,6 +74,7 @@ class Accident_Model extends CI_Model {
             }
 			
 			if (sizeof($ids) > 0) {
+				//Users
                 $users = new Users();
                 $users->where_in('id', $ids)->get();
                 
@@ -81,6 +83,27 @@ class Accident_Model extends CI_Model {
                 for ($i=0; $i<sizeof($accident->all); $i++) {
                     $accident->all[$i]->guide = $us[$accident->all[$i]->guide_id];
                 }
+				
+				//Users_Guide or Users_Leader
+				if ($source == '0') {
+					$users_guide = new Users_Guide();
+					$users_guide->where_in('uid',$ids)->get();
+					
+	                $us = array_to_hashmap($users_guide->all, 'uid');
+	                
+	                for ($i=0; $i<sizeof($accident->all); $i++) {
+	                    $accident->all[$i]->contact = $us[$accident->all[$i]->guide_id];
+	                }
+				} elseif ($source == '1') {
+					$users_leader = new Users_Leader();
+					$users_leader->where_in('uid',$ids)->get();
+					
+	                $us = array_to_hashmap($users_leader->all, 'uid');
+	                
+	                for ($i=0; $i<sizeof($accident->all); $i++) {
+	                    $accident->all[$i]->contact = $us[$accident->all[$i]->guide_id];
+	                }
+				}
             }
         }
         

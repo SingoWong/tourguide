@@ -773,21 +773,23 @@ class SysAgency extends Base_Controller {
         $this->load->model('Accident_Model');
         $accident = new Accident_Model();
         
-        $re = $accident->getAccident(true, $this->user['id']);
+		$source = '0';
+        $re = $accident->getAccident(true, $this->user['id'], $source);
         
-		$this->smarty->assign('label_op', '導遊');
+		$this->smarty->assign('source', $source);
         $this->smarty->assign('rowset', $re->all);
         $this->smarty->assign('res', json_encode($re->res));
         $this->smarty->display('./agency/accidents.html');
     }
 	
-	public function accident_out() { //TODO
+	public function accident_out() {
         $this->load->model('Accident_Model');
         $accident = new Accident_Model();
         
-        $re = $accident->getAccident(true, $this->user['id']);
+		$source = '1';
+        $re = $accident->getAccident(true, $this->user['id'], 1);
         
-		$this->smarty->assign('label_op', '領隊');
+		$this->smarty->assign('source', $source);
         $this->smarty->assign('rowset', $re->all);
         $this->smarty->assign('res', json_encode($re->res));
         $this->smarty->display('./agency/accidents.html');
@@ -826,7 +828,7 @@ class SysAgency extends Base_Controller {
 		$this->load->model('Users_Guide_Model');
 		
 		$guide = new Users_Guide_Model();
-		$re_guide = $guide->getContractGuide(null, TRUE);
+		$re_guide = $guide->getContractGuide(null, TRUE, 0, 300);
 		$guides = array();
 		foreach($re_guide['rowset'] as $rg) {
 			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）', 'nickname'=>$rg->users->name, 'contact_tel'=>$rg->contact_tel);
@@ -840,7 +842,7 @@ class SysAgency extends Base_Controller {
 		$this->load->model('Users_Leader_Model');
 		
 		$leader = new Users_Leader_Model();
-		$re_leader = $leader->getContractLeader(null, TRUE);
+		$re_leader = $leader->getContractLeader(null, TRUE, 0, 300);
 		$leaders = array();
 		foreach($re_leader['rowset'] as $rg) {
 			$row = array('id'=>$rg->users->id, 'name'=>$rg->users->username.'（'.$rg->users->name.'）', 'nickname'=>$rg->users->name, 'contact_tel'=>$rg->contact_tel);
@@ -922,7 +924,8 @@ class SysAgency extends Base_Controller {
 		$start_date = $this->input->get("start_date");
 		$end_date = $this->input->get("end_date");
 		
-		header("Content-type:application/vnd.ms-excel;charset=utf-8");
+		header('Content-Encoding: UTF-8');
+		header("Content-type:application/vnd.ms-excel;charset=UTF-8");
 		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").xls");
 		
 		$re = $this->_get_agency_report_data($name, $start_date, $end_date);
