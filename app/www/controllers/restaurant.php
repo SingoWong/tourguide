@@ -140,7 +140,8 @@ class Restaurant extends Base_Controller {
 		$conditions = array();
 		
 		if ($date != '') {
-			$conditions['eattime'] = strtotime($date);
+			$conditions['eattime >='] = strtotime($date.' 00:00:00');
+			$conditions['eattime <'] = strtotime($date.' 23:59:59');
 		}
 		if ($guide != '') {
 			$this->load->model('Users_Model');
