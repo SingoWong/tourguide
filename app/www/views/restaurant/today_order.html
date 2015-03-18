@@ -69,7 +69,7 @@
 							</div>
 						</a>
 						<div class="detail_item" id="pnl_detail_{{$item->id}}">
-							<p>日期：{{$item->created|date_format:"%Y-%m-%d"}}</p>
+							<p>日期：{{$item->eattime|date_format:"%Y-%m-%d"}}</p>
 							<p>餐別：{{if $item->schedule->type=='2'}}中餐{{elseif $item->schedule->type=='3'}}晚餐{{/if}}</p>
 							<p>餐廳名稱：{{$RBAC_USER_NAME}}</p>
 							<p>旅行社：{{$item->agency->name}}</p>

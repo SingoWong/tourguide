@@ -83,6 +83,7 @@ class Order_Model extends CI_Model {
 	function getRestaurantOrdersToday($rid, $conditions, $with_relation=false) {
 		$orders = new Restaurant_Order();
 		
+		$orders->order_by('confirmed', 'DESC');
 		$orders->where('status !=', STATUS_RORDER_PAYMENG);
 		$orders->where('status !=', STATUS_RORDER_CANCEL);
 		foreach ($conditions as $field=>$value) {
@@ -307,6 +308,7 @@ class Order_Model extends CI_Model {
 	function approveRestaurantOrder($oid) {
 		$order = new Restaurant_Order();
 		
+		$row['confirmed'] = time();
 		$row['status'] = STATUS_RORDER_CONFIRM;
 		$re = $order->where('id',$oid)->update($row);
 		
@@ -326,6 +328,7 @@ class Order_Model extends CI_Model {
 	function rejectRestaurantOrder($oid, $reson) {
 		$order = new Restaurant_Order();
 		
+		$row['confirmed'] = time();
 		$row['status'] = STATUS_RORDER_CANCEL;
 		$row['reject_reson'] = $reson;
 		$re = $order->where('id',$oid)->update($row);

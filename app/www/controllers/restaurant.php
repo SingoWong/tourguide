@@ -96,7 +96,7 @@ class Restaurant extends Base_Controller {
      * 拒绝订单
      */
     public function order_reject() {
-    	$this->load->model('order_model');
+    		$this->load->model('order_model');
 		
         $oid = $this->input->post('oid');
 		$reson = join(',',$this->input->post('reson'));
