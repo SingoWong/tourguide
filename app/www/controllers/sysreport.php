@@ -82,7 +82,7 @@ class SysReport extends Base_Controller {
 		
 		header('Content-Encoding: UTF-8');
 		header("Content-type:application/vnd.ms-excel;charset=UTF-8");
-		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").xls");
+		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").csv");
 		
 		if ($report == 'agency') {
 			$re = $this->_get_agency_report_data($name, $start_date, $end_date);
@@ -94,19 +94,22 @@ class SysReport extends Base_Controller {
 			$re = $this->_get_guide_report_data($name, $start_date, $end_date);
 		}
 		
-		$html .= "序號\t";
-		$html .= "用餐日期\t";
-		$html .= "團號\t";
-		$html .= "導遊\t";
-		$html .= "餐別\t";
-		$html .= "\n";
+		$t = ","; //"\t"
+		$n = "\n"; //\t\n";
+		
+		$html .= "序號".$t;
+		$html .= "用餐日期".$t;
+		$html .= "團號".$t;
+		$html .= "導遊".$t;
+		$html .= "餐別".$t;
+		$html .= $n;
 		for ($i=0;$i<sizeof($re['rowset']);$i++) {
 			$item = $re['rowset'][$i];
 			
-			$html .= $item->id."\t";
-			$html .= $item->date."\t";
-			$html .= $item->code."\t";
-			$html .= $item->guide_name."\t";
+			$html .= $item->id.$t;
+			$html .= $item->date.$t;
+			$html .= $item->code.$t;
+			$html .= $item->guide_name.$t;
 			if ($item->type == '0') {
 				$html .= '機';
 			} elseif ($item->type == '1') {
@@ -118,11 +121,11 @@ class SysReport extends Base_Controller {
 			} elseif ($item->type == '4') {
 				$html .= '住';
 			}
-			$html .= "\t\n";
+			$html .= $n;
 		}
-		$html .= "\t\n";
+		$html .= $n;
 		$html .= "總計 ".$re['total']->count." 筆 (".$re['total']->count."筆*5=".$re['total']->summation.")";
-		$html .= "\t\n";
+		$html .= $n;
 		
 		echo $html;
 	}

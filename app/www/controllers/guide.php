@@ -42,7 +42,7 @@ class Guide extends Base_Controller {
         $group = new Group_Model();
         
         $re['info'] = $group->getCurrGroupByGuideId($this->user['id']);
-        $schedule = $group->getScheduleById($re['info']->id);
+        $schedule = $group->getScheduleById($re['info']->id, true);
         
         $rows = array();
         foreach ($schedule as $row) {
@@ -59,7 +59,16 @@ class Guide extends Base_Controller {
             $r['rstatus'] = $row->rstatus;
             $r['tab'] = $row->tab;
             $r['detail'] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $row->detail));
-            $r['location'] = $row->location;
+			if ($row->type=='4') {
+            		$r['location'] = $row->hotel->name;
+			} elseif ($row->type=='2' || $row->type=='3') {
+				$r['location'] = $row->restaurant->name;
+				if ($row->rstatus == '4') {
+					$r['location'] .= ' '.$row->location;
+				}
+            	} else {
+            		$r['location'] = $row->location;
+			}
         
             $rows[$row->day][] = $r;
         }
