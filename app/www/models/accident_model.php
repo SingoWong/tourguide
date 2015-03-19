@@ -66,13 +66,28 @@ class Accident_Model extends CI_Model {
                 }
                 $accident->res = $res;
             }
-			
+
+			unset($ids);
+			$ids = array();
+			for ($i=0; $i<sizeof($accident->all); $i++) {
+                $ids[] = $accident->all[$i]->gid;
+            }
+			if (sizeof($ids) > 0) {
+				$group = new Group();
+				$group->where_in('id', $ids)->get();
+				
+                $us = array_to_hashmap($group->all, 'id');
+                
+                for ($i=0; $i<sizeof($accident->all); $i++) {
+                    $accident->all[$i]->group = $us[$accident->all[$i]->gid];
+                }
+			}
+
 			unset($ids);
 			$ids = array();
 			for ($i=0; $i<sizeof($accident->all); $i++) {
                 $ids[] = $accident->all[$i]->guide_id;
             }
-			
 			if (sizeof($ids) > 0) {
 				//Users
                 $users = new Users();

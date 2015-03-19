@@ -250,6 +250,12 @@ a#closeButton{
 .item .item_title span.tt_item_type {
 	width: 100px;
 }
+.item .item_title span.tt_item_time {
+	width: 140px;
+}
+.item .item_title span.tt_item_tel {
+	width: 140px;
+}
 .item .item_content table {
 	background: #CCC;
 }

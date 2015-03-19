@@ -319,14 +319,14 @@ class Group_Model extends CI_Model {
         $group->where('id', $row['id'])->get();
         
         if ($group->result_count() > 0) {
-            $row['start_date'] = strtotime($row['start_date']);
-            $row['start_departure_time'] = strtotime($row['start_date'].' '.$row['start_departure_time'].':00');
-            $row['start_arrive_time'] = strtotime($row['start_date'].' '.$row['start_arrive_time'].':00');
-            $row['end_date'] = strtotime($row['end_date']);
-            $row['end_departure_time'] = strtotime($row['end_date'].' '.$row['end_departure_time'].':00');
-            $row['end_arrive_time'] = strtotime($row['end_date'].' '.$row['end_arrive_time'].':00');
+            $nrow['start_date'] = strtotime($row['start_date']);
+            $nrow['start_departure_time'] = strtotime($row['start_date'].' '.$row['start_departure_time'].':00');
+            $nrow['start_arrive_time'] = strtotime($row['start_date'].' '.$row['start_arrive_time'].':00');
+            $nrow['end_date'] = strtotime($row['end_date']);
+            $nrow['end_departure_time'] = strtotime($row['end_date'].' '.$row['end_departure_time'].':00');
+            $nrow['end_arrive_time'] = strtotime($row['end_date'].' '.$row['end_arrive_time'].':00');
             
-            $re = $group->where('id', $row['id'])->update($row);
+            $re = $group->where('id', $row['id'])->update($nrow);
         } else {
             $group->aid = $row['aid'];
             $group->code = $row['code'];
