@@ -364,10 +364,10 @@ class SysAgency extends Base_Controller {
         if ($re && sizeof($re>0)) {
             $re->start_date = date('Y-m-d', $re->start_date);
             $re->end_date = date('Y-m-d', $re->end_date);
-            $re->start_departure_time = date('H:i', $re->start_departure_time);
-            $re->start_arrive_time = date('H:i', $re->start_arrive_time);
-            $re->end_departure_time = date('H:i', $re->end_departure_time);
-            $re->end_arrive_time = date('H:i', $re->end_arrive_time);
+            $re->start_departure_time = $re->start_departure_time?date('H:i', $re->start_departure_time):'';
+            $re->start_arrive_time = $re->start_arrive_time?date('H:i', $re->start_arrive_time):'';
+            $re->end_departure_time = $re->end_departure_time?date('H:i', $re->end_departure_time):'';
+            $re->end_arrive_time = $re->end_arrive_time?date('H:i', $re->end_arrive_time):'';
         }
         
         $this->smarty->assign('id',$gid);
