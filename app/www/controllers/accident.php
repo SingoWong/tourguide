@@ -356,7 +356,7 @@ class Accident extends Base_Controller {
 		$accident_t4_11[''] = '';
 		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT4_11($id, $accident, $accident_t4_11)
+		$re = $ac->saveAccidentT4_11($id, $accident, $accident_t4_11);
 		
 		if ($re) {
 			redirect(url('accident/t4_11_finish'));
