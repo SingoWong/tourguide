@@ -5,7 +5,7 @@
 		<title></title>
 		
 		{{include file="_common/minclude.html"}}
-		
+		<script type="text/javascript" src="./libs/jquery/core.date.js"></script>
 		<style type="text/css">
 			.quick-nav {
 				padding: 0 50px;
@@ -18,6 +18,19 @@
 			}
 			.mui-input-row select {
 				padding-left: 10px!important;
+			}
+			.mui-input-row label {
+				font-size: 18px!important;
+				width: 160px!important;
+			}
+			.mui-input-row em {
+				display: inline-block;
+			  	float: left;
+			  	width: 35%;
+			  	padding: 10px 15px;
+			  	font-family: "Helvetica Neue",Helvetica,sans-serif;
+			  	line-height: 1.1;
+			  	font-size: 18px;
 			}
 		</style>
 	</head>
@@ -40,33 +53,33 @@
 		</header>
 		<div class="mui-content">
 			<form class="mui-input-group" action="{{$url_natural_submit}}" method="post" id="form">
-				<div class="mui-input-row label-row">
-					報告人：{{$guide->user->name}}
+				<div class="mui-input-row">
+					<label>報告人：</label><em>{{$guide->user->name}}</em>
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="date" placeholder="發生日期" value="{{$date}}">
+					<input type="text" class="mui-input-clear" name="date" placeholder="發生日期" value="{{$date}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
 					<input type="text" class="mui-input-clear" name="time" placeholder="發生時間，时:分" value="{{$time}}">
 				</div>
 				<div class="mui-input-row">
-					觀光團團號：{{$group->code}}
+					<label>觀光團團號：</label><em>{{$group->code}}</em>
 					<input type="hidden" name="group_code" value="{{$group_code}}" />
 				</div>
 				<div class="mui-input-row">
-					隨團導遊證號：{{$guide->code}}
+					<label>隨團導遊證號：</label><em>{{$guide->code}}</em>
 					<input type="hidden" name="guide_code" value="{{$guide->code}}" />
 				</div>
 				<div class="mui-input-row">
-					隨團導遊姓名：{{$guide->user->name}}
+					<label>隨團導遊姓名：</label><em>{{$guide->user->name}}</em>
 					<input type="hidden" name="guide_name" value="{{$guide->user->name}}" />
 				</div>
 				<div class="mui-input-row">
-					隨團導遊手機：{{$guide->contact_tel}}
+					<label>隨團導遊手機：</label><em>{{$guide->contact_tel}}</em>
 					<input type="hidden" name="guide_tel" value="{{$guide->contact_tel}}" />
 				</div>
 				<div class="mui-input-row">
-					接待旅行社：-
+					<label>接待旅行社：</label><em>-</em>
 					<input type="hidden" name="agency_name" value="" />
 				</div>
 				<div class="mui-input-row">
@@ -79,10 +92,10 @@
 					</select>
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="adate" placeholder="發生變更日期" value="{{$date}}">
+					<input type="text" class="mui-input-clear" name="adate" placeholder="發生變更日期" value="{{$adate}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="atime" placeholder="發生變更時間，时:分" value="{{$time}}">
+					<input type="text" class="mui-input-clear" name="atime" placeholder="發生變更時間，时:分" value="{{$atime}}">
 				</div>
 				<div class="mui-input-row">
 					<label>通報事由：</label>
@@ -102,7 +115,7 @@
 					<button class="mui-btn mui-btn-primary mui-btn-block">回報上傳</button>
 				</div>
 			</form>
-		</div>
+		</div><br /><br />
 		<nav class="mui-bar mui-bar-tab">
 		  <a class="mui-tab-item mui-active" href="#" onclick="location.href='tel://119';">
 		    救護車119

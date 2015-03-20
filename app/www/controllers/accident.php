@@ -325,7 +325,10 @@ class Accident extends Base_Controller {
         
 		$this->smarty->assign('group', $re_group);
 		$this->smarty->assign('guide', $re_guide);
-        $this->smarty->assign('time', date('Y-m-d H:i'));
+		$this->smarty->assign('date', date('Y-m-d'));
+		$this->smarty->assign('adate', date('Y-m-d'));
+        $this->smarty->assign('time', date('H:i'));
+		$this->smarty->assign('atime', date('H:i'));
         $this->smarty->assign('url_submit', url('accident/t4_11_submit'));
         $this->smarty->display('./accident/t4_11_form.html');
 	}

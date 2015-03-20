@@ -127,10 +127,14 @@ class Users_Guide_Model extends CI_Model {
      */
     function getGuideById($uid) {
         $guide = new Users_Guide();
-        
+        $users = new Users();
+		
         $guide->where('uid', $uid)->get(1);
+		$users->where('id', $uid)->get(1);
+		
+		$guide->all[0]->user = $users->all[0];
         
-        return $guide->all;
+        return $guide->all[0];
     }
     
     /**
