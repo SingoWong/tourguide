@@ -4,6 +4,8 @@ define('ACCIDENT_TYPE_MEDICINE', '1');
 define('ACCIDENT_TYPE_DESERT', '2');
 define('ACCIDENT_TYPE_NATURAL', '3');
 
+define('ACCIDENT_TYPE_T4_11', '14');
+
 class Accident_Model extends CI_Model {
     
     function __construct() {

@@ -20,17 +20,16 @@
 				padding-left: 10px!important;
 			}
 			.mui-input-row label {
-				font-size: 18px!important;
-				width: 160px!important;
+				font-size: 16px!important;
+				width: auto!important;
 			}
 			.mui-input-row em {
 				display: inline-block;
 			  	float: left;
-			  	width: 35%;
 			  	padding: 10px 15px;
 			  	font-family: "Helvetica Neue",Helvetica,sans-serif;
 			  	line-height: 1.1;
-			  	font-size: 18px;
+			  	font-size: 16px;
 			}
 		</style>
 	</head>
@@ -52,7 +51,7 @@
 			{{/if}}
 		</header>
 		<div class="mui-content">
-			<form class="mui-input-group" action="{{$url_natural_submit}}" method="post" id="form">
+			<form class="mui-input-group" action="{{$url_submit}}" method="post" id="form">
 				<div class="mui-input-row">
 					<label>報告人：</label><em>{{$guide->user->name}}</em>
 				</div>
@@ -79,8 +78,8 @@
 					<input type="hidden" name="guide_tel" value="{{$guide->contact_tel}}" />
 				</div>
 				<div class="mui-input-row">
-					<label>接待旅行社：</label><em>-</em>
-					<input type="hidden" name="agency_name" value="" />
+					<label>接待旅行社：</label><em>{{$agency->users->name}}</em>
+					<input type="hidden" name="agency_name" value="{{$agency->user->name}}" />
 				</div>
 				<div class="mui-input-row">
 					<label>通報別：</label>

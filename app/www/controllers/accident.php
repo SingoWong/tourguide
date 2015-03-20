@@ -316,15 +316,20 @@ class Accident extends Base_Controller {
 	public function t4_11_form() {
 		$this->load->model('Group_Model');
 		$this->load->model('Users_Guide_Model');
+		$this->load->model('Users_Agency_Model');
 		
 		$group = new Group_Model();
 	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
 		
 		$guide = new Users_Guide_Model();
 		$re_guide = $guide->getGuideById($this->user['id']);
+		
+		$agency = new Users_Agency_Model();
+		$re_agency = $agency->getAgencyById($re_group->aid);
         
 		$this->smarty->assign('group', $re_group);
 		$this->smarty->assign('guide', $re_guide);
+		$this->smarty->assign('agency', $re_agency);
 		$this->smarty->assign('date', date('Y-m-d'));
 		$this->smarty->assign('adate', date('Y-m-d'));
         $this->smarty->assign('time', date('H:i'));
@@ -334,11 +339,35 @@ class Accident extends Base_Controller {
 	}
 	
 	public function t4_11_submit() {
+		$this->load->model('Accident_Model');
 		
+		$row['group_aid'] = $re_group->aid;
+		$row['gid'] = $re_group->id;
+		$row['guide_id'] = $this->user['id'];
+		$row['type'] = ACCIDENT_TYPE_T4_11;
+		$row['source'] = ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
+		
+        $accident_model = new Accident_Model();
+		$re_accident = $accident_model->createAccident($row);
+		$id = $re_accident['id'];
+		
+		$accident[''] = '';
+		
+		$accident_t4_11[''] = '';
+		
+		$ac = new Accident_Model();
+		$re = $ac->saveAccidentT4_11($id, $accident, $accident_t4_11)
+		
+		if ($re) {
+			redirect(url('accident/t4_11_finish'));
+		} else {
+			alert('保存失敗，請重試', url('accident/t4_11_form'));
+		}
 	}
 	
 	public function t4_11_finish() {
 		
+        $this->smarty->display('./accident/common_finish.html');
 	}
 }
 ?>
