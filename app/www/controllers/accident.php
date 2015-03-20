@@ -19,6 +19,7 @@ class Accident extends Base_Controller {
         $this->smarty->assign( 'url_medicine_photo_choose', url('accident/medicine_photo_choose') );
         $this->smarty->assign( 'url_desert_form', url('accident/desert_form') );
         $this->smarty->assign( 'url_natural_photo_choose', url('accident/natural_photo_choose') );
+		$this->smarty->assign( 'url_t4_11', url('accident/t4_11_form') );
         $this->smarty->display('./accident/menu.html');
     }
     
@@ -311,5 +312,30 @@ class Accident extends Base_Controller {
 
         $this->smarty->display('./accident/natural_finish.html');
     }
+	
+	public function t4_11_form() {
+		$this->load->model('Group_Model');
+		$this->load->model('Users_Guide_Model');
+		
+		$group = new Group_Model();
+	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+		
+		$guide = new Users_Guide_Model();
+		$re_guide = $guide->getGuideById($this->user['id']);
+        
+		$this->smarty->assign('group', $re_group);
+		$this->smarty->assign('guide', $re_guide);
+        $this->smarty->assign('time', date('Y-m-d H:i'));
+        $this->smarty->assign('url_submit', url('accident/t4_11_submit'));
+        $this->smarty->display('./accident/t4_11_form.html');
+	}
+	
+	public function t4_11_submit() {
+		
+	}
+	
+	public function t4_11_finish() {
+		
+	}
 }
 ?>

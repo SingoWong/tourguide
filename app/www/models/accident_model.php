@@ -191,6 +191,19 @@ class Accident_Model extends CI_Model {
     }
 	
 	/**
+	 * 獲取(表四)通報案件申報書
+	 * @param unknown $aid
+     * @return multitype:
+	 */
+	function getAccidentT4_11($aid) {
+		$accident_t4_11 = new Accident_T4_11();
+		
+		$accident_t4_11->where('aid',$aid)->get();
+		
+		return $accident_t4_11->all;
+	}
+	
+	/**
 	 * 創建一個意外
 	 */
 	function createAccident($row) {
@@ -309,6 +322,37 @@ class Accident_Model extends CI_Model {
 		$accidents_natural->aid = $accident_natural['aid'];
 		$accidents_natural->atype = $accident_natural['atype'];
 		$accidents_natural->save();
+		
+		if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
+	}
+	
+	function saveAccidentT4_11($id, $accident, $accident_t4_11) {
+		$this->db->trans_start();
+		
+		$accidents = new Accidents();
+		$accidents->where('id',$id)->update($accident);
+		
+		$accidents_t4_11 = new Accident_T4_11();
+		$accidents_t4_11->aid = $accident_t4_11['aid'];
+		$accidents_t4_11->group_code = $accident_t4_11['group_code'];
+		$accidents_t4_11->guide_code = $accident_t4_11['guide_code'];
+		$accidents_t4_11->guide_name = $accident_t4_11['guide_name'];
+		$accidents_t4_11->guide_tel = $accident_t4_11['guide_tel'];
+		$accidents_t4_11->agency_name = $accident_t4_11['agency_name'];
+		$accidents_t4_11->level = $accident_t4_11['level'];
+		$accidents_t4_11->atime = $accident_t4_11['atime'];
+		$accidents_t4_11->reason = $accident_t4_11['reason'];
+		$accidents_t4_11->detail = $accident_t4_11['detail'];
+		$accidents_t4_11->members_name = $accident_t4_11['members_name'];
+		$accidents_t4_11->save();
 		
 		if ($this->db->trans_status() === FALSE){
             $this->db->trans_rollback();
