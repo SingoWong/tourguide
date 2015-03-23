@@ -19,9 +19,9 @@ class Accident extends Base_Controller {
         $this->smarty->assign( 'url_medicine_photo_choose', url('accident/medicine_photo_choose') );
         $this->smarty->assign( 'url_desert_form', url('accident/desert_form') );
         $this->smarty->assign( 'url_natural_photo_choose', url('accident/natural_photo_choose') );
-		$this->smarty->assign( 'url_t1', url('accident/t4_1') );
-		$this->smarty->assign( 'url_t2', url('accident/t4_2') );
-		$this->smarty->assign( 'url_t3', url('accident/t4_3') );
+		$this->smarty->assign( 'url_t1', url('accident/t1_form') );
+		$this->smarty->assign( 'url_t2', url('accident/t2_form') );
+		$this->smarty->assign( 'url_t3', url('accident/t3_form') );
 		$this->smarty->assign( 'url_t4_11', url('accident/t4_11_form') );
         $this->smarty->display('./accident/menu.html');
     }
