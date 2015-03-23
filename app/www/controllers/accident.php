@@ -317,7 +317,28 @@ class Accident extends Base_Controller {
     }
 	
 	public function t1_form() {
+		$this->load->model('Group_Model');
+		$this->load->model('Users_Guide_Model');
+		$this->load->model('Users_Agency_Model');
 		
+		$group = new Group_Model();
+	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+		
+		$guide = new Users_Guide_Model();
+		$re_guide = $guide->getGuideById($this->user['id']);
+		
+		$agency = new Users_Agency_Model();
+		$re_agency = $agency->getAgencyById($re_group->aid);
+        
+		$this->smarty->assign('group', $re_group);
+		$this->smarty->assign('guide', $re_guide);
+		$this->smarty->assign('agency', $re_agency);
+		$this->smarty->assign('date', date('Y-m-d'));
+		$this->smarty->assign('adate', date('Y-m-d'));
+        $this->smarty->assign('time', date('H:i'));
+		$this->smarty->assign('atime', date('H:i'));
+        $this->smarty->assign('url_submit', url('accident/t1_submit'));
+        $this->smarty->display('./accident/t1_form.html');
 	}
 	
 	public function t1_submit() {
@@ -325,7 +346,28 @@ class Accident extends Base_Controller {
 	}
 	
 	public function t2_form() {
+		$this->load->model('Group_Model');
+		$this->load->model('Users_Guide_Model');
+		$this->load->model('Users_Agency_Model');
 		
+		$group = new Group_Model();
+	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+		
+		$guide = new Users_Guide_Model();
+		$re_guide = $guide->getGuideById($this->user['id']);
+		
+		$agency = new Users_Agency_Model();
+		$re_agency = $agency->getAgencyById($re_group->aid);
+        
+		$this->smarty->assign('group', $re_group);
+		$this->smarty->assign('guide', $re_guide);
+		$this->smarty->assign('agency', $re_agency);
+		$this->smarty->assign('date', date('Y-m-d'));
+		$this->smarty->assign('adate', date('Y-m-d'));
+        $this->smarty->assign('time', date('H:i'));
+		$this->smarty->assign('atime', date('H:i'));
+        $this->smarty->assign('url_submit', url('accident/t2_submit'));
+        $this->smarty->display('./accident/t2_form.html');
 	}
 	
 	public function t2_submit() {
@@ -333,7 +375,28 @@ class Accident extends Base_Controller {
 	}
 	
 	public function t3_form() {
+		$this->load->model('Group_Model');
+		$this->load->model('Users_Guide_Model');
+		$this->load->model('Users_Agency_Model');
 		
+		$group = new Group_Model();
+	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+		
+		$guide = new Users_Guide_Model();
+		$re_guide = $guide->getGuideById($this->user['id']);
+		
+		$agency = new Users_Agency_Model();
+		$re_agency = $agency->getAgencyById($re_group->aid);
+        
+		$this->smarty->assign('group', $re_group);
+		$this->smarty->assign('guide', $re_guide);
+		$this->smarty->assign('agency', $re_agency);
+		$this->smarty->assign('date', date('Y-m-d'));
+		$this->smarty->assign('adate', date('Y-m-d'));
+        $this->smarty->assign('time', date('H:i'));
+		$this->smarty->assign('atime', date('H:i'));
+        $this->smarty->assign('url_submit', url('accident/t3_submit'));
+        $this->smarty->display('./accident/t3_form.html');
 	}
 	
 	public function t3_submit() {

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		{{include file="_common/minclude.html"}}
+		<script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+		<style type="text/css">
+			.quick-nav {
+				padding: 0 50px;
+			}
+			.info-hotel {
+				padding: 10px;
+			}
+			.mui-input-row {
+				padding: 3px 0!important;
+			}
+			.mui-input-row select {
+				padding-left: 10px!important;
+			}
+			.mui-input-row label {
+				font-size: 16px!important;
+				width: auto!important;
+			}
+			.mui-input-row em {
+				display: inline-block;
+			  	float: left;
+			  	padding: 10px 15px;
+			  	font-family: "Helvetica Neue",Helvetica,sans-serif;
+			  	line-height: 1.1;
+			  	font-size: 16px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{{$url_menu}}"></a>
+			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
+			{{if $RBAC_ROLE_ID == '24'}}
+			<div class="quick-nav">
+				<div id="sc-nav" class="mui-segmented-control">
+					<a class="mui-control-item" onclick="location.href='{{$url_info}}'">團號</a>
+					<a class="mui-control-item" onclick="location.href='{{$url_restaurant}}'">訂餐</a>
+					<a class="mui-control-item" onclick="location.href='{{$url_hotel}}'">訂房</a>
+					<a class="mui-control-item mui-active" onclick="location.href='{{$url_accident}}'">意外</a>
+				</div>
+			</div>
+			{{else}}
+			<h1 class="mui-title">意外通報</h1>
+			{{/if}}
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group" action="{{$url_submit}}" method="post" id="form">
+				<div class="mui-input-row">
+					<label>報告人：</label><em>{{$guide->user->name}}</em>
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="date" placeholder="發生日期" value="{{$date}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="time" placeholder="發生時間，时:分" value="{{$time}}">
+				</div>
+				<div class="mui-input-row">
+					<label>觀光團團號：</label><em>{{$group->code}}</em>
+					<input type="hidden" name="group_code" value="{{$group_code}}" />
+				</div>
+				<div class="mui-input-row">
+					<label>隨團導遊證號：</label><em>{{$guide->code}}</em>
+					<input type="hidden" name="guide_code" value="{{$guide->code}}" />
+				</div>
+				<div class="mui-input-row">
+					<label>隨團導遊姓名：</label><em>{{$guide->user->name}}</em>
+					<input type="hidden" name="guide_name" value="{{$guide->user->name}}" />
+				</div>
+				<div class="mui-input-row">
+					<label>隨團導遊手機：</label><em>{{$guide->contact_tel}}</em>
+					<input type="hidden" name="guide_tel" value="{{$guide->contact_tel}}" />
+				</div>
+				<div class="mui-input-row">
+					<label>接待旅行社：</label><em>{{$agency->users->name}}</em>
+					<input type="hidden" name="agency_name" value="{{$agency->user->name}}" />
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="adate" placeholder="入境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="atime" placeholder="入境時間，时:分" value="">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="adate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="atime" placeholder="出境時間，时:分" value="">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="detail" placeholder="機場/港口" value="{{$detail}}">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="detail" placeholder="航班/船班" value="{{$detail}}">
+				</div>
+				<div class="mui-input-row">
+					<label>出境人數：</label>
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="detail" placeholder="原入境旅客（人）" value="{{$detail}}">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="detail" placeholder="實際出境旅客（人）" value="{{$detail}}">
+				</div>
+				<div class="mui-input-row">
+					<label>未出境旅客：</label>
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="members_name" placeholder="姓名" value="{{$members_name}}">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="members_name" placeholder="事由" value="{{$members_name}}">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="adate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="atime" placeholder="出境時間，时:分" value="">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="members_name" placeholder="出境航班" value="{{$members_name}}">
+				</div>
+				
+				<div class="mui-input-row">
+					<label>已提前出境：</label>
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="members_name" placeholder="姓名" value="{{$members_name}}">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="members_name" placeholder="事由" value="{{$members_name}}">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="adate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="atime" placeholder="出境時間，时:分" value="">
+				</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" name="members_name" placeholder="出境航班" value="{{$members_name}}">
+				</div>
+				
+				<div class="signin_submit">
+					<input type="hidden" name="id" value="{{$id}}" />
+					<button class="mui-btn mui-btn-primary mui-btn-block">回報上傳</button>
+				</div>
+			</form>
+		</div><br /><br />
+		<nav class="mui-bar mui-bar-tab">
+		  <a class="mui-tab-item mui-active" href="#" onclick="location.href='tel://119';">
+		    救護車119
+		  </a>
+		  <a class="mui-tab-item mui-active" href="#" onclick="location.href='tel://110';">
+		    報警110
+		  </a>
+		  <a class="mui-tab-item mui-active" href="#" onclick="location.href='{{$agency_tel}}';">
+		    聯繫旅行社
+		  </a>
+		</nav>
+	</body>
+</html>
