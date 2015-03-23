@@ -80,8 +80,8 @@ class SysReport extends Base_Controller {
 		$end_date = $this->input->get("end_date");
 		
 		
-		header('Content-Encoding: gb18030');
-		header("Content-type:application/vnd.ms-excel;charset=gb18030");
+		header('Content-Encoding: UTF-8');
+		header("Content-type:application/vnd.ms-excel;charset=UTF-8");
 		header("Content-Disposition:attachment;filename=report_".$report."_".$name."_(".$start_date."-".$end_date.").csv");
 		
 		if ($report == 'agency') {

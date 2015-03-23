@@ -19,6 +19,9 @@ class Accident extends Base_Controller {
         $this->smarty->assign( 'url_medicine_photo_choose', url('accident/medicine_photo_choose') );
         $this->smarty->assign( 'url_desert_form', url('accident/desert_form') );
         $this->smarty->assign( 'url_natural_photo_choose', url('accident/natural_photo_choose') );
+		$this->smarty->assign( 'url_t1', url('accident/t4_1') );
+		$this->smarty->assign( 'url_t2', url('accident/t4_2') );
+		$this->smarty->assign( 'url_t3', url('accident/t4_3') );
 		$this->smarty->assign( 'url_t4_11', url('accident/t4_11_form') );
         $this->smarty->display('./accident/menu.html');
     }
@@ -313,6 +316,30 @@ class Accident extends Base_Controller {
         $this->smarty->display('./accident/natural_finish.html');
     }
 	
+	public function t1_form() {
+		
+	}
+	
+	public function t1_submit() {
+		
+	}
+	
+	public function t2_form() {
+		
+	}
+	
+	public function t2_submit() {
+		
+	}
+	
+	public function t3_form() {
+		
+	}
+	
+	public function t3_submit() {
+		
+	}
+	
 	public function t4_11_form() {
 		$this->load->model('Group_Model');
 		$this->load->model('Users_Guide_Model');
@@ -359,13 +386,13 @@ class Accident extends Base_Controller {
 		$re = $ac->saveAccidentT4_11($id, $accident, $accident_t4_11);
 		
 		if ($re) {
-			redirect(url('accident/t4_11_finish'));
+			redirect(url('accident/common_finish'));
 		} else {
 			alert('保存失敗，請重試', url('accident/t4_11_form'));
 		}
 	}
 	
-	public function t4_11_finish() {
+	public function common_finish() {
 		
         $this->smarty->display('./accident/common_finish.html');
 	}
