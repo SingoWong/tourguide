@@ -62,9 +62,10 @@ class Guide extends Base_Controller {
 			if ($row->type=='4') {
             		$r['location'] = $row->hotel->name;
 			} elseif ($row->type=='2' || $row->type=='3') {
-				$r['location'] = $row->restaurant->name;
 				if ($row->rstatus == '4') {
-					$r['location'] .= ' '.$row->location;
+					$r['location'] = $row->restaurant->name.' '.$row->location;
+				} else {
+					$r['location'] = $row->location;
 				}
             	} else {
             		$r['location'] = $row->location;

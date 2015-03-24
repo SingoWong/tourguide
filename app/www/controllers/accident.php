@@ -429,6 +429,7 @@ class Accident extends Base_Controller {
 	}
 	
 	public function t4_11_submit() {
+		exit();
 		$this->load->model('Accident_Model');
 		
 		$row['group_aid'] = $re_group->aid;
