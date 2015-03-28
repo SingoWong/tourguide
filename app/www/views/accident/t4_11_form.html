@@ -56,10 +56,12 @@
 					<label>報告人：</label><em>{{$guide->user->name}}</em>
 				</div>
 				<div class="mui-input-row">
+					<label>發生日期：</label>
 					<input type="text" class="mui-input-clear" name="date" placeholder="發生日期" value="{{$date}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="time" placeholder="發生時間，时:分" value="{{$time}}">
+					<label>發生時間：</label>
+					<input type="text" class="mui-input-clear" name="time" placeholder="發生時間，時:分" value="{{$time}}">
 				</div>
 				<div class="mui-input-row">
 					<label>觀光團團號：</label><em>{{$group->code}}</em>
@@ -82,23 +84,25 @@
 					<input type="hidden" name="agency_name" value="{{$agency->user->name}}" />
 				</div>
 				<div class="mui-input-row">
-					<label>通報別：</label>
+					<label>通報級別：</label>
 					<select name="level">
-						<option value="">－</option>
+						<option value="">請選擇通報級別</option>
 						<option value="1">初報</option>
 						<option value="2">續報</option>
 						<option value="3">結報</option>
 					</select>
 				</div>
 				<div class="mui-input-row">
+					<label>變更日期：</label>
 					<input type="text" class="mui-input-clear" name="adate" placeholder="發生變更日期" value="{{$adate}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="atime" placeholder="發生變更時間，时:分" value="{{$atime}}">
+					<label>變更時間：</label>
+					<input type="text" class="mui-input-clear" name="atime" placeholder="發生變更時間，時:分" value="{{$atime}}">
 				</div>
 				<div class="mui-input-row">
 					<label>通報事由：</label>
-					<select name="reason">
+					<select name="reson">
 						<option value="購物點變更">購物點變更</option>
 					</select>
 				</div>

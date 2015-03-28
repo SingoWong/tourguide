@@ -3,6 +3,9 @@ define('ACCIDENT_TYPE_BUS', '0');
 define('ACCIDENT_TYPE_MEDICINE', '1');
 define('ACCIDENT_TYPE_DESERT', '2');
 define('ACCIDENT_TYPE_NATURAL', '3');
+define('ACCIDENT_TYPE_T1', '4');
+define('ACCIDENT_TYPE_T2', '5');
+define('ACCIDENT_TYPE_T3', '6');
 
 define('ACCIDENT_TYPE_T4_11', '14');
 
@@ -193,6 +196,45 @@ class Accident_Model extends CI_Model {
     }
 	
 	/**
+	 * 獲取(表一)入境接待通報表
+	 * @param unknown $aid
+     * @return multitype:
+	 */
+	function getAccidentT1($aid) {
+		$accident_t1 = new Accident_T1();
+		
+		$accident_t1->where('aid',$aid)->get();
+		
+		return $accident_t1->all;
+	}
+	
+	/**
+	 * 獲取(表二)出境通報表
+	 * @param unknown $aid
+     * @return multitype:
+	 */
+	function getAccidentT2($aid) {
+		$accident_t2 = new Accident_T2();
+		
+		$accident_t2->where('aid',$aid)->get();
+		
+		return $accident_t2->all;
+	}
+	
+	/**
+	 * 獲取(表三)旅客離團申報書
+	 * @param unknown $aid
+     * @return multitype:
+	 */
+	function getAccidentT3($aid) {
+		$accident_t3 = new Accident_T3();
+		
+		$accident_t3->where('aid',$aid)->get();
+		
+		return $accident_t3->all;
+	}
+	
+	/**
 	 * 獲取(表四)通報案件申報書
 	 * @param unknown $aid
      * @return multitype:
@@ -336,6 +378,119 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 	
+	function saveAccidentT1($id, $accident, $accident_t1) {
+		$this->db->trans_start();
+		
+		$accidents = new Accidents();
+		$accidents->where('id',$id)->update($accident);
+		
+		$accidents_t1 = new Accident_T1();
+		$accidents_t1->aid = $accident_t1['aid'];
+		$accidents_t1->group_code = $accident_t1['group_code'];
+		$accidents_t1->guide_code = $accident_t1['guide_code'];
+		$accidents_t1->guide_name = $accident_t1['guide_name'];
+		$accidents_t1->guide_tel = $accident_t1['guide_tel'];
+		$accidents_t1->agency_name = $accident_t1['agency_name'];
+		$accidents_t1->etime = $accident_t1['etime'];
+		$accidents_t1->airport = $accident_t1['airport'];
+		$accidents_t1->flight_code = $accident_t1['flight_code'];
+		$accidents_t1->permission_count = $accident_t1['permission_count'];
+		$accidents_t1->actual_count = $accident_t1['actual_count'];
+		$accidents_t1->noenter_count = $accident_t1['noenter_count'];
+		$accidents_t1->members_name = $accident_t1['members_name'];
+		$accidents_t1->leaders_name = $accident_t1['leaders_name'];
+		$accidents_t1->leaders_tel = $accident_t1['leaders_tel'];
+		$accidents_t1->sented = time();
+		$accidents_t1->save();
+		
+		if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
+	}
+
+	function saveAccidentT2($id, $accident, $accident_t2) {
+		$this->db->trans_start();
+		
+		$accidents = new Accidents();
+		$accidents->where('id',$id)->update($accident);
+		
+		$accidents_t2 = new Accident_T2();
+		$accidents_t2->aid = $accidents_t2['aid'];
+		$accidents_t2->group_code = $accidents_t2['group_code'];
+		$accidents_t2->guide_code = $accidents_t2['guide_code'];
+		$accidents_t2->guide_name = $accidents_t2['guide_name'];
+		$accidents_t2->guide_tel = $accidents_t2['guide_tel'];
+		$accidents_t2->agency_name = $accidents_t2['agency_name'];
+		$accidents_t2->etime = $accidents_t2['etime'];
+		$accidents_t2->etime = $accidents_t2['otime'];
+		$accidents_t2->airport = $accidents_t2['airport'];
+		$accidents_t2->flight_code = $accidents_t2['flight_code'];
+		$accidents_t2->permission_count = $accidents_t2['permission_count'];
+		$accidents_t2->actual_count = $accidents_t2['actual_count'];
+		$accidents_t2->noleave_name = $accidents_t2['noleave_name'];
+		$accidents_t2->noleave_reson = $accidents_t2['noleave_reson'];
+		$accidents_t2->noleave_otime = $accidents_t2['noleave_otime'];
+		$accidents_t2->noleave_flight_code = $accidents_t2['noleave_flight_code'];
+		$accidents_t2->ahead_name = $accidents_t2['ahead_name'];
+		$accidents_t2->ahead_reson = $accidents_t2['ahead_reson'];
+		$accidents_t2->ahead_otime = $accidents_t2['ahead_otime'];
+		$accidents_t2->ahead_flight_code = $accidents_t2['ahead_flight_code'];
+		$accidents_t2->sented = time();
+		$accidents_t2->save();
+		
+		if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
+	}
+
+	function saveAccidentT3($id, $accident, $accident_t3) {
+		$this->db->trans_start();
+		
+		$accidents = new Accidents();
+		$accidents->where('id',$id)->update($accident);
+		
+		$accidents_t3 = new Accident_T3();
+		$accidents_t3->aid = $accident_t3['aid'];
+		$accidents_t3->group_code = $accident_t3['group_code'];
+		$accidents_t3->guide_code = $accident_t3['guide_code'];
+		$accidents_t3->guide_name = $accident_t3['guide_name'];
+		$accidents_t3->guide_tel = $accident_t3['guide_tel'];
+		$accidents_t3->agency_name = $accident_t3['agency_name'];
+		$accidents_t3->level = $accident_t3['level'];
+		$accidents_t3->reson = $accident_t3['reson'];
+		$accidents_t3->ff_name = $accident_t3['ff_name'];
+		$accidents_t3->ff_address = $accident_t3['ff_address'];
+		$accidents_t3->ff_tel = $accident_t3['ff_tel'];
+		$accidents_t3->urgen_detail = $accident_t3['urgen_detail'];
+		$accidents_t3->ltime = $accident_t3['ltime'];
+		$accidents_t3->btime = $accident_t3['btime'];
+		$accidents_t3->members_name = $accident_t3['members_name'];
+		$accidents_t3->sented = time();
+		$accidents_t3->save();
+		
+		if ($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            $result = '0';
+        } else {
+            $this->db->trans_commit();
+            $result = '1';
+        }
+        
+        return array('result'=>$result);
+	}
+	
 	function saveAccidentT4_11($id, $accident, $accident_t4_11) {
 		$this->db->trans_start();
 		
@@ -354,6 +509,7 @@ class Accident_Model extends CI_Model {
 		$accidents_t4_11->reason = $accident_t4_11['reason'];
 		$accidents_t4_11->detail = $accident_t4_11['detail'];
 		$accidents_t4_11->members_name = $accident_t4_11['members_name'];
+		$accidents_t4_11->sented = time();
 		$accidents_t4_11->save();
 		
 		if ($this->db->trans_status() === FALSE){

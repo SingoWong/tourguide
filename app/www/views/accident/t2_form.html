@@ -56,9 +56,11 @@
 					<label>報告人：</label><em>{{$guide->user->name}}</em>
 				</div>
 				<div class="mui-input-row">
+					<label>發生日期</label>
 					<input type="text" class="mui-input-clear" name="date" placeholder="發生日期" value="{{$date}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
+					<label>發生時間</label>
 					<input type="text" class="mui-input-clear" name="time" placeholder="發生時間，时:分" value="{{$time}}">
 				</div>
 				<div class="mui-input-row">
@@ -82,68 +84,106 @@
 					<input type="hidden" name="agency_name" value="{{$agency->user->name}}" />
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="adate" placeholder="入境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					<label>入境日期</label>
+					<input type="text" class="mui-input-clear" name="edate" placeholder="入境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="atime" placeholder="入境時間，时:分" value="">
+					<label>入境時間</label>
+					<input type="text" class="mui-input-clear" name="etime" placeholder="入境時間，时:分" value="">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="adate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					<label>出境日期</label>
+					<input type="text" class="mui-input-clear" name="odate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="atime" placeholder="出境時間，时:分" value="">
+					<label>出境時間</label>
+					<input type="text" class="mui-input-clear" name="otime" placeholder="出境時間，时:分" value="">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="detail" placeholder="機場/港口" value="{{$detail}}">
+					<select name="airport">
+						<option value="">機場/港口</option>
+						<option value="桃園機場">桃園機場</option>
+						<option value="桃園機場">高雄機場</option>
+						<option value="桃園機場">基隆港</option>
+						<option value="桃園機場">臺中港</option>
+						<option value="桃園機場">高雄港</option>
+						<option value="桃園機場">花蓮港</option>
+						<option value="桃園機場">蘇澳港</option>
+						<option value="桃園機場">澎湖港</option>
+						<option value="桃園機場">台南機場</option>
+						<option value="桃園機場">安平港</option>
+						<option value="桃園機場">松山機場</option>
+						<option value="桃園機場">桃園二期</option>
+						<option value="桃園機場">金門港</option>
+						<option value="桃園機場">馬祖</option>
+						<option value="桃園機場">花蓮機場</option>
+						<option value="桃園機場">麥寮港</option>
+						<option value="桃園機場">馬公機場</option>
+						<option value="桃園機場">台中機場</option>
+						<option value="桃園機場">和平港</option>
+						<option value="桃園機場">金門機場</option>
+						<option value="桃園機場">南竿機場</option>
+						<option value="桃園機場">北竿機場</option>
+						<option value="桃園機場">嘉義機場</option>
+						<option value="桃園機場">臺北港</option>
+						<option value="桃園機場">東港</option>
+						<option value="桃園機場">台東機場</option>
+						<option value="桃園機場">北竿白沙港</option>
+						<option value="桃園機場">布袋港</option>
+					</select>
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="detail" placeholder="航班/船班" value="{{$detail}}">
+					<input type="text" class="mui-input-clear" name="flight_code" placeholder="航班/船班" value="{{$detail}}">
 				</div>
 				<div class="mui-input-row">
 					<label>出境人數：</label>
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="detail" placeholder="原入境旅客（人）" value="{{$detail}}">
+					<input type="text" class="mui-input-clear" name="permission_count" placeholder="原入境旅客（人）" value="{{$detail}}">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="detail" placeholder="實際出境旅客（人）" value="{{$detail}}">
+					<input type="text" class="mui-input-clear" name="actual_count" placeholder="實際出境旅客（人）" value="{{$detail}}">
 				</div>
 				<div class="mui-input-row">
 					<label>未出境旅客：</label>
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="members_name" placeholder="姓名" value="{{$members_name}}">
+					<input type="text" class="mui-input-clear" name="noleave_name" placeholder="姓名" value="{{$members_name}}">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="members_name" placeholder="事由" value="{{$members_name}}">
+					<input type="text" class="mui-input-clear" name="noleave_reson" placeholder="事由" value="{{$members_name}}">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="adate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					<label>出境日期</label>
+					<input type="text" class="mui-input-clear" name="noleave_odate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="atime" placeholder="出境時間，时:分" value="">
+					<label>出境時間</label>
+					<input type="text" class="mui-input-clear" name="noleave_otime" placeholder="出境時間，时:分" value="">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="members_name" placeholder="出境航班" value="{{$members_name}}">
+					<input type="text" class="mui-input-clear" name="noleave_flight_code" placeholder="出境航班" value="{{$members_name}}">
 				</div>
 				
 				<div class="mui-input-row">
 					<label>已提前出境：</label>
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="members_name" placeholder="姓名" value="{{$members_name}}">
+					<input type="text" class="mui-input-clear" name="ahead_name" placeholder="姓名" value="{{$members_name}}">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="members_name" placeholder="事由" value="{{$members_name}}">
+					<input type="text" class="mui-input-clear" name="ahead_reson" placeholder="事由" value="{{$members_name}}">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="adate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					<label>出境日期</label>
+					<input type="text" class="mui-input-clear" name="ahead_odate" placeholder="出境日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="atime" placeholder="出境時間，时:分" value="">
+					<label>出境時間</label>
+					<input type="text" class="mui-input-clear" name="ahead_otime" placeholder="出境時間，时:分" value="">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="members_name" placeholder="出境航班" value="{{$members_name}}">
+					<input type="text" class="mui-input-clear" name="ahead_flight_code" placeholder="出境航班" value="{{$members_name}}">
 				</div>
 				
 				<div class="signin_submit">

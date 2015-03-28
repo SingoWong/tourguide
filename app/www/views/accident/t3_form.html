@@ -77,9 +77,11 @@
 					<label>報告人：</label><em>{{$guide->user->name}}</em>
 				</div>
 				<div class="mui-input-row">
+					<label>發生日期：</label>
 					<input type="text" class="mui-input-clear" name="date" placeholder="發生日期" value="{{$date}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
+					<label>發生時間：</label>
 					<input type="text" class="mui-input-clear" name="time" placeholder="發生時間，时:分" value="{{$time}}">
 				</div>
 				<div class="mui-input-row">
@@ -114,7 +116,7 @@
 				
 				<div class="mui-input-row">
 					<label>通報事由：</label>
-					<select name="reason" onchange="change_reason(this);">
+					<select name="reson" onchange="change_reason(this);">
 						<option value="">請選擇事由</option>
 						<option value="傷病">傷病</option>
 						<option value="探訪親友">探訪親友</option>
@@ -138,16 +140,20 @@
 				</div>
 				
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="adate" placeholder="離團日期" value="{{$adate}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					<label>離團日期：</label>
+					<input type="text" class="mui-input-clear" name="ldate" placeholder="離團日期" value="{{$adate}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="atime" placeholder="離團時間，时:分" value="{{$atime}}">
+					<label>離團時間：</label>
+					<input type="text" class="mui-input-clear" name="ltime" placeholder="離團時間，时:分" value="{{$atime}}">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="adate" placeholder="歸團日期" value="{{$adate}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					<label>歸團日期</label>
+					<input type="text" class="mui-input-clear" name="bdate" placeholder="歸團日期" value="{{$adate}}" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="atime" placeholder="歸團時間，时:分" value="{{$atime}}">
+					<label>歸團時間</label>
+					<input type="text" class="mui-input-clear" name="btime" placeholder="歸團時間，时:分" value="{{$atime}}">
 				</div>
 				<div class="mui-input-row">
 					<input type="text" class="mui-input-clear" name="members_name" placeholder="旅客姓名名單" value="{{$members_name}}">

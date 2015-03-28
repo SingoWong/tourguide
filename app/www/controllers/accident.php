@@ -342,7 +342,47 @@ class Accident extends Base_Controller {
 	}
 	
 	public function t1_submit() {
+		$this->load->model('Group_Model');
+		$this->load->model('Accident_Model');
 		
+		$group = new Group_Model();
+	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+		$row['group_aid'] = $re_group->aid;
+		$row['gid'] = $re_group->id;
+		$row['guide_id'] = $this->user['id'];
+		$row['type'] = ACCIDENT_TYPE_T1;
+		$row['source'] = ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
+		
+        $accident_model = new Accident_Model();
+		$re_accident = $accident_model->createAccident($row);
+		$id = $re_accident['id'];
+		
+		$accident['time'] = strtotime($this->input->post('date').' '.$this->input->post('time'));
+		
+		$accident_t1['aid'] = $id;
+		$accident_t1['group_code'] = $this->input->post('group_code');
+		$accident_t1['guide_code'] = $this->input->post('guide_code');
+		$accident_t1['guide_name'] = $this->input->post('guide_name');
+		$accident_t1['guide_tel'] = $this->input->post('guide_tel');
+		$accident_t1['agency_name'] = $this->input->post('agency_name');
+		$accident_t1['etime'] = strtotime($this->input->post('edate').' '.$this->input->post('etime'));
+		$accident_t1['airport'] = $this->input->post('airport');
+		$accident_t1['flight_code'] = $this->input->post('flight_code');
+		$accident_t1['permission_count'] = $this->input->post('permission_count');
+		$accident_t1['actual_count'] = $this->input->post('actual_count');
+		$accident_t1['noenter_count'] = $this->input->post('noenter_count');
+		$accident_t1['members_name'] = $this->input->post('members_name');
+		$accident_t1['leaders_name'] = $this->input->post('leaders_name');
+		$accident_t1['leaders_tel'] = $this->input->post('leaders_tel');
+		
+		$ac = new Accident_Model();
+		$re = $ac->saveAccidentT1($id, $accident, $accident_t1);
+		
+		if ($re) {
+			redirect(url('accident/common_finish'));
+		} else {
+			alert('保存失敗，請重試', url('accident/t1_form'));
+		}
 	}
 	
 	public function t2_form() {
@@ -371,7 +411,52 @@ class Accident extends Base_Controller {
 	}
 	
 	public function t2_submit() {
+		$this->load->model('Group_Model');
+		$this->load->model('Accident_Model');
 		
+		$group = new Group_Model();
+	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+		$row['group_aid'] = $re_group->aid;
+		$row['gid'] = $re_group->id;
+		$row['guide_id'] = $this->user['id'];
+		$row['type'] = ACCIDENT_TYPE_T2;
+		$row['source'] = ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
+		
+        $accident_model = new Accident_Model();
+		$re_accident = $accident_model->createAccident($row);
+		$id = $re_accident['id'];
+		
+		$accident['time'] = strtotime($this->input->post('date').' '.$this->input->post('time'));
+		
+		$accident_t2['aid'] = $id;
+		$accident_t2['group_code'] = $this->input->post('group_code');
+		$accident_t2['guide_code'] = $this->input->post('guide_code');
+		$accident_t2['guide_name'] = $this->input->post('guide_name');
+		$accident_t2['guide_tel'] = $this->input->post('guide_tel');
+		$accident_t2['agency_name'] = $this->input->post('agency_name');
+		$accident_t2['etime'] = strtotime($this->input->post('edate').' '.$this->input->post('etime'));
+		$accident_t2['otime'] = strtotime($this->input->post('odate').' '.$this->input->post('otime'));
+		$accident_t2['airport'] = $this->input->post('airport');
+		$accident_t2['flight_code'] = $this->input->post('flight_code');
+		$accident_t2['permission_count'] = $this->input->post('permission_count');
+		$accident_t2['actual_count'] = $this->input->post('actual_count');
+		$accident_t2['noleave_name'] = $this->input->post('noleave_name');
+		$accident_t2['noleave_reson'] = $this->input->post('noleave_reson');
+		$accident_t2['noleave_otime'] = strtotime($this->input->post('noleave_odate').' '.$this->input->post('noleave_otime'));
+		$accident_t2['noleave_flight_code'] = $this->input->post('noleave_flight_code');
+		$accident_t2['ahead_name'] = $this->input->post('ahead_name');
+		$accident_t2['ahead_reson'] = $this->input->post('ahead_reson');
+		$accident_t2['ahead_otime'] = strtotime($this->input->post('ahead_odate').' '.$this->input->post('ahead_otime'));
+		$accident_t2['ahead_flight_code'] = $this->input->post('ahead_flight_code');
+		
+		$ac = new Accident_Model();
+		$re = $ac->saveAccidentT2($id, $accident, $accident_t2);
+		
+		if ($re) {
+			redirect(url('accident/common_finish'));
+		} else {
+			alert('保存失敗，請重試', url('accident/t2_form'));
+		}
 	}
 	
 	public function t3_form() {
@@ -400,7 +485,46 @@ class Accident extends Base_Controller {
 	}
 	
 	public function t3_submit() {
+		$this->load->model('Group_Model');
+		$this->load->model('Accident_Model');
 		
+		$group = new Group_Model();
+	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+		$row['group_aid'] = $re_group->aid;
+		$row['gid'] = $re_group->id;
+		$row['guide_id'] = $this->user['id'];
+		$row['type'] = ACCIDENT_TYPE_T3;
+		$row['source'] = ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
+		
+        $accident_model = new Accident_Model();
+		$re_accident = $accident_model->createAccident($row);
+		$id = $re_accident['id'];
+		
+		$accident['time'] = strtotime($this->input->post('date').' '.$this->input->post('time'));
+		
+		$accident_t3['aid'] = $id;
+		$accident_t3['group_code'] = $this->input->post('group_code');
+		$accident_t3['guide_code'] = $this->input->post('guide_code');
+		$accident_t3['guide_name'] = $this->input->post('guide_name');
+		$accident_t3['guide_tel'] = $this->input->post('guide_tel');
+		$accident_t3['agency_name'] = $this->input->post('agency_name');
+		$accident_t3['level'] = $this->input->post('level');
+		$accident_t3['reson'] = $this->input->post('reson');
+		$accident_t3['ff_name'] = $this->input->post('ff_name');
+		$accident_t3['ff_address'] = $this->input->post('ff_address');
+		$accident_t3['ff_tel'] = $this->input->post('ff_tel');
+		$accident_t3['ltime'] = strtotime($this->input->post('ldate').' '.$this->input->post('ltime'));
+		$accident_t3['btime'] = strtotime($this->input->post('bdate').' '.$this->input->post('btime'));
+		$accident_t3['members_name'] = $this->input->post('members_name');
+		
+		$ac = new Accident_Model();
+		$re = $ac->saveAccidentT3($id, $accident, $accident_t3);
+		
+		if ($re) {
+			redirect(url('accident/common_finish'));
+		} else {
+			alert('保存失敗，請重試', url('accident/t3_form'));
+		}
 	}
 	
 	public function t4_11_form() {
@@ -429,9 +553,11 @@ class Accident extends Base_Controller {
 	}
 	
 	public function t4_11_submit() {
-		exit();
+		$this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
 		
+		$group = new Group_Model();
+	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
 		$row['group_aid'] = $re_group->aid;
 		$row['gid'] = $re_group->id;
 		$row['guide_id'] = $this->user['id'];
@@ -442,9 +568,19 @@ class Accident extends Base_Controller {
 		$re_accident = $accident_model->createAccident($row);
 		$id = $re_accident['id'];
 		
-		$accident[''] = '';
+		$accident['time'] = strtotime($this->input->post('date').' '.$this->input->post('time'));
 		
-		$accident_t4_11[''] = '';
+		$accident_t4_11['aid'] = $id;
+		$accident_t4_11['group_code'] = $this->input->post('group_code');
+		$accident_t4_11['guide_code'] = $this->input->post('guide_code');
+		$accident_t4_11['guide_name'] = $this->input->post('guide_name');
+		$accident_t4_11['guide_tel'] = $this->input->post('guide_tel');
+		$accident_t4_11['agency_name'] = $this->input->post('agency_name');
+		$accident_t4_11['level'] = $this->input->post('level');
+		$accident_t4_11['atime'] = strtotime($this->input->post('adate').' '.$this->input->post('atime'));
+		$accident_t4_11['reason'] = $this->input->post('reason');
+		$accident_t4_11['detail'] = $this->input->post('detail');
+		$accident_t4_11['members_name'] = $this->input->post('members_name');
 		
 		$ac = new Accident_Model();
 		$re = $ac->saveAccidentT4_11($id, $accident, $accident_t4_11);
