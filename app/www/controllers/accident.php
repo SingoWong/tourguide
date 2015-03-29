@@ -22,7 +22,7 @@ class Accident extends Base_Controller {
 		$this->smarty->assign( 'url_t1', url('accident/t1_form') );
 		$this->smarty->assign( 'url_t2', url('accident/t2_form') );
 		$this->smarty->assign( 'url_t3', url('accident/t3_form') );
-		$this->smarty->assign( 'url_t4_11', url('accident/t4_11_form') );
+		$this->smarty->assign( 'url_t4', url('accident/t4_form') );
         $this->smarty->display('./accident/menu.html');
     }
     
@@ -527,7 +527,7 @@ class Accident extends Base_Controller {
 		}
 	}
 	
-	public function t4_11_form() {
+	public function t4_form() {
 		$this->load->model('Group_Model');
 		$this->load->model('Users_Guide_Model');
 		$this->load->model('Users_Agency_Model');
@@ -548,11 +548,11 @@ class Accident extends Base_Controller {
 		$this->smarty->assign('adate', date('Y-m-d'));
         $this->smarty->assign('time', date('H:i'));
 		$this->smarty->assign('atime', date('H:i'));
-        $this->smarty->assign('url_submit', url('accident/t4_11_submit'));
-        $this->smarty->display('./accident/t4_11_form.html');
+        $this->smarty->assign('url_submit', url('accident/t4_submit'));
+        $this->smarty->display('./accident/t4_form.html');
 	}
 	
-	public function t4_11_submit() {
+	public function t4_submit() {
 		$this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
 		
@@ -561,7 +561,7 @@ class Accident extends Base_Controller {
 		$row['group_aid'] = $re_group->aid;
 		$row['gid'] = $re_group->id;
 		$row['guide_id'] = $this->user['id'];
-		$row['type'] = ACCIDENT_TYPE_T4_11;
+		$row['type'] = ACCIDENT_TYPE_T4;
 		$row['source'] = ($this->role['id']==ROLE_ID_LEADER)?'1':'0';
 		
         $accident_model = new Accident_Model();
@@ -570,25 +570,26 @@ class Accident extends Base_Controller {
 		
 		$accident['time'] = strtotime($this->input->post('date').' '.$this->input->post('time'));
 		
-		$accident_t4_11['aid'] = $id;
-		$accident_t4_11['group_code'] = $this->input->post('group_code');
-		$accident_t4_11['guide_code'] = $this->input->post('guide_code');
-		$accident_t4_11['guide_name'] = $this->input->post('guide_name');
-		$accident_t4_11['guide_tel'] = $this->input->post('guide_tel');
-		$accident_t4_11['agency_name'] = $this->input->post('agency_name');
-		$accident_t4_11['level'] = $this->input->post('level');
-		$accident_t4_11['atime'] = strtotime($this->input->post('adate').' '.$this->input->post('atime'));
-		$accident_t4_11['reason'] = $this->input->post('reason');
-		$accident_t4_11['detail'] = $this->input->post('detail');
-		$accident_t4_11['members_name'] = $this->input->post('members_name');
+		$accident_t4['aid'] = $id;
+		$accident_t4['group_code'] = $this->input->post('group_code');
+		$accident_t4['guide_code'] = $this->input->post('guide_code');
+		$accident_t4['guide_name'] = $this->input->post('guide_name');
+		$accident_t4['guide_tel'] = $this->input->post('guide_tel');
+		$accident_t4['agency_name'] = $this->input->post('agency_name');
+		$accident_t4['level'] = $this->input->post('level');
+		$accident_t4['atime'] = strtotime($this->input->post('adate').' '.$this->input->post('atime'));
+		$accident_t4['reason'] = $this->input->post('reason');
+		
+		$accident_t4['detail'] = $this->input->post('detail'); //案件說明
+		$accident_t4['members_name'] = $this->input->post('members_name'); //旅客姓名名單
 		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT4_11($id, $accident, $accident_t4_11);
+		$re = $ac->saveAccidentT4($id, $accident, $accident_t4);
 		
 		if ($re) {
 			redirect(url('accident/common_finish'));
 		} else {
-			alert('保存失敗，請重試', url('accident/t4_11_form'));
+			alert('保存失敗，請重試', url('accident/t4_form'));
 		}
 	}
 	

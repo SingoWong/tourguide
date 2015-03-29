@@ -6,8 +6,7 @@ define('ACCIDENT_TYPE_NATURAL', '3');
 define('ACCIDENT_TYPE_T1', '4');
 define('ACCIDENT_TYPE_T2', '5');
 define('ACCIDENT_TYPE_T3', '6');
-
-define('ACCIDENT_TYPE_T4_11', '14');
+define('ACCIDENT_TYPE_T4', '7');
 
 class Accident_Model extends CI_Model {
     
@@ -491,26 +490,26 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 	
-	function saveAccidentT4_11($id, $accident, $accident_t4_11) {
+	function saveAccidentT4($id, $accident, $accident_t4) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
 		$accidents->where('id',$id)->update($accident);
 		
-		$accidents_t4_11 = new Accident_T4_11();
-		$accidents_t4_11->aid = $accident_t4_11['aid'];
-		$accidents_t4_11->group_code = $accident_t4_11['group_code'];
-		$accidents_t4_11->guide_code = $accident_t4_11['guide_code'];
-		$accidents_t4_11->guide_name = $accident_t4_11['guide_name'];
-		$accidents_t4_11->guide_tel = $accident_t4_11['guide_tel'];
-		$accidents_t4_11->agency_name = $accident_t4_11['agency_name'];
-		$accidents_t4_11->level = $accident_t4_11['level'];
-		$accidents_t4_11->atime = $accident_t4_11['atime'];
-		$accidents_t4_11->reason = $accident_t4_11['reason'];
-		$accidents_t4_11->detail = $accident_t4_11['detail'];
-		$accidents_t4_11->members_name = $accident_t4_11['members_name'];
-		$accidents_t4_11->sented = time();
-		$accidents_t4_11->save();
+		$accidents_t4 = new Accident_T4();
+		$accidents_t4->aid = $accident_t4['aid'];
+		$accidents_t4->group_code = $accident_t4['group_code'];
+		$accidents_t4->guide_code = $accident_t4['guide_code'];
+		$accidents_t4->guide_name = $accident_t4['guide_name'];
+		$accidents_t4->guide_tel = $accident_t4['guide_tel'];
+		$accidents_t4->agency_name = $accident_t4['agency_name'];
+		$accidents_t4->level = $accident_t4['level'];
+		$accidents_t4->atime = $accident_t4['atime'];
+		$accidents_t4->reason = $accident_t4['reason'];
+		$accidents_t4->detail = $accident_t4['detail'];
+		$accidents_t4->members_name = $accident_t4['members_name'];
+		$accidents_t4->sented = time();
+		$accidents_t4->save();
 		
 		if ($this->db->trans_status() === FALSE){
             $this->db->trans_rollback();
@@ -521,6 +520,30 @@ class Accident_Model extends CI_Model {
         }
         
         return array('result'=>$result);
+	}
+
+	private function _sendEmail($subject, $mail, $receiver) {
+		$this->load->library('email'); 
+        
+        $config['protocol'] = EMAIL_PROTOCOL; 
+        $config['smtp_host'] = EMAIL_HOST; // given server 
+        $config['smtp_user'] = EMAIL_ADDRESS; 
+        $config['smtp_pass'] = EMAIL_PASSWORD; 
+        $config['smtp_port'] = EMAIL_PORT;
+        $config['smtp_timeout'] = EMAIL_TIMEOUT;
+		$config['smtp_crypto'] = EMAIL_CRYPTO;
+        $config['newline'] = "/r/n"; 
+        $config['crlf'] = "/r/n"; 
+        $config['charset']='utf-8';  // Encoding type 
+         
+        $this->email->initialize($config);
+		
+		$this->email->from(EMAIL_ADDRESS, EMAIL_NAME);  // show in the reciever email box 
+        $this->email->to($receiver); 
+         
+        $this->email->subject($subject); 
+        $this->email->message($mail); 
+        $this->email->send();
 	}
 }
 ?>
