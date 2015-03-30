@@ -31,6 +31,9 @@
 			  	line-height: 1.1;
 			  	font-size: 16px;
 			}
+			.pnl-reson {
+				display: none;
+			}
 		</style>
 		<script type="text/javascript">
 			function onreson(sender) {
@@ -123,25 +126,237 @@
 						<option value="11">購物點變更</option>
 					</select>
 				</div>
-				<div class="pnl-reson reson-1 reson-3 reson-5 reson-6 reson-7 reson-8 reson-11">
+				<div class="pnl-reson reson-2 reson-4 reson-9">
+					<div class="mui-input-row">
+						<label>車別：</label>
+						<select name="car">
+							<option value="1">第1車</option>
+						</select>
+					</div>
+				</div>
+				<div class="pnl-reson reson-2">
+					<div class="mui-input-row">
+						<label>原始本島導遊姓名：</label><em>-</em>
+						<input type="hidden" name="org_tw_guide_name" value="" />
+					</div>
+					<div class="mui-input-row">
+						<label>原始本島導遊電話：</label><em>-</em>
+						<input type="hidden" name="org_tw_guide_tel" value="" />
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_guide_code" placeholder="變更後本島導遊證號" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_guide_name" placeholder="變更後本島導遊姓名" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_guide_tel" placeholder="變更後本島導遊電話" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>原始離島導遊姓名：</label><em>-</em>
+						<input type="hidden" name="org_tw_lguide_name" value="" />
+					</div>
+					<div class="mui-input-row">
+						<label>原始離島導遊電話：</label><em>-</em>
+						<input type="hidden" name="org_tw_lguide_tel" value="" />
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_lguide_code" placeholder="變更後離島導遊證號" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_lguide_name" placeholder="變更後離島導遊姓名" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_lguide_tel" placeholder="變更後離島導遊電話" value="">
+					</div>
+				</div>
+				<div class="pnl-reson reson-4">
+					<div class="mui-input-row">
+						<label>帶團日期：</label>
+					</div>
+					<div class="mui-input-row">
+						<label>開始日期：</label>
+						<input type="text" class="mui-input-clear" name="group_start_date" placeholder="帶團開始日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					</div>
+					<div class="mui-input-row">
+						<label>開始時間：</label>
+						<input type="text" class="mui-input-clear" name="group_start_time" placeholder="帶團開始時間，時:分" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>結束日期：</label>
+						<input type="text" class="mui-input-clear" name="group_end_date" placeholder="帶團結束日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					</div>
+					<div class="mui-input-row">
+						<label>結束時間：</label>
+						<input type="text" class="mui-input-clear" name="group_end_time" placeholder="帶團結束時間，時:分" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="car_type" placeholder="車種" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="car_code" placeholder="車號" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>□派車單</label>
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="driver_code" placeholder="駕駛登記證號" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="driver_name" placeholder="駕駛姓名" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>□未連續帶團切結書</label>
+					</div>
+				</div>
+				<div class="pnl-reson reson-9">
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="org_car" placeholder="原始車輛" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="org_car_type" placeholder="原始車種" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="guide_driver_code" placeholder="遊覽車駕駛登記證號" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="guide_driver_name" placeholder="遊覽車駕駛姓名" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_cguide_code" placeholder="本島導遊證號" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_cguide_name" placeholder="本島導遊姓名" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_cguide_tel" placeholder="本島導遊電話" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_lcguide_code" placeholder="離島導遊證號" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_lcguide_name" placeholder="離島導遊姓名" value="">
+					</div>
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" name="tw_lcguide_tel" placeholder="離島導遊電話" value="">
+					</div>
+				</div>
+				<div class="pnl-reson reson-10">
+					<div class="mui-input-row">
+						<label>□1.提前出境</label>
+					</div>
+					<div class="mui-input-row">
+						<label>日期：</label>
+						<input type="text" class="mui-input-clear" name="ahead_ldate" placeholder="日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					</div>
+					<div class="mui-input-row">
+						<label>時間：</label>
+						<input type="text" class="mui-input-clear" name="ahead_ltime" placeholder="時間，時:分" value="">
+					</div>
+					<div class="mui-input-row">
+						<select name="ahead_airport">
+							<option value="">機場/港口</option>
+							<option value="桃園機場">桃園機場</option>
+							<option value="桃園機場">高雄機場</option>
+							<option value="桃園機場">基隆港</option>
+							<option value="桃園機場">臺中港</option>
+							<option value="桃園機場">高雄港</option>
+							<option value="桃園機場">花蓮港</option>
+							<option value="桃園機場">蘇澳港</option>
+							<option value="桃園機場">澎湖港</option>
+							<option value="桃園機場">台南機場</option>
+							<option value="桃園機場">安平港</option>
+							<option value="桃園機場">松山機場</option>
+							<option value="桃園機場">桃園二期</option>
+							<option value="桃園機場">金門港</option>
+							<option value="桃園機場">馬祖</option>
+							<option value="桃園機場">花蓮機場</option>
+							<option value="桃園機場">麥寮港</option>
+							<option value="桃園機場">馬公機場</option>
+							<option value="桃園機場">台中機場</option>
+							<option value="桃園機場">和平港</option>
+							<option value="桃園機場">金門機場</option>
+							<option value="桃園機場">南竿機場</option>
+							<option value="桃園機場">北竿機場</option>
+							<option value="桃園機場">嘉義機場</option>
+							<option value="桃園機場">臺北港</option>
+							<option value="桃園機場">東港</option>
+							<option value="桃園機場">台東機場</option>
+							<option value="桃園機場">北竿白沙港</option>
+							<option value="桃園機場">布袋港</option>
+						</select>
+					</div>
+					<div class="mui-input-row">
+						<label>航班：</label>
+						<input type="text" class="mui-input-clear" name="ahead_flight_code" placeholder="航班" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>送機人員：</label>
+						<input type="text" class="mui-input-clear" name="ahead_domembers" placeholder="送機人員" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>□2.延期出境</label>
+					</div>
+					<div class="mui-input-row">
+						<label>日期：</label>
+						<input type="text" class="mui-input-clear" name="postpone_ldate" placeholder="日期" value="" readonly="readonly" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)">
+					</div>
+					<div class="mui-input-row">
+						<label>時間：</label>
+						<input type="text" class="mui-input-clear" name="postpone_ltime" placeholder="時間，時:分" value="">
+					</div>
+					<div class="mui-input-row">
+						<select name="ahead_airport">
+							<option value="">機場/港口</option>
+							<option value="桃園機場">桃園機場</option>
+							<option value="桃園機場">高雄機場</option>
+							<option value="桃園機場">基隆港</option>
+							<option value="桃園機場">臺中港</option>
+							<option value="桃園機場">高雄港</option>
+							<option value="桃園機場">花蓮港</option>
+							<option value="桃園機場">蘇澳港</option>
+							<option value="桃園機場">澎湖港</option>
+							<option value="桃園機場">台南機場</option>
+							<option value="桃園機場">安平港</option>
+							<option value="桃園機場">松山機場</option>
+							<option value="桃園機場">桃園二期</option>
+							<option value="桃園機場">金門港</option>
+							<option value="桃園機場">馬祖</option>
+							<option value="桃園機場">花蓮機場</option>
+							<option value="桃園機場">麥寮港</option>
+							<option value="桃園機場">馬公機場</option>
+							<option value="桃園機場">台中機場</option>
+							<option value="桃園機場">和平港</option>
+							<option value="桃園機場">金門機場</option>
+							<option value="桃園機場">南竿機場</option>
+							<option value="桃園機場">北竿機場</option>
+							<option value="桃園機場">嘉義機場</option>
+							<option value="桃園機場">臺北港</option>
+							<option value="桃園機場">東港</option>
+							<option value="桃園機場">台東機場</option>
+							<option value="桃園機場">北竿白沙港</option>
+							<option value="桃園機場">布袋港</option>
+						</select>
+					</div>
+					<div class="mui-input-row">
+						<label>航班：</label>
+						<input type="text" class="mui-input-clear" name="postpone_flight_code" placeholder="航班" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>送機人員：</label>
+						<input type="text" class="mui-input-clear" name="postpone_domembers" placeholder="送機人員" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>□3.旅客人數未達入境最低限額</label>
+					</div>
+				</div>
+				<div class="pnl-reson-common">
 					<div class="mui-input-row">
 						<input type="text" class="mui-input-clear" name="detail" placeholder="案件說明" value="{{$detail}}">
 					</div>
 					<div class="mui-input-row">
 						<input type="text" class="mui-input-clear" name="members_name" placeholder="旅客姓名名單" value="{{$members_name}}">
 					</div>
-				</div>
-				<div class="pnl-reson reson-2">
-					
-				</div>
-				<div class="pnl-reson reson-4">
-					
-				</div>
-				<div class="pnl-reson reson-9">
-					
-				</div>
-				<div class="pnl-reson reson-10">
-					
 				</div>
 				<div class="signin_submit">
 					<input type="hidden" name="id" value="{{$id}}" />
