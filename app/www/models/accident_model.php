@@ -485,6 +485,40 @@ class Accident_Model extends CI_Model {
         } else {
             $this->db->trans_commit();
             $result = '1';
+			
+			//发送邮件
+			$subject = '旅客離團申報書 '.$accident_t3['guide_name'].' '.$accident_t3['guide_tel'];
+			$message = '';
+			$message .= '報告人：'."\n";
+			$message .= '發生時間：'.date('Y-m-d H:i', $accident['time'])."\n";
+			$message .= '觀光團號：'.$accident_t3['group_code']."\n";
+			$message .= '隨團導遊證號：'.$accident_t3['guide_code']."\n";
+			$message .= '隨團導遊姓名：'.$accident_t3['guide_name']."\n";
+			$message .= '隨團導遊手機：'.$accident_t3['guide_tel']."\n";
+			$message .= '接待旅行社：'.$accident_t3['agency_name']."\n";
+			if ($accident_t3['level'] == '1') {
+			$message .= '通報級別：初報'."\n";
+			} elseif ($accident_t3['level'] == '2') {
+			$message .= '通報級別：续報'."\n";
+			} elseif ($accident_t3['level'] == '3') {
+			$message .= '通報級別：结報'."\n";
+			}
+			
+			$message .= '通報事由：'.$accident_t3['reson']."\n";
+			if ($accident_t3['reson'] == '傷病') {
+			$message .= '(應補送合格醫師所開立之醫生診斷證明)'."\n";
+			} elseif ($accident_t3['reson'] == '探訪親友') {
+			$message .= '1. 親友姓名：'.$accident_t3['ff_name']."\n";
+			$message .= '2. 地址：'.$accident_t3['ff_address']."\n";
+			$message .= '3. 聯絡電話及手機：'.$accident_t3['ff_tel']."\n";
+			} elseif ($accident_t3['reson'] == '緊急事故') {
+			$message .= '事故摘要：'.$accident_t3['urgen_detail']."\n";
+			}
+			$message .= '離團時間：'.date('Y-m-d H:i',$accident_t3['ltime'])."\n";
+			$message .= '歸團時間：'.date('Y-m-d H:i',$accident_t3['btime'])."\n";
+			$message .= '旅客姓名名單：'.$accident_t3['members_name']."\n";
+			
+			$this->_sendEmail($subject, $message);
         }
         
         return array('result'=>$result);
@@ -522,28 +556,17 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 
-	private function _sendEmail($subject, $mail, $receiver) {
-		$this->load->library('email'); 
-        
-        $config['protocol'] = EMAIL_PROTOCOL; 
-        $config['smtp_host'] = EMAIL_HOST; // given server 
-        $config['smtp_user'] = EMAIL_ADDRESS; 
-        $config['smtp_pass'] = EMAIL_PASSWORD; 
-        $config['smtp_port'] = EMAIL_PORT;
-        $config['smtp_timeout'] = EMAIL_TIMEOUT;
-		$config['smtp_crypto'] = EMAIL_CRYPTO;
-        $config['newline'] = "/r/n"; 
-        $config['crlf'] = "/r/n"; 
-        $config['charset']='utf-8';  // Encoding type 
-         
-        $this->email->initialize($config);
-		
-		$this->email->from(EMAIL_ADDRESS, EMAIL_NAME);  // show in the reciever email box 
-        $this->email->to($receiver); 
-         
-        $this->email->subject($subject); 
-        $this->email->message($mail); 
-        $this->email->send();
+	private function _sendEmail($subject, $message) {
+		require dirname ( __FILE__ ) . '/../../../core/libraries/aws/aws-autoloader.php';
+		$config = array('key'=>AWS_KEY,'secret'=>AWS_SECRET,'region'=>AWS_REGION);
+		$aws = Aws\Common\Aws::factory($config);
+		$sns = $aws->get("Sns");
+		$rowset = array(
+			'TopicArn'=>AWS_SNS_TOPIC_ARN_BULLETIN,
+			'Subject'=>$subject,
+			'Message'=>$message
+		);
+		$sns->publish($rowset);
 	}
 }
 ?>

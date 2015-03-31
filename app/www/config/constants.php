@@ -82,14 +82,10 @@ define('STATUS_HORDER_CHKIN', '2');   //到店CHKIN
 define('STATUS_HORDER_CHKOUT', '3');  //CHKOUT結帳
 define('STATUS_HORDER_CANCEL', '4');  //已取消
 
-//邮箱设置
-define('EMAIL_PROTOCOL', 'smtp');
-define('EMAIL_HOST', 'smtp.gmail.com');
-define('EMAIL_NAME', '逍遙遊雲端');
-define('EMAIL_ADDRESS', 'heisapp20151@gmail.com');
-define('EMAIL_PASSWORD', 'hc12345678');
-define('EMAIL_PORT', '465');
-define('EMAIL_TIMEOUT', '5');
-define('EMAIL_CRYPTO', 'ssl');
+//AWS设置
+define('AWS_KEY', 'AKIAI4ZGEP27U6LPPCRA');
+define('AWS_SECRET', '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');
+define('AWS_REGION', 'ap-southeast-1');
+define('AWS_SNS_TOPIC_ARN_BULLETIN', 'arn:aws:sns:ap-southeast-1:695614020375:Change_Bulletin');
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
