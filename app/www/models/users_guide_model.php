@@ -150,6 +150,7 @@ class Users_Guide_Model extends CI_Model {
         $users_model = new Users_Model();
         $new_user['username'] = $row['contact_tel'];
         $new_user['name'] = $row['name'];
+		$new_user['email'] = $row['email'];
         $nu_re = $users_model->create($new_user, ROLE_ID_GUIDE);
         
         if ($nu_re['result']) {
@@ -178,6 +179,10 @@ class Users_Guide_Model extends CI_Model {
             $this->db->trans_rollback();
         } else {
             $this->db->trans_commit();
+			
+			if ($row['email'] != '') {
+				//TODO 更新SNS EndPoint
+			}
         }
         
         return $re;

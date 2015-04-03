@@ -67,6 +67,9 @@ function sh_pnlc(id) {
 					<td><a href="index.php?ctr=sysagency&act=updateprofile&type=contact_tel&id={{$item->uid}}" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
 				</tr>
 				<tr>
+					<td colspan="4">郵箱：{{$item->users->email}}</td>
+				</tr>
+				<tr>
 					<td colspan="2">上月訂餐總數：</td>
 					<td colspan="2">本月訂餐總數：</td>
 				</tr>

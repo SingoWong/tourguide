@@ -408,6 +408,31 @@ class Accident_Model extends CI_Model {
         } else {
             $this->db->trans_commit();
             $result = '1';
+			
+			
+			//发送邮件
+			$subject = '入境接待通報表 '.$accidents_t2['guide_name'].' '.$accidents_t2['guide_tel'];
+			$message = '';
+			$message .= '報告人：'."\n";
+			$message .= '發生時間：'.date('Y-m-d H:i', $accident['time'])."\n";
+			$message .= '觀光團號：'.$accidents_t2['group_code']."\n";
+			$message .= '隨團導遊證號：'.$accidents_t2['guide_code']."\n";
+			$message .= '隨團導遊姓名：'.$accidents_t2['guide_name']."\n";
+			$message .= '隨團導遊手機：'.$accidents_t2['guide_tel']."\n";
+			$message .= '接待旅行社：'.$accidents_t2['agency_name']."\n";
+			
+			$message .= '入境時間：'.date('Y-m-d H:i', $accidents_t2['etime'])."\n";
+			$message .= '機場/港口：'.$accidents_t2['airport']."\n";
+			$message .= '航班/船班：'.$accidents_t2['flight_code']."\n";
+			$message .= '入境/未入境旅客名單'."\n";
+			$message .= '許可入境旅客（人）：'.$accidents_t2['permission_count']."\n";
+			$message .= '實際入境旅客（人）'.$accidents_t2['actual_count']."\n";
+			$message .= '未入境旅客（人）'.$accidents_t2['noenter_count']."\n";
+			$message .= '未入境旅客為：'.$accidents_t2['members_name']."\n";
+			$message .= '大陸領隊姓名：'.$accidents_t2['leaders_name']."\n";
+			$message .= '大陸領隊手機：'.$accidents_t2['leaders_tel']."\n";
+			
+			$this->_sendEmail($subject, $message);
         }
         
         return array('result'=>$result);
@@ -449,6 +474,37 @@ class Accident_Model extends CI_Model {
         } else {
             $this->db->trans_commit();
             $result = '1';
+			
+			//发送邮件
+			$subject = '出境通報表 '.$accidents_t2['guide_name'].' '.$accidents_t2['guide_tel'];
+			$message = '';
+			$message .= '報告人：'."\n";
+			$message .= '發生時間：'.date('Y-m-d H:i', $accident['time'])."\n";
+			$message .= '觀光團號：'.$accidents_t2['group_code']."\n";
+			$message .= '隨團導遊證號：'.$accidents_t2['guide_code']."\n";
+			$message .= '隨團導遊姓名：'.$accidents_t2['guide_name']."\n";
+			$message .= '隨團導遊手機：'.$accidents_t2['guide_tel']."\n";
+			$message .= '接待旅行社：'.$accidents_t2['agency_name']."\n";
+			
+			$message .= '入境時間：'.date('Y-m-d H:i', $accidents_t2['etime'])."\n";
+			$message .= '出境時間：'.date('Y-m-d H:i', $accidents_t2['otime'])."\n";
+			$message .= '機場/港口：'.$accidents_t2['airport']."\n";
+			$message .= '航班/船班：'.$accidents_t2['flight_code']."\n";
+			$message .= '出境人數'."\n";
+			$message .= '原入境旅客（人）：'.$accidents_t2['permission_count']."\n";
+			$message .= '實際出境旅客（人）'.$accidents_t2['actual_count']."\n";
+			$message .= '未出境旅客'."\n";
+			$message .= '姓名：'.$accidents_t2['noleave_name']."\n";
+			$message .= '事由：'.$accidents_t2['noleave_reson']."\n";
+			$message .= '出境時間：'.date('Y-m-d H:i', $accidents_t2['noleave_otime'])."\n";
+			$message .= '出境航班：'.$accidents_t2['noleave_flight_code']."\n";
+			$message .= '已提前出境'."\n";
+			$message .= '姓名：'.$accidents_t2['ahead_name']."\n";
+			$message .= '事由：'.$accidents_t2['ahead_reson']."\n";
+			$message .= '出境時間：'.date('Y-m-d H:i', $accidents_t2['ahead_otime'])."\n";
+			$message .= '出境航班：'.$accidents_t2['ahead_flight_code']."\n";
+			
+			$this->_sendEmail($subject, $message);
         }
         
         return array('result'=>$result);

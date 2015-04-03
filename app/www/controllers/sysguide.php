@@ -79,6 +79,7 @@ class SysGuide extends Base_Controller {
         $row['name'] = $this->input->post('name');
         $row['code'] = $this->input->post('code');
         $row['contact_tel'] = $this->input->post('contact_tel');
+		$row['email'] = $this->input->post('email');
         $row['sign_date_start'] = strtotime($this->input->post('sign_date_start'));
         $row['sign_date_end'] = strtotime($this->input->post('sign_date_end'));
     
