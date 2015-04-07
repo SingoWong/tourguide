@@ -572,8 +572,7 @@ class Accident_Model extends CI_Model {
 			$message .= '離團時間：'.date('Y-m-d H:i',$accident_t3['ltime'])."\n";
 			$message .= '歸團時間：'.date('Y-m-d H:i',$accident_t3['btime'])."\n";
 			$message .= '旅客姓名名單：'.$accident_t3['members_name']."\n";
-			dump($message);
-			exit();
+			
 			$this->_sendEmail($subject, $message, $id);
         }
         
