@@ -11,6 +11,26 @@ class Users_Model extends CI_Model {
 	    //创建用户
 	    $users = new Users();
 	    $users->where('username', $row['username'])->get();
+		
+		if ($row['email'] && $row['email'] != '') {
+			require dirname ( __FILE__ ) . '/../../../core/libraries/aws/aws-autoloader.php';
+			$config = array('key'=>AWS_KEY,'secret'=>AWS_SECRET,'region'=>AWS_REGION);
+			$aws = Aws\Common\Aws::factory($config);
+			$sns = $aws->get("Sns");
+			
+			$rowset = array(
+				'Name'=>'R'.$role_id.'_U'.$row['username']
+			);
+			$re = $sns->createTopic($rowset);
+			$row['arn'] = $re['TopicArn'];
+			
+			$rowset = array(
+				'Endpoint'=>$row['email'],
+				'Protocol'=>'email',
+				'TopicArn'=>$row['arn']
+			);
+			$sns->subscribe($rowset);
+		}
 	    
 	    if ($users->result_count() > 0) {
 	        $re['result'] = false;
@@ -18,6 +38,8 @@ class Users_Model extends CI_Model {
 	        $users->username = $row['username'];
 	        $users->password = $this->_encrypt_password($row['username'], $this->_gen_password($row['username']));
 	        $users->name = $row['name'];
+			$users->email = $row['email'];
+			$users->arn = $row['arn'];
 	        $users->status = '1';
 	        
 	        $re['result'] = $users->save();

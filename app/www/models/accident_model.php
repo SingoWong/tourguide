@@ -377,7 +377,7 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 	
-	function saveAccidentT1($id, $accident, $accident_t1, $poster) {
+	function saveAccidentT1($id, $accident, $accident_t1, $poster, $receiver) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
@@ -431,13 +431,13 @@ class Accident_Model extends CI_Model {
 			$message .= '大陸領隊姓名：'.$accident_t1['leaders_name']."\n";
 			$message .= '大陸領隊手機：'.$accident_t1['leaders_tel']."\n";
 
-			$this->_sendEmail($subject, $message, $id);
+			$this->_sendEmail($subject, $message, $id, $receiver);
         }
         
         return array('result'=>$result);
 	}
 
-	function saveAccidentT2($id, $accident, $accident_t2, $poster) {
+	function saveAccidentT2($id, $accident, $accident_t2, $poster, $receiver) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
@@ -503,13 +503,13 @@ class Accident_Model extends CI_Model {
 			$message .= '出境時間：'.date('Y-m-d H:i', $accident_t2['ahead_otime'])."\n";
 			$message .= '出境航班：'.$accident_t2['ahead_flight_code']."\n";
 			
-			$this->_sendEmail($subject, $message, $id);
+			$this->_sendEmail($subject, $message, $id, $receiver);
         }
         
         return array('result'=>$result);
 	}
 
-	function saveAccidentT3($id, $accident, $accident_t3, $poster) {
+	function saveAccidentT3($id, $accident, $accident_t3, $poster, $receiver) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
@@ -573,13 +573,13 @@ class Accident_Model extends CI_Model {
 			$message .= '歸團時間：'.date('Y-m-d H:i',$accident_t3['btime'])."\n";
 			$message .= '旅客姓名名單：'.$accident_t3['members_name']."\n";
 			
-			$this->_sendEmail($subject, $message, $id);
+			$this->_sendEmail($subject, $message, $id, $receiver);
         }
         
         return array('result'=>$result);
 	}
 	
-	function saveAccidentT4($id, $accident, $accident_t4) {
+	function saveAccidentT4($id, $accident, $accident_t4, $receiver) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
@@ -611,7 +611,7 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 
-	private function _sendEmail($subject, $message, $id) {
+	private function _sendEmail($subject, $message, $id, $receiver) {
 		require dirname ( __FILE__ ) . '/../../../core/libraries/aws/aws-autoloader.php';
 		$config = array('key'=>AWS_KEY,'secret'=>AWS_SECRET,'region'=>AWS_REGION);
 		$aws = Aws\Common\Aws::factory($config);
@@ -622,6 +622,24 @@ class Accident_Model extends CI_Model {
 			'Message'=>$message
 		);
 		$sns->publish($rowset);
+		
+		if ($receiver['agency_arn'] && $receiver['agency_arn'] != '') {
+			$rowset = array(
+				'TopicArn'=>$receiver['agency_arn'],
+				'Subject'=>$subject,
+				'Message'=>$message
+			);
+			$sns->publish($rowset);
+		}
+		
+		if ($receiver['guide_arn'] && $receiver['guide_arn'] != '') {
+			$rowset = array(
+				'TopicArn'=>$receiver['guide_arn'],
+				'Subject'=>$subject,
+				'Message'=>$message
+			);
+			$sns->publish($rowset);
+		}
 	}
 }
 ?>

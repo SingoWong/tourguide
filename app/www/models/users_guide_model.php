@@ -179,10 +179,6 @@ class Users_Guide_Model extends CI_Model {
             $this->db->trans_rollback();
         } else {
             $this->db->trans_commit();
-			
-			if ($row['email'] != '') {
-				//TODO 更新SNS EndPoint
-			}
         }
         
         return $re;

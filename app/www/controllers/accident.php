@@ -375,8 +375,11 @@ class Accident extends Base_Controller {
 		$accident_t1['leaders_name'] = $this->input->post('leaders_name');
 		$accident_t1['leaders_tel'] = $this->input->post('leaders_tel');
 		
+		$receiver['agency_arn'] = $this->input->post('agency_arn');
+		$receiver['guide_arn'] = $this->input->post('guide_arn');
+		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT1($id, $accident, $accident_t1, $this->user['name']);
+		$re = $ac->saveAccidentT1($id, $accident, $accident_t1, $this->user['name'], $receiver);
 		
 		if ($re) {
 			redirect(url('accident/common_finish'));
@@ -449,8 +452,11 @@ class Accident extends Base_Controller {
 		$accident_t2['ahead_otime'] = strtotime($this->input->post('ahead_odate').' '.$this->input->post('ahead_otime'));
 		$accident_t2['ahead_flight_code'] = $this->input->post('ahead_flight_code');
 		
+		$receiver['agency_arn'] = $this->input->post('agency_arn');
+		$receiver['guide_arn'] = $this->input->post('guide_arn');
+		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT2($id, $accident, $accident_t2, $this->user['name']);
+		$re = $ac->saveAccidentT2($id, $accident, $accident_t2, $this->user['name'], $receiver);
 		
 		if ($re) {
 			redirect(url('accident/common_finish'));
@@ -517,8 +523,11 @@ class Accident extends Base_Controller {
 		$accident_t3['btime'] = strtotime($this->input->post('bdate').' '.$this->input->post('btime'));
 		$accident_t3['members_name'] = $this->input->post('members_name');
 		
+		$receiver['agency_arn'] = $this->input->post('agency_arn');
+		$receiver['guide_arn'] = $this->input->post('guide_arn');
+		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT3($id, $accident, $accident_t3, $this->user['name']);
+		$re = $ac->saveAccidentT3($id, $accident, $accident_t3, $this->user['name'], $receiver);
 		
 		if ($re) {
 			redirect(url('accident/common_finish'));
@@ -583,8 +592,11 @@ class Accident extends Base_Controller {
 		$accident_t4['detail'] = $this->input->post('detail'); //案件說明
 		$accident_t4['members_name'] = $this->input->post('members_name'); //旅客姓名名單
 		
+		$receiver['agency_arn'] = $this->input->post('agency_arn');
+		$receiver['guide_arn'] = $this->input->post('guide_arn');
+		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT4($id, $accident, $accident_t4);
+		$re = $ac->saveAccidentT4($id, $accident, $accident_t4, $this->user['name'], $receiver);
 		
 		if ($re) {
 			redirect(url('accident/common_finish'));
