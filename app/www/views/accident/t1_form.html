@@ -30,6 +30,10 @@
 			  	font-family: "Helvetica Neue",Helvetica,sans-serif;
 			  	line-height: 1.1;
 			  	font-size: 16px;
+			  	text-overflow: ellipsis;
+			  	white-space: nowrap;
+			  	max-width: 175px;
+			  	overflow: hidden;
 			}
 		</style>
 	</head>
@@ -80,7 +84,7 @@
 					<input type="hidden" name="guide_tel" value="{{$guide->contact_tel}}" />
 				</div>
 				<div class="mui-input-row">
-					<label>接待旅行社：</label><em>{{$agency->users->name}}</em>
+					<label>接待旅行社：</label><em style="max-width: 175px;">{{$agency->user->name}}</em>
 					<input type="hidden" name="agency_name" value="{{$agency->user->name}}" />
 				</div>
 				<div class="mui-input-row">
@@ -92,7 +96,7 @@
 					<input type="text" class="mui-input-clear" name="etime" placeholder="入境時間，时:分" value="">
 				</div>
 				<div class="mui-input-row">
-					<select name="reason">
+					<select name="airport">
 						<option value="">機場/港口</option>
 						<option value="桃園機場">桃園機場</option>
 						<option value="桃園機場">高雄機場</option>
@@ -125,7 +129,7 @@
 					</select>
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="detail" placeholder="航班/船班" value="{{$detail}}">
+					<input type="text" class="mui-input-clear" name="flight_code" placeholder="航班/船班" value="{{$detail}}">
 				</div>
 				<div class="mui-input-row">
 					<label>入境/未入境旅客名單：</label>

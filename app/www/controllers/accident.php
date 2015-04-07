@@ -329,7 +329,7 @@ class Accident extends Base_Controller {
 		
 		$agency = new Users_Agency_Model();
 		$re_agency = $agency->getAgencyById($re_group->aid);
-        
+		
 		$this->smarty->assign('group', $re_group);
 		$this->smarty->assign('guide', $re_guide);
 		$this->smarty->assign('agency', $re_agency);

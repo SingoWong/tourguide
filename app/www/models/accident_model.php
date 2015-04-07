@@ -408,8 +408,7 @@ class Accident_Model extends CI_Model {
         } else {
             $this->db->trans_commit();
             $result = '1';
-			dump($accident_t1);
-			exit();
+			
 			//发送邮件
 			$subject = '入境接待通報表 '.$accident_t1['guide_name'].' '.$accident_t1['guide_tel'];
 			$message = '';
@@ -431,7 +430,7 @@ class Accident_Model extends CI_Model {
 			$message .= '未入境旅客為：'.$accident_t1['members_name']."\n";
 			$message .= '大陸領隊姓名：'.$accident_t1['leaders_name']."\n";
 			$message .= '大陸領隊手機：'.$accident_t1['leaders_tel']."\n";
-			
+
 			$this->_sendEmail($subject, $message, $id);
         }
         
