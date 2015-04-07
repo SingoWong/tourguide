@@ -408,7 +408,8 @@ class Accident_Model extends CI_Model {
         } else {
             $this->db->trans_commit();
             $result = '1';
-			
+			dump($accident_t1);
+			exit();
 			//发送邮件
 			$subject = '入境接待通報表 '.$accident_t1['guide_name'].' '.$accident_t1['guide_tel'];
 			$message = '';
