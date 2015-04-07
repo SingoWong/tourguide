@@ -94,7 +94,7 @@ class Users_Agency_Model extends CI_Model {
         $agency->where('uid', $uid)->get(1);
         $users->where('id', $uid)->get(1);
         
-        $agency->all[0]->users = $users;
+        $agency->all[0]->user = $users->all[0];
         
         return $agency->all[0];
     }

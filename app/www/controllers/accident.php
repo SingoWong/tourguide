@@ -376,7 +376,7 @@ class Accident extends Base_Controller {
 		$accident_t1['leaders_tel'] = $this->input->post('leaders_tel');
 		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT1($id, $accident, $accident_t1);
+		$re = $ac->saveAccidentT1($id, $accident, $accident_t1, $this->user['name']);
 		
 		if ($re) {
 			redirect(url('accident/common_finish'));

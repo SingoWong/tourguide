@@ -377,7 +377,7 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 	
-	function saveAccidentT1($id, $accident, $accident_t1) {
+	function saveAccidentT1($id, $accident, $accident_t1, $poster) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
@@ -409,30 +409,29 @@ class Accident_Model extends CI_Model {
             $this->db->trans_commit();
             $result = '1';
 			
-			
 			//发送邮件
-			$subject = '入境接待通報表 '.$accidents_t2['guide_name'].' '.$accidents_t2['guide_tel'];
+			$subject = '入境接待通報表 '.$accident_t1['guide_name'].' '.$accident_t1['guide_tel'];
 			$message = '';
-			$message .= '報告人：'."\n";
+			$message .= '報告人：'.$poster."\n";
 			$message .= '發生時間：'.date('Y-m-d H:i', $accident['time'])."\n";
-			$message .= '觀光團號：'.$accidents_t2['group_code']."\n";
-			$message .= '隨團導遊證號：'.$accidents_t2['guide_code']."\n";
-			$message .= '隨團導遊姓名：'.$accidents_t2['guide_name']."\n";
-			$message .= '隨團導遊手機：'.$accidents_t2['guide_tel']."\n";
-			$message .= '接待旅行社：'.$accidents_t2['agency_name']."\n";
+			$message .= '觀光團號：'.$accident_t1['group_code']."\n";
+			$message .= '隨團導遊證號：'.$accident_t1['guide_code']."\n";
+			$message .= '隨團導遊姓名：'.$accident_t1['guide_name']."\n";
+			$message .= '隨團導遊手機：'.$accident_t1['guide_tel']."\n";
+			$message .= '接待旅行社：'.$accident_t1['agency_name']."\n";
 			
-			$message .= '入境時間：'.date('Y-m-d H:i', $accidents_t2['etime'])."\n";
-			$message .= '機場/港口：'.$accidents_t2['airport']."\n";
-			$message .= '航班/船班：'.$accidents_t2['flight_code']."\n";
+			$message .= '入境時間：'.date('Y-m-d H:i', $accident_t1['etime'])."\n";
+			$message .= '機場/港口：'.$accident_t1['airport']."\n";
+			$message .= '航班/船班：'.$accident_t1['flight_code']."\n";
 			$message .= '入境/未入境旅客名單'."\n";
-			$message .= '許可入境旅客（人）：'.$accidents_t2['permission_count']."\n";
-			$message .= '實際入境旅客（人）'.$accidents_t2['actual_count']."\n";
-			$message .= '未入境旅客（人）'.$accidents_t2['noenter_count']."\n";
-			$message .= '未入境旅客為：'.$accidents_t2['members_name']."\n";
-			$message .= '大陸領隊姓名：'.$accidents_t2['leaders_name']."\n";
-			$message .= '大陸領隊手機：'.$accidents_t2['leaders_tel']."\n";
+			$message .= '許可入境旅客（人）：'.$accident_t1['permission_count']."\n";
+			$message .= '實際入境旅客（人）'.$accident_t1['actual_count']."\n";
+			$message .= '未入境旅客（人）'.$accident_t1['noenter_count']."\n";
+			$message .= '未入境旅客為：'.$accident_t1['members_name']."\n";
+			$message .= '大陸領隊姓名：'.$accident_t1['leaders_name']."\n";
+			$message .= '大陸領隊手機：'.$accident_t1['leaders_tel']."\n";
 			
-			$this->_sendEmail($subject, $message);
+			$this->_sendEmail($subject, $message, $id);
         }
         
         return array('result'=>$result);
@@ -504,7 +503,7 @@ class Accident_Model extends CI_Model {
 			$message .= '出境時間：'.date('Y-m-d H:i', $accident_t2['ahead_otime'])."\n";
 			$message .= '出境航班：'.$accident_t2['ahead_flight_code']."\n";
 			
-			$this->_sendEmail($subject, $message);
+			$this->_sendEmail($subject, $message, $id);
         }
         
         return array('result'=>$result);
@@ -555,7 +554,7 @@ class Accident_Model extends CI_Model {
 			if ($accident_t3['level'] == '1') {
 			$message .= '通報級別：初報'."\n";
 			} elseif ($accident_t3['level'] == '2') {
-			$message .= '通報級別：续報'."\n";
+			$message .= '通報級別：續報'."\n";
 			} elseif ($accident_t3['level'] == '3') {
 			$message .= '通報級別：结報'."\n";
 			}
@@ -574,7 +573,7 @@ class Accident_Model extends CI_Model {
 			$message .= '歸團時間：'.date('Y-m-d H:i',$accident_t3['btime'])."\n";
 			$message .= '旅客姓名名單：'.$accident_t3['members_name']."\n";
 			
-			$this->_sendEmail($subject, $message);
+			$this->_sendEmail($subject, $message, $id);
         }
         
         return array('result'=>$result);
@@ -612,7 +611,7 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 
-	private function _sendEmail($subject, $message) {
+	private function _sendEmail($subject, $message, $id) {
 		require dirname ( __FILE__ ) . '/../../../core/libraries/aws/aws-autoloader.php';
 		$config = array('key'=>AWS_KEY,'secret'=>AWS_SECRET,'region'=>AWS_REGION);
 		$aws = Aws\Common\Aws::factory($config);
