@@ -30,6 +30,10 @@
 			  	font-family: "Helvetica Neue",Helvetica,sans-serif;
 			  	line-height: 1.1;
 			  	font-size: 16px;
+			  	text-overflow: ellipsis;
+			  	white-space: nowrap;
+			  	max-width: 175px;
+			  	overflow: hidden;
 			}
 			.pnl-1, .pnl-2, .pnl-3 {
 				display: none;
@@ -101,7 +105,7 @@
 					<input type="hidden" name="guide_tel" value="{{$guide->contact_tel}}" />
 				</div>
 				<div class="mui-input-row">
-					<label>接待旅行社：</label><em>{{$agency->users->name}}</em>
+					<label>接待旅行社：</label><em style="max-width: 175px;">{{$agency->user->name}}</em>
 					<input type="hidden" name="agency_name" value="{{$agency->user->name}}" />
 				</div>
 				<div class="mui-input-row">

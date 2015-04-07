@@ -437,7 +437,7 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 
-	function saveAccidentT2($id, $accident, $accident_t2) {
+	function saveAccidentT2($id, $accident, $accident_t2, $poster) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
@@ -477,7 +477,7 @@ class Accident_Model extends CI_Model {
 			//发送邮件
 			$subject = '出境通報表 '.$accident_t2['guide_name'].' '.$accident_t2['guide_tel'];
 			$message = '';
-			$message .= '報告人：'."\n";
+			$message .= '報告人：'.$poster."\n";
 			$message .= '發生時間：'.date('Y-m-d H:i', $accident['time'])."\n";
 			$message .= '觀光團號：'.$accident_t2['group_code']."\n";
 			$message .= '隨團導遊證號：'.$accident_t2['guide_code']."\n";
@@ -509,7 +509,7 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 
-	function saveAccidentT3($id, $accident, $accident_t3) {
+	function saveAccidentT3($id, $accident, $accident_t3, $poster) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
@@ -544,7 +544,7 @@ class Accident_Model extends CI_Model {
 			//发送邮件
 			$subject = '旅客離團申報書 '.$accident_t3['guide_name'].' '.$accident_t3['guide_tel'];
 			$message = '';
-			$message .= '報告人：'."\n";
+			$message .= '報告人：'.$poster."\n";
 			$message .= '發生時間：'.date('Y-m-d H:i', $accident['time'])."\n";
 			$message .= '觀光團號：'.$accident_t3['group_code']."\n";
 			$message .= '隨團導遊證號：'.$accident_t3['guide_code']."\n";
@@ -572,7 +572,8 @@ class Accident_Model extends CI_Model {
 			$message .= '離團時間：'.date('Y-m-d H:i',$accident_t3['ltime'])."\n";
 			$message .= '歸團時間：'.date('Y-m-d H:i',$accident_t3['btime'])."\n";
 			$message .= '旅客姓名名單：'.$accident_t3['members_name']."\n";
-			
+			dump($message);
+			exit();
 			$this->_sendEmail($subject, $message, $id);
         }
         

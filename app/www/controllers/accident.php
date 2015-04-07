@@ -450,7 +450,7 @@ class Accident extends Base_Controller {
 		$accident_t2['ahead_flight_code'] = $this->input->post('ahead_flight_code');
 		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT2($id, $accident, $accident_t2);
+		$re = $ac->saveAccidentT2($id, $accident, $accident_t2, $this->user['name']);
 		
 		if ($re) {
 			redirect(url('accident/common_finish'));
@@ -518,7 +518,7 @@ class Accident extends Base_Controller {
 		$accident_t3['members_name'] = $this->input->post('members_name');
 		
 		$ac = new Accident_Model();
-		$re = $ac->saveAccidentT3($id, $accident, $accident_t3);
+		$re = $ac->saveAccidentT3($id, $accident, $accident_t3, $this->user['name']);
 		
 		if ($re) {
 			redirect(url('accident/common_finish'));
