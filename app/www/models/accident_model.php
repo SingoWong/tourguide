@@ -579,7 +579,7 @@ class Accident_Model extends CI_Model {
         return array('result'=>$result);
 	}
 	
-	function saveAccidentT4($id, $accident, $accident_t4, $receiver) {
+	function saveAccidentT4($id, $accident, $accident_t4, $poster, $receiver) {
 		$this->db->trans_start();
 		
 		$accidents = new Accidents();
@@ -606,6 +606,52 @@ class Accident_Model extends CI_Model {
         } else {
             $this->db->trans_commit();
             $result = '1';
+			
+			//发送邮件
+			$subject = '通報案件申報書 '.$accident_t4['guide_name'].' '.$accident_t4['guide_tel'];
+			$message = '';
+			$message .= '報告人：'.$poster."\n";
+			$message .= '發生時間：'.date('Y-m-d H:i', $accident['time'])."\n";
+			$message .= '觀光團號：'.$accident_t4['group_code']."\n";
+			$message .= '隨團導遊證號：'.$accident_t4['guide_code']."\n";
+			$message .= '隨團導遊姓名：'.$accident_t4['guide_name']."\n";
+			$message .= '隨團導遊手機：'.$accident_t4['guide_tel']."\n";
+			$message .= '接待旅行社：'.$accident_t4['agency_name']."\n";
+			if ($accident_t4['level'] == '1') {
+				$message .= '通報級別：初報'."\n";
+			} elseif ($accident_t4['level'] == '2') {
+				$message .= '通報級別：續報'."\n";
+			} elseif ($accident_t4['level'] == '3') {
+				$message .= '通報級別：结報'."\n";
+			}
+			$message .= '變更時間：'.date('Y-m-d H:i',$accident_t4['atime'])."\n";
+			if ($accident_t4['reson'] == '1') {
+				$message .= '通報事由：住宿旅館變更'."\n";
+			} elseif ($accident_t4['reson'] == '2') {
+				$message .= '通報事由：導遊人員變更'."\n";
+			} elseif ($accident_t4['reson'] == '3') {
+				$message .= '通報事由：旅遊糾紛'."\n";
+			} elseif ($accident_t4['reson'] == '4') {
+				$message .= '通報事由：出租車輛及遊覽車駕駛通報'."\n";
+			} elseif ($accident_t4['reson'] == '5') {
+				$message .= '通報事由：緊急事故'."\n";
+			} elseif ($accident_t4['reson'] == '6') {
+				$message .= '通報事由：治安案件'."\n";
+			} elseif ($accident_t4['reson'] == '7') {
+				$message .= '通報事由：疫情通報'."\n";
+			} elseif ($accident_t4['reson'] == '8') {
+				$message .= '通報事由：違法、違規、逾期停留、違規脫團、行方不明、從事與許可目的不符活動、違常通報'."\n";
+			} elseif ($accident_t4['reson'] == '9') {
+				$message .= '通報事由：分車通報'."\n";
+			} elseif ($accident_t4['reson'] == '10') {
+				$message .= '通報事由：其他通報'."\n";
+			} elseif ($accident_t4['reson'] == '11') {
+				$message .= '通報事由：購物點變更'."\n";
+			}
+			$message .= '案件說明：'.$accident_t4['detail']."\n";
+			$message .= '旅客姓名名單：'.$accident_t4['members_name']."\n";
+			
+			$this->_sendEmail($subject, $message, $id, $receiver);
         }
         
         return array('result'=>$result);

@@ -587,7 +587,18 @@ class Accident extends Base_Controller {
 		$accident_t4['agency_name'] = $this->input->post('agency_name');
 		$accident_t4['level'] = $this->input->post('level');
 		$accident_t4['atime'] = strtotime($this->input->post('adate').' '.$this->input->post('atime'));
-		$accident_t4['reason'] = $this->input->post('reason');
+		$accident_t4['reson'] = $this->input->post('reson');
+		
+		if ($accident_t4['reson'] == '2') {
+			
+		} elseif ($accident_t4['reson'] == '2') {
+			
+		} elseif ($accident_t4['reson'] == '9') {
+			
+		} elseif ($accident_t4['reson'] == '10') {
+			
+		}
+		
 		
 		$accident_t4['detail'] = $this->input->post('detail'); //案件說明
 		$accident_t4['members_name'] = $this->input->post('members_name'); //旅客姓名名單
