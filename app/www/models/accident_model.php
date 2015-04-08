@@ -648,6 +648,56 @@ class Accident_Model extends CI_Model {
 			} elseif ($accident_t4['reson'] == '11') {
 				$message .= '通報事由：購物點變更'."\n";
 			}
+			
+			if ($accident_t4['reson'] == '2') {
+				$message .= '車別：'.$accident_t4['car']."\n";
+				$message .= '原始本島導遊姓名：'.$accident_t4['org_tw_guide_name']."\n";
+				$message .= '原始本島導遊電話：'.$accident_t4['org_tw_guide_tel']."\n";
+				$message .= '變更後本島導遊證號：'.$accident_t4['tw_guide_code']."\n";
+				$message .= '變更後本島導遊姓名：'.$accident_t4['tw_guide_name']."\n";
+				$message .= '變更後本島導遊電話：'.$accident_t4['tw_guide_tel']."\n";
+				$message .= '原始離島導遊姓名：'.$accident_t4['org_tw_lguide_name']."\n";
+				$message .= '原始離島導遊電話：'.$accident_t4['org_tw_lguide_tel']."\n";
+				$message .= '變更後離島導遊證號：'.$accident_t4['tw_lguide_code']."\n";
+				$message .= '變更後離島導遊姓名：'.$accident_t4['tw_lguide_name']."\n";
+				$message .= '變更後離島導遊電話：'.$accident_t4['tw_lguide_tel']."\n";
+			} elseif ($accident_t4['reson'] == '4') {
+				$message .= '車別：'.$accident_t4['car']."\n";
+				$message .= '帶團日期'."\n";
+				$message .= '開始時間：'.date('Y-m-d H:i', $accident_t4['group_start_time'])."\n";
+				$message .= '結束時間：'.date('Y-m-d H:i', $accident_t4['group_end_time'])."\n";
+				$message .= '車種：'.$accident_t4['car_type']."\n";
+				$message .= '車號：'.$accident_t4['car_code']."\n";
+				$message .= '□派車單'."\n";
+				$message .= '駕駛登記證號：'.$accident_t4['driver_code']."\n";
+				$message .= '駕駛姓名：'.$accident_t4['driver_name']."\n";
+				$message .= '□未連續帶團切結書'."\n";
+			} elseif ($accident_t4['reson'] == '9') {
+				$message .= '車別：'.$accident_t4['car']."\n";
+				$message .= '原始車輛：'.$accident_t4['org_car']."\n";
+				$message .= '原始車種：'.$accident_t4['org_car_type']."\n";
+				$message .= '遊覽車駕駛登記證號：'.$accident_t4['guide_driver_code']."\n";
+				$message .= '遊覽車駕駛姓名：'.$accident_t4['guide_driver_name']."\n";
+				$message .= '本島導遊證號：'.$accident_t4['tw_cguide_code']."\n";
+				$message .= '本島導遊姓名：'.$accident_t4['tw_cguide_name']."\n";
+				$message .= '本島導遊電話：'.$accident_t4['tw_cguide_tel']."\n";
+				$message .= '離島導遊證號：'.$accident_t4['tw_lcguide_code']."\n";
+				$message .= '離島導遊姓名：'.$accident_t4['tw_lcguide_name']."\n";
+				$message .= '離島導遊電話：'.$accident_t4['tw_lcguide_tel']."\n";
+			} elseif ($accident_t4['reson'] == '10') {
+				$message .= '□1.提前出境'."\n";
+				$message .= '時間：'.date('Y-m-d H:i', $accident_t4['ahead_ltime'])."\n";
+				$message .= '機場/港口：'.$accident_t4['ahead_airport']."\n";
+				$message .= '航班：'.$accident_t4['ahead_flight_code']."\n";
+				$message .= '送機人員：'.$accident_t4['ahead_domembers']."\n";
+				$message .= '□2.延期出境'."\n";
+				$message .= '時間：'.date('Y-m-d H:i', $accident_t4['postpone_ltime'])."\n";
+				$message .= '機場/港口：'.$accident_t4['postpone_airport']."\n";
+				$message .= '航班：'.$accident_t4['postpone_flight_code']."\n";
+				$message .= '送機人員：'.$accident_t4['postpone_domembers']."\n";
+				$message .= '□3.旅客人數未達入境最低限額'."\n";
+			}
+			
 			$message .= '案件說明：'.$accident_t4['detail']."\n";
 			$message .= '旅客姓名名單：'.$accident_t4['members_name']."\n";
 			

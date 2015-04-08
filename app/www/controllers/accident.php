@@ -590,15 +590,47 @@ class Accident extends Base_Controller {
 		$accident_t4['reson'] = $this->input->post('reson');
 		
 		if ($accident_t4['reson'] == '2') {
-			
-		} elseif ($accident_t4['reson'] == '2') {
-			
+			$accident_t4['car'] = $this->input->post('car');
+			$accident_t4['org_tw_guide_name'] = $this->input->post('org_tw_guide_name');
+			$accident_t4['org_tw_guide_tel'] = $this->input->post('org_tw_guide_tel');
+			$accident_t4['tw_guide_code'] = $this->input->post('tw_guide_code');
+			$accident_t4['tw_guide_name'] = $this->input->post('tw_guide_name');
+			$accident_t4['tw_guide_tel'] = $this->input->post('tw_guide_tel');
+			$accident_t4['org_tw_lguide_name'] = $this->input->post('org_tw_lguide_name');
+			$accident_t4['org_tw_lguide_tel'] = $this->input->post('org_tw_lguide_tel');
+			$accident_t4['tw_lguide_code'] = $this->input->post('tw_lguide_code');
+			$accident_t4['tw_lguide_name'] = $this->input->post('tw_lguide_name');
+			$accident_t4['tw_lguide_tel'] = $this->input->post('tw_lguide_tel');
+		} elseif ($accident_t4['reson'] == '4') {
+			$accident_t4['car'] = $this->input->post('car');
+			$accident_t4['group_start_time'] = strtotime($this->input->post('group_start_date').' '.$this->input->post('group_start_time'));
+			$accident_t4['group_end_time'] = strtotime($this->input->post('group_end_date').' '.$this->input->post('group_end_time'));
+			$accident_t4['car_type'] = $this->input->post('car_type');
+			$accident_t4['car_code'] = $this->input->post('car_code');
+			$accident_t4['driver_code'] = $this->input->post('driver_code');
+			$accident_t4['driver_name'] = $this->input->post('driver_name');
 		} elseif ($accident_t4['reson'] == '9') {
-			
+			$accident_t4['car'] = $this->input->post('car');
+			$accident_t4['org_car'] = $this->input->post('org_car');
+			$accident_t4['org_car_type'] = $this->input->post('org_car_type');
+			$accident_t4['guide_driver_code'] = $this->input->post('guide_driver_code');
+			$accident_t4['guide_driver_name'] = $this->input->post('guide_driver_name');
+			$accident_t4['tw_cguide_code'] = $this->input->post('tw_cguide_code');
+			$accident_t4['tw_cguide_name'] = $this->input->post('tw_cguide_name');
+			$accident_t4['tw_cguide_tel'] = $this->input->post('tw_cguide_tel');
+			$accident_t4['tw_lcguide_code'] = $this->input->post('tw_lcguide_code');
+			$accident_t4['tw_lcguide_name'] = $this->input->post('tw_lcguide_name');
+			$accident_t4['tw_lcguide_tel'] = $this->input->post('tw_lcguide_tel');
 		} elseif ($accident_t4['reson'] == '10') {
-			
+			$accident_t4['ahead_ltime'] = strtotime($this->input->post('ahead_ldate').' '.$this->input->post('ahead_ltime'));
+			$accident_t4['ahead_airport'] = $this->input->post('ahead_airport');
+			$accident_t4['ahead_flight_code'] = $this->input->post('ahead_flight_code');		
+			$accident_t4['ahead_domembers'] = $this->input->post('ahead_domembers');
+			$accident_t4['postpone_ltime'] = strtotime($this->input->post('postpone_ldate').' '.$this->input->post('postpone_ltime'));
+			$accident_t4['postpone_airport'] = $this->input->post('postpone_airport');
+			$accident_t4['postpone_flight_code'] = $this->input->post('postpone_flight_code');
+			$accident_t4['postpone_domembers'] = $this->input->post('postpone_domembers');
 		}
-		
 		
 		$accident_t4['detail'] = $this->input->post('detail'); //案件說明
 		$accident_t4['members_name'] = $this->input->post('members_name'); //旅客姓名名單
