@@ -712,12 +712,34 @@ class Accident_Model extends CI_Model {
 		$config = array('key'=>AWS_KEY,'secret'=>AWS_SECRET,'region'=>AWS_REGION);
 		$aws = Aws\Common\Aws::factory($config);
 		$sns = $aws->get("Sns");
+		
+		//向逍遙遊發送郵件s
 		$rowset = array(
 			'TopicArn'=>AWS_SNS_TOPIC_ARN_BULLETIN,
 			'Subject'=>$subject,
 			'Message'=>$message
 		);
 		$sns->publish($rowset);
+		
+		if ($receiver['mailto_union'] == '1') {
+			//選擇向全聯會發送郵件
+			$rowset = array(
+				'TopicArn'=>AWS_SNS_TOPIC_ARN_UNION,
+				'Subject'=>$subject,
+				'Message'=>$message
+			);
+			$sns->publish($rowset);
+		}
+		
+		if ($receiver['mailto_dt'] == '1') {
+			//選擇向觀光局發送郵件
+			$rowset = array(
+				'TopicArn'=>AWS_SNS_TOPIC_ARN_DT,
+				'Subject'=>$subject,
+				'Message'=>$message
+			);
+			$sns->publish($rowset);
+		}
 		
 		if ($receiver['agency_arn'] && $receiver['agency_arn'] != '') {
 			$rowset = array(

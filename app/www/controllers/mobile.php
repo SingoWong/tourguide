@@ -89,6 +89,49 @@ class Mobile extends Base_Controller {
 
         $this->smarty->display('./mobile/policy.html');
     }
+	
+	public function resecret() {
+		$this->load->model('Users_Model');
+
+		$uid = $this->user['id'];
+		$user = new Users_Model();
+		$profile = $user->getUserByUid($uid);
+		
+		$this->smarty->assign('profile', $profile);
+		$this->smarty->assign('url_default', $url);
+        $this->smarty->assign('url_resecret_save', url('mobile/resecret_save'));
+        $this->smarty->display('./mobile/resecret.html');
+    }
+	
+	public function resecret_save() {
+		$this->load->model('Users_Model');
+		
+		$uid = $this->user['id'];
+		$oldpassword = $this->input->post('oldpassword');
+		$password = $this->input->post('password');
+		$repassword = $this->input->post('repassword');
+		
+		if ($password != $repassword) {
+			alert('兩次輸入的密碼不正確，請核對後再試。', null, TRUE);
+		} else {
+			$user = new Users_Model();
+			
+			$re = $user->checkpassword($uid, $oldpassword);
+			
+			if ($re['result'] == '1') {
+				$o = $user->getUserByUid($uid);
+				$sre = $user->setpassword($o->username, $password);
+			
+				if ($sre && $ure) {
+					alert('密碼修改成功', url('mobile/resecret'));
+				} else {
+					alert('密碼修改失敗', null, TRUE);
+				}
+			} else {
+				alert('密碼不正確', null, TRUE);
+			}
+		}
+	}
     
     public function secret() {
     		$url = $this->input->get('url');

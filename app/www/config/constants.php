@@ -87,5 +87,8 @@ define('AWS_KEY', 'AKIAI4ZGEP27U6LPPCRA');
 define('AWS_SECRET', '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');
 define('AWS_REGION', 'ap-southeast-1');
 define('AWS_SNS_TOPIC_ARN_BULLETIN', 'arn:aws:sns:ap-southeast-1:695614020375:Change_Bulletin');
+define('AWS_SNS_TOPIC_ARN_UNION', 'arn:aws:sns:ap-southeast-1:695614020375:Change_union');
+define('AWS_SNS_TOPIC_ARN_DT', 'arn:aws:sns:ap-southeast-1:695614020375:Change_DT');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

@@ -1,0 +1,35 @@
+{{include file="_common/header.html"}}
+<style type="text/css">
+ul.profile li {
+	height: 30px;
+	line-height: 30px;
+	padding-left:20px;
+	font-size:14px;
+}
+</style>
+
+<div class="title_panel">
+	旅行社基本资料
+</div>
+
+<div class="list_inner">
+
+<form action="index.php?ctr=sysagency&act=mailtosetup_save" method="post" class="gm_t1_form">
+<ul class="profile">
+    <li>
+        <span class="v">通報發送給全聯會：<input type="checkbox" name="mailto_union" {{if $profile->mailto_union == '1'}}checked="checked"{{/if}} /></span>
+    </li>
+    <li>
+        <span class="v">通報發送給觀光局：<input type="checkbox" name="mailto_dt" {{if $profile->mailto_dt == '1'}}checked="checked"{{/if}} /></span>
+    </li>
+    <li>
+        <span class="v">
+	        	<input type="submit" class="gm_t1_btn" value="保存設置" style="height: 50px;">
+        </span>
+    </li>
+</ul>
+</form>
+
+</div>
+
+{{include file="_common/footer.html"}}

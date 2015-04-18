@@ -175,6 +175,20 @@ class Users_Model extends CI_Model {
 	    return $re;
 	}
 	
+	public function checkpassword($uid, $password) {
+		$users = $this->getUserByUid($uid);
+		
+		$username = $users['username'];
+		
+		if ($this->_check_auth($username, $password, $users->password)) {
+	        $re = array('result'=>'1','msg'=>'密碼正確');
+		} else {
+	        $re = array('result'=>'0','msg'=>'密码不正确');
+	    }
+		
+		return $re;
+	}
+	
 	public function setpassword($username, $password) {
 		$this->db->trans_start();
 	     

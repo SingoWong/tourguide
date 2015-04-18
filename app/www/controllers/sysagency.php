@@ -972,6 +972,35 @@ class SysAgency extends Base_Controller {
 		$end_date = $this->input->get("end_date");
 		
 	}
+	
+	public function mailtosetup() {
+		$this->load->model('Users_Agency_Model');
+        $users_agent_model = new Users_Agency_Model();
+        
+        $re = $users_agent_model->getAgencyById($this->user['id']);
+        
+        $this->smarty->assign('profile', $re);
+        $this->smarty->display('./agency/mailtosetup.html');
+	}
+	
+	public function mailtosetup_save() {
+		$this->load->model('Users_Agency_Model');
+        $users_agent_model = new Users_Agency_Model();
+		
+		$uid = $this->user['id'];
+		$mailto_union = ($this->input->post('mailto_union') == 'on') ? '1' : '0';
+		$mailto_dt = ($this->input->post('mailto_dt') == 'on') ? '1' : '0';
+		
+		$row['mailto_union'] = $mailto_union;
+		$row['mailto_dt'] = $mailto_dt;
+		$re = $users_agent_model->update($uid, $row);
+        
+        if ($re) {
+            alert('保存成功', url('sysagency/mailtosetup'));
+        } else {
+            alert('保存失敗', null, true);
+        }
+	}
     
     private function _gen_room_selector($id, $default) {
         $html = '<select id="'.$id.'" name="'.$id.'" onchange="calc();">';

@@ -377,6 +377,8 @@ class Accident extends Base_Controller {
 		
 		$receiver['agency_arn'] = $this->input->post('agency_arn');
 		$receiver['guide_arn'] = $this->input->post('guide_arn');
+		$receiver['mailto_union'] = $this->input->post('mailto_union');
+		$receiver['mailto_dt'] = $this->input->post('mailto_dt');
 		
 		$ac = new Accident_Model();
 		$re = $ac->saveAccidentT1($id, $accident, $accident_t1, $this->user['name'], $receiver);
@@ -454,6 +456,8 @@ class Accident extends Base_Controller {
 		
 		$receiver['agency_arn'] = $this->input->post('agency_arn');
 		$receiver['guide_arn'] = $this->input->post('guide_arn');
+		$receiver['mailto_union'] = $this->input->post('mailto_union');
+		$receiver['mailto_dt'] = $this->input->post('mailto_dt');
 		
 		$ac = new Accident_Model();
 		$re = $ac->saveAccidentT2($id, $accident, $accident_t2, $this->user['name'], $receiver);
@@ -525,6 +529,8 @@ class Accident extends Base_Controller {
 		
 		$receiver['agency_arn'] = $this->input->post('agency_arn');
 		$receiver['guide_arn'] = $this->input->post('guide_arn');
+		$receiver['mailto_union'] = $this->input->post('mailto_union');
+		$receiver['mailto_dt'] = $this->input->post('mailto_dt');
 		
 		$ac = new Accident_Model();
 		$re = $ac->saveAccidentT3($id, $accident, $accident_t3, $this->user['name'], $receiver);
@@ -637,6 +643,8 @@ class Accident extends Base_Controller {
 		
 		$receiver['agency_arn'] = $this->input->post('agency_arn');
 		$receiver['guide_arn'] = $this->input->post('guide_arn');
+		$receiver['mailto_union'] = $this->input->post('mailto_union');
+		$receiver['mailto_dt'] = $this->input->post('mailto_dt');
 		
 		$ac = new Accident_Model();
 		$re = $ac->saveAccidentT4($id, $accident, $accident_t4, $this->user['name'], $receiver);
