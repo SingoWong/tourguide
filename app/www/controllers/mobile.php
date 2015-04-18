@@ -122,7 +122,7 @@ class Mobile extends Base_Controller {
 				$o = $user->getUserByUid($uid);
 				$sre = $user->setpassword($o->username, $password);
 			
-				if ($sre && $ure) {
+				if ($sre) {
 					alert('密碼修改成功', url('mobile/resecret'));
 				} else {
 					alert('密碼修改失敗', null, TRUE);

@@ -178,7 +178,7 @@ class Users_Model extends CI_Model {
 	public function checkpassword($uid, $password) {
 		$users = $this->getUserByUid($uid);
 		
-		$username = $users['username'];
+		$username = $users->username;
 		
 		if ($this->_check_auth($username, $password, $users->password)) {
 	        $re = array('result'=>'1','msg'=>'密碼正確');
