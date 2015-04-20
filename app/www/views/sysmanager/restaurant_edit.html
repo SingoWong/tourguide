@@ -1,5 +1,39 @@
 {{include file="_common/header.html"}}
 <script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+<script type="text/javascript">
+	function onsave() {
+		if ($("#name").val() == "") {
+			alert("提醒您!! 餐廳名稱尚未填寫");
+			return false;
+		} else if ($("#title").val() == "") {
+			alert("提醒您!! 發票抬頭尚未填寫");
+			return false;
+		} else if ($("#region").val() == "") {
+			alert("提醒您!! 地區尚未填寫");
+			return false;
+		} else if ($("#address").val() == "") {
+			alert("提醒您!! 地址尚未填寫");
+			return false;
+		} else if ($("#code").val() == "") {
+			alert("提醒您!! 統一編碼尚未填寫");
+			return false;
+		} else if ($("#contact").val() == "") {
+			alert("提醒您!! 聯絡人尚未填寫");
+			return false;
+		} else if ($("#contact_tel").val() == "") {
+			alert("提醒您!! 電話尚未填寫");
+			return false;
+		} else if ($("#sign_date_start").val() == "") {
+			alert("提醒您!! 簽約開始日期未選擇");
+			return false;
+		} else if ($("#sign_date_end").val() == "") {
+			alert("提醒您!! 簽約結束日期未選擇");
+			return false;
+		}
+		
+		return true;
+	}
+</script>
 
 <div class="title_panel">
 	餐廳管理 - 新增餐廳
@@ -11,7 +45,7 @@
 
 <div class="form_inner">
 
-<form action="index.php?ctr=sysrestaurant&act=save" method="post" class="gm_t1_form">
+<form action="index.php?ctr=sysrestaurant&act=save" method="post" class="gm_t1_form" onsubmit="return onsave();">
     <ul>
         <li>
         	<b>餐廳名稱：</b>

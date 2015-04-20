@@ -13,6 +13,14 @@ function calc() {
 	var total = single_room + double_room + full_room + plus_room + kid_room;
 	$("#lbl_amount").html(total);
 }
+function onsave() {
+	if ($("#lbl_amount").html() == "0") {
+		alert("提醒您!! 房間間數尚未點選");
+		return false;
+	}
+	
+	return true;
+}
 </script>
 
 <div class="flowset">
@@ -25,7 +33,7 @@ function calc() {
 	<a href="index.php?ctr=sysagency&act=groupinfo&id={{$id}}">開團說明會資料</a>
 </div>
 
-<form method="post" action="index.php?ctr=sysagency&act=grouproomsave">
+<form method="post" action="index.php?ctr=sysagency&act=grouproomsave" onsubmit="return onsave();">
 <div class="title_panel">
 	房型類型
 </div>

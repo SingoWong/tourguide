@@ -20,6 +20,25 @@
 				padding-left: 10px!important;
 			}
 		</style>
+		<script type="text/javascript">
+		function onsave() {
+			if ($("#location").val() == "") {
+				alert("提醒您!! 發生地點尚未填寫");
+				return false;
+			} else if ($("#driver_status").val() == "") {
+				alert("提醒您!! 司機狀況尚未點選");
+				return false;
+			} else if ($("#member_status").val() == "") {
+				alert("提醒您!! 旅客狀況尚未點選");
+				return false;
+			} else if ($("#bus_status").val() == "") {
+				alert("提醒您!! 遊覽車狀況尚未點選");
+				return false;
+			}
+			
+			return true;
+		}
+		</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -41,17 +60,17 @@
 		<div class="mui-content">
 			<form class="mui-input-group" action="{{$url_bus_submit}}" method="post" id="form">
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="time" placeholder="發生時間" value="{{$time}}">
+					<input type="text" class="mui-input-clear" name="time" id="time" placeholder="發生時間" value="{{$time}}">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="location" placeholder="發生地點">
+					<input type="text" class="mui-input-clear" name="location" id="location" placeholder="發生地點">
 				</div>
 				<div class="mui-input-row">
 					<label><b>事故狀況：</b></label>
 				</div>
 				<div class="mui-input-row">
 					<label>司機狀況：</label>
-					<select name="driver_status">
+					<select name="driver_status" id="driver_status">
 						<option value="">-</option>
 						<option value="0">死亡</option>
 						<option value="1">重傷</option>
@@ -61,7 +80,7 @@
 				</div>
 				<div class="mui-input-row">
 					<label>旅客狀況：</label>
-					<select name="member_status">
+					<select name="member_status" id="member_status">
 						<option value="">-</option>
 						<option value="0">死亡</option>
 						<option value="1">重傷</option>
@@ -71,7 +90,7 @@
 				</div>
 				<div class="mui-input-row">
 					<label>遊覽車狀況：</label>
-					<select name="bus_status">
+					<select name="bus_status" id="bus_status">
 						<option value="">-</option>
 						<option value="0">可行進</option>
 						<option value="1">無法行進</option>

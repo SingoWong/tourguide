@@ -29,6 +29,22 @@
 			}
 		});
 	}
+	
+	function onsave() {
+		if ($("#leader").val() == "") {
+			alert("提醒您!! 領隊尚未填寫");
+			return false;
+		} else if ($("#leader_tel").val() == "") {
+			alert("提醒您!! 領隊手機尚未填寫");
+			return false;
+		} else if ($("#member_names").val() == "") {
+			alert("提醒您!! 團員名稱尚未填寫");
+			return false;
+		} else if ($("#guide_id").val() == "") {
+			alert("提醒您!! 導遊帳號尚未點選");
+			return false;
+		}
+	}
 </script>
 
 <div class="flowset">
@@ -41,7 +57,7 @@
 	<a href="index.php?ctr=sysagency&act=groupinfo&id={{$id}}" class="curr">開團說明會資料</a>
 </div>
 
-<form method="post" action="index.php?ctr=sysagency&act=groupinfosave">
+<form method="post" action="index.php?ctr=sysagency&act=groupinfosave" onsubmit="return onsave();">
 <div class="title_panel">
 	開團說明會資料
 </div>
@@ -79,7 +95,7 @@
 		<tr>
 			<td class="tf_key">導遊帳號</td>
 			<td colspan="3">
-				<span class="v"><select id="guide_id" name="guide_id" onchange="onchooseguide(this);">{{$html_guide}}</select></span>
+				<span class="v"><select id="guide_id" name="guide_id" onchange="onchooseguide(this);"><option value="">未預設</option>{{$html_guide}}</select></span>
 				<a href="index.php?ctr=sysagency&act=guideedit" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加導遊]</a>
 			</td>
 		</tr>

@@ -20,6 +20,16 @@
 				padding-left: 10px!important;
 			}
 		</style>
+		<script type="text/javascript">
+		function onsave() {
+			if ($("#location").val() == "") {
+				alert("提醒您!! 發生地點尚未填寫");
+				return false;
+			}
+			
+			return true;
+		}
+		</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -39,12 +49,12 @@
 			{{/if}}
 		</header>
 		<div class="mui-content">
-			<form class="mui-input-group" action="{{$url_natural_submit}}" method="post" id="form">
+			<form class="mui-input-group" action="{{$url_natural_submit}}" method="post" id="form" onsubmit="return onsave();">
 				<div class="mui-input-row">
 					<input type="text" class="mui-input-clear" name="time" placeholder="發生時間" value="{{$time}}">
 				</div>
 				<div class="mui-input-row">
-					<input type="text" class="mui-input-clear" name="location" placeholder="發生地點">
+					<input type="text" class="mui-input-clear" name="location" id="location" placeholder="發生地點">
 				</div>
 				<div class="mui-input-row">
 					<label>請選擇天災情況：</label>

@@ -1,5 +1,36 @@
 {{include file="_common/header.html"}}
 <script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+<script type="text/javascript">
+	function onsave() {
+		if ($("#name").val() == "") {
+			alert("提醒您!! 旅行社名稱尚未填寫");
+			return false;
+		} else if ($("#address").val() == "") {
+			alert("提醒您!! 地址尚未填寫");
+			return false;
+		} else if ($("#code").val() == "") {
+			alert("提醒您!! 統一編碼尚未填寫");
+			return false;
+		} else if ($("#contact").val() == "") {
+			alert("提醒您!! 聯絡人尚未填寫");
+			return false;
+		} else if ($("#contact_tel").val() == "") {
+			alert("提醒您!! 電話尚未填寫");
+			return false;
+		} else if ($("#email").val() == "") {
+			alert("提醒您!! 郵箱尚未填寫");
+			return false;
+		} else if ($("#sign_date_start").val() == "") {
+			alert("提醒您!! 簽約開始日期未選擇");
+			return false;
+		} else if ($("#sign_date_end").val() == "") {
+			alert("提醒您!! 簽約結束日期未選擇");
+			return false;
+		}
+		
+		return true;
+	}
+</script>
 
 <div class="title_panel">
 	旅行社管理 - 新增旅行社
@@ -11,7 +42,7 @@
 
 <div class="form_inner">
 
-<form action="index.php?ctr=sysagency&act=save" method="post" class="gm_t1_form">
+<form action="index.php?ctr=sysagency&act=save" method="post" class="gm_t1_form" onsubmit="return onsave();">
     <ul>
         <li>
             <span class="v"><input type="text" id="name" name="name" placeholder="旅行社名稱"><em></em></span>
@@ -32,7 +63,6 @@
             <span class="v"><input type="text" id="contact_tel" name="contact_tel" placeholder="電話"><em></em></span>
         </li>
         <li>
-        	<b>郵箱：</b>
             <span class="v"><input type="text" id="email" name="email" placeholder="郵箱"><em></em></span>
         </li>
         <li>

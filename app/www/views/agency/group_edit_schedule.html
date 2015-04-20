@@ -152,6 +152,10 @@ function choose_hotel(sender) {
 	var s = $(sender);
 	$("#hname_"+s.attr("day")+"_"+s.attr("t")).val($("#hid_"+s.attr("day")+"_"+s.attr("t")).find("option:selected").text());
 }
+function onsave() {
+	
+	return true;
+}
 </script>
 
 <div class="flowset">
@@ -164,7 +168,7 @@ function choose_hotel(sender) {
 	<a href="index.php?ctr=sysagency&act=groupinfo&id={{$id}}">開團說明會資料</a>
 </div>
 
-<form method="post" action="index.php?ctr=sysagency&act=groupschedulesave">
+<form method="post" action="index.php?ctr=sysagency&act=groupschedulesave" onsubmit="return onsave();">
 <div class="title_panel">
 	行程安排
 </div>

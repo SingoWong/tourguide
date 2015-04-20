@@ -1,5 +1,27 @@
 {{include file="_common/popup_header.html"}}
 <script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+<script type="text/javascript">
+	function onsave() {
+		if ($("#name").val() == "") {
+			alert("提醒您!! 導遊名稱尚未填寫");
+			return false;
+		} else if ($("#contact_tel").val() == "") {
+			alert("提醒您!! 電話尚未填寫");
+			return false;
+		} else if ($("#code").val() == "") {
+			alert("提醒您!! 統一編碼尚未填寫");
+			return false;
+		} else if ($("#sign_date_start").val() == "") {
+			alert("提醒您!! 簽約開始日期未選擇");
+			return false;
+		} else if ($("#sign_date_end").val() == "") {
+			alert("提醒您!! 簽約結束日期未選擇");
+			return false;
+		}
+		
+		return true;
+	}
+</script>
 
 <div class="title_panel">
 	領隊管理 - 新增領隊
@@ -7,7 +29,7 @@
 
 <div class="form_inner">
 
-<form action="index.php?ctr=sysagency&act=leadersave" method="post" class="gm_t1_form">
+<form action="index.php?ctr=sysagency&act=leadersave" method="post" class="gm_t1_form" onsubmit="return onsave();">
     <ul>
         <li>
         	<b>領隊名稱：</b>
