@@ -523,6 +523,7 @@ class Accident extends Base_Controller {
 		$accident_t3['ff_name'] = $this->input->post('ff_name');
 		$accident_t3['ff_address'] = $this->input->post('ff_address');
 		$accident_t3['ff_tel'] = $this->input->post('ff_tel');
+		$accident_t3['urgen_detail'] = $this->input->post('urgen_detail');
 		$accident_t3['ltime'] = strtotime($this->input->post('ldate').' '.$this->input->post('ltime'));
 		$accident_t3['btime'] = strtotime($this->input->post('bdate').' '.$this->input->post('btime'));
 		$accident_t3['members_name'] = $this->input->post('members_name');

@@ -44,6 +44,14 @@ function sh_pnlc(id) {
 				團員脫團
 				{{elseif $item->type == '3'}}
 				天災行程滯留
+				{{elseif $item->type == '4'}}
+				入境接待通報表
+				{{elseif $item->type == '5'}}
+				出境通報表
+				{{elseif $item->type == '6'}}
+				旅客離團申報書
+				{{elseif $item->type == '7'}}
+				通報案件申報書
 				{{/if}}
 			</span>
 			<span class="tt_item_name">{{if $source=='1'}}領隊{{elseif $source=='0'}}導遊{{/if}}：{{$item->guide->name}}</span>
