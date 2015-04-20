@@ -93,10 +93,12 @@ class Mobile extends Base_Controller {
 	public function resecret() {
 		$this->load->model('Users_Model');
 
+		$en = $this->input->get('en');
 		$uid = $this->user['id'];
 		$user = new Users_Model();
 		$profile = $user->getUserByUid($uid);
 		
+		$this->smarty->assign('en', $en);
 		$this->smarty->assign('profile', $profile);
 		$this->smarty->assign('url_default', $url);
         $this->smarty->assign('url_resecret_save', url('mobile/resecret_save'));
