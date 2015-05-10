@@ -20,20 +20,18 @@ class SysAgency extends Base_Controller {
         		$this->load->model('Users_Model');
 			$users = new Users_Model();
 			$re = $users->getUsersByName($name, $username);
-			echo '1:';
+			
 			$ids = array(0);
 			foreach ($re as $r) {
 				$ids[] = $r->id;
 			}
-			echo '2:';
 			if (sizeof($ids) > 0) {
 	            $conditions['uid'] = $ids;
 			}
-			echo '3:';
         }
         
         $re = $users_agent_model->getContractAgency($conditions, true, $page);
-echo '4:';
+
         $this->smarty->assign('rowset', $re['rowset']);
 		$this->smarty->assign('pager', pagerui($re['pager']));
         $this->smarty->display('./sysmanager/agency_manager.html');
