@@ -547,7 +547,8 @@ class SysAgency extends Base_Controller {
 		$re_hotel = $hotel->getScheduleContractHotel(null, $gid);
 		$html_hotel = '';
 		foreach($re_hotel as $rh) {
-			$html_hotel .= '<option value="'.$rh->users->id.'">'.$rh->users->name.'</option>';
+			$html_hotel .= '<option value="'.$rh->users->id.'" region="'.$rh->region.'">'.$rh->users->name.'</option>';
+			$regions_h[$rh->region] = '1';
 		}
 		
 		$restaurant = new Users_Restaurant_Model();
@@ -555,19 +556,25 @@ class SysAgency extends Base_Controller {
 		$html_restaurant = '';
 		foreach($re_restaurant as $rr) {
 			$html_restaurant .= '<option value="'.$rr->users->name.'" region="'.$rr->region.'">'.$rr->users->name.'</option>';
-			$regions[$rr->region] = '1';
+			$regions_r[$rr->region] = '1';
 		}
 		
-		$html_regions = '<option value="">所有地區</option>';
-		foreach($regions as $r=>$v) {
-			$html_regions .= '<option value="'.$r.'">'.$r.'</option>';
+		$html_regions_r = '<option value="">所有地區</option>';
+		foreach($regions_r as $r=>$v) {
+			$html_regions_r .= '<option value="'.$r.'">'.$r.'</option>';
 		}
         
+		$html_regions_h = '<option value="">所有地區</option>';
+		foreach($regions_h as $r=>$v) {
+			$html_regions_h .= '<option value="'.$r.'">'.$r.'</option>';
+		}
+		
         $this->smarty->assign('id',$gid);
         $this->smarty->assign('rowset',$re);
 		$this->smarty->assign('html_hotel',$html_hotel);
 		$this->smarty->assign('html_restaurant',$html_restaurant);
-		$this->smarty->assign('html_regions',$html_regions);
+		$this->smarty->assign('html_regions_r',$html_regions_r);
+		$this->smarty->assign('html_regions_h',$html_regions_h);
         $this->smarty->display('./agency/group_edit_schedule.html');
     }
     
