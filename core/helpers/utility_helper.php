@@ -46,6 +46,14 @@ if ( ! function_exists('dump'))
     }
 }
 
+if ( ! function_exists('output'))
+{
+    function output($data) {
+		echo json_encode($data);
+		return null;
+	}
+}
+
 if ( ! function_exists('array_to_hashmap'))
 {
     function array_to_hashmap(& $arr, $keyField, $valueField = null)

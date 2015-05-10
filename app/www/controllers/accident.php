@@ -14,7 +14,7 @@ class Accident extends Base_Controller {
     }
     
     public function index() {
-        
+   		
         $this->smarty->assign( 'url_bus_photo_choose', url('accident/bus_photo_choose') );
         $this->smarty->assign( 'url_medicine_photo_choose', url('accident/medicine_photo_choose') );
         $this->smarty->assign( 'url_desert_form', url('accident/desert_form') );
