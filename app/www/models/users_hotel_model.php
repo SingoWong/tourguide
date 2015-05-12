@@ -85,7 +85,21 @@ class Users_Hotel_Model extends CI_Model {
 	/**
 	 * 获取可选的饭店
 	 */
-	function getScheduleContractHotel($conditions, $aid) {
+	function getScheduleContractHotel($conditions, $gid) {
+		//篩選合作的餐廳
+		if ($gid != '0') {
+			$group = new Group();
+			$group->where('id',$gid)->get();
+			$aid = $group->all[0]->aid;
+			
+			$agency_hotel = new  Users_Agency_Hotel();
+			$agency_hotel->where('aid', $aid)->get();
+			$hids = array(0);
+			foreach ($agency_hotel as $ah) {
+				$hids[] = $ah->hid;
+			}
+		}
+		
         $hotel = new Users_Hotel();
         
         $hotel->where('sign_date_start <=', time());
@@ -97,6 +111,9 @@ class Users_Hotel_Model extends CI_Model {
 	            $hotel->where($field, $value);
 			}
         }
+		if (sizeof($hids) > 0) {
+            $hotel->where_in('uid', $hids);
+		}
         $hotel->get_paged(1,100);
 
         $ids = array();
