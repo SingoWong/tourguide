@@ -177,8 +177,9 @@ class SysRestaurant extends Base_Controller {
 		$this->load->model('Contract_Restaurant_Model');
 		$crm = new Contract_Restaurant_Model();
 		
+		$page = $this->input->get('page');
 		$rid = $this->input->get('rid');
-		$re = $crm->getCAgencyByRestaurant($rid);
+		$re = $crm->getCAgencyByRestaurant($rid, $page);
 		
 		$this->smarty->assign('rid', $rid);
 		$this->smarty->assign('rowset', $re['rowset']);

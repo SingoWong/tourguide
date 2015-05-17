@@ -177,8 +177,9 @@ class SysHotel extends Base_Controller {
 		$this->load->model('Contract_Hotel_Model');
 		$chm = new Contract_Hotel_Model();
 		
+		$page = $this->input->get('page');
 		$hid = $this->input->get('hid');
-		$re = $chm->getCAgencyByHotel($hid);
+		$re = $chm->getCAgencyByHotel($hid, $page);
 		
 		$this->smarty->assign('hid', $hid);
 		$this->smarty->assign('rowset', $re['rowset']);
