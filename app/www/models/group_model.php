@@ -319,13 +319,30 @@ class Group_Model extends CI_Model {
         $group->where('id', $row['id'])->get();
         
         if ($group->result_count() > 0) {
+        		$nrow['name'] = $row['name'];
+			$nrow['code'] = $row['code'];
+            $nrow['gcode'] = $row['gcode'];
+            $nrow['name'] = $row['name'];
+            $nrow['continent'] = $row['continent'];
+            $nrow['country'] = $row['country'];
+            $nrow['city'] = $row['city'];
+            $nrow['days'] = $row['days'];
             $nrow['start_date'] = strtotime($row['start_date']);
             $nrow['start_departure_time'] = strtotime($row['start_date'].' '.$row['start_departure_time'].':00');
             $nrow['start_arrive_time'] = strtotime($row['start_date'].' '.$row['start_arrive_time'].':00');
             $nrow['end_date'] = strtotime($row['end_date']);
             $nrow['end_departure_time'] = strtotime($row['end_date'].' '.$row['end_departure_time'].':00');
             $nrow['end_arrive_time'] = strtotime($row['end_date'].' '.$row['end_arrive_time'].':00');
-            
+			$nrow['start_flight_code'] = $row['start_flight_code'];
+            $nrow['start_flight_num'] = $row['start_flight_num'];
+            $nrow['end_flight_code'] = $row['end_flight_code'];
+            $nrow['end_flight_num'] = $row['end_flight_num'];
+			$nrow['op'] = $row['op'];
+            $nrow['amount'] = $row['amount'];
+            $nrow['contact_name'] = $row['contact_name'];
+            $nrow['contact_tel'] = $row['contact_tel'];
+			$nrow['map'] = $row['map'];
+			
             $re = $group->where('id', $row['id'])->update($nrow);
         } else {
             $group->aid = $row['aid'];
