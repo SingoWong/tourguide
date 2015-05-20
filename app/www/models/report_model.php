@@ -28,7 +28,7 @@ class Report_Model extends CI_Model {
 		$row['guide_id'] = $re_group->gid;
 		$row['guide_name'] = $re_group_info->guide_name;
 		$row['receive'] = $receive;
-		dump($row);exit();
+		
 		$this->_logReportAgency($row);
 		$this->_logReportRestaurant($row);
 		$this->_logReportGuide($row);
@@ -148,6 +148,11 @@ class Report_Model extends CI_Model {
         if ($report_agency->result_count() > 0) {
         		$re = $report_agency->update($row);
 		} else {
+			$report_agency->aid = $row['aid'];
+			$report_agency->gid = $row['gid'];
+			$report_agency->sid = $row['sid'];
+			$report_agency->rid = $row['rid'];
+			$report_agency->hid = $row['hid'];
 			$report_agency->code = $row['code'];
 			$report_agency->date = $row['date'];
 			$report_agency->name = $row['name'];
@@ -171,6 +176,10 @@ class Report_Model extends CI_Model {
         if ($report_hotel->result_count() > 0) {
         		$re = $report_hotel->update($row);
 		} else {
+			$report_hotel->aid = $row['aid'];
+			$report_hotel->gid = $row['gid'];
+			$report_hotel->sid = $row['sid'];
+			$report_hotel->hid = $row['hid'];
 			$report_hotel->code = $row['code'];
 			$report_hotel->date = $row['date'];
 			$report_hotel->name = $row['name'];
@@ -194,6 +203,10 @@ class Report_Model extends CI_Model {
         if ($report_restaurant->result_count() > 0) {
         		$re = $report_restaurant->update($row);
 		} else {
+			$report_restaurant->aid = $row['aid'];
+			$report_restaurant->gid = $row['gid'];
+			$report_restaurant->sid = $row['sid'];
+			$report_restaurant->rid = $row['rid'];
 			$report_restaurant->code = $row['code'];
 			$report_restaurant->date = $row['date'];
 			$report_restaurant->name = $row['name'];
@@ -217,6 +230,11 @@ class Report_Model extends CI_Model {
         if ($report_guide->result_count() > 0) {
         		$re = $report_guide->update($row);
 		} else {
+			$report_guide->aid = $row['aid'];
+			$report_guide->gid = $row['gid'];
+			$report_guide->sid = $row['sid'];
+			$report_guide->rid = $row['rid'];
+			$report_guide->hid = $row['hid'];
 			$report_guide->code = $row['code'];
 			$report_guide->date = $row['date'];
 			$report_guide->name = $row['name'];
