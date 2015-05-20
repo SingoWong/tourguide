@@ -28,7 +28,7 @@ class Report_Model extends CI_Model {
 		$row['guide_id'] = $re_group->gid;
 		$row['guide_name'] = $re_group_info->guide_name;
 		$row['receive'] = $receive;
-		
+		dump($row);
 		$this->_logReportAgency($row);
 		$this->_logReportRestaurant($row);
 		$this->_logReportGuide($row);
@@ -144,7 +144,7 @@ class Report_Model extends CI_Model {
 		
         $report_agency->where('code',$row['code']);
         $report_agency->get();
-        
+        dump($report_agency->result_count());exit();
         if ($report_agency->result_count() > 0) {
         		$re = $report_agency->update($row);
 		} else {
