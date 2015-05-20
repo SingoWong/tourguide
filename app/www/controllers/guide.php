@@ -65,7 +65,7 @@ class Guide extends Base_Controller {
 				if ($row->rstatus == '4') {
 					$r['location'] = $row->restaurant->name.' '.$row->location; //餐廳名和取消原因
 				} else {
-					$r['location'] = $row->restaurant->name; //餐廳名
+					$r['location'] = $row->restaurant->name?$row->restaurant->name:$row->location; //餐廳名
 				}
             	} else {
             		$r['location'] = $row->location;
