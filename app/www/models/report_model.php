@@ -146,7 +146,7 @@ class Report_Model extends CI_Model {
         $report_agency->get();
         dump($report_agency->result_count());exit();
         if ($report_agency->result_count() > 0) {
-        		$re = $report_agency->update($row);
+        		$re = $report_agency->where('code',$row['code'])->update($row);
 		} else {
 			$report_agency->aid = $row['aid'];
 			$report_agency->gid = $row['gid'];
@@ -174,7 +174,7 @@ class Report_Model extends CI_Model {
         $report_hotel->get();
         
         if ($report_hotel->result_count() > 0) {
-        		$re = $report_hotel->update($row);
+        		$re = $report_hotel->where('code',$row['code'])->update($row);
 		} else {
 			$report_hotel->aid = $row['aid'];
 			$report_hotel->gid = $row['gid'];
@@ -201,7 +201,7 @@ class Report_Model extends CI_Model {
         $report_restaurant->get();
         
         if ($report_restaurant->result_count() > 0) {
-        		$re = $report_restaurant->update($row);
+        		$re = $report_restaurant->where('code',$row['code'])->update($row);
 		} else {
 			$report_restaurant->aid = $row['aid'];
 			$report_restaurant->gid = $row['gid'];
@@ -228,7 +228,7 @@ class Report_Model extends CI_Model {
         $report_guide->get();
         
         if ($report_guide->result_count() > 0) {
-        		$re = $report_guide->update($row);
+        		$re = $report_guide->where('code',$row['code'])->update($row);
 		} else {
 			$report_guide->aid = $row['aid'];
 			$report_guide->gid = $row['gid'];
