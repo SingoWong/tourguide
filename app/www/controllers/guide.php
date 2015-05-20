@@ -386,11 +386,20 @@ class Guide extends Base_Controller {
         
         if ($upload['result']) {
 			$url = $upload['url'];
-			
+			dump($gid);
+			dump($day);
+			dump($route);
+			dump($mode);
+			dump($url);
 			$order = new Order_Model();
 			$re_order = $order->getRestaurantOrder($gid, $day, $route);
 			$re = $order->paymentRestaurant($re_order->id, $mode, $url);
-			
+			dump($re_order->aid);
+			dump($re_order->gid);
+			dump($re_order->sid);
+			dump($re_order->rid);
+			dump($re);
+			exit();
 			if ($re) {
 				$this->load->model('Report_Model');
 				$report = new Report_Model();
