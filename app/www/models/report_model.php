@@ -28,8 +28,7 @@ class Report_Model extends CI_Model {
 		$row['guide_id'] = $re_group->gid;
 		$row['guide_name'] = $re_group_info->guide_name;
 		$row['receive'] = $receive;
-		dump($row);
-		exit();
+		
 		$this->_logReportAgency($row);
 		$this->_logReportRestaurant($row);
 		$this->_logReportGuide($row);
