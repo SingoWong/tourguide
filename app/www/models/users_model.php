@@ -312,7 +312,7 @@ class Users_Model extends CI_Model {
 	
 	public function getUsersByName($name, $username) {
 		$users = new Users();
-		$users->like('name',$name)->or_like('username',$username)->get(10);
+		$users->like('name',$name)->or_where('username',$username)->get();
 		
 		return $users->all;
 		
