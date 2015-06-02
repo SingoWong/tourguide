@@ -114,7 +114,8 @@ class Users_Hotel_Model extends CI_Model {
 		if (sizeof($hids) > 0) {
             $hotel->where_in('uid', $hids);
 		}
-        $hotel->get_paged(1,100);
+//      $hotel->get_paged(1,100);
+		$hotel->get();
 
         $ids = array();
         for ($i=0; $i<sizeof($hotel->all); $i++) {

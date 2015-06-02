@@ -114,7 +114,8 @@ class Users_Restaurant_Model extends CI_Model {
 		if (sizeof($rids) > 0) {
             $restaurant->where_in('uid', $rids);
 		}
-        $restaurant->get_paged(1,100);
+//      $restaurant->get_paged(1,100);
+		$restaurant->get();
 
         $ids = array();
         for ($i=0; $i<sizeof($restaurant->all); $i++) {
