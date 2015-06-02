@@ -824,7 +824,18 @@ class SysAgency extends Base_Controller {
             $r['hstatus'] = $row->hstatus;
             $r['rstatus'] = $row->rstatus;
             $r['detail'] = $row->detail;
-            $r['location'] = ($row->type=='4')?$row->hotel->name:$row->location;
+//          $r['location'] = ($row->type=='4')?$row->hotel->name:$row->location;
+			if ($row->type=='4') {
+            		$r['location'] = $row->hotel->name;
+			} elseif ($row->type=='2' || $row->type=='3') {
+				if ($row->rstatus == '4') {
+					$r['location'] = $row->restaurant->name.' '.$row->location; //餐廳名和取消原因
+				} else {
+					$r['location'] = $row->restaurant->name?$row->restaurant->name:$row->location; //餐廳名
+				}
+            	} else {
+            		$r['location'] = $row->location;
+			}
             
             $re[$row->day][] = $r;
         }
