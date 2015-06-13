@@ -187,7 +187,8 @@ body {
 	height: 40px;
 	line-height: 16px;
 	padding:3px;
-	background: #CCC;
+	background: #57A3DA;
+	color: #FFFFFF;
 	text-align: center;
 	display: inline-block;
 	margin-left:2px
@@ -303,4 +304,22 @@ body {
 	opacity: 0.8;
 	width: 100%;
 	height: 100%;
+}
+.flow-item-sdetail .restaurant-order {
+	background: #57A3DA!important;
+	color: #FFF!important;
+}
+.info-search h3 {
+	background: #6BC0AD!important;
+	color: #FFF!important;
+}
+.mui-media-body div b {
+	color: #6BC0AD!important;
+}
+.restaurant-detail p a {
+	border: 0!important;
+	background: #EA5E63!important;
+}
+.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before {
+  color: #6BC0AD!important;
 }
