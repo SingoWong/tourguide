@@ -91,7 +91,7 @@ class Guide extends Base_Controller {
 		
         $group = new Group_Model();
         $re['info'] = $group->getCurrGroupByGuideId($this->user['id']);
-        $schedule = $group->getScheduleById($re['info']->id);
+        $schedule = $group->getScheduleById($re['info']->id, true);
 		
 		$restaurant = new Users_Restaurant_Model();
 		$order = new Order_Model();
@@ -431,7 +431,7 @@ class Guide extends Base_Controller {
         $group = new Group_Model();
         
         $re['info'] = $group->getCurrGroupByGuideId($this->user['id']);
-        $schedule = $group->getScheduleById($re['info']->id);
+        $schedule = $group->getScheduleById($re['info']->id, true);
 		$rooms = $group->getGroupRoom($re['info']->id);
         
         $rows = array();
