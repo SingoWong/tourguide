@@ -114,7 +114,17 @@ class Guide extends Base_Controller {
             $r['rstatus_label'] = $this->_get_rstatus_label($row->rstatus, $r['rname'].' '.$row->location);
             $r['tab'] = $row->tab;
             $r['detail'] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $row->detail));
-            $r['location'] = $row->location;
+            if ($row->type=='4') {
+            		$r['location'] = $row->hotel->name;
+			} elseif ($row->type=='2' || $row->type=='3') {
+				if ($row->rstatus == '4') {
+					$r['location'] = $row->restaurant->name.' '.$row->location; //餐廳名和取消原因
+				} else {
+					$r['location'] = $row->restaurant->name?$row->restaurant->name:$row->location; //餐廳名
+				}
+            } else {
+           		$r['location'] = $row->location;
+			}
 			$r['receive_status'] = ($order->getRestaurantReceiveUrl($row->id)=='')?'未上傳':'已上傳';
         
             $rows[$row->day][] = $r;
@@ -439,7 +449,17 @@ class Guide extends Base_Controller {
             $r['rstatus'] = $row->rstatus;
             $r['tab'] = $row->tab;
             $r['detail'] = htmlspecialchars(str_replace(array("\r\n", "\r", "\n"), "", $row->detail));
-            $r['location'] = $row->location;
+            if ($row->type=='4') {
+            		$r['location'] = $row->hotel->name;
+			} elseif ($row->type=='2' || $row->type=='3') {
+				if ($row->rstatus == '4') {
+					$r['location'] = $row->restaurant->name.' '.$row->location; //餐廳名和取消原因
+				} else {
+					$r['location'] = $row->restaurant->name?$row->restaurant->name:$row->location; //餐廳名
+				}
+            } else {
+            	$r['location'] = $row->location;
+			}
         
             $rows[$row->day][] = $r;
         }
