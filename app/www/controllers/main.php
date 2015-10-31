@@ -10,9 +10,13 @@ class Main extends Base_Controller {
 	 */
 	public function index() {
 	    $this->smarty->assign( 'url_guide', url('guide/index') );
-	    $this->smarty->assign( 'url_restaurant', url('restaurant/index') );
-	    $this->smarty->assign( 'url_hotel', url('hotel/index') );
-	    $this->smarty->assign( 'url_leader', url('leader/index') );
+		$this->smarty->assign( 'url_passenger', url('passenger/index') );
+//	    $this->smarty->assign( 'url_restaurant', url('restaurant/index') );
+//	    $this->smarty->assign( 'url_hotel', url('hotel/index') );
+//	    $this->smarty->assign( 'url_leader', url('leader/index') );
+
+		
+
 	    $this->smarty->display('./mobile/menu.html');
 	}
 	

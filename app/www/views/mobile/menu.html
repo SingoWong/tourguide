@@ -21,7 +21,7 @@
 			}
 			.mui-content .menu_items {
 				width: 306px;
-				height: 281px;
+				height: 105px;
 				margin: auto;
 				position: relative;
 			}
@@ -34,39 +34,17 @@
 				width: 100px;
 				height: 100px;
 			}
+			#btn-passenger {
+				top: 0;
+				left: 0;
+			}
 			#btn-guide {
 				top: 0;
-				left: 0;
-			}
-			#btn-restaurant {
-				top: 0;
-				left: 103px;
-			}
-			#btn-hotel {
-				top: 0;
-				left: 206px;
-			}
-			#btn-spots {
-				top: 103px;
-				left: 0;
-			}
-			#btn-gift {
-				top: 103px;
 				left: 103px;
 			}
 			#btn-dutyfree {
-				top: 103px;
+				top: 0;
 				left: 206px;
-			}
-			#btn-leader {
-				width: 306px;
-				top: 206px;
-				left: 0;
-				height: 75px;
-				line-height: 75px;
-				text-align: center;
-				color: #FFF;
-				background: url(/theme/images/btnbg_leader.png);
 			}
 			.banner {
 				width: 306px;
@@ -82,13 +60,16 @@
 		<div class="mui-content menu-list top-menu-list">
 			<div class="logo"></div>
 			<div class="menu_items">
+				<div class="menu_item" id="btn-passenger" onclick="location.href='{{$url_passenger}}';"><img src="/theme/images/icon_passenger.png" /></div>
 				<div class="menu_item" id="btn-guide" onclick="location.href='{{$url_guide}}';"><img src="/theme/images/icon_guide.png" /></div>
+				<div class="menu_item" id="btn-dutyfree" onclick="location.href='http://54.169.214.7/'"><img src="/theme/images/icon_dutyfree.png" /></div>
+				<!--<div class="menu_item" id="btn-guide" onclick="location.href='{{$url_guide}}';"><img src="/theme/images/icon_guide.png" /></div>
 				<div class="menu_item" id="btn-restaurant" onclick="location.href='{{$url_restaurant}}';"><img src="/theme/images/icon_restaurant.png" /></div>
 				<div class="menu_item" id="btn-hotel" onclick="location.href='{{$url_hotel}}';"><img src="/theme/images/icon_hotel.png" /></div>
 				<div class="menu_item" id="btn-spots"><img src="/theme/images/icon_spots.png" /></div>
 				<div class="menu_item" id="btn-gift"><img src="/theme/images/icon_gift.png" /></div>
 				<div class="menu_item" id="btn-dutyfree" onclick="location.href='http://54.169.214.7/'"><img src="/theme/images/icon_dutyfree.png" /></div>
-				<div class="menu_item" id="btn-leader" onclick="location.href='{{$url_leader}}';"><img style="width:200px;height:75px" src="/theme/images/icon_leader.png" /></div>
+				<div class="menu_item" id="btn-leader" onclick="location.href='{{$url_leader}}';"><img style="width:200px;height:75px" src="/theme/images/icon_leader.png" /></div>-->
 			</div>
 			
 			<div class="banner"><img src="/theme/images/banner.png" width="306" /></div>

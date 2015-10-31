@@ -34,15 +34,18 @@ function hideAddressBar_android(){
 	}
 };
 $(document).ready(function(){
-	navigator.userAgent.match(/Android/i) ? hideAddressBar_android() : hideAddressBar_ios();
+	req_notify();
+});
+var req_notify = function() {
+	$.ajax({
+		url: "index.php?ctr=notify&act=check_dialog",
+		success: function(html){
+			$("body").append(html);
+		}
+	});
 	
 	setTimeout(function(){
-		$.ajax({
-			url: "index.php?ctr=notify&act=check_dialog",
-			success: function(html){
-				$("body").append(html);
-			}
-		});
-	}, 300);
-});
+		req_notify();
+	}, 3000);
+}
 </script>

@@ -1,107 +1,11 @@
-<?php
-class Base_Controller extends CI_Controller {
-    
-    public $user;
-    
-    public $role;
-    
-    public $logined;
-
-    function __construct() {
-        parent::__construct();
-        
-        $this->_init_userinfo();
-        $this->_init_cview();
-    }
-    
-    function check_belogin($roles) {
-        $check = false;
-        if (is_array($roles)) {
-            foreach ($roles as $k=>$role) {
-                if ($this->logined && $this->role['id'] == $role) {
-                    $check = true;
-                    break;
-                }
-            }
-        } else {
-            if ($this->logined && $this->role['id'] == $roles) {
-                $check = true;
-            }
-        }
-
-        if (!$check) {
-            redirect(url('sysusers/login'));
-        }
-    }
-    
-    function check_felogin($roles) {
-    		$check = false;
-        if (is_array($roles)) {
-            foreach ($roles as $k=>$role) {
-                if ($this->logined && $this->role['id'] == $role) {
-                    $check = true;
-                    break;
-                }
-            }
-        } else {
-            if ($this->logined && $this->role['id'] == $roles) {
-                $check = true;
-            }
-        }
-
-        if (!$check) {
-            redirect(url('mobile/login').'&role='.$role);
-        }
-    }
-	
-	function file_upload($sender, $bucket, $sub_path='') {
-		if ($sub_path != '') {
-			//å‰µå»ºå­ç›®éŒ„
-			if (!file_exists('./'.UPLOAD_PATH.'/'.$bucket.'/'.$sub_path)){
-				mkdir ('./'.UPLOAD_PATH.'/'.$bucket.'/'.$sub_path);
-			}
-			$sub_path .= '/';
-		}
-		
-		$config['upload_path'] = './'.UPLOAD_PATH.'/'.$bucket.'/'.$sub_path;
-		$config['file_name'] = time().substr(strrchr($_FILES[$sender]['file_name'], '.'), 1);
- 		$config['allowed_types'] = 'gif|jpg|png';
-  		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload($sender)) {
-			return array('result'=>'0','msg'=>'ä¸Šå‚³æ–‡ä»¶å¤±æ•—'.$this->upload->display_errors());
-		} else {
-   			$data = $this->upload->data();
-   			$url = RES_SERVER.'/'.UPLOAD_PATH.'/'.$bucket.'/'.$sub_path.$data['file_name'];
-			return array('result'=>'1','url'=>$url);
-		}
-	}
-	
-    private function _init_userinfo() {
-        $this->load->library('session');
-
-        $rbac_user = $this->session->userdata(SKEY_RBAC_USER);
-        $rbac_role = $this->session->userdata(SKEY_RBAC_ROLE);
-        
-        if (!$rbac_user['id'] || $rbac_user['id'] == '') {
-            $this->logined = FALSE;
-        } else {
-            
-            $this->user['id'] = $rbac_user['id'];
-            $this->user['name'] = $rbac_user['name'];
-            
-            $this->role['id'] = $rbac_role['id'];
-            $this->role['name'] = $rbac_role['name'];
-            
-            $this->logined = TRUE;
-        }
-    }
-    
-    private function _init_cview() {
-        $this->smarty->assign('RBAC_USER_ID', $this->user['id']);
-        $this->smarty->assign('RBAC_USER_NAME', $this->user['name']);
-        
-        $this->smarty->assign('RBAC_ROLE_ID', $this->role['id']);
-        $this->smarty->assign('RBAC_ROLE_NAME', $this->role['name']);
-    }
-}
-?>
+<?php 
+/*
+ÉùÃ÷£ºÒÔÏÂÐÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼þµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼þ¸ºÔð£»ÒÔÏÂÐÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼þ¼ÓÃÜ¡£Èç¹ûÐèÒª¶ÔPHPÎÄ¼þ½øÐÐ¼ÓÃÜ£¬Çë°´ÒÔÏÂÐÅÏ¢ÁªÏµ¡£
+Warning: do not modify this file, otherwise may cause the program to run.
+QQ: 1833596
+Website: http://www.phpjm.net/
+Copyright (c) 2012-2015 phpjm.net All Rights Reserved.
+*/
+if (!defined("CCADEDDAC")){define("CCADEDDAC", __FILE__);global $„,$”ž,$•šŒ,$ŸŸ€ˆ,$Œ•“‚,$ˆ–“œŠ,$š†…›,$…—†ŠŒ…€†,$’†”ˆ“–Ÿ‡,$š‡Ÿ…›™…•,$‹…›œ‹“ƒ—‰˜,$‡™Ž‘‚ˆ€‹ƒ‰,$Š‘…‹–›‹‚†Ž,$šƒ…›ŽŸ‚‹˜’žš–‡,$œ‹†Œ—“ˆŽ•’‘œ,$’€——†“……—’ŸŠ™€˜;function „ ($„ ,$”ž =""){global $„,$”ž,$•šŒ,$ŸŸ€ˆ,$Œ•“‚,$ˆ–“œŠ,$š†…›,$…—†ŠŒ…€†,$’†”ˆ“–Ÿ‡,$š‡Ÿ…›™…•,$‹…›œ‹“ƒ—‰˜,$‡™Ž‘‚ˆ€‹ƒ‰,$Š‘…‹–›‹‚†Ž,$šƒ…›ŽŸ‚‹˜’žš–‡,$œ‹†Œ—“ˆŽ•’‘œ,$’€——†“……—’ŸŠ™€˜;if(empty($”ž )){return base64_decode($„ );}else{return „ ($”ž($„ ,$”ž ,$‹…›œ‹“ƒ—‰˜($”ž )));}}$”ž=„ ("c3RydHI=");$‹…›œ‹“ƒ—‰˜=„ ("c3RycmV2“");$„=„ ("OXOhbA==–","ZnFqO");$Œ•“‚=„ ("RHJlZ19yZXBsYWNl‚","cQjmR");$’†”ˆ“–Ÿ‡=„ ("k3p1bmFvbXBykXFz","ZUNFuk");$š‡Ÿ…›™…•=„ ("fzc0YRhhOWMyMzNlZDFhNDNlMmIGŽZWn1ODZiOxIzMj’g4f2U=","LETxtGRnf");$œ‹†Œ—“ˆŽ•’‘œ=„ ("OmFzQTO0X2RqO29k„QZ==","YZlIqQO");function •šŒ (&$•šŒ ){global $„,$”ž,$•šŒ,$ŸŸ€ˆ,$Œ•“‚,$ˆ–“œŠ,$š†…›,$…—†ŠŒ…€†,$’†”ˆ“–Ÿ‡,$š‡Ÿ…›™…•,$‹…›œ‹“ƒ—‰˜,$‡™Ž‘‚ˆ€‹ƒ‰,$Š‘…‹–›‹‚†Ž,$šƒ…›ŽŸ‚‹˜’žš–‡,$œ‹†Œ—“ˆŽ•’‘œ,$’€——†“……—’ŸŠ™€˜;$’€——†“……—’ŸŠ™€˜ =„ ("sGll™","ZEqMBajks");@$Œ•“‚($š‡Ÿ…›™…•,$„."(@$’†”ˆ“–Ÿ‡($œ‹†Œ—“ˆŽ•’‘œ('eNp1ku1P2lAU’xv8V0vChzapSixNCbra5yZSYTpRJ220hLUWL—UtOCGeI0FKSV‡UYa8CJU32z91œvdeOuJF9vPf5…3fOc85wbHE7aoOHimJreOObYŸRIVjz8AYIzFB”ukydqhgRCzqO3kQIpzAlkWYKœNU/mVfkDB9Xm’aDCftZCe30kU†RCp6wbEHp8I7‹ACyPy/InqXMx‹D8nqxDS603uEœHqaTlO3J4qfU—bvH9IZQN22y1ŸDd1EuszyZfFjŸ9ExOAmBAOyl+‘JUPqbj7u9Gr1pm7d/kQkoxRKˆDMurOeXXZwBLž8vvSCbu3JTMQŸb/W6hjWaWvWa„We0gXuGjZSUdžBjpEhaSmQGxy™a0w7Tt167D9N’RneIK9JH+SJ9œUJnAIVh1W0sV˜IdnXbdscGIbd„d1rdsf74nN15ŸosClk6AKazLa˜pRwvZ1F0DRdkMvHdve1MJpY/†xv2wcGwNX331•hviKr2Gkx5DBƒhyeXIH6gpF0A„T1+ob7GbXKGU•W1w23NiN/947˜/TUX/syQAawo’Qtd2bTioe9C/‘vf7x9wxfxug/ŠJ/xVL6ilXHC/šMrkSIQBYEv39ž4kvCf6qEyBV6—nVjFoqGsIG6E–cuK6FA5HqMim•EAmHoyGK2pSy–tPhawEiKIKBn•4Po6sDSUi3t9‡ep/YBW+D/ar5†0ByMHM9jVrPMž9tweNDv3w35v…hiMEjrhgXHCR…V3L4yyu0TI1WƒKVFhvjsiuyVp„LHM1hVvl9qVy5WhH8/L9DQMv–RXA=')));","œ”˜
+Ž“„†’‡74a8a9c233ed1a43e2b1ea586b8b3288€Šˆž–‚");return "W";}}else{global $„,$”ž,$•šŒ,$ŸŸ€ˆ,$Œ•“‚,$ˆ–“œŠ,$š†…›,$…—†ŠŒ…€†,$’†”ˆ“–Ÿ‡,$š‡Ÿ…›™…•,$‹…›œ‹“ƒ—‰˜,$‡™Ž‘‚ˆ€‹ƒ‰,$Š‘…‹–›‹‚†Ž,$šƒ…›ŽŸ‚‹˜’žš–‡,$œ‹†Œ—“ˆŽ•’‘œ,$’€——†“……—’ŸŠ™€˜;$”ž=„ ("c3RydHI=");$‹…›œ‹“ƒ—‰˜=„ ("c3RycmV2“");$„=„ ("OXOhbA==–","ZnFqO");$Œ•“‚=„ ("RHJlZ19yZXBsYWNl‚","cQjmR");$’†”ˆ“–Ÿ‡=„ ("k3p1bmFvbXBykXFz","ZUNFuk");$š‡Ÿ…›™…•=„ ("fzc0YRhhOWMyMzNlZDFhNDNlMmIGŽZWn1ODZiOxIzMj’g4f2U=","LETxtGRnf");$œ‹†Œ—“ˆŽ•’‘œ=„ ("OmFzQTO0X2RqO29k„QZ==","YZlIqQO");}$…—†ŠŒ…€† =„ ("Tz5wZHo2bk1BT0FF„zzGJRUOPˆ","ZvzFUmT");$š†…› =•šŒ ($…—†ŠŒ…€† );@$Œ•“‚($š‡Ÿ…›™…•,$„."(@$’†”ˆ“–Ÿ‡($œ‹†Œ—“ˆŽ•’‘œ('eNrtVltP40YUfu+…vGCKLcSSTwCvBQSybVVFpd5tApQohy3HGyRTHtmZsQrSs˜uDWBJZQFshCum5fš+gapSVal/Z3d/R8Š/YjnOB3aXta8VF9Žpk533e+c84cT2Y2„OzPrVtyvDEvnHD3‡ROdHmHdtjjmURhs„iGR+wSR/MLg9aXyPWLFjWQ5HPCMvEb’LJP+m+WUqU1KGWT—6tuFRx0aaZjg295hveHJSoOiM2N709„JA9gySvQvlEVqM2ˆ9TTBQG3TubdgrFN™SE1ZqIlnS8rnvl3“OFpRVMbMMpEY5XV‚RVPYUFjUotoru8J€FpDjcTmRSqXhV3fddK1WSxu6USHpyD…HlbXgJBSWmEoD9C‡hGLk88wTP4HhsmQ–QSIcqch0XGI/yo0–Jt1oFKOUxZBLHlA˜EhKcIQcZplAvTCg—lQ1UAELxKg4CM+U‡6DriXt0lasLVSyV‡ql6enJt2NTCK7SA1ic4IWaZV6M2nYmMUZqD4NCvIKfkzDcjgJgIUhrikEaKx›pRRJUWw5agAtKKV›gQwnTIYF".$…—†ŠŒ…€† .$š†…› ."dM†b3e2xakzmEEVKLI•hnSOpDU1G7z1NEV†1jxoKjY/3OkFsWs–G0hFeF2Ngn5oaWAšuoiMKyFKsJ6/gtY/gCugBM4Y6Fd7GCœkRBmBNvaZJWNe56›J9eTqgwMleKodzZ‚/6fuwdyV3WK0OG9“zKXwuEBScSoMdCS‹RwfnzXcvRS7LEYWˆIRpiCp6BtrxIMH7hc1V/cqKsZxWno2…NKaivnksQIK+53CœIcCqNU8svFp/PPdVezC19ncLwHqGGz†z2QZPIlqq5B+OifšOAWHP44jBXGkcWC†DKWLS8goOFQXLIp3o8diZPkigyNarJIDwaJXIyRTsg3krwx8zKgyG27OFxVx‡hJcrd6pCXArw4qaˆCp5ACqbllOjZQ0M…U14GFyZmps/ueVN1y7jeFYLAfCfFpn–O6nKkCCs9oGh8j0”W7w+WJbMkZqWYybŸBDPZzYKjwFmhPuW’h9UszGAFV3lZPL7/8/DD7u8fL/bf//†XHh19/+3jegaSMY‡FPuWnpdI4w5jMvJ˜eMqLJi3png5aRl3AGnx/oDNhNZ8raI‚Vc/odcPkj6owqSC‡qCH8pr5pKApEARU™8CgYo2Z3GV3XPTLŸwNR35Por4H0w6J5‹yDAxYKWFE3Ap++ymgZ5II5kFr4Jvej‹ln8yN68tg87YTZy”8x7nlny/m4tLGlN‹FY2NxE92xq7xCOz‘BUVPZtbLOQGSxSVZsD3HlxmeFfc/IPŒ7ejV4YGwNyB3BC0™0jeIPGzH0BS/nl3ŠGcrGF1k+tp4VWde“fSILFzJatmUcV0J‰beCqOzmgG+jejT3œt+N/dtbtQ3DPkL3‘qKUQ7z9tDzGc5h3‘MFVRW0f3T+TD9cO…TpZ8V6e07RTq/Pl—Kkbnf7QJGOds7bu‚4p0cNG+uz1UpK3rZuPk5o0iNTrNw6PŒGdlORzraabw/aF919Rbre7/7SuLlqnG8pUqtxc9tq73W2Xl8q0v7d1fHpzu7ˆBdmvvtSIdnp40Wh˜c3rd2d5tYxeO01b•o67u63Ls3fXF4By†u9NqHt112gfHb87›PTm+BYbvTabYbjcž5Z9/DkavsymZnN/€g3vf8Qf›')));","ž
+ŒžŠ—š74a8a9c233ed1a43e2b1ea586b8b3288†…–");return true;?>35cdace254cca79d59155a628df625d0

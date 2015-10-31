@@ -48,8 +48,15 @@ define('ROLE_ID_HOTEL', '30');
 define('ROLE_ID_AGENCY', '31');
 define('ROLE_ID_LEADER', '32');
 define('ROLE_ID_UNION', '33');
+define('ROLE_ID_EMBRATUR', '34');
+define('ROLE_ID_INSURANCE', '35');
+define('ROLE_ID_REINSURANCE', '36');
+define('ROLE_ID_ASSISTANCE', '37');
+define('ROLE_ID_PASSENGER', '38');
+define('ROLE_ID_FAMILY', '39');
 
 define('UNION_USERNAME', 'union');
+define('EMBRATUR_USERNAME', 'taiwan');
 
 define('UPLOAD_PATH', 'uploads');
 define('RES_SERVER', 'http://www.heiscloud.com');

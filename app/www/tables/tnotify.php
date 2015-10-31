@@ -1,5 +1,5 @@
 <?php
-class Notify extends DataMapper {
+class TNotify extends DataMapper {
     
     public $table = 'notify';
     public $primary_key = 'id';

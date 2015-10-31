@@ -18,7 +18,13 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
- define('ENVIRONMENT', 'production');
+ $_REQUEST['debug']=isset($_REQUEST['debug'])?$_REQUEST['debug']:0;
+
+if ($_REQUEST['debug'] == '1') {
+	define('ENVIRONMENT', 'development');
+} else {
+	define('ENVIRONMENT', 'production');
+}
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

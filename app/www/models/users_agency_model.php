@@ -81,6 +81,37 @@ class Users_Agency_Model extends CI_Model {
         
         return array('rowset'=>$agency->all,'pager'=>$agency->paged);
     }
+	
+	function getAgencys($conditions=array()) {
+		$agency = new Users_Agency();
+        
+		foreach ($conditions as $field=>$value) {
+        		if (is_array($value)) {
+        			$agency->where_in($field, $value);
+        		} else {
+	            $agency->where($field, $value);
+			}
+        }
+        $agency->get();
+		
+        $ids = array();
+        for ($i=0; $i<sizeof($agency->all); $i++) {
+            $ids[] = $agency->all[$i]->uid;
+        }
+    
+        if (sizeof($ids) > 0) {
+            $users = new Users();
+            $users->where_in('id', $ids)->get();
+    
+            $us = array_to_hashmap($users->all, 'id');
+    
+            for ($i=0; $i<sizeof($agency->all); $i++) {
+                $agency->all[$i]->users = $us[$agency->all[$i]->uid];
+            }
+        }
+        
+		return $agency->all;
+	}
     
     /**
      * 根据用户编号获取详细数据

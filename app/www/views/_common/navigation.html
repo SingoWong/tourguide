@@ -11,11 +11,17 @@
 					<li class="snav_child_item"><a href="/index.php?ctr=syshotel">飯店管理</a></li>
 					<li class="snav_child_item"><a href="/index.php?ctr=sysguide">導遊管理</a></li>
 					<li class="snav_child_item"><a href="/index.php?ctr=sysleader">領隊管理</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysinsurance">保險公司管理</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysreinsurance">再保險公司管理</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysassistance">救援公司管理</a></li>
 					<li class="snav_child_item"><a href="/index.php?ctr=sysunion&act=profile">全聯會管理</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysgroup">旅行團查詢</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysembratur&act=profile">觀光局管理</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=edit">新開團</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=index">旅行團查詢</a></li>
+					<!--<li class="snav_child_item"><a href="/index.php?ctr=sysgroup&act=index">旅行團查詢</a></li>-->
 					<li class="snav_child_item"><a href="/index.php?ctr=sysreport">報表查詢</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysaccident">意外通報（IN）</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysaccident&act=index_out">意外通報（OUT）</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysaccident">意外通報</a></li>
+					<!--<li class="snav_child_item"><a href="/index.php?ctr=sysaccident&act=index_out">意外通報（OUT）</a></li>-->
 				</ul>
 			</li>
 			{{elseif $RBAC_ROLE_NAME == '旅行社'}}
@@ -24,23 +30,65 @@
 				<ul class="snav_child">
 					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=info">旅行社基本資料</a></li>
 					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=mailtosetup">通報郵件設置</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=groupedit">開新團（IN）</a></li>
+					<!--<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=groupedit">開新團（IN）</a></li>
 					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=groupedit_out">開新團（OUT）</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=groupprogress">行程進度</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報（IN）</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident_out">意外通報（OUT）</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=contractr">合約餐廳</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=contracth">合約飯店</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=report">報表查詢</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=groupprogress">行程進度</a></li>-->
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=edit">新開團</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=index">旅行團查詢</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報</a></li>
+					<!--<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident_out">意外通報（OUT）</a></li>-->
+					<!--<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=contractr">合約餐廳</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=contracth">合約飯店</a></li>-->
+					<!--<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=report">報表查詢</a></li>-->
 				</ul>
 			</li>
 			{{elseif $RBAC_ROLE_NAME == '全聯會'}}
 			<li class="snav_root_item">
 				<a href="#">後台管理</a>
 				<ul class="snav_child">
-					<li class="snav_child_item"><a href="/index.php?ctr=sysgroup">旅行團查詢</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報（IN）</a></li>
-					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident_out">意外通報（OUT）</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=query">旅行團查詢</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報</a></li>
+					<!--<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident_out">意外通報（OUT）</a></li>-->
+				</ul>
+			</li>
+			{{elseif $RBAC_ROLE_NAME == '觀光局'}}
+			<li class="snav_root_item">
+				<a href="#">後台管理</a>
+				<ul class="snav_child">
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=query">旅行團查詢</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報</a></li>
+					<!--<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident_out">意外通報（OUT）</a></li>-->
+				</ul>
+			</li>
+			{{elseif $RBAC_ROLE_NAME == '保險公司'}}
+			<li class="snav_root_item">
+				<a href="#">後台管理</a>
+				<ul class="snav_child">
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=query">旅行團查詢</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報</a></li>
+				</ul>
+			</li>
+			{{elseif $RBAC_ROLE_NAME == '再保險公司'}}
+			<li class="snav_root_item">
+				<a href="#">後台管理</a>
+				<ul class="snav_child">
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=query">旅行團查詢</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報</a></li>
+				</ul>
+			</li>
+			{{elseif $RBAC_ROLE_NAME == '救援公司'}}
+			<li class="snav_root_item">
+				<a href="#">後台管理</a>
+				<ul class="snav_child">
+					<li class="snav_child_item"><a href="/index.php?ctr=sysngroup&act=query">旅行團查詢</a></li>
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報</a></li>
+				</ul>
+			</li>
+			{{elseif $RBAC_ROLE_NAME == '家屬'}}
+			<li class="snav_root_item">
+				<a href="#">後台管理</a>
+				<ul class="snav_child">
+					<li class="snav_child_item"><a href="/index.php?ctr=sysagency&act=accident">意外通報</a></li>
 				</ul>
 			</li>
 			{{/if}}

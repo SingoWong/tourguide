@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = 'localhost'; //heisclouddb.cpuhjlmzviab.ap-southeast-1.rds.amazonaws.com
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'guide';

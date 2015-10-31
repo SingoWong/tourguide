@@ -6,7 +6,7 @@ class Accident extends Base_Controller {
 
         $this->check_felogin(array(ROLE_ID_GUIDE,ROLE_ID_LEADER));
         
-        $this->smarty->assign( 'url_menu', url('guide/index') );
+        $this->smarty->assign( 'url_menu', '/' );
         $this->smarty->assign( 'url_info', url('guide/info') );
         $this->smarty->assign( 'url_restaurant', url('guide/restaurant') );
         $this->smarty->assign( 'url_hotel', url('guide/hotel') );
@@ -35,16 +35,19 @@ class Accident extends Base_Controller {
     public function bus_photo_submit() {
     		$this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
+		$this->load->model('NGroup_Model');
 			
         //上傳圖片
         $upload = $this->file_upload('photo','accident',date('Ymd'));
 		
 		if ($upload['result']) {
-			//生成紀錄，返回id號
-	        $group = new Group_Model();
-	        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+			$ngroup = new NGroup_Model();
+			$re_group = $ngroup->getNGroupByPid($this->user['id']);
 			
-			$row['group_aid'] = $re_group->aid;
+			$row['group_aid'] = '0';
+			$row['aid_tw'] = $re_group->aid_tw;
+			$row['aid_cn'] = $re_group->aid_cn;
+			$row['iid'] = $re_group->iid;
 			$row['gid'] = $re_group->id;
 			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_BUS;
@@ -116,16 +119,25 @@ class Accident extends Base_Controller {
     public function medicine_photo_submit() {
         $this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
+		$this->load->model('NGroup_Model');
 			
         //上傳圖片
         $upload = $this->file_upload('photo','accident',date('Ymd'));
 		
 		if ($upload['result']) {
 			//生成紀錄，返回id號
-	        $group = new Group_Model();
-	        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//	        $group = new Group_Model();
+//	        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
 			
-			$row['group_aid'] = $re_group->aid;
+//			$row['group_aid'] = $re_group->aid;
+//			$row['gid'] = $re_group->id;
+			$ngroup = new NGroup_Model();
+			$re_group = $ngroup->getNGroupByPid($this->user['id']);
+			
+			$row['group_aid'] = '0';
+			$row['aid_tw'] = $re_group->aid_tw;
+			$row['aid_cn'] = $re_group->aid_cn;
+			$row['iid'] = $re_group->iid;
 			$row['gid'] = $re_group->id;
 			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_MEDICINE;
@@ -198,16 +210,25 @@ class Accident extends Base_Controller {
     public function desert_submit() {
     		$this->load->model('Accident_Model');
 		$this->load->model('Group_Model');
+		$this->load->model('NGroup_Model');
 		
         $time = $this->input->post('time');
         $location = $this->input->post('location');
         $names = $this->input->post('name');
 		
 		//創建一個意外通告
-		$group = new Group_Model();
-        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//		$group = new Group_Model();
+//      $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//		
+//		$row['group_aid'] = $re_group->aid;
+//		$row['gid'] = $re_group->id;
+		$ngroup = new NGroup_Model();
+		$re_group = $ngroup->getNGroupByPid($this->user['id']);
 		
-		$row['group_aid'] = $re_group->aid;
+		$row['group_aid'] = '0';
+		$row['aid_tw'] = $re_group->aid_tw;
+		$row['aid_cn'] = $re_group->aid_cn;
+		$row['iid'] = $re_group->iid;
 		$row['gid'] = $re_group->id;
 		$row['guide_id'] = $this->user['id'];
 		$row['type'] = ACCIDENT_TYPE_DESERT;
@@ -248,16 +269,25 @@ class Accident extends Base_Controller {
     public function natural_photo_submit() {
         $this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
-			
+		$this->load->model('NGroup_Model');
+		
         //上傳圖片
         $upload = $this->file_upload('photo','accident',date('Ymd'));
 		
 		if ($upload['result']) {
 			//生成紀錄，返回id號
-	        $group = new Group_Model();
-	        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//	        $group = new Group_Model();
+//	        $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//			
+//			$row['group_aid'] = $re_group->aid;
+//			$row['gid'] = $re_group->id;
+			$ngroup = new NGroup_Model();
+			$re_group = $ngroup->getNGroupByPid($this->user['id']);
 			
-			$row['group_aid'] = $re_group->aid;
+			$row['group_aid'] = '0';
+			$row['aid_tw'] = $re_group->aid_tw;
+			$row['aid_cn'] = $re_group->aid_cn;
+			$row['iid'] = $re_group->iid;
 			$row['gid'] = $re_group->id;
 			$row['guide_id'] = $this->user['id'];
 			$row['type'] = ACCIDENT_TYPE_NATURAL;
@@ -344,10 +374,19 @@ class Accident extends Base_Controller {
 	public function t1_submit() {
 		$this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
+		$this->load->model('NGroup_Model');
 		
-		$group = new Group_Model();
-	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
-		$row['group_aid'] = $re_group->aid;
+//		$group = new Group_Model();
+//	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//		$row['group_aid'] = $re_group->aid;
+//		$row['gid'] = $re_group->id;
+		$ngroup = new NGroup_Model();
+		$re_group = $ngroup->getNGroupByPid($this->user['id']);
+		
+		$row['group_aid'] = '0';
+		$row['aid_tw'] = $re_group->aid_tw;
+		$row['aid_cn'] = $re_group->aid_cn;
+		$row['iid'] = $re_group->iid;
 		$row['gid'] = $re_group->id;
 		$row['guide_id'] = $this->user['id'];
 		$row['type'] = ACCIDENT_TYPE_T1;
@@ -418,10 +457,19 @@ class Accident extends Base_Controller {
 	public function t2_submit() {
 		$this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
+		$this->load->model('NGroup_Model');
 		
-		$group = new Group_Model();
-	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
-		$row['group_aid'] = $re_group->aid;
+//		$group = new Group_Model();
+//	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//		$row['group_aid'] = $re_group->aid;
+//		$row['gid'] = $re_group->id;
+		$ngroup = new NGroup_Model();
+		$re_group = $ngroup->getNGroupByPid($this->user['id']);
+		
+		$row['group_aid'] = '0';
+		$row['aid_tw'] = $re_group->aid_tw;
+		$row['aid_cn'] = $re_group->aid_cn;
+		$row['iid'] = $re_group->iid;
 		$row['gid'] = $re_group->id;
 		$row['guide_id'] = $this->user['id'];
 		$row['type'] = ACCIDENT_TYPE_T2;
@@ -497,10 +545,19 @@ class Accident extends Base_Controller {
 	public function t3_submit() {
 		$this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
+		$this->load->model('NGroup_Model');
 		
-		$group = new Group_Model();
-	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
-		$row['group_aid'] = $re_group->aid;
+//		$group = new Group_Model();
+//	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//		$row['group_aid'] = $re_group->aid;
+//		$row['gid'] = $re_group->id;
+		$ngroup = new NGroup_Model();
+		$re_group = $ngroup->getNGroupByPid($this->user['id']);
+		
+		$row['group_aid'] = '0';
+		$row['aid_tw'] = $re_group->aid_tw;
+		$row['aid_cn'] = $re_group->aid_cn;
+		$row['iid'] = $re_group->iid;
 		$row['gid'] = $re_group->id;
 		$row['guide_id'] = $this->user['id'];
 		$row['type'] = ACCIDENT_TYPE_T3;
@@ -571,10 +628,19 @@ class Accident extends Base_Controller {
 	public function t4_submit() {
 		$this->load->model('Group_Model');
 		$this->load->model('Accident_Model');
+		$this->load->model('NGroup_Model');
 		
-		$group = new Group_Model();
-	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
-		$row['group_aid'] = $re_group->aid;
+//		$group = new Group_Model();
+//	    $re_group = $group->getCurrGroupByGuideId($this->user['id']);
+//		$row['group_aid'] = $re_group->aid;
+//		$row['gid'] = $re_group->id;
+		$ngroup = new NGroup_Model();
+		$re_group = $ngroup->getNGroupByPid($this->user['id']);
+		
+		$row['group_aid'] = '0';
+		$row['aid_tw'] = $re_group->aid_tw;
+		$row['aid_cn'] = $re_group->aid_cn;
+		$row['iid'] = $re_group->iid;
 		$row['gid'] = $re_group->id;
 		$row['guide_id'] = $this->user['id'];
 		$row['type'] = ACCIDENT_TYPE_T4;

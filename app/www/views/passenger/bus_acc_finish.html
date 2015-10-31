@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		{{include file="_common/minclude.html"}}
+		
+		<style type="text/css">
+			.quick-nav {
+				padding: 0 50px;
+			}
+			.info-hotel {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{{$url_menu}}"></a>
+			<a class="mui-icon mui-icon-gear mui-pull-right"></a>
+			{{if $RBAC_ROLE_ID == '24'}}
+			<div class="quick-nav">
+				<div id="sc-nav" class="mui-segmented-control">
+					<a class="mui-control-item" onclick="location.href='{{$url_info}}'">團號</a>
+					<a class="mui-control-item" onclick="location.href='{{$url_restaurant}}'">訂餐</a>
+					<a class="mui-control-item" onclick="location.href='{{$url_hotel}}'">訂房</a>
+					<a class="mui-control-item mui-active" onclick="location.href='{{$url_accident}}'">意外</a>
+				</div>
+			</div>
+			{{else}}
+			<h1 class="mui-title">意外通報</h1>
+			{{/if}}
+		</header>
+		<div class="mui-content result-page">
+			<div class="icon_success"></div>
+			<div class="result-tips">回報完成</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		  <a class="mui-tab-item mui-active" href="#" onclick="location.href='tel://119';">
+		    救護車119
+		  </a>
+		  <a class="mui-tab-item mui-active" href="#" onclick="location.href='tel://110';">
+		    報警110
+		  </a>
+		  <a class="mui-tab-item mui-active" href="#" onclick="location.href='tel://{{$assistance_tel}}';">
+		    救援公司
+		  </a>
+		</nav>
+	</body>
+</html>

@@ -5,3 +5,6 @@ BS1639
 Public IP	54.179.132.180
 User name	administrator
 Password 	NgivJiZm(i!
+
+
+54.169.214.7

@@ -54,8 +54,16 @@ function sh_pnlc(id) {
 				通報案件申報書
 				{{/if}}
 			</span>
-			<span class="tt_item_name">{{if $source=='1'}}領隊{{elseif $source=='0'}}導遊{{/if}}：{{$item->guide->name}}</span>
-			<span class="tt_item_name">電話：{{$item->contact->contact_tel}}</span>
+			<span class="tt_item_name">
+				{{if $item->source=='0'}}導遊{{elseif $item->source=='2'}}遊客{{/if}}：{{$item->guide->name}}
+			</span>
+			<span class="tt_item_tel" style="width: 230px;">
+				{{if $item->source=='0'}}
+				電話：{{$item->contact->contact_tel}}
+				{{elseif $item->source=='2'}}
+				身份證：{{$item->guide->username}}
+				{{/if}}
+			</span>
 			緊急事故
 		</div>
 		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">

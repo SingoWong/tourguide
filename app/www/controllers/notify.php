@@ -14,6 +14,22 @@ class Notify extends Base_Controller {
 				$notify_model->getGuideNotifyByUid($this->user['id']);
 			} elseif ($this->role['id'] == ROLE_ID_RESTAURANT) {
 				$notify_model->getRestaurantNotifyById($this->user['id']);
+			} elseif ($this->role['id'] == ROLE_ID_AGENCY) {
+				$notify_model->getAccidentNotifyById($this->user['id']);
+			} elseif ($this->role['id'] == ROLE_ID_UNION) {
+				$notify_model->getAccidentNotifyById($this->user['id']);
+			} elseif ($this->role['id'] == ROLE_ID_EMBRATUR) {
+				$notify_model->getAccidentNotifyById($this->user['id']);
+			} elseif ($this->role['id'] == ROLE_ID_INSURANCE) {
+				$notify_model->getAccidentNotifyById($this->user['id']);
+			} elseif ($this->role['id'] == ROLE_ID_REINSURANCE) {
+				$notify_model->getAccidentNotifyById($this->user['id']);
+			} elseif ($this->role['id'] == ROLE_ID_ASSISTANCE) {
+				$notify_model->getAccidentNotifyById($this->user['id']);
+			} elseif ($this->role['id'] == ROLE_ID_FAMILY) {
+				$notify_model->getAccidentNotifyById($this->user['id']);
+			} elseif ($this->role['id'] == ROLE_ID_ADMIN) {
+				$notify_model->getAccidentNotifyById($this->user['id']);
 			}
 		}
 	}

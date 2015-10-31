@@ -4,7 +4,7 @@ class SysAgency extends Base_Controller {
     function __construct() {
         parent::__construct();
         
-        $this->check_belogin(array(ROLE_ID_ADMIN,ROLE_ID_AGENCY,ROLE_ID_UNION));
+        $this->check_belogin(array(ROLE_ID_ADMIN,ROLE_ID_EMBRATUR, ROLE_ID_UNION,ROLE_ID_AGENCY,ROLE_ID_UNION,ROLE_ID_INSURANCE,ROLE_ID_REINSURANCE,ROLE_ID_ASSISTANCE,ROLE_ID_FAMILY));
     }
     
     public function index() {
@@ -781,8 +781,8 @@ class SysAgency extends Base_Controller {
         $this->load->model('Accident_Model');
         $accident = new Accident_Model();
         
-		$source = '0';
-        $re = $accident->getAccident(true, $this->user['id'], $source);
+		//$source = '0';
+        $re = $accident->getAccident(true, $this->user['id'], $source, $this->role['id'], $this->user['id']);
         
 		$this->smarty->assign('source', $source);
         $this->smarty->assign('rowset', $re->all);
@@ -795,7 +795,7 @@ class SysAgency extends Base_Controller {
         $accident = new Accident_Model();
         
 		$source = '1';
-        $re = $accident->getAccident(true, $this->user['id'], 1);
+        $re = $accident->getAccident(true, $this->user['id'], $source, $this->role['id'], $this->user['id']);
         
 		$this->smarty->assign('source', $source);
         $this->smarty->assign('rowset', $re->all);

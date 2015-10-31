@@ -11,6 +11,8 @@ class Guide extends Base_Controller {
         $this->smarty->assign( 'url_restaurant', url('guide/restaurant') );
         $this->smarty->assign( 'url_hotel', url('guide/hotel') );
         $this->smarty->assign( 'url_accident', url('accident/index') );
+		
+		redirect('/index.php?ctr=accident&act=index');
     }
     
     /**

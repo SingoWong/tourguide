@@ -8,6 +8,23 @@
 <link rel="stylesheet" type="text/css" href="/theme/style/global.css" />
 <link rel="stylesheet" type="text/css" href="/theme/style/sysmanager.css" />
 <title>CoreSystem</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	req_notify();
+});
+var req_notify = function() {
+	$.ajax({
+		url: "index.php?ctr=notify&act=check_dialog",
+		success: function(html){
+			$("body").append(html);
+		}
+	});
+	
+	setTimeout(function(){
+		req_notify();
+	}, 3000);
+}
+</script>
 </head>
 <body>
 <div class="viewport">

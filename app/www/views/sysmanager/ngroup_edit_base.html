@@ -1,0 +1,288 @@
+{{include file="_common/header.html"}}
+<script type="text/javascript" src="./libs/jquery/core.date.js"></script>
+<script type="text/javascript">
+	var json_guide = eval('({{$json_guide}})');
+
+	function onsave() {
+//		if ($("#code").val() == "") {
+//			alert("提醒您!! 團號尚未填寫");
+//			return false;
+//		} else if ($("#name").val() == "") {
+//			alert("提醒您!! 團名尚未填寫");
+//			return false;
+//		} else if ($("#days").val() == "") {
+//			alert("提醒您!! 天數尚未填寫");
+//			return false;
+//		} else if ($("#continent").val() == "") {
+//			alert("提醒您!! 洲別尚未填寫");
+//			return false;
+//		} else if ($("#country").val() == "") {
+//			alert("提醒您!! 國家尚未填寫");
+//			return false;
+//		} else if ($("#city").val() == "") {
+//			alert("提醒您!! 城市尚未填寫");
+//			return false;
+//		} else if ($("#start_date").val() == "") {
+//			alert("提醒您!! 出國日期尚未填寫");
+//			return false;
+//		} else if ($("#start_flight_code").val() == "") {
+//			alert("提醒您!! 出國班機行程尚未填寫");
+//			return false;
+//		} else if ($("#start_departure_time").val() == "") {
+//			alert("提醒您!! 出國起飛時間尚未填寫");
+//			return false;
+//		} else if ($("#start_flight_num").val() == "") {
+//			alert("提醒您!! 出國班機代碼尚未填寫");
+//			return false;
+//		} else if ($("#start_arrive_time").val() == "") {
+//			alert("提醒您!! 出國抵達時間尚未填寫");
+//			return false;
+//		} else if ($("#end_date").val() == "") {
+//			alert("提醒您!! 回國日期尚未填寫");
+//			return false;
+//		} else if ($("#end_flight_code").val() == "") {
+//			alert("提醒您!! 回國班機行程尚未填寫");
+//			return false;
+//		} else if ($("#end_departure_time").val() == "") {
+//			alert("提醒您!! 回國起飛時間尚未填寫");
+//			return false;
+//		} else if ($("#end_flight_num").val() == "") {
+//			alert("提醒您!! 回國班機代碼尚未填寫");
+//			return false;
+//		} else if ($("#end_arrive_time").val() == "") {
+//			alert("提醒您!! 回國抵達時間尚未填寫");
+//			return false;
+//		} else if ($("#op").val() == "") {
+//			alert("提醒您!! 開團OP尚未填寫");
+//			return false;
+//		} else if ($("#amount").val() == "") {
+//			alert("提醒您!! 人數尚未填寫");
+//			return false;
+//		} else if ($("#contact_name").val() == "") {
+//			alert("提醒您!! 聯絡人尚未填寫");
+//			return false;
+//		} else if ($("#contact_tel").val() == "") {
+//			alert("提醒您!! 聯絡電話尚未填寫");
+//			return false;
+//		}
+		
+		return true;
+	}
+</script>
+<style type="text/css">
+.table_form td.tf_key {
+	width: 80px!important;
+}
+.passenger-include {
+	padding: 10px;
+}
+.passenger-include .passenger-include-item {
+	padding: 5px;
+	border-bottom: 1px solid #CCC;
+}
+.passenger-include .passenger-include-item .idc-item {
+	width: 200px;
+	display: inline-block;
+}
+.passenger-include .passenger-include-item .name-item {
+	width: 200px;
+	display: inline-block;
+}
+.passenger-include .passenger-include-item .ctr-item {
+	width: 50px;
+	display: inline-block;
+}
+</style>
+<form method="post" action="index.php?ctr=sysngroup&act=save" onsubmit="return onsave();">
+<div class="title_panel">
+	基本資料
+</div>
+<div class="form_inner">
+	<table class="table_form">
+		<tr>
+			<td class="tf_key">類型</td>
+			<td><span class="v">
+				<select name="type">
+					<option value="">請選擇類型</option>
+					<option value="0" {{if $row->type == '0'}}selected="selected"{{/if}}>國旅</option>
+					<option value="1" {{if $row->type == '0'}}selected="selected"{{/if}}>團IN</option>
+					<option value="2" {{if $row->type == '0'}}selected="selected"{{/if}}>團OUT</option>
+					<option value="3" {{if $row->type == '0'}}selected="selected"{{/if}}>自由行</option>
+				</select>
+			</span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">團號</td>
+			<td><span class="v"><input type="text" id="code" name="code" value="{{$row->code}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">保險公司</td>
+			<td>
+				<span class="v"><select id="iid" name="iid"><option value="">未預設</option>{{$html_insurance}}</select></span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tf_key">保單號碼</td>
+			<td><span class="v"><input type="text" id="policyno" name="policyno" value="{{$row->policyno}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">開始期間</td>
+			<td><span class="v"><input type="text" id="start_date" name="start_date" value="{{$row->start_date}}" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">結束期間</td>
+			<td><span class="v"><input type="text" id="end_date" name="end_date" value="{{$row->end_date}}" onclick="JTC.setday(this,this,'yyyy-MM-dd',0,1)"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">導遊帳號</td>
+			<td>
+				<span class="v"><select id="gid" name="gid"><option value="">未預設</option>{{$html_guide}}</select></span>
+				<a href="index.php?ctr=sysagency&act=guideedit" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加導遊]</a>
+			</td>
+		</tr>
+		<tr>
+			<td class="tf_key">TW旅行社</td>
+			<td>
+				<span class="v">
+					{{if $row->aname_tw != ''}}
+					{{$row->aname_tw}}
+					<input type="hidden" name="aid_tw" value="{{$row->aid_tw}}" />
+					{{else}}
+					<select id="aid_tw" name="aid_tw"><option value="">未預設</option>{{$html_agency_tw}}</select>
+					{{/if}}
+				</span>
+				<!--<a href="index.php?ctr=sysagency&act=guideedit" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加導遊]</a>-->
+			</td>
+		</tr>
+		<tr>
+			<td class="tf_key">CN旅行社</td>
+			<td>
+				<span class="v">
+					<select id="aid_cn" name="aid_cn"><option value="">未預設</option>{{$html_agency_cn}}</select>
+				</span>
+				<!--<a href="index.php?ctr=sysagency&act=guideedit" onclick="return window.openWindow(this.href,'600','500',false,0.3)">[添加導遊]</a>-->
+			</td>
+		</tr>
+		<tr>
+			<td class="tf_key">行程導圖</td>
+			<td><span class="v">
+				<input type="text" id="pic" name="pic" value="{{$row->pic}}">
+				<a href="#" onclick="choose_map();return false;">[上傳]</a>
+			</span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">OP</td>
+			<td><span class="v"><input type="text" id="op" name="op" value="{{$row->op}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">OP電話</td>
+			<td><span class="v"><input type="text" id="op_tel" name="op_tel" value="{{$row->op_tel}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">團控</td>
+			<td><span class="v"><input type="text" id="regulator" name="regulator" value="{{$row->regulator}}"></span></td>
+		</tr>
+		<tr>
+			<td class="tf_key">團控電話</td>
+			<td><span class="v"><input type="text" id="regulator_tel" name="regulator_tel" value="{{$row->regulator_tel}}"></span></td>
+		</tr>
+	</table>
+</div>
+
+<div class="title_panel">
+	遊客信息
+</div>
+<div class="form_inner">
+	<table class="table_form">
+		<tr>
+			<td class="passengers">
+				<div class="passenger-item-new">
+					<input type="text" id="p_idc" name="p_idc" value="" placeholder="身份證號碼" />
+					<input type="text" id="p_name" name="p_name" value="" placeholder="姓名" />
+					<input type="button" class="gm_t1_btn" onclick="addpassenger();" value="保存" style="width: 50px;height: 43px;">
+				</div>
+				<div class="passenger-include">
+					{{foreach from=$re_passenger item=item key=key}}
+					<div class="passenger-include-item" id="item-{{$item->username}}">
+						<span class="idc-item">{{$item->username}}</span>
+					   	<span class="name-item">{{$item->name}}</span>
+					   	<span class="ctr-item"><a href="#" onclick="removeidc('{{$item->username}}');return false">[刪除]</a></span>
+					   	<input type="hidden" name="pids[]" value="{{$item->id}}" />
+					</div>
+					{{/foreach}}
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<hr size="1" />
+<div>
+	<input type="hidden" name="id" value="{{$id}}" />
+	<input type="submit" class="gm_t1_btn" value="提交訊息">
+</div>
+</form>
+
+<script type="text/javascript">
+function addpassenger() {
+	var idc = $("#p_idc").val();
+	var name = $("#p_name").val();
+	var policyno = $("#policyno").val();
+	
+	if (policyno == "") {
+		alert("請先輸入保單號碼");
+		return;
+	}
+	
+	$.get('/index.php?ctr=sysngroup&act=newpasenger&idc='+idc+'&name='+name+'&policyno='+policyno, null, function(data){
+		var re = eval("("+data+")");
+		
+		if (re['result'] == '1') {
+			var html = '<div class="passenger-include-item" id="item-'+re['idc']+'">'+
+					   '<span class="idc-item">'+re['idc']+'</span>'+
+					   '<span class="name-item">'+re['name']+'</span>'+
+					   '<span class="ctr-item"><a href="#" onclick="removeidc(\''+re['idc']+'\');return false">[刪除]</a></span>'+
+					   '<input type="hidden" name="pids[]" value="'+re['uid']+'" />'+
+					   '</div>';
+			$(".passenger-include").append(html);
+			$("#p_idc").val("");
+			$("#p_name").val("");
+		} else {
+			alert('增加旅客錯誤');
+		}
+	});
+}
+function removeidc(idc) {
+	$("#item-"+idc).remove();
+}
+function choose_map() {
+	$("#map_file").click();
+}
+function upload_map() {
+	var fileObj = $("#map_file")[0].files[0]; // 获取文件对象
+    var FileController = "/index.php?ctr=sysngroup&act=picupload";                    // 接收上传文件的后台地址 
+
+    // FormData 对象
+    var form = new FormData();
+    form.append("file", fileObj);                           // 文件对象
+
+    // XMLHttpRequest 对象
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", FileController, true);
+    xhr.onload = function () {
+		var data = xhr.responseText;
+		var re = eval("("+data+")");
+		if (re['result'] == '1') {
+			$("#pic").val(re['url']);
+		} else {
+			alert(re['msg']);
+		}
+    };
+    xhr.send(form);
+}
+</script>
+<form style="display: none;">
+<input type="file" name="map_file" id="map_file" onchange="upload_map();" />
+</form>
+
+{{include file="_common/footer.html"}}

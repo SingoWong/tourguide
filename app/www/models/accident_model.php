@@ -18,16 +18,111 @@ class Accident_Model extends CI_Model {
      * 获取所有意外通报
      * @return multitype:
      */
-    function getAccident($with_relation=false, $group_aid=0, $source='0') {
+    function getAccident($with_relation=false, $group_aid=0, $source='0', $roleid=0, $userid=0) {
+    		$this->load->model('Users_Insurance_Model');
+		
         $accident = new Accidents();
         
 		$accident->order_by('id', 'DESC');
-		$accident->where('source',$source);
-        if ($group_aid == 0) {
-            $accident->get();
-        } else {
-            $accident->where('group_aid', $group_aid)->get();
-        }
+		//$accident->where('source',$source);
+		if ($roleid == ROLE_ID_INSURANCE) {
+			$ngroup = new NGroup();
+			$ngroup->where('iid', $userid)->get();
+			
+			$ngids = array(0);
+			foreach ($ngroup->all as $ng) {
+				$ngids[] = $ng->id;
+			}
+			$ngroup_peg = new NGroup_Passenger();
+			$ngroup_peg->where_in('uid', $ngids)->get();
+			
+			$uids = array(0);
+			foreach ($ngroup_peg->all as $ngp) {
+				$uids[] = $ngp;
+			}
+			
+			$accident->where_in('group_aid', $uids);
+			
+		} elseif ($roleid == ROLE_ID_REINSURANCE) {
+			$ui = new Users_Insurance();
+			$ui->where('rid', $userid)->get();
+			
+			$iids = array(0);
+			foreach ($ui->all as $u) {
+				$iids[] = $u->id;
+			}
+			
+			$ngroup = new NGroup();
+			$ngroup->where_in('iid', $iids)->get();
+			
+			$ngids = array(0);
+			foreach ($ngroup->all as $ng) {
+				$ngids[] = $ng->id;
+			}
+			$ngroup_peg = new NGroup_Passenger();
+			$ngroup_peg->where_in('uid', $ngids)->get();
+			
+			$uids = array(0);
+			foreach ($ngroup_peg->all as $ngp) {
+				$uids[] = $ngp;
+			}
+			
+			$accident->where_in('group_aid', $uids);
+		} elseif ($roleid == ROLE_ID_ASSISTANCE) {
+			$ui = new Users_Insurance();
+			$ui->where('aid', $userid)->get();
+			
+			$iids = array(0);
+			foreach ($ui->all as $u) {
+				$iids[] = $u->id;
+			}
+			
+			$ngroup = new NGroup();
+			$ngroup->where_in('iid', $iids)->get();
+			
+			$ngids = array(0);
+			foreach ($ngroup->all as $ng) {
+				$ngids[] = $ng->id;
+			}
+			$ngroup_peg = new NGroup_Passenger();
+			$ngroup_peg->where_in('uid', $ngids)->get();
+			
+			$uids = array(0);
+			foreach ($ngroup_peg->all as $ngp) {
+				$uids[] = $ngp;
+			}
+			
+			$accident->where_in('group_aid', $uids);
+		} elseif ($roleid == ROLE_ID_FAMILY) {
+			$user = new Users();
+			$user->where('id', $userid)->get();
+			$username = $user->all[0]->username;
+			$username = str_replace('H', '', $username);
+			
+			$user = new Users();
+			$user->where('username', $username)->get();
+			$userid = $user->all[0]->id;
+			
+			$accident->where('guide_id', $userid);
+		} elseif ($roleid == ROLE_ID_UNION || $roleid == ROLE_ID_EMBRATUR || $roleid == ROLE_ID_ADMIN) {
+			//訪問全部數據
+		} elseif ($roleid == ROLE_ID_AGENCY) {
+			$ngroup = new NGroup();
+			$ngroup->where('aid_tw', $userid)->or_where('aid_cn', $userid)->get();
+			$ids = array(0);
+			foreach ($ngroup as $ng) {
+				$ids[] = $ng->id;
+			}
+			
+			$accident->where_in('gid', $ids);
+		} else {
+			if ($group_aid != 0) {
+	            $accident->where('group_aid', $group_aid);
+	        }
+		}
+		
+		$accident->get();
+        
         
         if ($with_relation) {
             $ids = array();
@@ -256,10 +351,69 @@ class Accident_Model extends CI_Model {
 		$accident->gid = $row['gid'];
 		$accident->guide_id = $row['guide_id'];
 		$accident->type = $row['type'];
+		$accident->source = $row['source'];
 			
 		if ($accident->save()) {
 			$re['result'] = '1';
 			$re['id'] = $accident->id;
+			
+			//发送消息
+			$this->load->model('Users_Insurance_Model');
+			$uim = new Users_Insurance_Model();
+			$reii = $uim->getInsuranceById($row['iid']);
+			
+			//保險公司
+			$this->load->model('Notify_Model');
+			$notify = new Notify_Model();
+			$ntf['uid'] = $row['iid'];
+			$ntf['message'] = '有新的意外通報！！';
+			$notify->setNotify($ntf);
+			//再保險公司
+			$this->load->model('Notify_Model');
+			$notify = new Notify_Model();
+			$ntf['uid'] = $reii->rid;
+			$ntf['message'] = '有新的意外通報！！';
+			$notify->setNotify($ntf);
+			//救援公司
+			$this->load->model('Notify_Model');
+			$notify = new Notify_Model();
+			$ntf['uid'] = $reii->aid;
+			$ntf['message'] = '有新的意外通報！！';
+			$notify->setNotify($ntf);
+			//旅行社tw
+			$this->load->model('Notify_Model');
+			$notify = new Notify_Model();
+			$ntf['uid'] = $row['aid_tw'];
+			$ntf['message'] = '有新的意外通報！！';
+			$notify->setNotify($ntf);
+			//旅行社cn
+			$this->load->model('Notify_Model');
+			$notify = new Notify_Model();
+			$ntf['uid'] = $row['aid_cn'];
+			$ntf['message'] = '有新的意外通報！！';
+			$notify->setNotify($ntf);
+			//總後台
+			$notify->setNotify($ntf);
+			$ntf['uid'] = 1;
+			$ntf['message'] = '有新的意外通報！！';
+			$notify->setNotify($ntf);
+			//全聯會
+			$notify->setNotify($ntf);
+			$ntf['uid'] = 11811;
+			$ntf['message'] = '有新的意外通報！！';
+			$notify->setNotify($ntf);
+			//觀光局
+			$notify->setNotify($ntf);
+			$ntf['uid'] = 12758;
+			$ntf['message'] = '有新的意外通報！！';
+			$notify->setNotify($ntf);
+			//家屬
+			if ($row['fid'] && $row['fid'] != '') {
+				$notify->setNotify($ntf);
+				$ntf['uid'] = $row['fid'];
+				$ntf['message'] = '有新的意外通報！！';
+				$notify->setNotify($ntf);
+			}
 		} else {
 			$re['result'] = '0';
 			$re['msg'] = '保存失敗，請重試';

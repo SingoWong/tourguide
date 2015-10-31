@@ -1,0 +1,76 @@
+{{include file="_common/header.html"}}
+<script type="text/javascript">
+$(document).ready(function(){
+	sh_pnlc($(".item_content").first().attr("idx"));
+});
+function sh_pnlc(id) {
+	if ($("#pnlc_"+id).css("display") == "none") {
+		$("#pnlc_"+id).show();
+		$("#btnc_"+id).html("關閉");
+	} else {
+		$("#pnlc_"+id).hide();
+		$("#btnc_"+id).html("展開");
+	}
+	return false;
+}
+</script>
+
+<div class="title_panel">
+	再保險公司管理
+</div>
+
+<input type="button" class="gm_t1_btn" value="再保險公司管理" onclick="self.location.href='index.php?ctr=sysreinsurance';">
+<input type="button" class="gm_t1_btn_alt_disabled" value="新增再保險公司" onclick="self.location.href='index.php?ctr=sysreinsurance&act=edit';">
+
+<div class="search-inner">
+<form class="gm_t1_form" id="reg_form" action="" method="GET">
+	<input type="hidden" name="ctr" value="sysreinsurance" />
+	<input type="hidden" name="act" value="index" />
+	<label class="v"><input id="name" type="text" name="name" value="" placeholder="再保險公司"></label>
+	<label class="v"><input id="username" type="text" name="username" value="" placeholder="帳號"></label>
+	<label class="s"><input type="submit" class="gm_t1_btn" value="查詢" /></label>	
+</form>
+</div>
+
+<div class="list_inner">
+	
+	<!-- foreach -->
+	{{foreach from=$rowset item=item key=key}}
+	<div class="item">
+		<div class="item_title">
+			<a href="#" onclick="return sh_pnlc({{$item->id}});" id="btnc_{{$item->id}}">展開</a>
+			<!--<a href="index.php?ctr=sysagency&act=contracth&aid={{$item->uid}}" style="padding: 0 5px;">合約飯店</a>
+			<a href="index.php?ctr=sysagency&act=contractr&aid={{$item->uid}}" style="padding: 0 5px;">合約餐廳</a>-->
+			<span class="tt_item_name">{{$item->users->name}}</span>
+		</div>
+		<div class="item_content" id="pnlc_{{$item->id}}" idx="{{$item->id}}">
+			<table border="0" width="100%" cellpadding="2" cellspacing="1">
+				<tr>
+					<td colspan="2">帳號：{{$item->users->username}}</td>
+					<td>密碼：******</td>
+					<td width="10%"><a href="index.php?ctr=sysreinsurance&act=resetpassword&id={{$item->uid}}" onclick="if(!confirm('確定要重置這個帳號嗎？')){return false;}">重置密碼</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" width="50%">流水號：{{$item->uid}}</td>
+					<td colspan="2">再保險公司名稱：{{$item->users->name}}</td>
+				</tr>
+				<tr>
+					<td>聯絡人：{{$item->contact}}</td>
+					<td width="10%"><a href="index.php?ctr=sysreinsurance&act=updateprofile&type=contact&id={{$item->uid}}" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
+					<td>電話：{{$item->contact_tel}}</td>
+					<td><a href="index.php?ctr=sysreinsurance&act=updateprofile&type=contact_tel&id={{$item->uid}}" onclick="return window.openWindow(this.href,'600','150',false,0.3)">修改</a></td>
+				</tr>
+				<tr>
+					<td colspan="4">郵箱：{{$item->users->email}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	{{/foreach}}
+	<!-- foreach -->
+	
+</div>
+
+<div class="pager">{{$pager}}</div>
+
+{{include file="_common/footer.html"}}

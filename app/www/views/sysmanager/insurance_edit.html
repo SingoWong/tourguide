@@ -1,0 +1,68 @@
+{{include file="_common/header.html"}}
+<script type="text/javascript">
+function onsave() {
+	if ($("#name").val() == "") {
+		alert("提醒您!! 保險公司名稱尚未填寫");
+		return false;
+	} else if ($("#username").val() == "") {
+		alert("提醒您!! 帳號尚未填寫");
+		return false;
+	} else if ($("#contact").val() == "") {
+		alert("提醒您!! 聯絡人尚未填寫");
+		return false;
+	} else if ($("#contact_tel").val() == "") {
+		alert("提醒您!! 電話尚未填寫");
+		return false;
+	} else if ($("#email").val() == "") {
+		alert("提醒您!! 郵箱尚未填寫");
+		return false;
+	}
+	
+	return true;
+}
+</script>
+
+<div class="title_panel">
+	保險公司管理 - 新增保險公司
+</div>
+
+<input type="button" class="gm_t1_btn_alt_disabled" value="保險公司管理" onclick="self.location.href='index.php?ctr=sysinsurance';">
+<input type="button" class="gm_t1_btn" value="新增保險公司" onclick="self.location.href='index.php?ctr=sysinsurance&act=edit';">
+
+<div class="form_inner">
+
+<form action="index.php?ctr=sysinsurance&act=save" method="post" class="gm_t1_form" onsubmit="return onsave();">
+    <ul>
+        <li>
+            <span class="v"><input type="text" id="name" name="name" placeholder="保險公司名稱"><em></em></span>
+        </li>
+        <li>
+            <span class="v"><input type="text" id="username" name="username" placeholder="帳號"><em></em></span>
+        </li>
+        <li>
+            <span class="v"><input type="text" id="contact" name="contact" placeholder="聯絡人"><em></em></span>
+        </li>
+        <li>
+            <span class="v"><input type="text" id="contact_tel" name="contact_tel" placeholder="電話"><em></em></span>
+        </li>
+        <li>
+            <span class="v"><input type="text" id="email" name="email" placeholder="郵箱"><em></em></span>
+        </li>
+        <li>
+        		<span class="k">再保險公司</span>
+        		<span class="v"><select id="rid" name="rid"><option value="">未預設</option>{{$html_reinsurance}}</select></span>
+        </li>
+        <li>
+        		<span class="k">救援公司</span>
+        		<span class="v"><select id="rid" name="aid"><option value="">未預設</option>{{$html_assistance}}</select></span>
+        </li>
+        <li class="gm_t1_form_btn" style="height:auto;">
+            <input type="submit" class="gm_t1_btn" value="提交">
+        </li>
+    </ul>
+    <br /><br /><br /><br /><br /><br />
+</form>
+
+</div>
+
+{{include file="_common/footer.html"}}
